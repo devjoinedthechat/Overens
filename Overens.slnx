@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/evals/" />
+  <Folder Name="/evals/Runner/">
+    <Project Path="evals/Runner/Overens.Evals.csproj" />
+  </Folder>
   <Folder Name="/src/" />
   <Folder Name="/src/Api/">
     <Project Path="src/Api/Overens.Api.csproj" />

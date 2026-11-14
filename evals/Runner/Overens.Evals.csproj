@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Runs the evals against a real model, or against answers recorded from one. -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Gateway\Overens.Gateway.csproj" />
+    <ProjectReference Include="..\..\src\Ingestion\Overens.Ingestion.csproj" />
+    <ProjectReference Include="..\..\src\Synthetic\Overens.Synthetic.csproj" />
+  </ItemGroup>
+
+</Project>
