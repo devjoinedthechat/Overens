@@ -116,20 +116,14 @@
                 [
                   "0-11 måneders anciennitet",
                   "131,75 kr.",
-                  "136,75 kr.",
-                  "141,25 kr."
+                  "136,00 kr.",
+                  "140,00 kr."
                 ],
                 [
                   "Fra 12 måneders anciennitet",
-                  "138,25 kr.",
-                  "143,25 kr.",
-                  "147,75 kr."
-                ],
-                [
-                  "Fra 36 måneders anciennitet",
-                  "142,50 kr.",
-                  "147,50 kr.",
-                  "152,00 kr."
+                  "140,75 kr.",
+                  "145,00 kr.",
+                  "149,00 kr."
                 ]
               ]
             }
@@ -182,7 +176,7 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "For de første tre timers overarbejde pr. dag betales et tillæg på 50,0 pct. af timelønnen. For overarbejde herudover betales et tillæg på 100,0 pct. af timelønnen."
+              "text": "For de første to timers overarbejde pr. dag betales et tillæg på 50,0 pct. af timelønnen. For overarbejde herudover betales et tillæg på 100,0 pct. af timelønnen."
             }
           ]
         },
@@ -227,22 +221,22 @@
               ],
               "rows": [
                 [
-                  "Mandag til fredag kl. 18.00-22.00",
-                  "32,60 kr.",
-                  "33,35 kr.",
-                  "34,10 kr."
+                  "Mandag til fredag kl. 17.00-22.00",
+                  "29,10 kr.",
+                  "29,85 kr.",
+                  "31,35 kr."
                 ],
                 [
                   "Lørdag kl. 14.00-24.00",
-                  "53,35 kr.",
-                  "54,10 kr.",
-                  "54,85 kr."
+                  "53,85 kr.",
+                  "54,60 kr.",
+                  "56,10 kr."
                 ],
                 [
                   "Alle dage kl. 22.00-06.00",
-                  "44,10 kr.",
-                  "44,85 kr.",
-                  "45,60 kr."
+                  "42,60 kr.",
+                  "43,35 kr.",
+                  "44,85 kr."
                 ]
               ]
             }
@@ -277,7 +271,7 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "Arbejdsgiveren indbetaler 8,5 pct. og medarbejderen 4,0 pct. af lønnen til pensionsordningen."
+              "text": "Arbejdsgiveren indbetaler 10,0 pct. og medarbejderen 4,0 pct. af lønnen til pensionsordningen."
             }
           ]
         },
@@ -286,7 +280,7 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "Medarbejdere er omfattet af pensionsordningen efter seks måneders anciennitet."
+              "text": "Medarbejdere er omfattet af pensionsordningen efter to måneders anciennitet."
             }
           ]
         },
@@ -343,7 +337,7 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 4,0 pct. fra 1. marts 2026, 4,5 pct. fra 1. marts 2027 og 5,5 pct. fra 1. marts 2028."
+              "text": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 5,0 pct. fra 1. marts 2026, 5,5 pct. fra 1. marts 2027 og 6,0 pct. fra 1. marts 2028."
             }
           ]
         },
@@ -464,7 +458,7 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "Virksomheden indbetaler 52 øre pr. præsteret arbejdstime til parternes uddannelsesfond."
+              "text": "Virksomheden indbetaler 60 øre pr. præsteret arbejdstime til parternes uddannelsesfond."
             }
           ]
         },

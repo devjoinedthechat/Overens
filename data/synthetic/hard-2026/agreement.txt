@@ -18,17 +18,17 @@ Stk. 4. Der holdes en daglig spisepause på 30 minutter, som ikke medregnes i ar
 § 4. Løn
 Stk. 1. Mindstebetalingen pr. time udgør følgende satser:
 Anciennitet | Pr. 1. marts 2026 | Pr. 1. marts 2027 | Pr. 1. marts 2028
-Under 1 års anciennitet | 144,45 kr. | 148,70 kr. | 152,45 kr.
-Efter 1 års anciennitet | 149,45 kr. | 153,70 kr. | 157,45 kr.
-Efter 3 års anciennitet | 154,45 kr. | 158,70 kr. | 162,45 kr.
+Under 1 års anciennitet | 144,45 kr. | 147,95 kr. | 151,70 kr.
+Efter 1 års anciennitet | 151,70 kr. | 155,20 kr. | 158,95 kr.
+Efter 3 års anciennitet | 154,70 kr. | 158,20 kr. | 161,95 kr.
 Stk. 2. Anciennitet regnes i hele måneder fra ansættelsesdatoen.
 Stk. 3. Ved lønnen forstås i denne overenskomst timeløn, overarbejdstillæg og tillæg for forskudt tid.
 Stk. 4. Alle beløb afrundes til nærmeste øre.
 Stk. 5. For ungarbejdere under 18 år og for lærlinge gælder nedenstående satser. Satserne er ikke omfattet af stk. 1.
 Gruppe | Pr. 1. marts 2026 | Pr. 1. marts 2027 | Pr. 1. marts 2028
-Ungarbejdere under 18 år | 96,70 kr. | 100,95 kr. | 104,70 kr.
-Lærlinge, 1. år | 82,45 kr. | 86,70 kr. | 90,45 kr.
-Lærlinge, 2. år | 100,45 kr. | 104,70 kr. | 108,45 kr.
+Ungarbejdere under 18 år | 96,70 kr. | 100,20 kr. | 103,95 kr.
+Lærlinge, 1. år | 82,45 kr. | 85,95 kr. | 89,70 kr.
+Lærlinge, 2. år | 100,45 kr. | 103,95 kr. | 107,70 kr.
 
 § 5. Overarbejde
 Stk. 1. Overarbejde er arbejde ud over den daglige normale arbejdstid, jf. § 3, stk. 2. Arbejdstiden opgøres samlet for alle vagter, der påbegyndes samme dag.
@@ -39,15 +39,15 @@ Stk. 4. Overarbejde skal så vidt muligt varsles senest dagen før.
 § 6. Forskudt arbejdstid
 Stk. 1. For arbejde på forskudt tid betales følgende tillæg pr. time:
 Tidsrum | Pr. 1. marts 2026 | Pr. 1. marts 2027 | Pr. 1. marts 2028
-Mandag til fredag kl. 17.00-22.00 | 25,05 kr. | 26,30 kr. | 27,05 kr.
-Lørdag kl. 14.00-24.00 | 41,05 kr. | 42,30 kr. | 43,05 kr.
-Alle dage kl. 22.00-06.00 | 39,55 kr. | 40,80 kr. | 41,55 kr.
+Mandag til fredag kl. 18.00-22.00 | 29,50 kr. | 30,25 kr. | 31,75 kr.
+Lørdag kl. 14.00-24.00 | 44,50 kr. | 45,25 kr. | 46,75 kr.
+Alle dage kl. 22.00-06.00 | 40,75 kr. | 41,50 kr. | 43,00 kr.
 Stk. 2. Hvor flere tillæg dækker samme tidsrum, betales alene det højeste tillæg.
 Stk. 3. Tillæg for forskudt tid betales ud over eventuelt overarbejdstillæg.
 
 § 7. Pension
-Stk. 1. Pensionsbidraget udgør 12,0 pct. af lønnen, hvoraf arbejdsgiveren betaler 8,0 pct. og medarbejderen 4,0 pct.
-Stk. 2. Medarbejdere er omfattet af pensionsordningen efter to måneders anciennitet.
+Stk. 1. Pensionsbidraget udgør 13,0 pct. af lønnen, hvoraf arbejdsgiveren betaler 9,0 pct. og medarbejderen 4,0 pct.
+Stk. 2. Medarbejdere er omfattet af pensionsordningen efter seks måneders anciennitet.
 Stk. 3. Pensionsbidraget indbetales månedligt til det pensionsselskab, som overenskomstens parter har aftalt.
 
 § 8. Ferie og feriegodtgørelse
@@ -58,7 +58,7 @@ Stk. 3. Ud over ferie har medarbejderen ret til fem feriefridage pr. ferieår.
 § 9. Fritvalgskonto
 Stk. 1. Arbejdsgiverens bidrag til medarbejderens fritvalgskonto udgør følgende andel af lønnen:
 Pr. 1. marts 2026 | Pr. 1. marts 2027 | Pr. 1. marts 2028
-7,0 pct. | 8,0 pct. | 9,0 pct.
+4,0 pct. | 5,0 pct. | 6,0 pct.
 Stk. 2. Medarbejderen kan vælge at få saldoen udbetalt i forbindelse med ferie og fridage eller indbetalt som ekstra pensionsbidrag.
 
 § 10. Sygdom
@@ -90,5 +90,5 @@ Stk. 1. Overenskomsten træder i kraft den 1. marts 2026 og kan opsiges med tre 
 Stk. 2. Selv om overenskomsten er opsagt eller udløbet, gælder dens bestemmelser, indtil en ny overenskomst træder i stedet.
 
 Protokollat 1. Forhøjelse af pensionsbidrag
-Stk. 1. Parterne er enige om at ændre § 7, stk. 1. Med virkning fra den 1. marts 2027 forhøjes arbejdsgiverens pensionsbidrag til 8,5 pct. af lønnen.
+Stk. 1. Parterne er enige om at ændre § 7, stk. 1. Med virkning fra den 1. marts 2027 forhøjes arbejdsgiverens pensionsbidrag til 9,5 pct. af lønnen.
 Stk. 2. Medarbejderens bidrag og anciennitetskravet er uændrede.

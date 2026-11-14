@@ -114,6 +114,30 @@ public sealed class AgreementGeneratorTests
     }
 
     [Fact]
+    public void A_renewal_keeps_the_parties_and_carries_the_rates_on_upwards()
+    {
+        var old = Generate(12, 3);
+        var renewed = AgreementGenerator.Renew(old, new("renewed", 77, 3, 2029));
+
+        Assert.Equal(old.Document.Parties, renewed.Document.Parties);
+        Assert.Equal(old.Document.Title.Replace("2026-2029", "2029-2032", StringComparison.Ordinal), renewed.Document.Title);
+        Assert.Empty(RuleSetValidator.Validate(renewed.Truth));
+        Assert.All(renewed.Truth.Rules, rule => Assert.True(rule.InForce.From >= new DateOnly(2029, 3, 1)));
+
+        // Every rate starts above where the old agreement ended; what was settled stays settled.
+        Assert.True(First<MinimumWageRule>(renewed).Bands[0].HourlyRate > Last<MinimumWageRule>(old).Bands[0].HourlyRate);
+        Assert.True(First<InconvenientHoursRule>(renewed).Windows[0].AmountPerHour > Last<InconvenientHoursRule>(old).Windows[0].AmountPerHour);
+        Assert.True(First<SpecialSavingsRule>(renewed).Percent > Last<SpecialSavingsRule>(old).Percent);
+        Assert.Equal(Last<PensionRule>(old).EmployerPercent, First<PensionRule>(renewed).EmployerPercent);
+        Assert.Equal(Last<OvertimeRule>(old).Tiers, First<OvertimeRule>(renewed).Tiers);
+
+        static T First<T>(SyntheticAgreement agreement)
+            where T : Rule => agreement.Truth.Rules.OfType<T>().MinBy(rule => rule.InForce.From)!;
+        static T Last<T>(SyntheticAgreement agreement)
+            where T : Rule => agreement.Truth.Rules.OfType<T>().MaxBy(rule => rule.InForce.From)!;
+    }
+
+    [Fact]
     public void An_agreement_survives_being_written_and_read_and_its_rules_can_pay_people()
     {
         var agreement = Generate(9, 3);

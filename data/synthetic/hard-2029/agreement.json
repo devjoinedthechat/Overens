@@ -1,0 +1,595 @@
+{
+  "id": "hard-2029",
+  "title": "Tværhavn-overenskomsten for lagerarbejde 2029-2032",
+  "parties": "mellem Erhvervsforeningen Tværhavn og Fagforeningen Elmekær",
+  "sections": [
+    {
+      "number": "§ 1",
+      "heading": "Overenskomstens område",
+      "clauses": [
+        {
+          "id": "§ 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten omfatter medarbejdere, der er beskæftiget med lager- og logistikarbejde i virksomheder, som er medlem af Erhvervsforeningen Tværhavn."
+            }
+          ]
+        },
+        {
+          "id": "§ 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten omfatter ikke ledende medarbejdere, som har ret til at ansætte og afskedige personale."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 2",
+      "heading": "Ansættelse",
+      "clauses": [
+        {
+          "id": "§ 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved ansættelsen udleveres et ansættelsesbevis senest syv kalenderdage efter, at arbejdet er påbegyndt."
+            }
+          ]
+        },
+        {
+          "id": "§ 2, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "De første tre måneder af ansættelsen er prøvetid, hvor opsigelse kan ske med 14 dages varsel fra begge sider."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 3",
+      "heading": "Arbejdstid",
+      "clauses": [
+        {
+          "id": "§ 3, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den normale ugentlige arbejdstid er 37 timer."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den daglige normale arbejdstid er 7 timer og 24 minutter."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejde betales efter de satser, der gælder på den dag, hvor arbejdet påbegyndes."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Der holdes en daglig spisepause på 30 minutter, som ikke medregnes i arbejdstiden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 4",
+      "heading": "Løn",
+      "clauses": [
+        {
+          "id": "§ 4, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Der betales mindst følgende timeløn:"
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Anciennitet",
+                "Pr. 1. marts 2029",
+                "Pr. 1. marts 2030",
+                "Pr. 1. marts 2031"
+              ],
+              "rows": [
+                [
+                  "0-11 måneders anciennitet",
+                  "155,70 kr.",
+                  "160,20 kr.",
+                  "164,95 kr."
+                ],
+                [
+                  "Fra 12 måneders anciennitet",
+                  "162,95 kr.",
+                  "167,45 kr.",
+                  "172,20 kr."
+                ],
+                [
+                  "Fra 36 måneders anciennitet",
+                  "165,95 kr.",
+                  "170,45 kr.",
+                  "175,20 kr."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "§ 4, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Anciennitet regnes i hele måneder fra ansættelsesdatoen."
+            }
+          ]
+        },
+        {
+          "id": "§ 4, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved lønnen forstås i denne overenskomst timeløn, overarbejdstillæg og tillæg for forskudt tid."
+            }
+          ]
+        },
+        {
+          "id": "§ 4, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Alle beløb afrundes til nærmeste øre."
+            }
+          ]
+        },
+        {
+          "id": "§ 4, stk. 5",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For ungarbejdere under 18 år og for lærlinge gælder nedenstående satser. Satserne er ikke omfattet af stk. 1."
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Gruppe",
+                "Pr. 1. marts 2029",
+                "Pr. 1. marts 2030",
+                "Pr. 1. marts 2031"
+              ],
+              "rows": [
+                [
+                  "Ungarbejdere under 18 år",
+                  "103,20 kr.",
+                  "107,70 kr.",
+                  "112,45 kr."
+                ],
+                [
+                  "Lærlinge, 1. år",
+                  "85,95 kr.",
+                  "90,45 kr.",
+                  "95,20 kr."
+                ],
+                [
+                  "Lærlinge, 2. år",
+                  "117,95 kr.",
+                  "122,45 kr.",
+                  "127,20 kr."
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 5",
+      "heading": "Overarbejde",
+      "clauses": [
+        {
+          "id": "§ 5, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overarbejde er arbejde ud over den daglige normale arbejdstid, jf. § 3, stk. 2. Arbejdstiden opgøres samlet for alle vagter, der påbegyndes samme dag."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For de første to timers overarbejde pr. dag betales et tillæg på 50,0 pct. af timelønnen. For overarbejde herudover betales et tillæg på 100,0 pct. af timelønnen."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde på søndage betales et tillæg på 100,0 pct. af timelønnen for alle timer. Søndagstimer medregnes ikke ved opgørelsen efter stk. 1."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overarbejde skal så vidt muligt varsles senest dagen før."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 6",
+      "heading": "Forskudt arbejdstid",
+      "clauses": [
+        {
+          "id": "§ 6, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillæg for arbejde på forskudt tid udgør pr. time:"
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Tidsrum",
+                "Pr. 1. marts 2029",
+                "Pr. 1. marts 2030",
+                "Pr. 1. marts 2031"
+              ],
+              "rows": [
+                [
+                  "Mandag til fredag kl. 18.00-22.00",
+                  "32,75 kr.",
+                  "33,75 kr.",
+                  "35,00 kr."
+                ],
+                [
+                  "Lørdag kl. 14.00-24.00",
+                  "47,75 kr.",
+                  "48,75 kr.",
+                  "50,00 kr."
+                ],
+                [
+                  "Alle dage kl. 22.00-06.00",
+                  "44,00 kr.",
+                  "45,00 kr.",
+                  "46,25 kr."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "§ 6, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Hvor flere tillæg dækker samme tidsrum, betales alene det højeste tillæg."
+            }
+          ]
+        },
+        {
+          "id": "§ 6, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillæg for forskudt tid betales ud over eventuelt overarbejdstillæg."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 7",
+      "heading": "Pension",
+      "clauses": [
+        {
+          "id": "§ 7, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsgiveren indbetaler 9,5 pct. og medarbejderen 4,0 pct. af lønnen til pensionsordningen."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere er omfattet af pensionsordningen efter seks måneders anciennitet."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pensionsbidraget indbetales månedligt til det pensionsselskab, som overenskomstens parter har aftalt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 8",
+      "heading": "Ferie og feriegodtgørelse",
+      "clauses": [
+        {
+          "id": "§ 8, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ferie holdes i overensstemmelse med ferielovens regler."
+            }
+          ]
+        },
+        {
+          "id": "§ 8, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Feriegodtgørelsen udgør 12,5 pct. af lønnen."
+            }
+          ]
+        },
+        {
+          "id": "§ 8, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ud over ferie har medarbejderen ret til fem feriefridage pr. ferieår."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 9",
+      "heading": "Fritvalgskonto",
+      "clauses": [
+        {
+          "id": "§ 9, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 6,5 pct. fra 1. marts 2029, 7,0 pct. fra 1. marts 2030 og 8,0 pct. fra 1. marts 2031. Den hidtidige sats på 5,5 pct. bortfalder."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen kan vælge at få saldoen udbetalt i forbindelse med ferie og fridage eller indbetalt som ekstra pensionsbidrag."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 10",
+      "heading": "Sygdom",
+      "clauses": [
+        {
+          "id": "§ 10, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med mindst seks måneders anciennitet har ret til løn under sygdom i indtil ni uger."
+            }
+          ]
+        },
+        {
+          "id": "§ 10, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Sygdom skal anmeldes til virksomheden hurtigst muligt og senest ved arbejdstids begyndelse."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 11",
+      "heading": "Opsigelse",
+      "clauses": [
+        {
+          "id": "§ 11, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Efter prøvetiden gælder følgende opsigelsesvarsler:"
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Anciennitet",
+                "Fra virksomheden",
+                "Fra medarbejderen"
+              ],
+              "rows": [
+                [
+                  "Under 1 år",
+                  "21 dage",
+                  "7 dage"
+                ],
+                [
+                  "1 til 3 år",
+                  "28 dage",
+                  "14 dage"
+                ],
+                [
+                  "Over 3 år",
+                  "56 dage",
+                  "28 dage"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Opsigelse skal ske skriftligt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 12",
+      "heading": "Tillidsrepræsentanter",
+      "clauses": [
+        {
+          "id": "§ 12, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "I virksomheder med mindst seks medarbejdere kan medarbejderne vælge en tillidsrepræsentant af deres midte."
+            }
+          ]
+        },
+        {
+          "id": "§ 12, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillidsrepræsentanten skal have den nødvendige tid til at udføre sit hverv."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 13",
+      "heading": "Uddannelsesfond",
+      "clauses": [
+        {
+          "id": "§ 13, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden indbetaler 49 øre pr. præsteret arbejdstime til parternes uddannelsesfond."
+            }
+          ]
+        },
+        {
+          "id": "§ 13, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med mindst ni måneders anciennitet har ret til to ugers selvvalgt uddannelse om året."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 14",
+      "heading": "Fagretlig behandling",
+      "clauses": [
+        {
+          "id": "§ 14, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Uenighed om forståelsen af overenskomsten søges løst ved forhandling mellem virksomheden og tillidsrepræsentanten."
+            }
+          ]
+        },
+        {
+          "id": "§ 14, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Opnås der ikke enighed, kan sagen videreføres af organisationerne efter reglerne for behandling af faglig strid."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 15",
+      "heading": "Varighed",
+      "clauses": [
+        {
+          "id": "§ 15, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten træder i kraft den 1. marts 2029 og kan opsiges med tre måneders varsel til en 1. marts, dog tidligst den 1. marts 2032."
+            }
+          ]
+        },
+        {
+          "id": "§ 15, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Selv om overenskomsten er opsagt eller udløbet, gælder dens bestemmelser, indtil en ny overenskomst træder i stedet."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "protocols": [
+    {
+      "number": "Protokollat 1",
+      "heading": "Forhøjelse af pensionsbidrag",
+      "clauses": [
+        {
+          "id": "Protokollat 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Parterne er enige om at ændre § 7, stk. 1. Med virkning fra den 1. marts 2030 forhøjes arbejdsgiverens pensionsbidrag til 10,0 pct. af lønnen."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderens bidrag og anciennitetskravet er uændrede."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

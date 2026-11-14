@@ -8,19 +8,27 @@ namespace Overens.Synthetic;
 /// </summary>
 public static class Corpus
 {
-    /// <summary>Three agreements of rising difficulty.</summary>
+    /// <summary>Three agreements of rising difficulty, and the renewal of the hardest.</summary>
     public static IReadOnlyList<AgreementSpec> Agreements { get; } =
     [
         new("easy-2026", Seed: 101, Difficulty: 1, StartYear: 2026),
         new("medium-2026", Seed: 202, Difficulty: 2, StartYear: 2026),
         new("hard-2026", Seed: 303, Difficulty: 3, StartYear: 2026),
+        new("hard-2029", Seed: 404, Difficulty: 3, StartYear: 2029),
     ];
+
+    /// <summary>The agreement for a spec. <c>hard-2029</c> renews <c>hard-2026</c>.</summary>
+    public static SyntheticAgreement Generate(AgreementSpec spec)
+    {
+        ArgumentNullException.ThrowIfNull(spec);
+        return spec.Id == "hard-2029"
+            ? AgreementGenerator.Renew(AgreementGenerator.Generate(Agreements[2]), spec)
+            : AgreementGenerator.Generate(spec);
+    }
 
     /// <summary>Each agreement as a PDF, by its path under the corpus directory.</summary>
     public static IReadOnlyDictionary<string, byte[]> Pdfs() =>
-        Agreements.ToDictionary(
-            spec => $"{spec.Id}/agreement.pdf",
-            spec => AgreementPdf.Render(AgreementGenerator.Generate(spec).Document));
+        Agreements.ToDictionary(spec => $"{spec.Id}/agreement.pdf", spec => AgreementPdf.Render(Generate(spec).Document));
 
     /// <summary>Every text file of the corpus, by its path under the corpus directory.</summary>
     public static IReadOnlyDictionary<string, string> Files()
@@ -28,7 +36,7 @@ public static class Corpus
         var files = new SortedDictionary<string, string>(StringComparer.Ordinal);
         foreach (var spec in Agreements)
         {
-            var agreement = AgreementGenerator.Generate(spec);
+            var agreement = Generate(spec);
             // Pay data starts three months before the second year's rates, so it crosses a step.
             var pay = PayDataGenerator.Generate(agreement.Truth, spec.Seed, new(spec.StartYear, 12, 1), months: 6, employees: 12);
             files[$"{spec.Id}/agreement.json"] = RuleJson.Write(agreement.Document) + "\n";

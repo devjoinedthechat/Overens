@@ -11,11 +11,7 @@
         },
         {
           "fromMonths": 12,
-          "hourlyRate": 138.25
-        },
-        {
-          "fromMonths": 36,
-          "hourlyRate": 142.50
+          "hourlyRate": 140.75
         }
       ],
       "id": "minimum_wage-2026",
@@ -33,15 +29,11 @@
       "bands": [
         {
           "fromMonths": 0,
-          "hourlyRate": 136.75
+          "hourlyRate": 136.00
         },
         {
           "fromMonths": 12,
-          "hourlyRate": 143.25
-        },
-        {
-          "fromMonths": 36,
-          "hourlyRate": 147.50
+          "hourlyRate": 145.00
         }
       ],
       "id": "minimum_wage-2027",
@@ -59,15 +51,11 @@
       "bands": [
         {
           "fromMonths": 0,
-          "hourlyRate": 141.25
+          "hourlyRate": 140.00
         },
         {
           "fromMonths": 12,
-          "hourlyRate": 147.75
-        },
-        {
-          "fromMonths": 36,
-          "hourlyRate": 152.00
+          "hourlyRate": 149.00
         }
       ],
       "id": "minimum_wage-2028",
@@ -85,7 +73,7 @@
       "dailyNormHours": 7.4,
       "tiers": [
         {
-          "hours": 3,
+          "hours": 2,
           "percent": 50.0
         },
         {
@@ -101,7 +89,7 @@
       },
       "source": {
         "clauseId": "§ 5, stk. 2",
-        "quote": "For de første tre timers overarbejde pr. dag betales et tillæg på 50,0 pct. af timelønnen."
+        "quote": "For de første to timers overarbejde pr. dag betales et tillæg på 50,0 pct. af timelønnen."
       }
     },
     {
@@ -115,9 +103,9 @@
             "Thursday",
             "Friday"
           ],
-          "from": "18:00:00",
+          "from": "17:00:00",
           "to": "22:00:00",
-          "amountPerHour": 32.60
+          "amountPerHour": 29.10
         },
         {
           "days": [
@@ -125,7 +113,7 @@
           ],
           "from": "14:00:00",
           "to": "00:00:00",
-          "amountPerHour": 53.35
+          "amountPerHour": 53.85
         },
         {
           "days": [
@@ -139,7 +127,7 @@
           ],
           "from": "22:00:00",
           "to": "06:00:00",
-          "amountPerHour": 44.10
+          "amountPerHour": 42.60
         }
       ],
       "id": "inconvenient_hours-2026",
@@ -163,9 +151,9 @@
             "Thursday",
             "Friday"
           ],
-          "from": "18:00:00",
+          "from": "17:00:00",
           "to": "22:00:00",
-          "amountPerHour": 33.35
+          "amountPerHour": 29.85
         },
         {
           "days": [
@@ -173,7 +161,7 @@
           ],
           "from": "14:00:00",
           "to": "00:00:00",
-          "amountPerHour": 54.10
+          "amountPerHour": 54.60
         },
         {
           "days": [
@@ -187,7 +175,7 @@
           ],
           "from": "22:00:00",
           "to": "06:00:00",
-          "amountPerHour": 44.85
+          "amountPerHour": 43.35
         }
       ],
       "id": "inconvenient_hours-2027",
@@ -211,9 +199,9 @@
             "Thursday",
             "Friday"
           ],
-          "from": "18:00:00",
+          "from": "17:00:00",
           "to": "22:00:00",
-          "amountPerHour": 34.10
+          "amountPerHour": 31.35
         },
         {
           "days": [
@@ -221,7 +209,7 @@
           ],
           "from": "14:00:00",
           "to": "00:00:00",
-          "amountPerHour": 54.85
+          "amountPerHour": 56.10
         },
         {
           "days": [
@@ -235,7 +223,7 @@
           ],
           "from": "22:00:00",
           "to": "06:00:00",
-          "amountPerHour": 45.60
+          "amountPerHour": 44.85
         }
       ],
       "id": "inconvenient_hours-2028",
@@ -250,9 +238,9 @@
     },
     {
       "kind": "pension",
-      "employerPercent": 8.5,
+      "employerPercent": 10.0,
       "employeePercent": 4.0,
-      "qualifyingMonths": 6,
+      "qualifyingMonths": 2,
       "id": "pension-2026",
       "inForce": {
         "from": "2026-03-01",
@@ -260,7 +248,7 @@
       },
       "source": {
         "clauseId": "§ 7, stk. 1",
-        "quote": "Arbejdsgiveren indbetaler 8,5 pct. og medarbejderen 4,0 pct. af lønnen til pensionsordningen."
+        "quote": "Arbejdsgiveren indbetaler 10,0 pct. og medarbejderen 4,0 pct. af lønnen til pensionsordningen."
       }
     },
     {
@@ -278,7 +266,7 @@
     },
     {
       "kind": "special_savings",
-      "percent": 4,
+      "percent": 5,
       "id": "special_savings-2026",
       "inForce": {
         "from": "2026-03-01",
@@ -286,12 +274,12 @@
       },
       "source": {
         "clauseId": "§ 9, stk. 1",
-        "quote": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 4,0 pct. fra 1. marts 2026, 4,5 pct. fra 1. marts 2027 og 5,5 pct. fra 1. marts 2028."
+        "quote": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 5,0 pct. fra 1. marts 2026, 5,5 pct. fra 1. marts 2027 og 6,0 pct. fra 1. marts 2028."
       }
     },
     {
       "kind": "special_savings",
-      "percent": 4.5,
+      "percent": 5.5,
       "id": "special_savings-2027",
       "inForce": {
         "from": "2027-03-01",
@@ -299,12 +287,12 @@
       },
       "source": {
         "clauseId": "§ 9, stk. 1",
-        "quote": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 4,0 pct. fra 1. marts 2026, 4,5 pct. fra 1. marts 2027 og 5,5 pct. fra 1. marts 2028."
+        "quote": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 5,0 pct. fra 1. marts 2026, 5,5 pct. fra 1. marts 2027 og 6,0 pct. fra 1. marts 2028."
       }
     },
     {
       "kind": "special_savings",
-      "percent": 5.5,
+      "percent": 6.0,
       "id": "special_savings-2028",
       "inForce": {
         "from": "2028-03-01",
@@ -312,7 +300,7 @@
       },
       "source": {
         "clauseId": "§ 9, stk. 1",
-        "quote": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 4,0 pct. fra 1. marts 2026, 4,5 pct. fra 1. marts 2027 og 5,5 pct. fra 1. marts 2028."
+        "quote": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 5,0 pct. fra 1. marts 2026, 5,5 pct. fra 1. marts 2027 og 6,0 pct. fra 1. marts 2028."
       }
     }
   ]

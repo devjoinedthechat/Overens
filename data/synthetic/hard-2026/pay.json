@@ -290,23 +290,23 @@
       "employeeId": "emp-001",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 184.70,
+      "hourlyRate": 184.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 32414.85
+          "amount": 32327.10
         },
         {
           "kind": "Overtime",
-          "amount": 498.69
+          "amount": 497.34
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4114.19
+          "amount": 4103.06
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2303.95
+          "amount": 1312.98
         }
       ]
     }
@@ -440,27 +440,27 @@
       "employeeId": "emp-002",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 188.95,
+      "hourlyRate": 188.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29948.58
+          "amount": 29869.33
         },
         {
           "kind": "Overtime",
-          "amount": 1691.10
+          "amount": 1686.63
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2366.83
+          "amount": 2056.88
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4284.56
+          "amount": 4257.86
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2399.36
+          "amount": 1362.51
         }
       ]
     }
@@ -720,23 +720,23 @@
       "employeeId": "emp-003",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 183.20,
+      "hourlyRate": 182.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 27754.80
+          "amount": 27679.05
         },
         {
           "kind": "Overtime",
-          "amount": 320.60
+          "amount": 319.73
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3509.43
+          "amount": 3499.85
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1965.28
+          "amount": 1119.95
         }
       ]
     }
@@ -894,27 +894,27 @@
       "employeeId": "emp-004",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 165.20,
+      "hourlyRate": 164.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 31222.80
+          "amount": 31128.30
         },
         {
           "kind": "Overtime",
-          "amount": 1552.88
+          "amount": 1548.18
         },
         {
           "kind": "InconvenientHours",
-          "amount": 3078.50
+          "amount": 2917.75
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4481.77
+          "amount": 4449.28
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2509.79
+          "amount": 1423.77
         }
       ]
     }
@@ -1066,35 +1066,35 @@
       "employeeId": "emp-005",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 197.45,
+      "hourlyRate": 196.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 34751.20
+          "amount": 34663.20
         },
         {
           "kind": "Overtime",
-          "amount": 1303.17
+          "amount": 1299.87
         },
         {
           "kind": "InconvenientHours",
-          "amount": 6960.80
+          "amount": 7172.00
         },
         {
           "kind": "PensionEmployer",
-          "amount": 3441.21
+          "amount": 3882.16
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1720.61
+          "amount": 1725.40
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 5376.90
+          "amount": 5391.88
         },
         {
           "kind": "SpecialSavings",
-          "amount": 3011.06
+          "amount": 1725.40
         }
       ]
     }
@@ -1390,31 +1390,31 @@
       "employeeId": "emp-006",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 170.45,
+      "hourlyRate": 169.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29743.53
+          "amount": 29656.28
         },
         {
           "kind": "Overtime",
-          "amount": 366.47
+          "amount": 365.39
         },
         {
           "kind": "PensionEmployer",
-          "amount": 2408.80
+          "amount": 2701.95
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1204.40
+          "amount": 1200.87
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3763.75
+          "amount": 3752.71
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2107.70
+          "amount": 1200.87
         }
       ]
     }
@@ -1566,27 +1566,27 @@
       "employeeId": "emp-007",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 179.95,
+      "hourlyRate": 179.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 32840.88
+          "amount": 32749.63
         },
         {
           "kind": "Overtime",
-          "amount": 1772.51
+          "amount": 1767.58
         },
         {
           "kind": "InconvenientHours",
-          "amount": 3012.58
+          "amount": 2860.88
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4703.25
+          "amount": 4672.26
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2633.82
+          "amount": 1495.12
         }
       ]
     }
@@ -1732,27 +1732,27 @@
       "employeeId": "emp-008",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 164.20,
+      "hourlyRate": 163.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 28324.50
+          "amount": 28238.25
         },
         {
           "kind": "Overtime",
-          "amount": 1403.91
+          "amount": 1399.64
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2808.23
+          "amount": 2661.38
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4067.08
+          "amount": 4037.41
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2277.56
+          "amount": 1291.97
         }
       ]
     }
@@ -2060,15 +2060,15 @@
         },
         {
           "kind": "InconvenientHours",
-          "amount": 41.05
+          "amount": 44.50
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3192.30
+          "amount": 3192.73
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1787.69
+          "amount": 1021.67
         }
       ]
     }
@@ -2340,23 +2340,23 @@
       "employeeId": "emp-010",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 171.70,
+      "hourlyRate": 171.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 28330.50
+          "amount": 28248.00
         },
         {
           "kind": "Overtime",
-          "amount": 832.75
+          "amount": 830.32
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3645.41
+          "amount": 3634.79
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2041.43
+          "amount": 1163.13
         }
       ]
     }
@@ -2502,27 +2502,27 @@
       "employeeId": "emp-011",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 181.45,
+      "hourlyRate": 180.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 30483.60
+          "amount": 30399.60
         },
         {
           "kind": "Overtime",
-          "amount": 1143.14
+          "amount": 1139.99
         },
         {
           "kind": "InconvenientHours",
-          "amount": 6644.40
+          "amount": 6846.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4783.89
+          "amount": 4798.20
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2678.98
+          "amount": 1535.42
         }
       ]
     }
@@ -2806,35 +2806,31 @@
       "employeeId": "emp-012",
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
-      "hourlyRate": 179.20,
+      "hourlyRate": 178.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 31449.60
+          "amount": 31361.85
         },
         {
           "kind": "Overtime",
-          "amount": 1209.60
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 12.53
+          "amount": 1206.23
         },
         {
           "kind": "PensionEmployer",
-          "amount": 2613.74
+          "amount": 2931.13
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1306.87
+          "amount": 1302.72
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4083.97
+          "amount": 4071.01
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2287.02
+          "amount": 1302.72
         }
       ]
     }
@@ -3094,27 +3090,23 @@
       "employeeId": "emp-001",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 184.70,
+      "hourlyRate": 184.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29736.70
+          "amount": 29656.20
         },
         {
           "kind": "Overtime",
-          "amount": 1468.37
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 62.63
+          "amount": 1464.39
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3717.09
+          "amount": 3707.03
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2188.74
+          "amount": 1244.82
         }
       ]
     }
@@ -3248,27 +3240,27 @@
       "employeeId": "emp-002",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 188.95,
+      "hourlyRate": 188.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29476.20
+          "amount": 29398.20
         },
         {
           "kind": "Overtime",
-          "amount": 1454.92
+          "amount": 1451.07
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2537.95
+          "amount": 2405.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4183.63
+          "amount": 4156.78
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2342.83
+          "amount": 1330.17
         }
       ]
     }
@@ -3532,7 +3524,7 @@
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1402.80
+          "amount": 801.60
         }
       ]
     }
@@ -3666,27 +3658,27 @@
       "employeeId": "emp-004",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 165.20,
+      "hourlyRate": 164.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 26184.20
+          "amount": 26104.95
         },
         {
           "kind": "Overtime",
-          "amount": 1478.54
+          "amount": 1474.07
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2636.83
+          "amount": 2506.88
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3787.45
+          "amount": 3760.74
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2120.97
+          "amount": 1203.44
         }
       ]
     }
@@ -3820,23 +3812,23 @@
       "employeeId": "emp-005",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 197.45,
+      "hourlyRate": 196.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 30012.40
+          "amount": 29936.40
         },
         {
           "kind": "Overtime",
-          "amount": 1125.47
+          "amount": 1122.62
         },
         {
           "kind": "InconvenientHours",
-          "amount": 6011.60
+          "amount": 6194.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4643.68
+          "amount": 4656.63
         }
       ]
     }
@@ -4156,27 +4148,27 @@
       "employeeId": "emp-006",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 170.45,
+      "hourlyRate": 169.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 33322.98
+          "amount": 33225.23
         },
         {
           "kind": "Overtime",
-          "amount": 6170.30
+          "amount": 6152.20
         },
         {
           "kind": "InconvenientHours",
-          "amount": 91.15
+          "amount": 44.50
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4948.05
+          "amount": 4927.74
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2770.91
+          "amount": 1576.88
         }
       ]
     }
@@ -4316,27 +4308,27 @@
       "employeeId": "emp-007",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 179.95,
+      "hourlyRate": 179.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29781.73
+          "amount": 29698.98
         },
         {
           "kind": "Overtime",
-          "amount": 1574.56
+          "amount": 1570.19
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2722.53
+          "amount": 2584.13
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4259.85
+          "amount": 4231.66
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2385.52
+          "amount": 1354.13
         }
       ]
     }
@@ -4476,27 +4468,27 @@
       "employeeId": "emp-008",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 164.20,
+      "hourlyRate": 163.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 72010.9
+          "amount": 62928.65
         },
         {
           "kind": "Overtime",
-          "amount": 1354.65
+          "amount": 1350.53
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2682.98
+          "amount": 2543.38
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3881.07
+          "amount": 3852.82
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2173.40
+          "amount": 1232.90
         }
       ]
     }
@@ -4768,27 +4760,27 @@
       "employeeId": "emp-009",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 180.20,
+      "hourlyRate": 179.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 30363.70
+          "amount": 30279.45
         },
         {
           "kind": "Overtime",
-          "amount": 2693.99
+          "amount": 2686.52
         },
         {
           "kind": "InconvenientHours",
-          "amount": 160.73
+          "amount": 133.50
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4152.30
+          "amount": 4137.43
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2325.29
+          "amount": 1323.98
         }
       ]
     }
@@ -5048,27 +5040,23 @@
       "employeeId": "emp-010",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 171.70,
+      "hourlyRate": 171.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 26785.20
+          "amount": 26707.20
         },
         {
           "kind": "Overtime",
-          "amount": 781.24
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 25.05
+          "amount": 778.96
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3448.94
+          "amount": 3435.77
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1931.40
+          "amount": 1099.45
         }
       ]
     }
@@ -5202,27 +5190,27 @@
       "employeeId": "emp-011",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 181.45,
+      "hourlyRate": 180.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 27580.40
+          "amount": 27504.40
         },
         {
           "kind": "Overtime",
-          "amount": 1034.27
+          "amount": 1031.42
         },
         {
           "kind": "InconvenientHours",
-          "amount": 6011.60
+          "amount": 6194.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4328.28
+          "amount": 4341.23
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2423.84
+          "amount": 1389.19
         }
       ]
     }
@@ -5482,27 +5470,23 @@
       "employeeId": "emp-012",
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
-      "hourlyRate": 179.20,
+      "hourlyRate": 178.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 28134.40
+          "amount": 28055.90
         },
         {
           "kind": "Overtime",
-          "amount": 958.72
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 37.58
+          "amount": 956.05
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3641.34
+          "amount": 3626.49
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2039.15
+          "amount": 1160.48
         }
       ]
     }
@@ -5762,27 +5746,23 @@
       "employeeId": "emp-001",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 184.70,
+      "hourlyRate": 184.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29736.70
+          "amount": 29656.20
         },
         {
           "kind": "Overtime",
-          "amount": 1468.37
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 62.63
+          "amount": 1464.39
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3717.09
+          "amount": 3707.03
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2188.74
+          "amount": 1244.82
         }
       ]
     }
@@ -5916,27 +5896,27 @@
       "employeeId": "emp-002",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 188.95,
+      "hourlyRate": 188.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29476.20
+          "amount": 29398.20
         },
         {
           "kind": "Overtime",
-          "amount": 1454.92
+          "amount": 1451.07
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2537.95
+          "amount": 2405.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4183.63
+          "amount": 4156.78
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2342.83
+          "amount": 1330.17
         }
       ]
     }
@@ -6148,27 +6128,23 @@
       "employeeId": "emp-003",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 183.20,
+      "hourlyRate": 182.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 22442.00
+          "amount": 22380.75
         },
         {
           "kind": "Overtime",
-          "amount": 375.56
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 12.53
+          "amount": 374.54
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 2853.76
+          "amount": 2844.41
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1598.11
+          "amount": 910.21
         }
       ]
     }
@@ -6302,27 +6278,27 @@
       "employeeId": "emp-004",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 165.20,
+      "hourlyRate": 164.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 25771.20
+          "amount": 25693.20
         },
         {
           "kind": "Overtime",
-          "amount": 1272.04
+          "amount": 1268.19
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2537.95
+          "amount": 2405.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3697.65
+          "amount": 3670.80
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2070.68
+          "amount": 1174.66
         }
       ]
     }
@@ -6456,27 +6432,27 @@
       "employeeId": "emp-005",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 197.45,
+      "hourlyRate": 196.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 30012.40
+          "amount": 29936.40
         },
         {
           "kind": "Overtime",
-          "amount": 1125.47
+          "amount": 1122.62
         },
         {
           "kind": "InconvenientHours",
-          "amount": 6101.6
+          "amount": 6914
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4643.68
+          "amount": 4656.63
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2600.46
+          "amount": 1490.12
         }
       ]
     }
@@ -6748,35 +6724,27 @@
       "employeeId": "emp-006",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 170.45,
+      "hourlyRate": 169.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29146.95
+          "amount": 29061.45
         },
         {
           "kind": "Overtime",
-          "amount": 2778.34
+          "amount": 2770.19
         },
         {
           "kind": "InconvenientHours",
-          "amount": 78.63
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 1326.74
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 663.37
+          "amount": 44.50
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4000.49
+          "amount": 3984.52
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2240.28
+          "amount": 1275.05
         }
       ]
     }
@@ -6916,23 +6884,23 @@
       "employeeId": "emp-007",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 179.95,
+      "hourlyRate": 179.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29691.75
+          "amount": 29609.25
         },
         {
           "kind": "Overtime",
-          "amount": 1529.58
+          "amount": 1525.33
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3902.67
+          "amount": 3891.82
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2185.49
+          "amount": 1245.38
         }
       ]
     }
@@ -7066,35 +7034,27 @@
       "employeeId": "emp-008",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 164.20,
+      "hourlyRate": 163.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 25861.50
+          "amount": 25782.75
         },
         {
           "kind": "Overtime",
-          "amount": 1387.49
+          "amount": 1383.27
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2597.28
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 1746.72
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 873.36
+          "amount": 2466.13
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3730.78
+          "amount": 3704.02
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2089.24
+          "amount": 1185.29
         }
       ]
     }
@@ -7354,27 +7314,27 @@
       "employeeId": "emp-009",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 180.20,
+      "hourlyRate": 179.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 28741.90
+          "amount": 28662.15
         },
         {
           "kind": "Overtime",
-          "amount": 2486.76
+          "amount": 2479.86
         },
         {
           "kind": "InconvenientHours",
-          "amount": 127.68
+          "amount": 111.25
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3592.74
+          "amount": 3582.77
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2194.94
+          "amount": 1250.13
         }
       ]
     }
@@ -7610,27 +7570,23 @@
       "employeeId": "emp-010",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 171.70,
+      "hourlyRate": 171.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 24467.25
+          "amount": 24396.00
         },
         {
           "kind": "Overtime",
-          "amount": 944.35
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 37.58
+          "amount": 941.60
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3181.15
+          "amount": 3167.20
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1781.44
+          "amount": 1013.50
         }
       ]
     }
@@ -7746,27 +7702,27 @@
       "employeeId": "emp-011",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 181.45,
+      "hourlyRate": 180.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 23225.60
+          "amount": 23161.60
         },
         {
           "kind": "Overtime",
-          "amount": 870.96
+          "amount": 868.56
         },
         {
           "kind": "InconvenientHours",
-          "amount": 5062.40
+          "amount": 5216.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3644.87
+          "amount": 3655.77
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2041.13
+          "amount": 1169.85
         }
       ]
     }
@@ -8014,27 +7970,23 @@
       "employeeId": "emp-012",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 179.20,
+      "hourlyRate": 178.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 26611.20
+          "amount": 26536.95
         },
         {
           "kind": "Overtime",
-          "amount": 860.4
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 25.05
+          "amount": 840.15
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3430.33
+          "amount": 3417.64
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1920.99
+          "amount": 1093.64
         }
       ]
     }
@@ -8318,35 +8270,23 @@
       "employeeId": "emp-001",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 184.70,
+      "hourlyRate": 184.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 31583.70
+          "amount": 31498.20
         },
         {
           "kind": "Overtime",
-          "amount": 914.27
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 39.45
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 804.48
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 378.58
+          "amount": 911.79
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3947.96
+          "amount": 3937.28
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2603.00
+          "amount": 1620.50
         }
       ]
     }
@@ -8498,35 +8438,27 @@
       "employeeId": "emp-002",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 188.95,
+      "hourlyRate": 188.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 34766.80
+          "amount": 34674.80
         },
         {
           "kind": "Overtime",
-          "amount": 2002.87
+          "amount": 1997.57
         },
         {
           "kind": "InconvenientHours",
-          "amount": 3219.40
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 3399.07
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1599.56
+          "amount": 2994.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4998.63
+          "amount": 4958.30
         },
         {
           "kind": "SpecialSavings",
-          "amount": 3199.13
+          "amount": 1983.32
         }
       ]
     }
@@ -8810,27 +8742,23 @@
       "employeeId": "emp-003",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 183.20,
+      "hourlyRate": 182.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 31693.60
+          "amount": 31607.10
         },
         {
           "kind": "Overtime",
-          "amount": 1053.40
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 26.30
+          "amount": 1050.53
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4096.66
+          "amount": 4082.20
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2621.86
+          "amount": 1632.88
         }
       ]
     }
@@ -8964,27 +8892,27 @@
       "employeeId": "emp-004",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 165.20,
+      "hourlyRate": 164.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 25688.60
+          "amount": 25610.85
         },
         {
           "kind": "Overtime",
-          "amount": 1230.74
+          "amount": 1227.02
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2641.30
+          "amount": 2444.25
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3211.08
+          "amount": 3201.36
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2364.85
+          "amount": 1464.11
         }
       ]
     }
@@ -9124,27 +9052,27 @@
       "employeeId": "emp-005",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 197.45,
+      "hourlyRate": 196.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 31592.00
+          "amount": 31512.00
         },
         {
           "kind": "Overtime",
-          "amount": 1184.70
+          "amount": 1181.70
         },
         {
           "kind": "InconvenientHours",
-          "amount": 6528.00
+          "amount": 6640.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4913.09
+          "amount": 4916.71
         },
         {
           "kind": "SpecialSavings",
-          "amount": 3144.38
+          "amount": 1966.69
         }
       ]
     }
@@ -9452,35 +9380,35 @@
       "employeeId": "emp-006",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 142.45,
+      "hourlyRate": 169.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 27777.75
+          "amount": 33140.25
         },
         {
           "kind": "Overtime",
-          "amount": 1381.77
+          "amount": 1648.52
         },
         {
           "kind": "InconvenientHours",
-          "amount": 208.65
+          "amount": 181.00
         },
         {
           "kind": "PensionEmployer",
-          "amount": 2496.29
+          "amount": 3322.13
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1174.73
+          "amount": 1398.79
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3671.02
+          "amount": 4371.22
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2349.45
+          "amount": 1748.49
         }
       ]
     }
@@ -9505,6 +9433,12 @@
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
+        },
+        {
+          "date": "2027-03-03",
+          "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-03-04",
@@ -9632,27 +9566,27 @@
       "employeeId": "emp-007",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 179.95,
+      "hourlyRate": 179.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 32660.93
+          "amount": 34005.78
         },
         {
           "kind": "Overtime",
-          "amount": 1682.53
+          "amount": 1731.69
         },
         {
           "kind": "InconvenientHours",
-          "amount": 3117.40
+          "amount": 3011.25
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4682.61
+          "amount": 4843.59
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2996.87
+          "amount": 1937.44
         }
       ]
     }
@@ -9804,27 +9738,27 @@
       "employeeId": "emp-008",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 164.20,
+      "hourlyRate": 139.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29884.40
+          "amount": 25425.40
         },
         {
           "kind": "Overtime",
-          "amount": 1576.32
+          "amount": 1341.12
         },
         {
           "kind": "InconvenientHours",
-          "amount": 3137.80
+          "amount": 2911.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4324.82
+          "amount": 3709.69
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2767.88
+          "amount": 1483.88
         }
       ]
     }
@@ -9839,78 +9773,66 @@
       "periodEnd": "2027-03-31",
       "shifts": [
         {
-          "date": "2027-03-01",
+          "date": "2027-03-02",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-03-01",
+          "date": "2027-03-02",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-03",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-03",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-04",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-04",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-05",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-05",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-07",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-07",
           "start": "12:00:00",
           "end": "17:30:00",
           "minutes": 330
         },
         {
-          "date": "2027-03-02",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-02",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-03",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-03",
-          "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
-        },
-        {
-          "date": "2027-03-04",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-04",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-05",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-05",
-          "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
-        },
-        {
-          "date": "2027-03-06",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-06",
-          "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
-        },
-        {
           "date": "2027-03-08",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -9919,8 +9841,8 @@
         {
           "date": "2027-03-08",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "17:00:00",
+          "minutes": 300
         },
         {
           "date": "2027-03-09",
@@ -9954,23 +9876,71 @@
         },
         {
           "date": "2027-03-11",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-12",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-12",
           "start": "12:00:00",
           "end": "18:00:00",
           "minutes": 360
         },
         {
-          "date": "2027-03-16",
+          "date": "2027-03-13",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-03-16",
+          "date": "2027-03-13",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-14",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-14",
           "start": "12:00:00",
           "end": "15:30:00",
           "minutes": 210
         },
         {
+          "date": "2027-03-15",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-15",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-16",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-03-17",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -9990,57 +9960,69 @@
         },
         {
           "date": "2027-03-18",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-19",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-20",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-20",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-22",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-22",
-          "start": "12:00:00",
-          "end": "16:00:00",
-          "minutes": 240
-        },
-        {
-          "date": "2027-03-23",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-23",
           "start": "12:00:00",
           "end": "16:30:00",
           "minutes": 270
+        },
+        {
+          "date": "2027-03-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-20",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-20",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-21",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-21",
+          "start": "12:00:00",
+          "end": "15:30:00",
+          "minutes": 210
+        },
+        {
+          "date": "2027-03-23",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-23",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-24",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-24",
+          "start": "12:00:00",
+          "end": "16:00:00",
+          "minutes": 240
         },
         {
           "date": "2027-03-25",
@@ -10055,28 +10037,16 @@
           "minutes": 300
         },
         {
-          "date": "2027-03-26",
+          "date": "2027-03-29",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-03-26",
+          "date": "2027-03-29",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
-        },
-        {
-          "date": "2027-03-27",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-27",
-          "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
         },
         {
           "date": "2027-03-30",
@@ -10108,35 +10078,27 @@
       "employeeId": "emp-009",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 180.20,
+      "hourlyRate": 179.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 32526.10
+          "amount": 36029.85
         },
         {
           "kind": "Overtime",
-          "amount": 1774.97
+          "amount": 5840.25
         },
         {
           "kind": "InconvenientHours",
-          "amount": 208.65
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 1523.84
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 717.10
+          "amount": 90.50
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4313.71
+          "amount": 5245.08
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2760.78
+          "amount": 2098.03
         }
       ]
     }
@@ -10195,53 +10157,41 @@
         {
           "date": "2027-03-04",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-05",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-05",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-08",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-08",
-          "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
         },
         {
-          "date": "2027-03-09",
+          "date": "2027-03-05",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-03-09",
+          "date": "2027-03-05",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
         },
         {
-          "date": "2027-03-10",
+          "date": "2027-03-08",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-03-10",
+          "date": "2027-03-08",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-09",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-09",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -10259,6 +10209,18 @@
           "minutes": 180
         },
         {
+          "date": "2027-03-12",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-12",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-03-15",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -10266,35 +10228,35 @@
         },
         {
           "date": "2027-03-15",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-16",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-16",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-17",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-17",
           "start": "12:00:00",
           "end": "15:30:00",
           "minutes": 210
         },
         {
+          "date": "2027-03-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-16",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-17",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-17",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-03-18",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -10399,8 +10361,8 @@
         {
           "date": "2027-03-30",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "15:30:00",
+          "minutes": 210
         },
         {
           "date": "2027-03-31",
@@ -10420,23 +10382,23 @@
       "employeeId": "emp-010",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 171.70,
+      "hourlyRate": 171.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 28588.05
+          "amount": 28590.40
         },
         {
           "kind": "Overtime",
-          "amount": 317.65
+          "amount": 359.52
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3613.21
+          "amount": 3618.74
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2312.46
+          "amount": 1447.50
         }
       ]
     }
@@ -10475,12 +10437,6 @@
           "minutes": 480
         },
         {
-          "date": "2027-03-05",
-          "start": "22:00:00",
-          "end": "06:00:00",
-          "minutes": 480
-        },
-        {
           "date": "2027-03-08",
           "start": "22:00:00",
           "end": "06:00:00",
@@ -10505,13 +10461,7 @@
           "minutes": 480
         },
         {
-          "date": "2027-03-15",
-          "start": "22:00:00",
-          "end": "06:00:00",
-          "minutes": 480
-        },
-        {
-          "date": "2027-03-16",
+          "date": "2027-03-12",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
@@ -10523,13 +10473,13 @@
           "minutes": 480
         },
         {
-          "date": "2027-03-18",
+          "date": "2027-03-19",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
         },
         {
-          "date": "2027-03-19",
+          "date": "2027-03-23",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
@@ -10541,7 +10491,19 @@
           "minutes": 480
         },
         {
+          "date": "2027-03-25",
+          "start": "22:00:00",
+          "end": "06:00:00",
+          "minutes": 480
+        },
+        {
           "date": "2027-03-26",
+          "start": "22:00:00",
+          "end": "06:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-03-29",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
@@ -10564,27 +10526,27 @@
       "employeeId": "emp-011",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 181.45,
+      "hourlyRate": 180.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 26128.80
+          "amount": 26056.80
         },
         {
           "kind": "Overtime",
-          "amount": 979.83
+          "amount": 977.13
         },
         {
           "kind": "InconvenientHours",
-          "amount": 5875.20
+          "amount": 5976.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4122.98
+          "amount": 4126.24
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2638.71
+          "amount": 1650.50
         }
       ]
     }
@@ -10607,8 +10569,8 @@
         {
           "date": "2027-03-01",
           "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-03-02",
@@ -10739,56 +10701,56 @@
         {
           "date": "2027-03-16",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-17",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-17",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-03-18",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-03-18",
-          "start": "12:00:00",
           "end": "17:00:00",
           "minutes": 300
         },
         {
-          "date": "2027-03-19",
+          "date": "2027-03-17",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-03-19",
+          "date": "2027-03-17",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
         },
         {
-          "date": "2027-03-22",
+          "date": "2027-03-18",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-03-22",
+          "date": "2027-03-18",
           "start": "12:00:00",
           "end": "16:30:00",
           "minutes": 270
+        },
+        {
+          "date": "2027-03-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-03-22",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-03-22",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-03-23",
@@ -10880,23 +10842,23 @@
       "employeeId": "emp-012",
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
-      "hourlyRate": 179.20,
+      "hourlyRate": 178.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 31897.60
+          "amount": 31451.20
         },
         {
           "kind": "Overtime",
-          "amount": 716.80
+          "amount": 527.17
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4076.80
+          "amount": 3997.30
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2609.15
+          "amount": 1598.92
         }
       ]
     }
@@ -10919,8 +10881,8 @@
         {
           "date": "2027-04-01",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "17:30:00",
+          "minutes": 330
         },
         {
           "date": "2027-04-02",
@@ -10943,8 +10905,8 @@
         {
           "date": "2027-04-05",
           "start": "12:00:00",
-          "end": "17:30:00",
-          "minutes": 330
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-04-06",
@@ -10955,8 +10917,8 @@
         {
           "date": "2027-04-06",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "17:30:00",
+          "minutes": 330
         },
         {
           "date": "2027-04-07",
@@ -10979,8 +10941,8 @@
         {
           "date": "2027-04-08",
           "start": "12:00:00",
-          "end": "17:30:00",
-          "minutes": 330
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-04-09",
@@ -11115,25 +11077,25 @@
           "minutes": 180
         },
         {
-          "date": "2027-04-26",
+          "date": "2027-04-27",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-26",
+          "date": "2027-04-27",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
         },
         {
-          "date": "2027-04-27",
+          "date": "2027-04-28",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-27",
+          "date": "2027-04-28",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -11147,8 +11109,8 @@
         {
           "date": "2027-04-29",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "17:00:00",
+          "minutes": 300
         },
         {
           "date": "2027-04-30",
@@ -11159,8 +11121,8 @@
         {
           "date": "2027-04-30",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "15:30:00",
+          "minutes": 210
         }
       ]
     },
@@ -11168,35 +11130,23 @@
       "employeeId": "emp-001",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 184.70,
+      "hourlyRate": 184.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 30013.75
+          "amount": 30393.00
         },
         {
           "kind": "Overtime",
-          "amount": 766.51
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 26.30
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 2618.56
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1232.26
+          "amount": 1003.89
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3850.82
+          "amount": 3924.61
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2464.52
+          "amount": 1569.84
         }
       ]
     }
@@ -11219,20 +11169,20 @@
         {
           "date": "2027-04-02",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
-        },
-        {
-          "date": "2027-04-06",
-          "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
         },
         {
-          "date": "2027-04-07",
+          "date": "2027-04-05",
           "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
+        },
+        {
+          "date": "2027-04-07",
+          "start": "14:00:00",
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-08",
@@ -11249,23 +11199,17 @@
         {
           "date": "2027-04-12",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-13",
-          "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
-        },
-        {
-          "date": "2027-04-14",
           "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
         },
         {
-          "date": "2027-04-15",
+          "date": "2027-04-14",
           "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
@@ -11283,22 +11227,28 @@
           "minutes": 480
         },
         {
+          "date": "2027-04-20",
+          "start": "14:00:00",
+          "end": "22:30:00",
+          "minutes": 510
+        },
+        {
           "date": "2027-04-21",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-22",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-23",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-26",
@@ -11309,14 +11259,14 @@
         {
           "date": "2027-04-27",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-28",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-29",
@@ -11327,8 +11277,8 @@
         {
           "date": "2027-04-30",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         }
       ]
     },
@@ -11336,35 +11286,27 @@
       "employeeId": "emp-002",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 188.95,
+      "hourlyRate": 188.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 31082.28
+          "amount": 31188.48
         },
         {
           "kind": "Overtime",
-          "amount": 1558.84
+          "amount": 1648.94
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2813.60
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 3013.65
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1418.19
+          "amount": 2648.25
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4431.84
+          "amount": 4435.71
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2836.38
+          "amount": 1774.28
         }
       ]
     }
@@ -11391,18 +11333,6 @@
           "minutes": 180
         },
         {
-          "date": "2027-04-02",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-02",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-04-05",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -11427,6 +11357,18 @@
           "minutes": 180
         },
         {
+          "date": "2027-04-07",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-07",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-04-08",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -11434,93 +11376,93 @@
         },
         {
           "date": "2027-04-08",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-09",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-09",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-12",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-12",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-13",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-13",
           "start": "12:00:00",
           "end": "15:30:00",
           "minutes": 210
         },
         {
-          "date": "2027-04-14",
+          "date": "2027-04-09",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-14",
+          "date": "2027-04-09",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
         },
         {
-          "date": "2027-04-15",
+          "date": "2027-04-12",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-15",
+          "date": "2027-04-12",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
         },
         {
-          "date": "2027-04-16",
+          "date": "2027-04-13",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-16",
+          "date": "2027-04-13",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
         },
         {
-          "date": "2027-04-19",
+          "date": "2027-04-14",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-19",
+          "date": "2027-04-14",
           "start": "12:00:00",
           "end": "17:30:00",
           "minutes": 330
+        },
+        {
+          "date": "2027-04-15",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-15",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-16",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-04-20",
@@ -11591,44 +11533,44 @@
         {
           "date": "2027-04-27",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-28",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-28",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-29",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-29",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-30",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-30",
-          "start": "12:00:00",
           "end": "17:30:00",
           "minutes": 330
+        },
+        {
+          "date": "2027-04-28",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-28",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-29",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-29",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-30",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-30",
+          "start": "12:00:00",
+          "end": "18:00:00",
+          "minutes": 360
         }
       ]
     },
@@ -11636,27 +11578,23 @@
       "employeeId": "emp-003",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 183.20,
+      "hourlyRate": 182.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 30044.80
+          "amount": 30510.90
         },
         {
           "kind": "Overtime",
-          "amount": 897.68
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 26.30
+          "amount": 1269.77
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3871.10
+          "amount": 3972.58
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2477.50
+          "amount": 1589.03
         }
       ]
     }
@@ -11679,20 +11617,26 @@
         {
           "date": "2027-04-02",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-04-05",
+          "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-06",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-07",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-08",
@@ -11703,8 +11647,8 @@
         {
           "date": "2027-04-09",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-12",
@@ -11715,8 +11659,8 @@
         {
           "date": "2027-04-13",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-14",
@@ -11727,8 +11671,8 @@
         {
           "date": "2027-04-15",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-16",
@@ -11739,8 +11683,8 @@
         {
           "date": "2027-04-19",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-20",
@@ -11749,22 +11693,16 @@
           "minutes": 480
         },
         {
-          "date": "2027-04-21",
-          "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
-        },
-        {
           "date": "2027-04-22",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-23",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-26",
@@ -11796,27 +11734,23 @@
       "employeeId": "emp-004",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 137.70,
+      "hourlyRate": 164.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 22445.10
+          "amount": 26763.75
         },
         {
           "kind": "Overtime",
-          "amount": 1032.75
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 2752.40
+          "amount": 1194.08
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3278.78
+          "amount": 3494.73
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2098.42
+          "amount": 1397.89
         }
       ]
     }
@@ -11831,6 +11765,12 @@
       "periodEnd": "2027-04-30",
       "shifts": [
         {
+          "date": "2027-04-01",
+          "start": "22:00:00",
+          "end": "06:00:00",
+          "minutes": 480
+        },
+        {
           "date": "2027-04-02",
           "start": "22:00:00",
           "end": "06:00:00",
@@ -11838,6 +11778,12 @@
         },
         {
           "date": "2027-04-05",
+          "start": "22:00:00",
+          "end": "06:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-04-06",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
@@ -11956,35 +11902,23 @@
       "employeeId": "emp-005",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 197.45,
+      "hourlyRate": 196.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 31592.00
+          "amount": 34663.20
         },
         {
           "kind": "Overtime",
-          "amount": 1184.71
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 6528.00
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 3173.85
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1493.58
+          "amount": 1299.87
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3949.00
+          "amount": 4495.38
         },
         {
           "kind": "SpecialSavings",
-          "amount": 3144.38
+          "amount": 1798.15
         }
       ]
     }
@@ -12031,46 +11965,46 @@
         {
           "date": "2027-04-05",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-06",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-06",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-07",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-07",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-08",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-08",
-          "start": "12:00:00",
           "end": "17:30:00",
           "minutes": 330
         },
         {
+          "date": "2027-04-06",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-06",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-07",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-07",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-08",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-08",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-04-09",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -12090,189 +12024,225 @@
         },
         {
           "date": "2027-04-10",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-11",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-11",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-12",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-12",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-13",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-13",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-15",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-15",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-16",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-16",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-19",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-20",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-20",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-21",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-21",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-22",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-22",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-24",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-24",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-26",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-26",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-27",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-27",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-28",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-28",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-29",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-29",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-30",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-30",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
+        },
+        {
+          "date": "2027-04-11",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-11",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-12",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-12",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-13",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-13",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-14",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-14",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-15",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-15",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-16",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-17",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-17",
+          "start": "12:00:00",
+          "end": "16:00:00",
+          "minutes": 240
+        },
+        {
+          "date": "2027-04-18",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-18",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-20",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-20",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-21",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-21",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-22",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-22",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-23",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-23",
+          "start": "12:00:00",
+          "end": "16:00:00",
+          "minutes": 240
+        },
+        {
+          "date": "2027-04-24",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-24",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-26",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-26",
+          "start": "12:00:00",
+          "end": "17:00:00",
+          "minutes": 300
+        },
+        {
+          "date": "2027-04-27",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-27",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-28",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-28",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-30",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-30",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
         }
       ]
     },
@@ -12280,35 +12250,27 @@
       "employeeId": "emp-006",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 170.45,
+      "hourlyRate": 169.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29999.20
+          "amount": 34414.88
         },
         {
           "kind": "Overtime",
-          "amount": 1815.30
+          "amount": 3449.99
         },
         {
           "kind": "InconvenientHours",
-          "amount": 97.75
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 2712.54
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1276.49
+          "amount": 226.25
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3989.03
+          "amount": 4761.39
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2552.98
+          "amount": 1904.56
         }
       ]
     }
@@ -12325,38 +12287,26 @@
         {
           "date": "2027-04-01",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
-        },
-        {
-          "date": "2027-04-02",
-          "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-05",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-06",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-07",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
-        },
-        {
-          "date": "2027-04-09",
-          "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-12",
@@ -12367,14 +12317,14 @@
         {
           "date": "2027-04-13",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-14",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-15",
@@ -12389,16 +12339,28 @@
           "minutes": 510
         },
         {
-          "date": "2027-04-21",
+          "date": "2027-04-19",
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
         },
         {
-          "date": "2027-04-22",
+          "date": "2027-04-20",
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
+        },
+        {
+          "date": "2027-04-21",
+          "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-04-22",
+          "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-23",
@@ -12409,8 +12371,8 @@
         {
           "date": "2027-04-26",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-27",
@@ -12420,12 +12382,6 @@
         },
         {
           "date": "2027-04-28",
-          "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
-        },
-        {
-          "date": "2027-04-29",
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
@@ -12442,27 +12398,27 @@
       "employeeId": "emp-007",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 179.95,
+      "hourlyRate": 179.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 28432.10
+          "amount": 26827.78
         },
         {
           "kind": "Overtime",
-          "amount": 1565.57
+          "amount": 1462.52
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2743.30
+          "amount": 2406.25
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4092.62
+          "amount": 3837.07
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2619.28
+          "amount": 1534.83
         }
       ]
     }
@@ -12485,8 +12441,8 @@
         {
           "date": "2027-04-02",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-05",
@@ -12515,6 +12471,12 @@
         {
           "date": "2027-04-09",
           "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-04-12",
+          "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
         },
@@ -12533,8 +12495,8 @@
         {
           "date": "2027-04-15",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-16",
@@ -12557,8 +12519,8 @@
         {
           "date": "2027-04-21",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-22",
@@ -12569,14 +12531,14 @@
         {
           "date": "2027-04-23",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-04-26",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-27",
@@ -12587,14 +12549,14 @@
         {
           "date": "2027-04-28",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-29",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-04-30",
@@ -12608,35 +12570,27 @@
       "employeeId": "emp-008",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 164.20,
+      "hourlyRate": 163.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 28324.50
+          "amount": 29629.70
         },
         {
           "kind": "Overtime",
-          "amount": 1403.91
+          "amount": 1489.67
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2945.10
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 2777.25
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1306.94
+          "amount": 2869.50
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4084.19
+          "amount": 4248.61
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2613.88
+          "amount": 1699.44
         }
       ]
     }
@@ -12671,6 +12625,18 @@
         {
           "date": "2027-04-02",
           "start": "12:00:00",
+          "end": "18:00:00",
+          "minutes": 360
+        },
+        {
+          "date": "2027-04-04",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-04",
+          "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
         },
@@ -12711,18 +12677,6 @@
           "minutes": 180
         },
         {
-          "date": "2027-04-08",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-08",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-04-09",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -12730,18 +12684,6 @@
         },
         {
           "date": "2027-04-09",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-11",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-11",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -12766,78 +12708,78 @@
         },
         {
           "date": "2027-04-13",
-          "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
-        },
-        {
-          "date": "2027-04-14",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-14",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-15",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-15",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-19",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-20",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-20",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-21",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-21",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
         },
         {
-          "date": "2027-04-22",
+          "date": "2027-04-14",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-22",
+          "date": "2027-04-14",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-16",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-20",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-20",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-23",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-23",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-25",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-25",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -12867,16 +12809,28 @@
           "minutes": 180
         },
         {
-          "date": "2027-04-28",
+          "date": "2027-04-29",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-28",
+          "date": "2027-04-29",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
+        },
+        {
+          "date": "2027-04-30",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-30",
+          "start": "12:00:00",
+          "end": "17:00:00",
+          "minutes": 300
         }
       ]
     },
@@ -12884,31 +12838,23 @@
       "employeeId": "emp-009",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 180.20,
+      "hourlyRate": 179.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 26219.10
+          "amount": 26685.45
         },
         {
           "kind": "Overtime",
-          "amount": 1792.99
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 2381.03
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1120.48
+          "amount": 3495.17
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3501.51
+          "amount": 3772.58
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2240.97
+          "amount": 1509.03
         }
       ]
     }
@@ -12923,18 +12869,6 @@
       "periodEnd": "2027-04-30",
       "shifts": [
         {
-          "date": "2027-04-01",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-01",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-04-02",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -12959,18 +12893,6 @@
           "minutes": 180
         },
         {
-          "date": "2027-04-06",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-06",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-04-07",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -12978,126 +12900,90 @@
         },
         {
           "date": "2027-04-07",
-          "start": "12:00:00",
-          "end": "18:00:00",
-          "minutes": 360
-        },
-        {
-          "date": "2027-04-08",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-08",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-09",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-09",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-12",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-12",
           "start": "12:00:00",
           "end": "15:30:00",
           "minutes": 210
         },
         {
-          "date": "2027-04-13",
+          "date": "2027-04-08",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-13",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-14",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-14",
-          "start": "12:00:00",
-          "end": "16:00:00",
-          "minutes": 240
-        },
-        {
-          "date": "2027-04-15",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-15",
-          "start": "12:00:00",
-          "end": "16:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-19",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-20",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-20",
+          "date": "2027-04-08",
           "start": "12:00:00",
           "end": "18:00:00",
           "minutes": 360
         },
         {
-          "date": "2027-04-21",
+          "date": "2027-04-09",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-21",
+          "date": "2027-04-09",
           "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
-          "date": "2027-04-22",
+          "date": "2027-04-13",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-04-22",
+          "date": "2027-04-13",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-14",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-14",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-15",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-15",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-16",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-19",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -13125,6 +13011,42 @@
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
+        },
+        {
+          "date": "2027-04-27",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-27",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-28",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-28",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-29",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-29",
+          "start": "12:00:00",
+          "end": "15:30:00",
+          "minutes": 210
         },
         {
           "date": "2027-04-30",
@@ -13144,35 +13066,19 @@
       "employeeId": "emp-010",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 171.70,
+      "hourlyRate": 171.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 25068.20
+          "amount": 21228.80
         },
         {
           "kind": "Overtime",
-          "amount": 1296.34
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 52.60
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 2025.08
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 952.98
+          "amount": 573.52
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3302.14
-        },
-        {
-          "kind": "SpecialSavings",
-          "amount": 2113.37
+          "amount": 2725.29
         }
       ]
     }
@@ -13223,7 +13129,7 @@
           "minutes": 480
         },
         {
-          "date": "2027-04-09",
+          "date": "2027-04-12",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
@@ -13235,7 +13141,7 @@
           "minutes": 480
         },
         {
-          "date": "2027-04-14",
+          "date": "2027-04-15",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
@@ -13277,6 +13183,12 @@
           "minutes": 480
         },
         {
+          "date": "2027-04-26",
+          "start": "22:00:00",
+          "end": "06:00:00",
+          "minutes": 480
+        },
+        {
           "date": "2027-04-27",
           "start": "22:00:00",
           "end": "06:00:00",
@@ -13293,12 +13205,6 @@
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
-        },
-        {
-          "date": "2027-04-30",
-          "start": "22:00:00",
-          "end": "06:00:00",
-          "minutes": 480
         }
       ]
     },
@@ -13306,35 +13212,27 @@
       "employeeId": "emp-011",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 181.45,
+      "hourlyRate": 180.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 27580.40
+          "amount": 27504.40
         },
         {
           "kind": "Overtime",
-          "amount": 1034.27
+          "amount": 1031.42
         },
         {
           "kind": "InconvenientHours",
-          "amount": 6201.60
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 2492.11
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1172.76
+          "amount": 6308.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4352.03
+          "amount": 4355.48
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2785.30
+          "amount": 1742.19
         }
       ]
     }
@@ -13369,8 +13267,8 @@
         {
           "date": "2027-04-02",
           "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-04-05",
@@ -13380,179 +13278,179 @@
         },
         {
           "date": "2027-04-05",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-06",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-06",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-08",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-08",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-09",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-09",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-12",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-12",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-13",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-13",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-14",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-14",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-15",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-15",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-16",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-20",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-20",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-22",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-22",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-23",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-23",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-04-26",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-26",
+          "start": "12:00:00",
+          "end": "18:00:00",
+          "minutes": 360
+        },
+        {
+          "date": "2027-04-27",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-04-27",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
         },
         {
-          "date": "2027-04-06",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-06",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-07",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-07",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-08",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-08",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-09",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-09",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-12",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-12",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-14",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-14",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-15",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-15",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-16",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-16",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-19",
-          "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
-        },
-        {
-          "date": "2027-04-21",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-21",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-22",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-22",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-23",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-23",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-26",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-26",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-04-27",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-04-27",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-04-28",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -13585,8 +13483,8 @@
         {
           "date": "2027-04-30",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "16:00:00",
+          "minutes": 240
         }
       ]
     },
@@ -13594,23 +13492,23 @@
       "employeeId": "emp-012",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 179.20,
+      "hourlyRate": 139.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 27776.00
+          "amount": 21692.25
         },
         {
           "kind": "Overtime",
-          "amount": 645.12
+          "amount": 566.80
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3552.64
+          "amount": 2782.38
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2273.69
+          "amount": 1112.95
         }
       ]
     }
@@ -13633,8 +13531,8 @@
         {
           "date": "2027-05-03",
           "start": "12:00:00",
-          "end": "16:30:00",
-          "minutes": 270
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-04",
@@ -13656,23 +13554,35 @@
         },
         {
           "date": "2027-05-05",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-07",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-07",
           "start": "12:00:00",
           "end": "15:30:00",
           "minutes": 210
         },
         {
+          "date": "2027-05-06",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-06",
+          "start": "12:00:00",
+          "end": "16:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-07",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-07",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-05-10",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -13693,8 +13603,8 @@
         {
           "date": "2027-05-11",
           "start": "12:00:00",
-          "end": "16:30:00",
-          "minutes": 270
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-12",
@@ -13704,35 +13614,35 @@
         },
         {
           "date": "2027-05-12",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-13",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-13",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-14",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-14",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
         },
         {
-          "date": "2027-05-13",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-13",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-14",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-14",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-05-17",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -13741,8 +13651,8 @@
         {
           "date": "2027-05-17",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "17:00:00",
+          "minutes": 300
         },
         {
           "date": "2027-05-18",
@@ -13765,8 +13675,8 @@
         {
           "date": "2027-05-19",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "18:00:00",
+          "minutes": 360
         },
         {
           "date": "2027-05-20",
@@ -13789,8 +13699,8 @@
         {
           "date": "2027-05-21",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "15:30:00",
+          "minutes": 210
         },
         {
           "date": "2027-05-24",
@@ -13813,8 +13723,8 @@
         {
           "date": "2027-05-25",
           "start": "12:00:00",
-          "end": "16:30:00",
-          "minutes": 270
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-26",
@@ -13861,8 +13771,8 @@
         {
           "date": "2027-05-31",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "16:00:00",
+          "minutes": 240
         }
       ]
     },
@@ -13870,31 +13780,23 @@
       "employeeId": "emp-001",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 184.70,
+      "hourlyRate": 184.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 28813.20
+          "amount": 30761.40
         },
         {
           "kind": "Overtime",
-          "amount": 738.80
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 2511.92
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1182.08
+          "amount": 1178.88
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3694.00
+          "amount": 3992.54
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2364.16
+          "amount": 1597.01
         }
       ]
     }
@@ -13911,20 +13813,20 @@
         {
           "date": "2027-05-03",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-04",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-05",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-06",
@@ -13945,6 +13847,12 @@
           "minutes": 480
         },
         {
+          "date": "2027-05-11",
+          "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
+        },
+        {
           "date": "2027-05-12",
           "start": "14:00:00",
           "end": "22:30:00",
@@ -13953,8 +13861,8 @@
         {
           "date": "2027-05-13",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-14",
@@ -13977,23 +13885,11 @@
         {
           "date": "2027-05-19",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-20",
-          "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
-        },
-        {
-          "date": "2027-05-21",
-          "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
-        },
-        {
-          "date": "2027-05-24",
           "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
@@ -14001,8 +13897,8 @@
         {
           "date": "2027-05-25",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-26",
@@ -14013,20 +13909,14 @@
         {
           "date": "2027-05-27",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-28",
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
-        },
-        {
-          "date": "2027-05-31",
-          "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
         }
       ]
     },
@@ -14034,35 +13924,27 @@
       "employeeId": "emp-002",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 188.95,
+      "hourlyRate": 188.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 31271.23
+          "amount": 27702.15
         },
         {
           "kind": "Overtime",
-          "amount": 1653.31
+          "amount": 1300.31
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2854.40
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 3041.21
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1431.16
+          "amount": 2302.50
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4472.37
+          "amount": 3913.12
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2862.32
+          "amount": 1565.25
         }
       ]
     }
@@ -14097,8 +13979,8 @@
         {
           "date": "2027-05-04",
           "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
+          "end": "17:00:00",
+          "minutes": 300
         },
         {
           "date": "2027-05-05",
@@ -14157,104 +14039,92 @@
         {
           "date": "2027-05-11",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-12",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-12",
-          "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
-        },
-        {
-          "date": "2027-05-13",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-13",
-          "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
-        },
-        {
-          "date": "2027-05-14",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-14",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-17",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-17",
-          "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
-        },
-        {
-          "date": "2027-05-18",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-18",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-19",
-          "start": "12:00:00",
-          "end": "16:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-20",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-20",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-21",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-21",
-          "start": "12:00:00",
           "end": "17:00:00",
           "minutes": 300
+        },
+        {
+          "date": "2027-05-12",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-12",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-13",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-13",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-14",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-14",
+          "start": "12:00:00",
+          "end": "15:30:00",
+          "minutes": 210
+        },
+        {
+          "date": "2027-05-17",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-17",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-20",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-20",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-21",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-21",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-24",
@@ -14313,8 +14183,8 @@
         {
           "date": "2027-05-28",
           "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
+          "end": "15:30:00",
+          "minutes": 210
         },
         {
           "date": "2027-05-31",
@@ -14334,23 +14204,23 @@
       "employeeId": "emp-003",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 183.20,
+      "hourlyRate": 182.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 30228.00
+          "amount": 28318.50
         },
         {
           "kind": "Overtime",
-          "amount": 897.68
+          "amount": 657.72
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3890.71
+          "amount": 3622.03
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2490.05
+          "amount": 1448.81
         }
       ]
     }
@@ -14379,35 +14249,35 @@
         {
           "date": "2027-05-05",
           "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-05-06",
+          "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
         },
         {
           "date": "2027-05-07",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-10",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-11",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-12",
-          "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
-        },
-        {
-          "date": "2027-05-13",
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
@@ -14421,8 +14291,8 @@
         {
           "date": "2027-05-17",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-18",
@@ -14439,8 +14309,8 @@
         {
           "date": "2027-05-20",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-21",
@@ -14457,8 +14327,8 @@
         {
           "date": "2027-05-25",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-26",
@@ -14469,8 +14339,8 @@
         {
           "date": "2027-05-27",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-28",
@@ -14490,27 +14360,27 @@
       "employeeId": "emp-004",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 165.20,
+      "hourlyRate": 164.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 27340.60
+          "amount": 27093.15
         },
         {
           "kind": "Overtime",
-          "amount": 1445.50
+          "amount": 1358.78
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2854.40
+          "amount": 2606.75
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3955.06
+          "amount": 3882.34
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2531.24
+          "amount": 1552.93
         }
       ]
     }
@@ -14525,7 +14395,7 @@
       "periodEnd": "2027-05-31",
       "shifts": [
         {
-          "date": "2027-05-03",
+          "date": "2027-05-04",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
@@ -14604,6 +14474,12 @@
         },
         {
           "date": "2027-05-21",
+          "start": "22:00:00",
+          "end": "06:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-05-24",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
@@ -14644,35 +14520,27 @@
       "employeeId": "emp-005",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 197.45,
+      "hourlyRate": 196.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 30012.40
+          "amount": 31512.00
         },
         {
           "kind": "Overtime",
-          "amount": 1125.47
+          "amount": 1181.70
         },
         {
           "kind": "InconvenientHours",
-          "amount": 6201.60
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 3173.85
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1493.58
+          "amount": 6640.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4667.43
+          "amount": 4916.17
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2987.16
+          "amount": 1966.69
         }
       ]
     }
@@ -14687,6 +14555,18 @@
       "periodEnd": "2027-05-31",
       "shifts": [
         {
+          "date": "2027-05-02",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-02",
+          "start": "12:00:00",
+          "end": "17:30:00",
+          "minutes": 330
+        },
+        {
           "date": "2027-05-03",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -14695,20 +14575,32 @@
         {
           "date": "2027-05-03",
           "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
+          "end": "15:30:00",
+          "minutes": 210
         },
         {
-          "date": "2027-05-05",
+          "date": "2027-05-04",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-05-05",
+          "date": "2027-05-04",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
+        },
+        {
+          "date": "2027-05-05",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-05",
+          "start": "12:00:00",
+          "end": "15:30:00",
+          "minutes": 210
         },
         {
           "date": "2027-05-06",
@@ -14730,35 +14622,35 @@
         },
         {
           "date": "2027-05-07",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-09",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-09",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-10",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-10",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
         },
         {
+          "date": "2027-05-09",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-09",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-10",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-10",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-05-11",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -14819,6 +14711,18 @@
           "minutes": 180
         },
         {
+          "date": "2027-05-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-16",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-05-17",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -14826,129 +14730,153 @@
         },
         {
           "date": "2027-05-17",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-18",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-18",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-20",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-20",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-21",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-21",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-24",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-24",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-25",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-25",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-26",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-26",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-27",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-27",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-28",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-28",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-29",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-29",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-30",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-30",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-31",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-31",
           "start": "12:00:00",
           "end": "18:00:00",
           "minutes": 360
-        },
-        {
-          "date": "2027-05-18",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-18",
-          "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
-        },
-        {
-          "date": "2027-05-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-19",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-20",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-20",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-24",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-24",
-          "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
-        },
-        {
-          "date": "2027-05-25",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-25",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-26",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-26",
-          "start": "12:00:00",
-          "end": "16:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-27",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-27",
-          "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
-        },
-        {
-          "date": "2027-05-28",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-28",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-29",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-29",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-31",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-31",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
         }
       ]
     },
@@ -14956,35 +14884,27 @@
       "employeeId": "emp-006",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 170.45,
+      "hourlyRate": 136.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29913.98
+          "amount": 28759.50
         },
         {
           "kind": "Overtime",
-          "amount": 2463.00
+          "amount": 5026.07
         },
         {
           "kind": "InconvenientHours",
-          "amount": 110.90
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 2761.47
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1299.52
+          "amount": 90.50
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4060.99
+          "amount": 4234.51
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2599.03
+          "amount": 1693.80
         }
       ]
     }
@@ -15001,14 +14921,8 @@
         {
           "date": "2027-05-03",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
-        },
-        {
-          "date": "2027-05-04",
-          "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-05",
@@ -15017,10 +14931,22 @@
           "minutes": 510
         },
         {
+          "date": "2027-05-06",
+          "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
+        },
+        {
           "date": "2027-05-07",
           "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
+        },
+        {
+          "date": "2027-05-10",
+          "start": "14:00:00",
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-11",
@@ -15037,26 +14963,14 @@
         {
           "date": "2027-05-13",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-14",
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
-        },
-        {
-          "date": "2027-05-17",
-          "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
-        },
-        {
-          "date": "2027-05-18",
-          "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
         },
         {
           "date": "2027-05-19",
@@ -15067,14 +14981,14 @@
         {
           "date": "2027-05-20",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-21",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-24",
@@ -15091,8 +15005,8 @@
         {
           "date": "2027-05-26",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-27",
@@ -15109,8 +15023,8 @@
         {
           "date": "2027-05-31",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         }
       ]
     },
@@ -15118,23 +15032,27 @@
       "employeeId": "emp-007",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 179.95,
+      "hourlyRate": 179.45,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 28342.13
+          "amount": 26648.33
         },
         {
           "kind": "Overtime",
-          "amount": 1520.58
+          "amount": 1372.79
+        },
+        {
+          "kind": "InconvenientHours",
+          "amount": 2364.75
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3732.84
+          "amount": 3798.23
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2389.02
+          "amount": 1519.29
         }
       ]
     }
@@ -15151,23 +15069,23 @@
         {
           "date": "2027-05-03",
           "start": "14:00:00",
+          "end": "22:30:00",
+          "minutes": 510
+        },
+        {
+          "date": "2027-05-04",
+          "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
         },
         {
-          "date": "2027-05-04",
+          "date": "2027-05-05",
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
         },
         {
-          "date": "2027-05-05",
-          "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
-        },
-        {
-          "date": "2027-05-07",
+          "date": "2027-05-06",
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
@@ -15205,8 +15123,8 @@
         {
           "date": "2027-05-17",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-18",
@@ -15215,10 +15133,22 @@
           "minutes": 510
         },
         {
-          "date": "2027-05-21",
+          "date": "2027-05-19",
+          "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-05-20",
           "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
+        },
+        {
+          "date": "2027-05-21",
+          "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-24",
@@ -15229,26 +15159,20 @@
         {
           "date": "2027-05-25",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-26",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-05-27",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
-        },
-        {
-          "date": "2027-05-28",
-          "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-05-31",
@@ -15262,35 +15186,27 @@
       "employeeId": "emp-008",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 164.20,
+      "hourlyRate": 163.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 24465.80
+          "amount": 25782.75
         },
         {
           "kind": "Overtime",
-          "amount": 1297.18
+          "amount": 1383.27
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2571.00
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 2408.39
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1133.36
+          "amount": 2527.25
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3541.75
+          "amount": 3711.66
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2266.72
+          "amount": 1484.66
         }
       ]
     }
@@ -15305,30 +15221,6 @@
       "periodEnd": "2027-05-31",
       "shifts": [
         {
-          "date": "2027-05-01",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-01",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-03",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-03",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-05-04",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -15360,42 +15252,30 @@
         },
         {
           "date": "2027-05-06",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-09",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-09",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
         },
         {
-          "date": "2027-05-10",
+          "date": "2027-05-07",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-05-10",
+          "date": "2027-05-07",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
         },
         {
-          "date": "2027-05-11",
+          "date": "2027-05-10",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-05-11",
+          "date": "2027-05-10",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -15413,25 +15293,25 @@
           "minutes": 180
         },
         {
-          "date": "2027-05-13",
+          "date": "2027-05-14",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-05-13",
+          "date": "2027-05-14",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
         },
         {
-          "date": "2027-05-14",
+          "date": "2027-05-15",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-05-14",
+          "date": "2027-05-15",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -15445,8 +15325,8 @@
         {
           "date": "2027-05-16",
           "start": "12:00:00",
-          "end": "16:30:00",
-          "minutes": 270
+          "end": "15:30:00",
+          "minutes": 210
         },
         {
           "date": "2027-05-17",
@@ -15497,13 +15377,13 @@
           "minutes": 180
         },
         {
-          "date": "2027-05-23",
+          "date": "2027-05-21",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-05-23",
+          "date": "2027-05-21",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -15517,8 +15397,8 @@
         {
           "date": "2027-05-24",
           "start": "12:00:00",
-          "end": "17:00:00",
-          "minutes": 300
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-25",
@@ -15545,13 +15425,13 @@
           "minutes": 180
         },
         {
-          "date": "2027-05-28",
+          "date": "2027-05-27",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-05-28",
+          "date": "2027-05-27",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -15565,8 +15445,8 @@
         {
           "date": "2027-05-31",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "15:30:00",
+          "minutes": 210
         }
       ]
     },
@@ -15574,35 +15454,27 @@
       "employeeId": "emp-009",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 180.20,
+      "hourlyRate": 179.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 30543.90
+          "amount": 25966.65
         },
         {
           "kind": "Overtime",
-          "amount": 4865.40
+          "amount": 1734.11
         },
         {
           "kind": "InconvenientHours",
-          "amount": 42.30
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 3013.39
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1418.06
+          "amount": 45.25
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4431.45
+          "amount": 3468.25
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2836.13
+          "amount": 1387.30
         }
       ]
     }
@@ -15617,6 +15489,18 @@
       "periodEnd": "2027-05-31",
       "shifts": [
         {
+          "date": "2027-05-03",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-03",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-05-04",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -15624,6 +15508,18 @@
         },
         {
           "date": "2027-05-04",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-05",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-05",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -15665,6 +15561,18 @@
           "minutes": 300
         },
         {
+          "date": "2027-05-11",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-11",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-05-12",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -15685,8 +15593,8 @@
         {
           "date": "2027-05-13",
           "start": "12:00:00",
-          "end": "17:30:00",
-          "minutes": 330
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-14",
@@ -15737,18 +15645,6 @@
           "minutes": 180
         },
         {
-          "date": "2027-05-20",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-20",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-05-21",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -15785,6 +15681,18 @@
           "minutes": 180
         },
         {
+          "date": "2027-05-26",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-26",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-05-27",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -15805,8 +15713,8 @@
         {
           "date": "2027-05-28",
           "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-31",
@@ -15817,8 +15725,8 @@
         {
           "date": "2027-05-31",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "18:00:00",
+          "minutes": 360
         }
       ]
     },
@@ -15826,35 +15734,23 @@
       "employeeId": "emp-010",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 171.70,
+      "hourlyRate": 171.20,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 22750.25
+          "amount": 26536.00
         },
         {
           "kind": "Overtime",
-          "amount": 635.29
-        },
-        {
-          "kind": "InconvenientHours",
-          "amount": 13.15
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 1988.89
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 935.95
+          "amount": 701.92
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 2843.78
+          "amount": 3404.74
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1871.90
+          "amount": 1361.90
         }
       ]
     }
@@ -15953,13 +15849,13 @@
           "minutes": 480
         },
         {
-          "date": "2027-05-21",
+          "date": "2027-05-24",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
         },
         {
-          "date": "2027-05-24",
+          "date": "2027-05-25",
           "start": "22:00:00",
           "end": "06:00:00",
           "minutes": 480
@@ -15994,35 +15890,27 @@
       "employeeId": "emp-011",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 181.45,
+      "hourlyRate": 180.95,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29032.00
+          "amount": 28952.00
         },
         {
           "kind": "Overtime",
-          "amount": 1088.70
+          "amount": 1085.70
         },
         {
           "kind": "InconvenientHours",
-          "amount": 6528.00
-        },
-        {
-          "kind": "PensionEmployer",
-          "amount": 3115.14
-        },
-        {
-          "kind": "PensionEmployee",
-          "amount": 1465.95
+          "amount": 6640.00
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4581.09
+          "amount": 4584.71
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2931.90
+          "amount": 1833.98
         }
       ]
     }
@@ -16045,8 +15933,8 @@
         {
           "date": "2027-05-03",
           "start": "12:00:00",
-          "end": "17:30:00",
-          "minutes": 330
+          "end": "16:30:00",
+          "minutes": 270
         },
         {
           "date": "2027-05-04",
@@ -16081,8 +15969,8 @@
         {
           "date": "2027-05-06",
           "start": "12:00:00",
-          "end": "18:00:00",
-          "minutes": 360
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-07",
@@ -16104,18 +15992,6 @@
         },
         {
           "date": "2027-05-10",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-11",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-11",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -16176,47 +16052,47 @@
         },
         {
           "date": "2027-05-18",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-20",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-20",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-05-21",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-21",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
         },
         {
-          "date": "2027-05-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-19",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-20",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-20",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-05-21",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-05-21",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-05-24",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -16225,8 +16101,8 @@
         {
           "date": "2027-05-24",
           "start": "12:00:00",
-          "end": "18:00:00",
-          "minutes": 360
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-25",
@@ -16237,8 +16113,8 @@
         {
           "date": "2027-05-25",
           "start": "12:00:00",
-          "end": "17:30:00",
-          "minutes": 330
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-05-26",
@@ -16275,6 +16151,18 @@
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
+        },
+        {
+          "date": "2027-05-31",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-05-31",
+          "start": "12:00:00",
+          "end": "16:00:00",
+          "minutes": 240
         }
       ]
     },
@@ -16282,27 +16170,31 @@
       "employeeId": "emp-012",
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
-      "hourlyRate": 179.20,
+      "hourlyRate": 178.70,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29030.40
+          "amount": 27430.45
         },
         {
           "kind": "Overtime",
-          "amount": 1559.04
+          "amount": 491.43
         },
         {
-          "kind": "InconvenientHours",
-          "amount": 78.90
+          "kind": "PensionEmployer",
+          "amount": 2652.58
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1116.88
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3833.54
+          "amount": 3490.24
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2453.47
+          "amount": 1396.09
         }
       ]
     }

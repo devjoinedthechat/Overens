@@ -116,20 +116,20 @@
                 [
                   "Under 1 års anciennitet",
                   "144,45 kr.",
-                  "148,70 kr.",
-                  "152,45 kr."
+                  "147,95 kr.",
+                  "151,70 kr."
                 ],
                 [
                   "Efter 1 års anciennitet",
-                  "149,45 kr.",
-                  "153,70 kr.",
-                  "157,45 kr."
+                  "151,70 kr.",
+                  "155,20 kr.",
+                  "158,95 kr."
                 ],
                 [
                   "Efter 3 års anciennitet",
-                  "154,45 kr.",
-                  "158,70 kr.",
-                  "162,45 kr."
+                  "154,70 kr.",
+                  "158,20 kr.",
+                  "161,95 kr."
                 ]
               ]
             }
@@ -181,20 +181,20 @@
                 [
                   "Ungarbejdere under 18 år",
                   "96,70 kr.",
-                  "100,95 kr.",
-                  "104,70 kr."
+                  "100,20 kr.",
+                  "103,95 kr."
                 ],
                 [
                   "Lærlinge, 1. år",
                   "82,45 kr.",
-                  "86,70 kr.",
-                  "90,45 kr."
+                  "85,95 kr.",
+                  "89,70 kr."
                 ],
                 [
                   "Lærlinge, 2. år",
                   "100,45 kr.",
-                  "104,70 kr.",
-                  "108,45 kr."
+                  "103,95 kr.",
+                  "107,70 kr."
                 ]
               ]
             }
@@ -265,22 +265,22 @@
               ],
               "rows": [
                 [
-                  "Mandag til fredag kl. 17.00-22.00",
-                  "25,05 kr.",
-                  "26,30 kr.",
-                  "27,05 kr."
+                  "Mandag til fredag kl. 18.00-22.00",
+                  "29,50 kr.",
+                  "30,25 kr.",
+                  "31,75 kr."
                 ],
                 [
                   "Lørdag kl. 14.00-24.00",
-                  "41,05 kr.",
-                  "42,30 kr.",
-                  "43,05 kr."
+                  "44,50 kr.",
+                  "45,25 kr.",
+                  "46,75 kr."
                 ],
                 [
                   "Alle dage kl. 22.00-06.00",
-                  "39,55 kr.",
-                  "40,80 kr.",
-                  "41,55 kr."
+                  "40,75 kr.",
+                  "41,50 kr.",
+                  "43,00 kr."
                 ]
               ]
             }
@@ -315,7 +315,7 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "Pensionsbidraget udgør 12,0 pct. af lønnen, hvoraf arbejdsgiveren betaler 8,0 pct. og medarbejderen 4,0 pct."
+              "text": "Pensionsbidraget udgør 13,0 pct. af lønnen, hvoraf arbejdsgiveren betaler 9,0 pct. og medarbejderen 4,0 pct."
             }
           ]
         },
@@ -324,7 +324,7 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "Medarbejdere er omfattet af pensionsordningen efter to måneders anciennitet."
+              "text": "Medarbejdere er omfattet af pensionsordningen efter seks måneders anciennitet."
             }
           ]
         },
@@ -392,9 +392,9 @@
               ],
               "rows": [
                 [
-                  "7,0 pct.",
-                  "8,0 pct.",
-                  "9,0 pct."
+                  "4,0 pct.",
+                  "5,0 pct.",
+                  "6,0 pct."
                 ]
               ]
             }
@@ -591,7 +591,7 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "Parterne er enige om at ændre § 7, stk. 1. Med virkning fra den 1. marts 2027 forhøjes arbejdsgiverens pensionsbidrag til 8,5 pct. af lønnen."
+              "text": "Parterne er enige om at ændre § 7, stk. 1. Med virkning fra den 1. marts 2027 forhøjes arbejdsgiverens pensionsbidrag til 9,5 pct. af lønnen."
             }
           ]
         },

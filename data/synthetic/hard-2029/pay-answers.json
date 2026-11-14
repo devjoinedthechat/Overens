@@ -1,0 +1,398 @@
+[
+  {
+    "employeeId": "emp-003",
+    "periodStart": "2029-12-01",
+    "mistake": "all_overtime_at_first_tier",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "Overtime",
+        "expected": 4498.64,
+        "actual": 4360.71
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 5394.52,
+        "actual": 5377.28
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 2805.15,
+        "actual": 2796.19
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-010",
+    "periodStart": "2029-12-01",
+    "mistake": "holiday_allowance_on_base_pay_only",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "HolidayAllowance",
+        "expected": 4830.02,
+        "actual": 4242.83
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-012",
+    "periodStart": "2029-12-01",
+    "mistake": "all_overtime_at_first_tier",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "Overtime",
+        "expected": 3860.62,
+        "actual": 3747.07
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 4481.58,
+        "actual": 4467.39
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 2330.42,
+        "actual": 2323.04
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-001",
+    "periodStart": "2030-01-01",
+    "mistake": "all_overtime_at_first_tier",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "Overtime",
+        "expected": 2649.18,
+        "actual": 2485.87
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 3971.49,
+        "actual": 3951.08
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 2065.17,
+        "actual": 2054.56
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-008",
+    "periodStart": "2030-01-01",
+    "mistake": "no_inconvenient_hours_supplement",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "InconvenientHours",
+        "expected": 95.50,
+        "actual": 0
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 4590.10,
+        "actual": 4578.16
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 2386.85,
+        "actual": 2380.64
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-010",
+    "periodStart": "2030-01-01",
+    "mistake": "pension_without_qualifying_period",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "PensionEmployer",
+        "expected": 0,
+        "actual": 3702.95
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 0,
+        "actual": 1559.14
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-003",
+    "periodStart": "2030-02-01",
+    "mistake": "minimum_wage_not_applied",
+    "rateBelowMinimum": true,
+    "lines": [
+      {
+        "line": "BasePay",
+        "expected": 28960.20,
+        "actual": 27239.70
+      },
+      {
+        "line": "Overtime",
+        "expected": 2973.87,
+        "actual": 2797.20
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 4003.70,
+        "actual": 3766.55
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 2081.92,
+        "actual": 1958.61
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-007",
+    "periodStart": "2030-02-01",
+    "mistake": "pension_without_qualifying_period",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "PensionEmployer",
+        "expected": 0,
+        "actual": 2506.53
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 0,
+        "actual": 1055.38
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-008",
+    "periodStart": "2030-02-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 2557.11,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-010",
+    "periodStart": "2030-02-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 2238.90,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-003",
+    "periodStart": "2030-03-01",
+    "mistake": "sunday_paid_as_weekday",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "Overtime",
+        "expected": 6673.69,
+        "actual": 1368.69
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 5741.34,
+        "actual": 5078.21
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 3215.15,
+        "actual": 2843.80
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-004",
+    "periodStart": "2030-03-01",
+    "mistake": "pension_without_qualifying_period",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "PensionEmployer",
+        "expected": 0,
+        "actual": 4032.48
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 0,
+        "actual": 1612.99
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-008",
+    "periodStart": "2030-03-01",
+    "mistake": "holiday_allowance_on_base_pay_only",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "HolidayAllowance",
+        "expected": 4077.43,
+        "actual": 3651.22
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-001",
+    "periodStart": "2030-04-01",
+    "mistake": "minimum_wage_not_applied",
+    "rateBelowMinimum": true,
+    "lines": [
+      {
+        "line": "BasePay",
+        "expected": 30518.10,
+        "actual": 28422.60
+      },
+      {
+        "line": "Overtime",
+        "expected": 4021.02,
+        "actual": 3744.92
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 4335.67,
+        "actual": 4039.22
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 2427.98,
+        "actual": 2261.96
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-003",
+    "periodStart": "2030-04-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 2976.42,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-004",
+    "periodStart": "2030-04-01",
+    "mistake": "line_mistyped",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "InconvenientHours",
+        "expected": 2497.50,
+        "actual": 2495.7
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-005",
+    "periodStart": "2030-04-01",
+    "mistake": "holiday_allowance_on_base_pay_only",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "HolidayAllowance",
+        "expected": 4539.40,
+        "actual": 3594.60
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-010",
+    "periodStart": "2030-04-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 2846.36,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-011",
+    "periodStart": "2030-04-01",
+    "mistake": "minimum_wage_not_applied",
+    "rateBelowMinimum": true,
+    "lines": [
+      {
+        "line": "BasePay",
+        "expected": 31479.30,
+        "actual": 29317.80
+      },
+      {
+        "line": "Overtime",
+        "expected": 2130.66,
+        "actual": 1984.36
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 4213.43,
+        "actual": 3924.96
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 2359.52,
+        "actual": 2197.98
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-002",
+    "periodStart": "2030-05-01",
+    "mistake": "holiday_allowance_on_base_pay_only",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "HolidayAllowance",
+        "expected": 4269.47,
+        "actual": 4146.27
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-003",
+    "periodStart": "2030-05-01",
+    "mistake": "line_mistyped",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "BasePay",
+        "expected": 34376.40,
+        "actual": 43376.4
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-012",
+    "periodStart": "2030-05-01",
+    "mistake": "line_mistyped",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "BasePay",
+        "expected": 37264.23,
+        "actual": 37624.23
+      }
+    ]
+  }
+]

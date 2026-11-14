@@ -30,7 +30,40 @@ public static class AgreementGenerator
         ("Tværhavn-overenskomsten for servicearbejde", "rengørings- og servicearbejde"),
     ];
 
-    public static SyntheticAgreement Generate(AgreementSpec spec)
+    public static SyntheticAgreement Generate(AgreementSpec spec) => Generate(spec, null);
+
+    /// <summary>
+    /// The agreement that replaces <paramref name="previous"/> when its term ends: the same
+    /// parties and trade, with rates that carry on upwards from where the old ones stopped.
+    /// </summary>
+    public static SyntheticAgreement Renew(SyntheticAgreement previous, AgreementSpec spec)
+    {
+        ArgumentNullException.ThrowIfNull(previous);
+        var rules = previous.Truth.Rules;
+        T Last<T>()
+            where T : Rule => rules.OfType<T>().MaxBy(rule => rule.InForce.From)!;
+
+        var wage = Last<MinimumWageRule>();
+        var windows = Last<InconvenientHoursRule>().Windows;
+        var pension = Last<PensionRule>();
+        var saturday = windows.FirstOrDefault(window => window.Days is [DayOfWeek.Saturday]);
+        return Generate(spec, new(
+            Array.FindIndex(Trades, trade => previous.Document.Title.StartsWith(trade.Title, StringComparison.Ordinal)),
+            wage.Bands[0].HourlyRate,
+            wage.Bands[1].HourlyRate - wage.Bands[0].HourlyRate,
+            wage.Bands.Count > 2 ? wage.Bands[2].HourlyRate - wage.Bands[0].HourlyRate : null,
+            (int)Last<OvertimeRule>().Tiers[0].Hours!.Value,
+            windows[0].From,
+            windows[0].AmountPerHour,
+            windows[^1].AmountPerHour - windows[0].AmountPerHour,
+            saturday is null ? null : saturday.AmountPerHour - windows[0].AmountPerHour,
+            pension.EmployerPercent,
+            pension.EmployeePercent,
+            pension.QualifyingMonths,
+            Last<SpecialSavingsRule>().Percent));
+    }
+
+    private static SyntheticAgreement Generate(AgreementSpec spec, Baseline? previous)
     {
         ArgumentNullException.ThrowIfNull(spec);
         var random = new Random(spec.Seed);
@@ -42,18 +75,35 @@ public static class AgreementGenerator
 
         // The rates, chosen before any text exists.
         var (title, work) = Trades[random.Next(Trades.Length)];
-        var starter = Climb(130 + (random.Next(0, 400) * 0.05m), steps.Length, () => 3.50m + (random.Next(0, 7) * 0.25m));
+        var starterFirst = 130 + (random.Next(0, 400) * 0.05m);
         var afterOneYear = random.Next(20, 37) * 0.25m;
         decimal? afterThreeYears = hard >= 2 && random.Next(2) == 0 ? afterOneYear + (random.Next(12, 25) * 0.25m) : null;
         var firstTierHours = random.Next(1, 4);
         var eveningFrom = new TimeOnly(random.Next(17, 19), 0);
-        var evening = Climb(25 + (random.Next(0, 200) * 0.05m), steps.Length, () => 0.75m + (random.Next(0, 4) * 0.25m));
+        var eveningFirst = 25 + (random.Next(0, 200) * 0.05m);
         var nightExtra = random.Next(32, 61) * 0.25m;
         var saturdayExtra = hard >= 2 ? random.Next(60, 101) * 0.25m : (decimal?)null;
         var employerPension = new[] { 8.0m, 8.5m, 9.0m, 10.0m }[random.Next(4)];
         var employeePension = new[] { 4.0m, 4.5m, 5.0m }[random.Next(3)];
         var qualifyingMonths = new[] { 2, 3, 6 }[random.Next(3)];
-        var savings = Climb(4 + random.Next(0, 4), steps.Length, () => random.Next(1, 3) * 0.5m);
+        decimal savingsFirst = 4 + random.Next(0, 4);
+
+        // A renewal keeps what the old agreement settled and starts its rates above the old ones.
+        if (previous is not null)
+        {
+            (title, work) = Trades[previous.Trade];
+            starterFirst = previous.Starter + 4.00m;
+            (afterOneYear, afterThreeYears) = (previous.AfterOneYear, previous.AfterThreeYears);
+            (firstTierHours, eveningFrom) = (previous.FirstTierHours, previous.EveningFrom);
+            eveningFirst = previous.Evening + 1.00m;
+            (nightExtra, saturdayExtra) = (previous.NightExtra, hard >= 2 ? previous.SaturdayExtra ?? saturdayExtra : null);
+            (employerPension, employeePension, qualifyingMonths) = (previous.EmployerPension, previous.EmployeePension, previous.QualifyingMonths);
+            savingsFirst = previous.Savings + 0.5m;
+        }
+
+        var starter = Climb(starterFirst, steps.Length, () => 3.50m + (random.Next(0, 7) * 0.25m));
+        var evening = Climb(eveningFirst, steps.Length, () => 0.75m + (random.Next(0, 4) * 0.25m));
+        var savings = Climb(savingsFirst, steps.Length, () => random.Next(1, 3) * 0.5m);
         var variant = random.Next(2);
 
         var sections = new List<Section>();
@@ -345,6 +395,22 @@ public static class AgreementGenerator
             protocols);
         return new(document, new(spec.Id, 1, rules));
     }
+
+    /// <summary>Where the agreement being renewed left off.</summary>
+    private sealed record Baseline(
+        int Trade,
+        decimal Starter,
+        decimal AfterOneYear,
+        decimal? AfterThreeYears,
+        int FirstTierHours,
+        TimeOnly EveningFrom,
+        decimal Evening,
+        decimal NightExtra,
+        decimal? SaturdayExtra,
+        decimal EmployerPension,
+        decimal EmployeePension,
+        int QualifyingMonths,
+        decimal Savings);
 
     /// <summary>A value for each step, rising by a fresh increment each time.</summary>
     private static decimal[] Climb(decimal first, int steps, Func<decimal> increment)

@@ -18,31 +18,30 @@ Stk. 4. Der holdes en daglig spisepause på 30 minutter, som ikke medregnes i ar
 § 4. Løn
 Stk. 1. Der betales mindst følgende timeløn:
 Anciennitet | Pr. 1. marts 2026 | Pr. 1. marts 2027 | Pr. 1. marts 2028
-0-11 måneders anciennitet | 131,75 kr. | 136,75 kr. | 141,25 kr.
-Fra 12 måneders anciennitet | 138,25 kr. | 143,25 kr. | 147,75 kr.
-Fra 36 måneders anciennitet | 142,50 kr. | 147,50 kr. | 152,00 kr.
+0-11 måneders anciennitet | 131,75 kr. | 136,00 kr. | 140,00 kr.
+Fra 12 måneders anciennitet | 140,75 kr. | 145,00 kr. | 149,00 kr.
 Stk. 2. Anciennitet regnes i hele måneder fra ansættelsesdatoen.
 Stk. 3. Ved lønnen forstås i denne overenskomst timeløn, overarbejdstillæg og tillæg for forskudt tid.
 Stk. 4. Alle beløb afrundes til nærmeste øre.
 
 § 5. Overarbejde
 Stk. 1. Overarbejde er arbejde ud over den daglige normale arbejdstid, jf. § 3, stk. 2. Arbejdstiden opgøres samlet for alle vagter, der påbegyndes samme dag.
-Stk. 2. For de første tre timers overarbejde pr. dag betales et tillæg på 50,0 pct. af timelønnen. For overarbejde herudover betales et tillæg på 100,0 pct. af timelønnen.
+Stk. 2. For de første to timers overarbejde pr. dag betales et tillæg på 50,0 pct. af timelønnen. For overarbejde herudover betales et tillæg på 100,0 pct. af timelønnen.
 Stk. 3. For arbejde på søndage betales et tillæg på 100,0 pct. af timelønnen for alle timer. Søndagstimer medregnes ikke ved opgørelsen efter stk. 1.
 Stk. 4. Overarbejde skal så vidt muligt varsles senest dagen før.
 
 § 6. Forskudt arbejdstid
 Stk. 1. Tillæg for arbejde på forskudt tid udgør pr. time:
 Tidsrum | Pr. 1. marts 2026 | Pr. 1. marts 2027 | Pr. 1. marts 2028
-Mandag til fredag kl. 18.00-22.00 | 32,60 kr. | 33,35 kr. | 34,10 kr.
-Lørdag kl. 14.00-24.00 | 53,35 kr. | 54,10 kr. | 54,85 kr.
-Alle dage kl. 22.00-06.00 | 44,10 kr. | 44,85 kr. | 45,60 kr.
+Mandag til fredag kl. 17.00-22.00 | 29,10 kr. | 29,85 kr. | 31,35 kr.
+Lørdag kl. 14.00-24.00 | 53,85 kr. | 54,60 kr. | 56,10 kr.
+Alle dage kl. 22.00-06.00 | 42,60 kr. | 43,35 kr. | 44,85 kr.
 Stk. 2. Hvor flere tillæg dækker samme tidsrum, betales alene det højeste tillæg.
 Stk. 3. Tillæg for forskudt tid betales ud over eventuelt overarbejdstillæg.
 
 § 7. Pension
-Stk. 1. Arbejdsgiveren indbetaler 8,5 pct. og medarbejderen 4,0 pct. af lønnen til pensionsordningen.
-Stk. 2. Medarbejdere er omfattet af pensionsordningen efter seks måneders anciennitet.
+Stk. 1. Arbejdsgiveren indbetaler 10,0 pct. og medarbejderen 4,0 pct. af lønnen til pensionsordningen.
+Stk. 2. Medarbejdere er omfattet af pensionsordningen efter to måneders anciennitet.
 Stk. 3. Pensionsbidraget indbetales månedligt til det pensionsselskab, som overenskomstens parter har aftalt.
 
 § 8. Ferie og feriegodtgørelse
@@ -51,7 +50,7 @@ Stk. 2. Feriegodtgørelsen udgør 12,5 pct. af lønnen.
 Stk. 3. Ud over ferie har medarbejderen ret til fem feriefridage pr. ferieår.
 
 § 9. Fritvalgskonto
-Stk. 1. Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 4,0 pct. fra 1. marts 2026, 4,5 pct. fra 1. marts 2027 og 5,5 pct. fra 1. marts 2028.
+Stk. 1. Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 5,0 pct. fra 1. marts 2026, 5,5 pct. fra 1. marts 2027 og 6,0 pct. fra 1. marts 2028.
 Stk. 2. Medarbejderen kan vælge at få saldoen udbetalt i forbindelse med ferie og fridage eller indbetalt som ekstra pensionsbidrag.
 
 § 10. Sygdom
@@ -71,7 +70,7 @@ Stk. 1. I virksomheder med mindst seks medarbejdere kan medarbejderne vælge en 
 Stk. 2. Tillidsrepræsentanten skal have den nødvendige tid til at udføre sit hverv.
 
 § 13. Uddannelsesfond
-Stk. 1. Virksomheden indbetaler 52 øre pr. præsteret arbejdstime til parternes uddannelsesfond.
+Stk. 1. Virksomheden indbetaler 60 øre pr. præsteret arbejdstime til parternes uddannelsesfond.
 Stk. 2. Medarbejdere med mindst ni måneders anciennitet har ret til to ugers selvvalgt uddannelse om året.
 
 § 14. Fagretlig behandling
