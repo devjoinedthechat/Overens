@@ -13,6 +13,8 @@ public sealed class CorpusTests
         var generated = Corpus.Files();
 
         var onDisk = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories)
+            // A file manager leaves hidden files of its own behind, such as .DS_Store. They are not in the repository.
+            .Where(file => !Path.GetFileName(file).StartsWith('.'))
             .Select(file => Path.GetRelativePath(root, file).Replace('\\', '/'))
             .Order(StringComparer.Ordinal);
 
