@@ -215,6 +215,24 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
     }
 
     [Fact]
+    public async Task An_upload_is_kept_when_the_pipeline_cannot_be_reached_and_is_marked_for_the_worker_to_start()
+    {
+        site.PipelineDown = true;
+        await using var cutOff = site.Create(uploadsPerHour: 1000);
+        site.PipelineDown = false;
+        var tenant = NewTenant();
+
+        var response = await site.Client(site.Token(tenant), cutOff).PostAsync("/agreements/lager/runs", PdfBody());
+
+        Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+        // Stored, and visibly not started: this is what the worker looks for.
+        var run = await Run(site.Client(site.Token(tenant)), (await Json(response)).GetProperty("id").GetString()!);
+        Assert.Equal("started", run.GetProperty("status").GetString());
+        Assert.False(run.GetProperty("dispatched").GetBoolean());
+        Assert.True((await Run(site.Client(site.Token(tenant)), await Upload(site.Client(site.Token(tenant))))).GetProperty("dispatched").GetBoolean());
+    }
+
+    [Fact]
     public async Task A_rejected_run_publishes_nothing()
     {
         var anna = site.As(NewTenant());

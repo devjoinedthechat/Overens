@@ -56,7 +56,10 @@ public sealed class MeteredChatClient(IChatClient inner, Spend spend, decimal ca
         }
 
         var response = await base.GetResponseAsync(messages, options, cancellationToken);
-        spend.Add(price, response.Usage);
+        // Priced by the model that answered, which under failover need not be the one asked for.
+        var answered = response.ModelId is { } other && Models.Prices.ContainsKey(other) ? other : model;
+        spend.Add(Models.Prices[answered], response.Usage);
+        Usage.Record(answered, Models.Prices[answered], response.Usage);
         return response;
     }
 }

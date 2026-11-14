@@ -49,6 +49,9 @@ public sealed class Site : IAsyncLifetime
     /// <summary>The model behind the question agent, for sites created after it is set. Null is no model.</summary>
     public IChatClient? QuestionModel { get; set; }
 
+    /// <summary>For sites created after it is set: the pipeline cannot be reached.</summary>
+    public bool PipelineDown { get; set; }
+
     /// <summary>Lets a test spoil the model's answers for the uploads that follow.</summary>
     public Action<string, System.Text.Json.Nodes.JsonArray>? Spoil { get; set; }
 
@@ -67,6 +70,7 @@ public sealed class Site : IAsyncLifetime
     {
         // Taken now: the host is built later, on first use.
         var questionModel = QuestionModel;
+        var pipelineDown = PipelineDown;
         return new WebApplicationFactory<Program>().WithWebHostBuilder(host =>
         {
             host.UseSetting("environment", "Development");
@@ -94,7 +98,7 @@ public sealed class Site : IAsyncLifetime
                 services.RemoveAll<QuestionService>();
                 services.AddSingleton(new QuestionService(questionModel is null ? null : new QuestionAgent(questionModel, "stand-in")));
                 services.RemoveAll<IPipeline>();
-                services.AddSingleton<IPipeline>(new PipelineAtOnce(steps));
+                services.AddSingleton<IPipeline>(pipelineDown ? new PipelineAway() : new PipelineAtOnce(steps));
             });
         });
     }
@@ -158,6 +162,14 @@ public sealed class Site : IAsyncLifetime
         public void Dispose()
         {
         }
+    }
+
+    /// <summary>A scheduler that cannot be reached.</summary>
+    private sealed class PipelineAway : IPipeline
+    {
+        public Task StartAsync(RunRef run, CancellationToken cancellationToken) => throw new HttpRequestException("The scheduler is unreachable.");
+
+        public Task DecideAsync(RunRef run, bool publish, CancellationToken cancellationToken) => throw new HttpRequestException("The scheduler is unreachable.");
     }
 
     /// <summary>Runs each step when it is asked for, so a test sees the result at once.</summary>

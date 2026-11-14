@@ -34,7 +34,11 @@ public sealed class IngestAgreement : TaskOrchestrator<RunRef, string>
                 return "failed";
             }
 
-            await context.CallActivityAsync(nameof(ExtractRules), run, Retried);
+            if (await context.CallActivityAsync<string?>(nameof(ExtractRules), run, Retried) is { } refused)
+            {
+                await context.CallActivityAsync(nameof(EndRun), new EndRunInput(run, "failed", refused));
+                return "failed";
+            }
         }
         catch (TaskFailedException failure)
         {
@@ -84,12 +88,20 @@ public sealed class ReadDocument(IngestionSteps steps) : TaskActivity<RunRef, st
     }
 }
 
-public sealed class ExtractRules(IngestionSteps steps) : TaskActivity<RunRef, bool>
+/// <summary>Extracts the rules. Returns why it would not, or null when it did.</summary>
+public sealed class ExtractRules(IngestionSteps steps) : TaskActivity<RunRef, string?>
 {
-    public override async Task<bool> RunAsync(TaskActivityContext context, RunRef run)
+    public override async Task<string?> RunAsync(TaskActivityContext context, RunRef run)
     {
-        await steps.ExtractAsync(run);
-        return true;
+        try
+        {
+            await steps.ExtractAsync(run);
+            return null;
+        }
+        catch (BudgetReachedException reached)
+        {
+            return reached.Message;
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Overens.Data;
+using Overens.Gateway;
 using Overens.Ingestion.Extraction;
 using Overens.Ingestion.Reading;
 using Overens.Rules;
@@ -14,7 +15,7 @@ public sealed record RunRef(string TenantId, string RunId);
 /// its own earlier work and does not do it twice. They run as the worker's database role,
 /// which can store what was read and proposed but cannot approve anything.
 /// </summary>
-public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, RuleExtractor extractor, string modelId, TimeProvider clock)
+public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, RuleExtractor extractor, string modelId, TimeProvider clock, decimal dailyBudgetDollars = 20m)
 {
     public const int MaxPages = 500;
 
@@ -77,6 +78,17 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
             return;
         }
 
+        // One company cannot spend without limit: what its runs have cost since midnight is checked before a model is called.
+        var now = clock.GetUtcNow();
+        var midnight = new DateTimeOffset(now.UtcDateTime.Date, TimeSpan.Zero);
+        var spent = await database.RunAsync(run.TenantId, db =>
+            db.Database.SqlQuery<long>($"select tenant_spend_since({midnight}) as \"Value\"").SingleAsync(cancellationToken), cancellationToken);
+        if (spent >= dailyBudgetDollars * 1_000_000m)
+        {
+            throw new BudgetReachedException($"The company's daily budget for reading agreements (${dailyBudgetDollars}) is used up. Try again tomorrow.");
+        }
+
+        using var usage = Usage.Begin();
         var extraction = await extractor.ExtractAsync(RuleJson.Read<ReadAgreement>(clauses), cancellationToken);
         if (extraction.Unreadable.Count > 0)
         {
@@ -102,7 +114,10 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
                 AlsoFrom = RuleJson.Write(proposed.AlsoFrom),
                 Problems = RuleJson.Write(proposed.Problems),
             }));
-            (row.Model, row.PromptVersion, row.Gaps, row.Status) = (modelId, ExtractionPrompt.Version, RuleJson.Write(extraction.Gaps), "awaiting_review");
+            // The model recorded is the one that answered. Under failover that is not always the one asked for.
+            var answeredBy = usage.Models.Count == 0 ? modelId : string.Join(", ", usage.Models);
+            (row.Model, row.PromptVersion, row.Gaps, row.Status) = (answeredBy, ExtractionPrompt.Version, RuleJson.Write(extraction.Gaps), "awaiting_review");
+            (row.ModelCalls, row.InputTokens, row.OutputTokens, row.CostMicros) = (usage.Calls, usage.InputTokens, usage.OutputTokens, usage.CostMicros);
         }, cancellationToken);
     }
 
@@ -143,6 +158,24 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
                 (row.Status, row.Failure, row.FinishedAt) = (status, failure, clock.GetUtcNow());
             }
         }, cancellationToken);
+    }
+}
+
+/// <summary>The company has spent its budget for the day. Trying again today will not help.</summary>
+public sealed class BudgetReachedException : Exception
+{
+    public BudgetReachedException(string message)
+        : base(message)
+    {
+    }
+
+    public BudgetReachedException(string message, Exception inner)
+        : base(message, inner)
+    {
+    }
+
+    public BudgetReachedException()
+    {
     }
 }
 

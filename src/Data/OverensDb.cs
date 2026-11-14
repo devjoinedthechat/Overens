@@ -24,6 +24,11 @@ public sealed class IngestionRunRow
     public string? Title { get; set; }
     public string? Clauses { get; set; }
     public string? Gaps { get; set; }
+    public DateTimeOffset? DispatchedAt { get; set; }
+    public int? ModelCalls { get; set; }
+    public long? InputTokens { get; set; }
+    public long? OutputTokens { get; set; }
+    public long? CostMicros { get; set; }
     public string? Failure { get; set; }
     public required DateTimeOffset CreatedAt { get; init; }
     public DateTimeOffset? FinishedAt { get; set; }
@@ -40,6 +45,7 @@ public sealed class ProposedRuleRow
     public string Decision { get; set; } = "pending";
     public string? DecidedBy { get; set; }
     public DateTimeOffset? DecidedAt { get; set; }
+    public string? Reason { get; set; }
 }
 
 public sealed class ApprovalRow

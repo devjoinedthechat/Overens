@@ -59,6 +59,63 @@ public sealed class GatewayTests
     }
 
     [Fact]
+    public async Task When_a_model_cannot_be_reached_the_other_one_answers_and_the_answer_says_which()
+    {
+        var provider = new Echo { Down = [Models.Sonnet] };
+        using var client = new MeteredChatClient(Claude.Wrap(provider), new Spend(), capDollars: 1m);
+        using var usage = Usage.Begin();
+
+        var response = await client.GetResponseAsync([new(ChatRole.User, "Hvad er satsen?")], For(Models.Sonnet));
+
+        Assert.Equal(("svar: Hvad er satsen?", Models.Haiku), (response.Text, response.ModelId));
+        Assert.Equal([Models.Sonnet, Models.Haiku], provider.Asked);
+        // Recorded and priced as the model that answered: ten tokens each way at Haiku's prices.
+        Assert.Equal([Models.Haiku], usage.Models);
+        Assert.Equal((1, 6L), (usage.Calls, usage.CostMicros));
+
+        // With both away, the failure is the caller's to handle.
+        provider.Down = [Models.Sonnet, Models.Haiku];
+        await Assert.ThrowsAsync<HttpRequestException>(() => client.GetResponseAsync([new(ChatRole.User, "a")], For(Models.Sonnet)));
+    }
+
+    [Fact]
+    public async Task A_request_the_provider_refuses_as_wrong_is_not_sent_to_another_model()
+    {
+        var provider = new Echo { Refuses = true };
+        using var client = Claude.Wrap(provider);
+
+        await Assert.ThrowsAsync<ArgumentException>(() => client.GetResponseAsync([new(ChatRole.User, "a")], For(Models.Sonnet)));
+        Assert.Equal([Models.Sonnet], provider.Asked);
+
+        // Nor is a call the caller itself gave up on.
+        using var gaveUp = new CancellationTokenSource();
+        await gaveUp.CancelAsync();
+        Assert.False(FailoverChatClient.IsUnavailable(new OperationCanceledException(), gaveUp.Token));
+        Assert.True(FailoverChatClient.IsUnavailable(new OperationCanceledException(), CancellationToken.None));
+    }
+
+    [Fact]
+    public async Task Usage_is_counted_for_the_work_it_was_opened_around_and_for_nothing_else()
+    {
+        using var client = new MeteredChatClient(new Echo(inputTokens: 1000, outputTokens: 100), new Spend(), capDollars: 1m);
+        await client.GetResponseAsync([new(ChatRole.User, "before")], For(Models.Sonnet));
+
+        using (var outer = Usage.Begin())
+        {
+            using (var inner = Usage.Begin())
+            {
+                // Calls made at the same time, as the extractor makes them.
+                await Task.WhenAll(Enumerable.Range(0, 5).Select(_ => client.GetResponseAsync([new(ChatRole.User, "a")], For(Models.Sonnet))));
+                Assert.Equal((5, 5000L, 500L, 15_000L), (inner.Calls, inner.InputTokens, inner.OutputTokens, inner.CostMicros));
+            }
+
+            await client.GetResponseAsync([new(ChatRole.User, "after")], For(Models.Haiku));
+            Assert.Equal(6, outer.Calls);
+            Assert.Equal([Models.Haiku, Models.Sonnet], outer.Models);
+        }
+    }
+
+    [Fact]
     public async Task A_call_that_cannot_be_priced_is_not_made()
     {
         var model = new Echo();
@@ -104,8 +161,28 @@ public sealed class GatewayTests
     {
         public List<ChatMessage> Seen { get; } = [];
 
+        /// <summary>The model each call asked for, in order.</summary>
+        public List<string?> Asked { get; } = [];
+
+        /// <summary>Models that cannot be reached.</summary>
+        public string[] Down { get; set; } = [];
+
+        /// <summary>Whether every request is refused as wrong.</summary>
+        public bool Refuses { get; init; }
+
         public Task<ChatResponse> GetResponseAsync(IEnumerable<ChatMessage> messages, ChatOptions? options = null, CancellationToken cancellationToken = default)
         {
+            Asked.Add(options?.ModelId);
+            if (Refuses)
+            {
+                throw new ArgumentException("400 invalid_request_error");
+            }
+
+            if (Down.Contains(options?.ModelId))
+            {
+                throw new HttpRequestException("529 overloaded");
+            }
+
             Seen.AddRange(messages);
             return Task.FromResult(new ChatResponse(new ChatMessage(ChatRole.Assistant, $"svar: {messages.Last().Text}"))
             {

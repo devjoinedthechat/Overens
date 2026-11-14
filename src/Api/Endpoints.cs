@@ -70,7 +70,18 @@ public static partial class Endpoints
 
                 db.Runs.Add(new() { Id = run.RunId, TenantId = caller.TenantId, AgreementId = agreementId, DocumentSha256 = sha, Status = "started", CreatedAt = clock.GetUtcNow() });
             }, cancellationToken);
-            await pipeline.StartAsync(run, cancellationToken);
+            // The run is stored. If the pipeline cannot be told now, the worker finds the run and starts it.
+            try
+            {
+                await pipeline.StartAsync(run, cancellationToken);
+                await database.RunAsync(caller.TenantId, async db =>
+                    (await db.Runs.SingleAsync(row => row.Id == run.RunId, cancellationToken)).DispatchedAt = clock.GetUtcNow(), cancellationToken);
+            }
+            catch (Exception unreachable) when (unreachable is not OperationCanceledException)
+            {
+                NotStarted(http.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger("Overens.Api.Upload"), run.RunId, unreachable);
+            }
+
             return Results.Accepted($"/runs/{run.RunId}", new { id = run.RunId, status = "started" });
         }).RequireRateLimiting(UploadLimit);
 
@@ -105,6 +116,8 @@ public static partial class Endpoints
                     model = run.Model,
                     promptVersion = run.PromptVersion,
                     failure = run.Failure,
+                    dispatched = run.DispatchedAt is not null,
+                    cost = run.CostMicros is { } micros ? micros / 1_000_000m : (decimal?)null,
                     gaps = run.Gaps is null ? (JsonElement?)null : JsonSerializer.Deserialize<JsonElement>(run.Gaps),
                     rules = rules.Select(row =>
                     {
@@ -275,6 +288,9 @@ public static partial class Endpoints
         Caller.From(http.User) is { } caller ? await work(caller) : Results.Forbid();
 
     private static IResult Problem(int status, string detail) => Results.Problem(detail, statusCode: status);
+
+    [LoggerMessage(Level = LogLevel.Warning, Message = "Run {RunId} was stored and could not be started now; the worker will start it")]
+    private static partial void NotStarted(ILogger logger, string runId, Exception unreachable);
 
     [GeneratedRegex("^[a-z0-9-]{1,64}$")]
     private static partial Regex AgreementId();

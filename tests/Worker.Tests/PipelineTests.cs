@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Hosting;
 using Overens.Data;
+using Overens.Gateway;
 using Overens.Ingestion.Pipeline;
 using Overens.Ingestion.Tests;
 using Overens.Rules;
@@ -22,18 +23,25 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
         new(Agreement.Document, Agreement.Truth, spoil);
 
     /// <summary>What the API does when a specialist uploads an agreement: store it, open a run, start the pipeline.</summary>
-    private async Task<RunRef> Upload(byte[] pdf)
+    private async Task<RunRef> Upload(byte[] pdf, string? tenant = null, bool start = true)
     {
         var number = Interlocked.Increment(ref counter);
-        var run = new RunRef($"tenant-{number}", $"run-{number}");
+        var run = new RunRef(tenant ?? $"tenant-{number}", $"run-{number}");
         var sha = Convert.ToHexStringLower(SHA256.HashData(pdf));
-        await stack.AsApi.RunAsync(run.TenantId, db =>
+        await stack.AsApi.RunAsync(run.TenantId, async db =>
         {
-            db.Documents.Add(new() { TenantId = run.TenantId, Sha256 = sha, FileName = "agreement.pdf", Content = pdf, UploadedBy = "anna", UploadedAt = DateTimeOffset.UtcNow });
+            if (!await db.Documents.AnyAsync(document => document.Sha256 == sha))
+            {
+                db.Documents.Add(new() { TenantId = run.TenantId, Sha256 = sha, FileName = "agreement.pdf", Content = pdf, UploadedBy = "anna", UploadedAt = DateTimeOffset.UtcNow });
+            }
+
             db.Runs.Add(new() { Id = run.RunId, TenantId = run.TenantId, AgreementId = "lager", DocumentSha256 = sha, Status = "started", CreatedAt = DateTimeOffset.UtcNow });
-            return Task.CompletedTask;
         });
-        await stack.Client.ScheduleNewOrchestrationInstanceAsync(nameof(IngestAgreement), run, new StartOrchestrationOptions(InstanceId: run.RunId));
+        if (start)
+        {
+            await stack.Client.ScheduleNewOrchestrationInstanceAsync(nameof(IngestAgreement), run, new StartOrchestrationOptions(InstanceId: run.RunId));
+        }
+
         return run;
     }
 
@@ -41,7 +49,7 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
     {
         for (var attempt = 0; attempt < 240; attempt++)
         {
-            var row = await stack.AsApi.RunAsync(run.TenantId, db => db.Runs.SingleAsync());
+            var row = await stack.AsApi.RunAsync(run.TenantId, db => db.Runs.SingleAsync(row => row.Id == run.RunId));
             if (reached(row))
             {
                 return row;
@@ -241,6 +249,71 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
         await Until(run, row => row.Status == "awaiting_review");
 
         Assert.Equal(Agreement.Truth.Rules.Count, await stack.AsApi.RunAsync(run.TenantId, db => db.ProposedRules.CountAsync()));
+    }
+
+    [Fact]
+    public async Task A_run_that_was_stored_and_never_started_is_started_by_the_worker()
+    {
+        using var worker = await stack.StartWorker(Model());
+
+        // The API stored the run and stopped, or could not reach the scheduler, before telling the pipeline.
+        var run = await Upload(Pdf, start: false);
+
+        var waiting = await Until(run, row => row.Status == "awaiting_review");
+        Assert.NotNull(waiting.DispatchedAt);
+        // Looked at again and again, it is started once.
+        await Task.Delay(3000);
+        Assert.Equal(Agreement.Truth.Rules.Count, await stack.AsApi.RunAsync(run.TenantId, db => db.ProposedRules.CountAsync()));
+    }
+
+    [Fact]
+    public async Task What_a_run_cost_is_recorded_and_a_company_that_has_spent_its_days_budget_is_refused()
+    {
+        // Each call uses 100,000 tokens in and 1,000 out: at Haiku's prices just over a cent, so about six cents an agreement.
+        using var model = new MeteredChatClient(new Uses(Model(), 100_000, 1_000), new Spend(), capDollars: 5m);
+        using var worker = await stack.StartWorker(model, Gateway.Models.Haiku, dailyBudgetDollars: 0.05m);
+        var tenant = $"budget-{Guid.NewGuid():N}";
+
+        var first = await Until(await Upload(Pdf, tenant), row => row.Status == "awaiting_review");
+        Assert.Equal((6, 600_000L, 6_000L, 63_000L, Gateway.Models.Haiku), (first.ModelCalls, first.InputTokens, first.OutputTokens, first.CostMicros, first.Model));
+
+        var second = await Until(await Upload(Pdf, tenant), row => row.Status is "failed" or "awaiting_review");
+        Assert.Equal("failed", second.Status);
+        Assert.Contains("daily budget", second.Failure, StringComparison.Ordinal);
+        Assert.Null(second.ModelCalls);
+
+        // Another company's budget is its own.
+        await Until(await Upload(Pdf), row => row.Status == "awaiting_review");
+    }
+
+    [Fact]
+    public async Task When_the_model_asked_for_is_down_the_other_one_reads_the_agreement_and_the_run_says_so()
+    {
+        using var model = new MeteredChatClient(Claude.Wrap(new DownFor(Gateway.Models.Sonnet, new Uses(Model(), 1000, 100))), new Spend(), capDollars: 5m);
+        using var worker = await stack.StartWorker(model, Gateway.Models.Sonnet);
+
+        var run = await Until(await Upload(Pdf), row => row.Status == "awaiting_review");
+
+        Assert.Equal(Gateway.Models.Haiku, run.Model);
+        Assert.Equal(Agreement.Truth.Rules.Count, await stack.AsApi.RunAsync(run.TenantId, db => db.ProposedRules.CountAsync()));
+    }
+
+    /// <summary>A model that reports how many tokens each call used.</summary>
+    private sealed class Uses(IChatClient inner, long input, long output) : DelegatingChatClient(inner)
+    {
+        public override async Task<ChatResponse> GetResponseAsync(IEnumerable<ChatMessage> messages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+        {
+            var response = await base.GetResponseAsync(messages, options, cancellationToken);
+            response.Usage = new() { InputTokenCount = input, OutputTokenCount = output };
+            return response;
+        }
+    }
+
+    /// <summary>A provider one of whose models cannot be reached.</summary>
+    private sealed class DownFor(string modelId, IChatClient inner) : DelegatingChatClient(inner)
+    {
+        public override Task<ChatResponse> GetResponseAsync(IEnumerable<ChatMessage> messages, ChatOptions? options = null, CancellationToken cancellationToken = default) =>
+            options?.ModelId == modelId ? throw new HttpRequestException("529 overloaded") : base.GetResponseAsync(messages, options, cancellationToken);
     }
 
     /// <summary>A model whose first calls fail, as a provider does when it is overloaded.</summary>

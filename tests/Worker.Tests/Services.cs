@@ -53,11 +53,13 @@ public sealed class Services : IAsyncLifetime
     }
 
     /// <summary>Starts a worker process's worth of services. Disposing it is the worker dying.</summary>
-    public async Task<IHost> StartWorker(IChatClient model)
+    public async Task<IHost> StartWorker(IChatClient model, string modelId = "stand-in", decimal dailyBudgetDollars = 20m)
     {
+        // Look often, and take any run that has not been started, so a test need not wait.
+        (RunStarter.Every, RunStarter.OlderThan) = (TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2));
         var builder = Host.CreateApplicationBuilder();
         builder.Logging.SetMinimumLevel(LogLevel.Warning);
-        builder.Services.AddIngestionWorker(As("overens_worker", "worker-test"), Scheduler, model, "stand-in");
+        builder.Services.AddIngestionWorker(As("overens_worker", "worker-test"), Scheduler, model, modelId, dailyBudgetDollars);
         var host = builder.Build();
         await host.StartAsync();
         return host;

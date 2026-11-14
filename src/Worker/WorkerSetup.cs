@@ -1,3 +1,5 @@
+using Microsoft.DurableTask.Client;
+using Microsoft.DurableTask.Client.AzureManaged;
 using Microsoft.DurableTask.Worker;
 using Microsoft.DurableTask.Worker.AzureManaged;
 using Microsoft.Extensions.AI;
@@ -18,9 +20,11 @@ public static class WorkerSetup
     /// <param name="scheduler">The Durable Task Scheduler's connection string.</param>
     /// <param name="model">The model to extract with.</param>
     /// <param name="modelId">The model's id.</param>
-    public static IServiceCollection AddIngestionWorker(this IServiceCollection services, string workerDatabase, string scheduler, IChatClient model, string modelId)
+    /// <param name="dailyBudgetDollars">What one company's agreements may cost to read in a day.</param>
+    public static IServiceCollection AddIngestionWorker(this IServiceCollection services, string workerDatabase, string scheduler, IChatClient model, string modelId, decimal dailyBudgetDollars = 20m)
     {
-        services.AddSingleton(_ => new TenantScope(NpgsqlDataSource.Create(workerDatabase)));
+        services.AddSingleton(_ => NpgsqlDataSource.Create(workerDatabase));
+        services.AddSingleton(provider => new TenantScope(provider.GetRequiredService<NpgsqlDataSource>()));
         services.AddSingleton<ILayoutReader, PdfLayoutReader>();
         services.AddSingleton(TimeProvider.System);
         services.AddSingleton(provider => new IngestionSteps(
@@ -28,7 +32,11 @@ public static class WorkerSetup
             provider.GetRequiredService<ILayoutReader>(),
             new RuleExtractor(model, modelId),
             modelId,
-            provider.GetRequiredService<TimeProvider>()));
+            provider.GetRequiredService<TimeProvider>(),
+            dailyBudgetDollars));
+        // Runs whose start never reached the scheduler are started from here.
+        services.AddDurableTaskClient(client => client.UseDurableTaskScheduler(scheduler));
+        services.AddHostedService<RunStarter>();
         services.AddDurableTaskWorker(worker =>
         {
             worker.AddTasks(tasks =>

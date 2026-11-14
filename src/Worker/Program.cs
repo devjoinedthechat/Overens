@@ -14,6 +14,7 @@ builder.Services.AddIngestionWorker(
     Setting("ConnectionStrings:worker"),
     Setting("ConnectionStrings:scheduler"),
     WorkerSetup.Model(builder.Configuration["ANTHROPIC_API_KEY"], recordings, cap),
-    modelId);
+    modelId,
+    decimal.Parse(builder.Configuration["TENANT_DAILY_BUDGET_DOLLARS"] ?? "20", System.Globalization.CultureInfo.InvariantCulture));
 
 builder.Build().Run();

@@ -9,9 +9,15 @@ namespace Overens.Gateway;
 /// </summary>
 public static class Claude
 {
+    /// <summary>
+    /// What stands between every caller and a provider, outermost first: redaction, so nothing
+    /// below it ever holds a CPR number; then failover to the provider's other model.
+    /// </summary>
+    public static IChatClient Wrap(IChatClient provider) => new RedactingChatClient(new FailoverChatClient(provider, FailoverChatClient.Claude));
+
     public static IChatClient Create(string apiKey)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(apiKey);
-        return new RedactingChatClient(new AnthropicClient { ApiKey = apiKey }.AsIChatClient());
+        return Wrap(new AnthropicClient { ApiKey = apiKey }.AsIChatClient());
     }
 }
