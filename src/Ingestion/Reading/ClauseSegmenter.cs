@@ -25,6 +25,7 @@ public static partial class ClauseSegmenter
     public static ReadAgreement Segment(IReadOnlyList<LayoutPage> pages)
     {
         ArgumentNullException.ThrowIfNull(pages);
+        pages = Numbering.Normalise(pages);
         var furniture = Furniture(pages);
         var sections = new List<Section>();
         var spans = new Dictionary<string, PageSpan>();
@@ -50,7 +51,7 @@ public static partial class ClauseSegmenter
                 {
                     case LayoutLine line when SectionHeading().Match(line.Text) is { Success: true } heading:
                         EndSection();
-                        var number = heading.Groups["paragraph"].Success ? $"§ {heading.Groups["paragraph"].Value}" : heading.Groups["protocol"].Value;
+                        var number = heading.Groups["paragraph"].Success ? $"§ {heading.Groups["paragraph"].Value}" : heading.Groups["other"].Value;
                         section = (number, heading.Groups["heading"].Value);
                         break;
 
@@ -96,17 +97,27 @@ public static partial class ClauseSegmenter
                         last = null;
                         break;
 
+                    case LayoutLine line when section is not null:
+                        // Text straight under a section's heading, before any numbered clause. It is the
+                        // section's opening, and is kept as a clause of its own.
+                        clauseId = $"{section.Value.Number}, indledning";
+                        paragraph = line.Text;
+                        spans[clauseId] = new(page.Number, page.Number);
+                        last = (page.Number, line.Top, line.FontSize);
+                        break;
+
                     default:
-                        // Text before the first clause of a section: the front page, a table of contents.
+                        // Text before the first section: the front page, a table of contents.
                         break;
                 }
             }
         }
 
         EndSection();
+        // The title is the front page's large type. Type larger than any title is decoration.
         var title = pages.Count == 0
             ? ""
-            : pages[0].Items.OfType<LayoutLine>().Where(line => line.FontSize >= 18).Select(line => line.Text).Aggregate("", Lines.Join);
+            : pages[0].Items.OfType<LayoutLine>().Where(line => line.FontSize is >= 15 and <= 30).Select(line => line.Text).Aggregate("", Lines.Join);
         return new(title, sections, spans);
 
         void EndParagraph()
@@ -165,7 +176,7 @@ public static partial class ClauseSegmenter
 
     private static (double, string) Key(LayoutLine line) => (Math.Round(line.Top), Digits().Replace(line.Text, "#"));
 
-    [GeneratedRegex(@"^(?:§ ?(?<paragraph>\d+)|(?<protocol>Protokollat \d+))\. (?<heading>\S.*)$")]
+    [GeneratedRegex(@"^(?:§ ?(?<paragraph>\d+)|(?<other>(?:Protokollat|Aftale) \d+))\. (?<heading>\S.*)$")]
     private static partial Regex SectionHeading();
 
     [GeneratedRegex(@"^Stk\. (?<number>\d+)\. (?<text>.*)$")]

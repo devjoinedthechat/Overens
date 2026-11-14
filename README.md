@@ -39,7 +39,7 @@ On synthetic agreements, each written from a rule set so that the right answer i
 | Wrong answers shown | 0 | 0 |
 | Cost to read one agreement | $0.08 | $0.005 |
 
-Both models are at the ceiling, so these documents do not show where the system breaks on a real agreement. The [eval report](docs/eval-report/README.md) says what failed on the first runs, how each was fixed, and what the numbers do not show.
+Both models are at the ceiling, and every document is synthetic: no real agreement has been measured. The [eval report](docs/eval-report/README.md) says what failed on the first runs, how each was fixed, and what the numbers do not show.
 
 ## Run it
 

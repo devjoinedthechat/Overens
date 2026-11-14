@@ -179,7 +179,7 @@ An answer is correct when it is shown, states the known figure and cites a claus
 
 ## What these results do not show
 
-- **The documents are synthetic and both models are at the ceiling.** The sets cannot tell Sonnet from Haiku, and say little about where extraction breaks on a real agreement.
+- **The documents are synthetic and both models are at the ceiling.** The sets cannot tell Sonnet from Haiku, and say little about where extraction breaks on a real agreement. No real agreement has been measured: a published agreement is someone's copyrighted text, and none is used here. What a real one would add is known in outline: the reader only understood one way of numbering clauses until a second was added, a real agreement states pay in more ways than six kinds of rule (monthly salaries, half rates for the young, public holidays), and its tables are not always ruled.
 - **Each model answered once per prompt version.** There is no proper measure of how much an answer varies from run to run. The one time everything was run again, Haiku's answers differed enough to trip a check twice.
 - **Six kinds of rule.** Anything else an agreement says about pay, such as shift work, on-call pay or public holidays, is not extracted and not counted as missing.
 - **Text PDFs with ruled tables in one column.** A scanned agreement is not read at all.

@@ -56,6 +56,66 @@ public sealed class ClauseSegmenterTests
             read.Sections[0].Clauses[0].Blocks);
     }
 
+    /// <summary>
+    /// The other way agreements are numbered: sections in bold capitals with no full stop,
+    /// clauses as bold numbered headings, and further agreements appended under bold headings.
+    /// </summary>
+    [Fact]
+    public void An_agreement_numbered_without_stk_is_read_into_the_same_sections_and_clauses()
+    {
+        static LayoutLine Heading(string text, double top, double size = 12) => new(text, top, size, true);
+        static LayoutLine Body(string text, double top) => new(text, top, 8, false);
+
+        var read = ClauseSegmenter.Segment(
+        [
+            new(1, [new LayoutLine("Tværhavn-overenskomsten", 600, 16, false)]),
+            new(2, [Heading("INDHOLD", 700), Heading("§ 1 ARBEJDSTID ..........7", 680, 8), Heading("§ 2 PENSION ..........9", 668, 8)]),
+            new(3,
+            [
+                Heading("§ 1 ARBEJDSTID", 700),
+                Heading("1. Arbejdstidens planlægning", 680, 9),
+                Body("Den normale arbejdstid er 37 timer om ugen i virk-", 668),
+                Body("somheden, og tillæg betales kl. 18.00-", 656),
+                Body("23.00 på hverdage.", 644),
+                Heading("A. PAUSER", 620, 7.5),
+                Body("Pauser medregnes ikke.", 608),
+                Heading("2. Forskudttidstillæg", 580, 9),
+                Body("Der betales 27,50 kr. pr. time.", 568),
+            ]),
+            new(4,
+            [
+                Heading("§ 2 PENSION OG", 700),
+                Heading("FORSIKRING", 686),
+                Body("Alle medarbejdere har en pensionsordning.", 668),
+                Heading("1. Pensionssatser", 640, 9),
+                Body("Virksomhedens bidrag udgør 8,0 pct.", 628),
+                Heading("ELEVER", 500),
+                Body("For elever gælder aftalen om elevers løn.", 480),
+                Body("1. januar 2026 forhøjes satserne.", 468),
+            ]),
+        ]);
+
+        Assert.Equal("Tværhavn-overenskomsten", read.Title);
+        Assert.Equal(
+            ["§ 1 Arbejdstid", "§ 2 Pension og forsikring", "Aftale 1 Elever"],
+            read.Sections.Select(section => $"{section.Number} {section.Heading}"));
+        Assert.Equal(
+            ["§ 1, stk. 1", "§ 1, stk. 2", "§ 2, indledning", "§ 2, stk. 1", "Aftale 1, stk. 1"],
+            read.Sections.SelectMany(section => section.Clauses).Select(clause => clause.Id));
+
+        // The clause's heading, then its text with split words and broken times put back together.
+        Assert.Equal(
+            [
+                new Paragraph("Arbejdstidens planlægning"),
+                new Paragraph("Den normale arbejdstid er 37 timer om ugen i virksomheden, og tillæg betales kl. 18.00-23.00 på hverdage."),
+                new Paragraph("A. PAUSER Pauser medregnes ikke."),
+            ],
+            read.Sections[0].Clauses[0].Blocks);
+        Assert.Equal(new Paragraph("Alle medarbejdere har en pensionsordning."), Assert.Single(read.Sections[1].Clauses[0].Blocks));
+        // A dated sentence in the body is not taken for a numbered heading.
+        Assert.Contains("1. januar 2026 forhøjes satserne.", ((Paragraph)read.Sections[2].Clauses[0].Blocks[^1]).Text, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void Running_titles_page_numbers_and_the_table_of_contents_are_left_out()
     {

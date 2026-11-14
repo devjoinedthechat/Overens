@@ -28,3 +28,4 @@ id_ed25519*
 # raw model transcripts, which can hold account details
 *.transcript.json
 # evals/recordings is committed on purpose: each file holds a model's name and its answer, nothing else
+

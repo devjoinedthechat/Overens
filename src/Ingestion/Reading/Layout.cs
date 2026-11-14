@@ -26,8 +26,10 @@ public static class Lines
 {
     /// <summary>
     /// A line that ends in a hyphen was broken at it, so the next line follows without a
-    /// space: "17.00-" and "22.00". The exception is a Danish suspended hyphen, as in
-    /// "lager- og logistikarbejde", which keeps its space.
+    /// space: "17.00-" and "22.00". A Danish suspended hyphen, as in "lager- og
+    /// logistikarbejde", keeps its space. A word that was split to fit the line is put back
+    /// together without the hyphen. Which of the last two a hyphen is cannot always be told
+    /// from the page; this takes a lower-case letter on both sides to mean a split word.
     /// </summary>
     public static string Join(string before, string after)
     {
@@ -38,7 +40,19 @@ public static class Lines
             return after;
         }
 
-        var suspended = after.StartsWith("og ", StringComparison.Ordinal) || after.StartsWith("eller ", StringComparison.Ordinal);
-        return before.EndsWith('-') && !suspended ? before + after : $"{before} {after}";
+        if (!before.EndsWith('-'))
+        {
+            return $"{before} {after}";
+        }
+
+        if (after.StartsWith("og ", StringComparison.Ordinal) || after.StartsWith("eller ", StringComparison.Ordinal))
+        {
+            return $"{before} {after}";
+        }
+
+        // A word broken in two for the line's sake ("virk-" / "somhed") loses its hyphen. A hyphen after a
+        // digit or before a capital was there before the line was broken ("17.00-" / "22.00", "HK-" / "Handel").
+        var broken = before.Length > 1 && char.IsLower(before[^2]) && after.Length > 0 && char.IsLower(after[0]);
+        return broken ? before[..^1] + after : before + after;
     }
 }
