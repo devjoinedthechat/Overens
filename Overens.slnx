@@ -10,6 +10,9 @@
   <Folder Name="/src/AppHost/">
     <Project Path="src/AppHost/Overens.AppHost.csproj" />
   </Folder>
+  <Folder Name="/src/Data/">
+    <Project Path="src/Data/Overens.Data.csproj" />
+  </Folder>
   <Folder Name="/src/Documents/">
     <Project Path="src/Documents/Overens.Documents.csproj" />
   </Folder>
@@ -31,6 +34,9 @@
   <Folder Name="/tests/" />
   <Folder Name="/tests/Api.Tests/">
     <Project Path="tests/Api.Tests/Overens.Api.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Data.Tests/">
+    <Project Path="tests/Data.Tests/Overens.Data.Tests.csproj" />
   </Folder>
   <Folder Name="/tests/Ingestion.Tests/">
     <Project Path="tests/Ingestion.Tests/Overens.Ingestion.Tests.csproj" />
