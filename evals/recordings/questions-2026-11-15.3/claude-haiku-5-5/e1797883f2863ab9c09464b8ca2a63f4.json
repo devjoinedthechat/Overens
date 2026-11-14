@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01TfKAhLiYuASuqLNYVMejmV",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022bil biltill\\u00E6g k\\u00F8rsel eget k\\u00F8ret\\u00F8j\u0022}"
+    },
+    {
+      "Id": "toolu_018Mi3s2hd4dA4ZYgw72nhtx",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022goder naturalier fri bil\u0022}"
+    }
+  ]
+}

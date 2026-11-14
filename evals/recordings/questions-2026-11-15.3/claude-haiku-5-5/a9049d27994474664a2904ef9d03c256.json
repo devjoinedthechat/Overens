@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01J98zFoGh8A4ucvsGwsLWru",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 1\u0022}"
+    },
+    {
+      "Id": "toolu_01Hh4oqdL6RsnjuqmkQ8zFDH",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022helligdage juleaften nyt\\u00E5rsaften till\\u00E6g\u0022}"
+    }
+  ]
+}

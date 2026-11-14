@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_012H6MPv1nPgK2fkAYy4rKoZ",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022pensionsbidrag arbejdsgiver procent af l\\u00F8nnen\u0022}"
+    },
+    {
+      "Id": "toolu_013Z3zBtQ8Yj3FkcTorXMoyc",
+      "Name": "rules_in_force",
+      "Arguments": "{\u0022date\u0022:\u00222027-04-15\u0022}"
+    }
+  ]
+}

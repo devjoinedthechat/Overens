@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01QzcfZ6YVuq8xKZ6H7UpXnp",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Efter pr\\u00F8vetiden er varslet fra virksomhedens side 21 dage for en medarbejder med under 1 \\u00E5rs anciennitet. Medarbejderen selv skal give 7 dages varsel. Opsigelsen skal ske skriftligt.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 11, stk. 1\u0022,\u0022quote\u0022:\u0022Efter pr\\u00F8vetiden g\\u00E6lder f\\u00F8lgende opsigelsesvarsler:\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 11, stk. 1\u0022,\u0022quote\u0022:\u0022Under 1 \\u00E5r | 21 dage | 7 dage\u0022}]}"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01K2s6sxHnzCN24SJcZaSxzB",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022fritvalgskonto arbejdsgiver indbetaler procent af l\\u00F8nnen\u0022}"
+    },
+    {
+      "Id": "toolu_01QgHpN57djXYZbxR6ZpBQcf",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022Protokollat 2. Forh\\u00F8jelse af bidrag til fritvalgskonto\u0022}"
+    },
+    {
+      "Id": "toolu_01V8eJ9aeDSwMgm3rZPSRTXZ",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 9, stk. 1\u0022}"
+    }
+  ]
+}

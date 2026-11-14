@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "Efter prøvetiden er opsigelsesvarslet fra virksomhedens side 21 dage. Overenskomstens § 11, stk. 1 skelner ikke efter anciennitet, så varslet gælder også for en medarbejder med under et års anciennitet.",
+  "Calls": [
+    {
+      "Id": "toolu_01MTE4K3yh6BqVjNJtFUd76B",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Efter pr\\u00F8vetiden er opsigelsesvarslet fra virksomhedens side 21 dage. \\u00A7 11, stk. 1 skelner ikke efter anciennitet, s\\u00E5 varslet g\\u00E6lder ogs\\u00E5 for en medarbejder med under et \\u00E5rs anciennitet.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 11, stk. 1\u0022,\u0022quote\u0022:\u0022Efter pr\\u00F8vetiden er opsigelsesvarslet fra virksomhedens side 21 dage og fra medarbejderens side 7 dage.\u0022}]}"
+    }
+  ]
+}

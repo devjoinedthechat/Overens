@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01YY6sNHZRCVSuzdkcHpATEg",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 15. april 2027 er mindstebetalingen for en nyansat med under 1 \\u00E5rs anciennitet 147,95 kr. pr. time. Satsen g\\u00E6lder fra 1. marts 2027.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 4, stk. 1\u0022,\u0022quote\u0022:\u0022Mindstebetalingen pr. time udg\\u00F8r f\\u00F8lgende satser:\u0022}]}"
+    }
+  ]
+}

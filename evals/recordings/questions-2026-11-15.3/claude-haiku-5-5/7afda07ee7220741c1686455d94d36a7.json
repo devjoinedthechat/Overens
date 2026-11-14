@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01H51ABauZo8rGY1hKHk4UfE",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 15. april 2027 betaler arbejdsgiveren 9,5 pct. af l\\u00F8nnen i pensionsbidrag. Protokollatet forh\\u00F8jede bidraget fra 9,0 pct. med virkning fra 1. marts 2027.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022Protokollat 1, stk. 1\u0022,\u0022quote\u0022:\u0022Med virkning fra den 1. marts 2027 forh\\u00F8jes arbejdsgiverens pensionsbidrag til 9,5 pct. af l\\u00F8nnen.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 7, stk. 1\u0022,\u0022quote\u0022:\u0022Pensionsbidraget udg\\u00F8r 13,5 pct. af l\\u00F8nnen, hvoraf arbejdsgiveren betaler 9,0 pct. og medarbejderen 4,5 pct.\u0022}]}"
+    }
+  ]
+}

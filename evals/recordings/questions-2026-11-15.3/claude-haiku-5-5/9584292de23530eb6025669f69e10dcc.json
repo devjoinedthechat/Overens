@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01RiLrz3PQreCb58MuvnavEs",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:false,\u0022text\u0022:\u0022Overenskomsten indeholder ingen s\\u00E6rlig till\\u00E6gssats for arbejde p\\u00E5 helligdage, herunder 1. juledag. Den n\\u00E6vner kun et till\\u00E6g for s\\u00F8ndagsarbejde (100 pct. af timel\\u00F8nnen), og det kan ikke overf\\u00F8res til helligdage uden at overenskomsten siger det.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 3\u0022,\u0022quote\u0022:\u0022For arbejde p\\u00E5 s\\u00F8ndage betales et till\\u00E6g p\\u00E5 100,0 pct. af timel\\u00F8nnen for alle timer.\u0022}]}"
+    }
+  ]
+}

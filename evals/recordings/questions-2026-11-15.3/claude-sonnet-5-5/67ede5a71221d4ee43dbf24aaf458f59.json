@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01DSZwyfnnwSaFnChT8VYTxs",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 15. april 2027 indbetaler arbejdsgiveren 6,0 pct. af l\\u00F8nnen til fritvalgskontoen. Satsen g\\u00E6lder fra 1. marts 2027. Protokollat 2 forh\\u00F8jer den f\\u00F8rst med virkning fra 1. september 2027.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 9, stk. 1\u0022,\u0022quote\u0022:\u0022Arbejdsgiverens bidrag til medarbejderens fritvalgskonto udg\\u00F8r f\\u00F8lgende andel af l\\u00F8nnen:\u0022}]}"
+    }
+  ]
+}

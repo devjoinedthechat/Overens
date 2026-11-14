@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01MchiYsRZNKxnxUBaPWeJua",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:false,\u0022text\u0022:\u0022Overenskomsten indeholder ikke nogen bestemmelse om firmabil, s\\u00E5 jeg kan ikke se, at en medarbejder har ret til det efter overenskomsten.\u0022,\u0022citations\u0022:[]}"
+    }
+  ]
+}

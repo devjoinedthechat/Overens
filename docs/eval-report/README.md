@@ -118,6 +118,37 @@ The first version of the guard refused two correct wordings: the model had been 
 
 Whether the wording is good Danish, or easier to act on than the fixed wording, is not measured.
 
+## Questions
+
+The question agent is asked 48 questions in Danish about four agreements, with the true rules and the agreement's clauses to hand. Every question is written from the rule set, so its answer is known (`dotnet run --project evals/Runner -- --questions`). Question prompt `2026-11-15.3`.
+
+| Kind | Example | Questions |
+| --- | --- | --- |
+| Lookup | What percentage is the holiday allowance? | 8 |
+| Dated | What is the minimum wage on 15 April 2027 for a new hire? | 16 |
+| Calculation | What is the overtime supplement for a shift from 14.00 to 23.30 at 200 kr. an hour? | 8 |
+| Text | How long is the employer's notice in the first year? (not a pay rule; only in the text) | 4 |
+| Unanswerable | How many weeks of paid parental leave? (the agreement does not say) | 12 |
+
+An answer is correct when it is shown, states the known figure and cites a clause the rule comes from. For an unanswerable question, correct is the fixed sentence "the agreement does not answer the question".
+
+| Model | Correct | Wrong answer shown | Answered the unanswerable | Withheld | Cost |
+| --- | --- | --- | --- | --- | --- |
+| Haiku | 48 of 48 | 0 | 0 | 0 | $0.06 |
+| Sonnet | 48 of 48 | 0 | 0 | 0 | $0.97 |
+
+**What went wrong on the way, and was fixed before these numbers:**
+
+- **A model that kept searching.** On the first run Haiku searched thirteen times for parental leave and ran out of turns. The agent now gets the agreement's table of contents with the question, so it can see what the agreement covers.
+- **A model that cannot be forced to call a tool.** Sonnet rejects a forced tool choice. Nothing is forced now; text outside a tool call is never shown, and the model is reminded once.
+- **A judge that was too strict.** "118 kr." was marked wrong against "118,00". Numbers are now compared as numbers.
+- **A "not answered" that was refused.** On a parental-leave question Sonnet called `give_answer` with only `answered: false`, twice, and was stopped for leaving fields out. The person would have got "ask a payroll specialist": unhelpful, not wrong. A call that says only "not answered" is now taken as it is. The same recorded answers then give 48 of 48; before the change they gave 47 and one withheld.
+- **A check that was too strict.** An answer that said which date it had looked the rules up for was refused, because the date was not in the question. A date or figure the agent put into a tool is now allowed in the answer.
+
+**What the answer check did.** In every calculation answer the amounts came from the calculator, and the check confirmed it. No model put a figure of its own into an answer that was shown.
+
+**Limits.** The questions are written from templates, twelve per agreement, and each was asked once. The agent is given the true rules, not extracted ones. Nobody judged whether the Danish reads well. The search is a keyword ranking over a few dozen clauses; it has not been measured on its own.
+
 ## What these results do not show
 
 - **The documents are synthetic and both models are at the ceiling.** The sets cannot tell Sonnet from Haiku, and say little about where extraction breaks on a real agreement.

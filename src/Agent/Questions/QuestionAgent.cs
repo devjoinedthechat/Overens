@@ -28,7 +28,7 @@ public sealed record QuestionAnswer(AnswerOutcome Outcome, string Text, IReadOnl
 /// </summary>
 public sealed class QuestionAgent(IChatClient model, string modelId)
 {
-    public const string Version = "2026-11-15.1";
+    public const string Version = "2026-11-15.3";
     public const int MaxTurns = 10;
     public const string NotInAgreement = "Overenskomsten giver ikke svar på spørgsmålet.";
     public const string Withheld = "Jeg kan ikke give et svar, der kan kontrolleres mod overenskomsten. Spørg en lønspecialist.";
@@ -43,6 +43,7 @@ public sealed class QuestionAgent(IChatClient model, string modelId)
         - Every number in your answer must be printed in a clause you cite, or come from rules_in_force or calculate_pay.
         - Cite each clause your answer rests on, with a sentence copied word for word from it.
         - If a rate depends on the date and the question gives none, say which date you used.
+        - The agreement's sections are listed between <sections> tags. If no section covers the subject and two searches find nothing about it, the agreement does not answer the question. Stop searching.
         - If the agreement does not answer the question, do not guess and do not answer from general knowledge of Danish law or other agreements. Call give_answer with answered false.
         - Finish by calling give_answer exactly once.
         """;
@@ -64,15 +65,17 @@ public sealed class QuestionAgent(IChatClient model, string modelId)
             ModelId = modelId,
             MaxOutputTokens = 1200,
             Tools = [.. QuestionTools.Declarations],
-            // Every turn is a tool call: the answer itself is given through one.
-            ToolMode = ChatToolMode.RequireAny,
+            // Not every model can be forced to call a tool, so none is. A turn without a call is handled below.
+            ToolMode = ChatToolMode.Auto,
         };
         var messages = new List<ChatMessage>
         {
             new(ChatRole.System, System),
-            new(ChatRole.User, $"Today is {today:yyyy-MM-dd}.\n\n<question>\n{question}\n</question>"),
+            // The table of contents shows at a glance what the agreement covers, and what it does not.
+            new(ChatRole.User, $"Today is {today:yyyy-MM-dd}.\n\n<sections>\n{string.Join('\n', index.Outline)}\n</sections>\n\n<question>\n{question}\n</question>"),
         };
         var refusals = 0;
+        var reminded = false;
 
         for (var turn = 0; turn < MaxTurns; turn++)
         {
@@ -81,8 +84,16 @@ public sealed class QuestionAgent(IChatClient model, string modelId)
             var calls = response.Messages.SelectMany(message => message.Contents).OfType<FunctionCallContent>().ToList();
             if (calls.Count == 0)
             {
+                // The answer is only ever taken through give_answer, where it can be checked. Say so once.
                 trace.Add("no tool call");
-                break;
+                if (reminded)
+                {
+                    break;
+                }
+
+                reminded = true;
+                messages.Add(new(ChatRole.User, "Give your answer by calling give_answer. Text outside a tool call is not shown to anyone."));
+                continue;
             }
 
             var results = new List<AIContent>();
@@ -131,6 +142,12 @@ public sealed class QuestionAgent(IChatClient model, string modelId)
         try
         {
             var input = JsonSerializer.SerializeToElement(call.Arguments);
+            // "The agreement does not say" needs no text and no citations, and is taken without them.
+            if (input.TryGetProperty("answered", out var said) && said.ValueKind == JsonValueKind.False)
+            {
+                return (false, "", [], null);
+            }
+
             return (
                 input.GetProperty("answered").GetBoolean(),
                 input.GetProperty("text").GetString() ?? "",

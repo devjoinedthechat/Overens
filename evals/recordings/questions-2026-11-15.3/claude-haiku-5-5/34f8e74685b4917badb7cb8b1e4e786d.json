@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01HF6FKMsaZj9Etd1UaUGLgV",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022firmabil\u0022}"
+    },
+    {
+      "Id": "toolu_01Naxe5upipuwhkE98S8gki1",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022bil til r\\u00E5dighed for medarbejderen\u0022}"
+    }
+  ]
+}

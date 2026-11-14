@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01MRZQ6rZQsA1tdj8yhXVCVz",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 15. april 2027 indbetaler arbejdsgiveren 6,0 pct. af l\\u00F8nnen til fritvalgskontoen. Satsen p\\u00E5 6,0 pct. g\\u00E6lder fra 1. marts 2027, og den h\\u00F8jere sats p\\u00E5 6,25 pct. tr\\u00E6der f\\u00F8rst i kraft 1. september 2027.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 9, stk. 1\u0022,\u0022quote\u0022:\u0022Arbejdsgiverens bidrag til medarbejderens fritvalgskonto udg\\u00F8r f\\u00F8lgende andel af l\\u00F8nnen: Pr. 01.03.2026 | Pr. 01.03.2027 | Pr. 01.03.2028\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 9, stk. 1\u0022,\u0022quote\u0022:\u00225,0 pct. | 6,0 pct. | 7,0 pct.\u0022},{\u0022clause_id\u0022:\u0022Protokollat 2, stk. 1\u0022,\u0022quote\u0022:\u0022Med virkning fra den 1. september 2027 forh\\u00F8jes arbejdsgiverens bidrag til fritvalgskontoen til 6,25 pct. af l\\u00F8nnen.\u0022}]}"
+    }
+  ]
+}

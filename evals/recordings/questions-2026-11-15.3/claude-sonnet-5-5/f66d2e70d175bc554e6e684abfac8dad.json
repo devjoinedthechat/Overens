@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_016VXKu4TPouA6K5vgthQaym",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Arbejdsgiveren indbetaler 6,0 pct. af l\\u00F8nnen til fritvalgskontoen den 15. april 2027. Satsen g\\u00E6lder fra 1. marts 2026 uden slutdato, og overenskomsten kan tidligst opsiges til 1. marts 2029.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 9, stk. 1\u0022,\u0022quote\u0022:\u0022Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 6,0 pct. af l\\u00F8nnen.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 14, stk. 1\u0022,\u0022quote\u0022:\u0022Overenskomsten tr\\u00E6der i kraft den 1. marts 2026 og kan opsiges med tre m\\u00E5neders varsel til en 1. marts, dog tidligst den 1. marts 2029.\u0022}]}"
+    }
+  ]
+}

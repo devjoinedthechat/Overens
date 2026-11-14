@@ -13,6 +13,9 @@ public interface IClauseIndex
 
     /// <summary>A clause's full text, or null when the agreement has no such clause.</summary>
     string? Read(string clauseId);
+
+    /// <summary>The agreement's sections, as a table of contents: each number with its heading.</summary>
+    IReadOnlyList<string> Outline { get; }
 }
 
 /// <summary>
@@ -23,6 +26,7 @@ public interface IClauseIndex
 public sealed partial class ClauseIndex : IClauseIndex
 {
     private readonly List<(ClauseHit Hit, string Text, List<string> Words)> clauses = [];
+    private readonly List<string> outline = [];
     private readonly double averageLength;
 
     public ClauseIndex(IEnumerable<Section> sections)
@@ -30,6 +34,7 @@ public sealed partial class ClauseIndex : IClauseIndex
         ArgumentNullException.ThrowIfNull(sections);
         foreach (var section in sections)
         {
+            outline.Add($"{section.Number}. {section.Heading}");
             foreach (var clause in section.Clauses)
             {
                 var text = ClauseText.Of(clause);
@@ -51,6 +56,8 @@ public sealed partial class ClauseIndex : IClauseIndex
             .Take(top)
             .Select(scored => scored.Hit)];
     }
+
+    public IReadOnlyList<string> Outline => outline;
 
     public string? Read(string clauseId) => clauses.FirstOrDefault(clause => clause.Hit.Id == clauseId).Text;
 

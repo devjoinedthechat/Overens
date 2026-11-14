@@ -1,0 +1,16 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_0137tBga61HFuFaVznjucopq",
+      "Name": "rules_in_force",
+      "Arguments": "{\u0022date\u0022:\u00222026-05-05\u0022}"
+    },
+    {
+      "Id": "toolu_01S4Zrk3mTQyDZSVh88n2iHi",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022till\\u00E6g for forskudt tid\u0022}"
+    }
+  ]
+}

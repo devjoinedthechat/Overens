@@ -1,0 +1,21 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Cq3obsYepatYhZ28dAc6vw",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 1\u0022}"
+    },
+    {
+      "Id": "toolu_01WR7Hy1z4dVY6zhR2skjQg8",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 2\u0022}"
+    },
+    {
+      "Id": "toolu_01HAFnRGWrDzzNYR2WJ1zrt7",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 3\u0022}"
+    }
+  ]
+}

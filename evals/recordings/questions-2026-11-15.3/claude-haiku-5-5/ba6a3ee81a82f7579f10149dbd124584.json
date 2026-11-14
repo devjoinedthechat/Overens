@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01VK1Qzr739iLGdswx2JK62D",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 15. april 2027 indbetaler arbejdsgiveren 5,5 pct. af l\\u00F8nnen til fritvalgskontoen, da satsen g\\u00E6lder fra 1. marts 2027 og frem til 1. marts 2028.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 9, stk. 1\u0022,\u0022quote\u0022:\u0022Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 5,0 pct. fra 1. marts 2026, 5,5 pct. fra 1. marts 2027 og 6,0 pct. fra 1. marts 2028.\u0022}]}"
+    }
+  ]
+}

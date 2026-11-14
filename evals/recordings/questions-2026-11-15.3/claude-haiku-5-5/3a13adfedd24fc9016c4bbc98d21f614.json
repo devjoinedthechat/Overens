@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_012SJHE9K2uULzu3JhZWypxc",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022fritvalgskonto arbejdsgiver indbetaler procent af l\\u00F8nnen\u0022}"
+    },
+    {
+      "Id": "toolu_01MsLw9r3q5V6WQBm1YdfYng",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022Fritvalgskonto\u0022}"
+    }
+  ]
+}

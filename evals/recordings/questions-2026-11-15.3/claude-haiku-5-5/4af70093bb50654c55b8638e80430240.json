@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Y8tyzEKRmPuxmk3WyyD6yE",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022opsigelsesvarsel fra virksomheden efter pr\\u00F8vetid\u0022}"
+    },
+    {
+      "Id": "toolu_01GVig1PXbg5nEcogaCM9fxj",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 11\u0022}"
+    }
+  ]
+}

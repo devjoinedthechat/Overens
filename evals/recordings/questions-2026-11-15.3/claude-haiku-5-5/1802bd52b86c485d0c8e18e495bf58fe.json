@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01V3yKwK6AhBULXLVqnnGUnp",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022fritvalgskonto arbejdsgiver indbetaler procent af l\\u00F8nnen\u0022}"
+    },
+    {
+      "Id": "toolu_0192tEk4LXYSxL3ZDho4Rg2A",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 9, stk. 1\u0022}"
+    }
+  ]
+}

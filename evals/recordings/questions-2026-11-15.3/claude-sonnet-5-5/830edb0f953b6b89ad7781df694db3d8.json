@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_016LkchQ3V6fP7pg9oCYhVuo",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 15. april 2027 betaler arbejdsgiveren 8,0 pct. af l\\u00F8nnen i pensionsbidrag. Medarbejderen betaler 4,5 pct., s\\u00E5 det samlede bidrag er 12,5 pct. Satsen g\\u00E6lder fra 1. marts 2026 uden slutdato. Medarbejderen er f\\u00F8rst omfattet af ordningen efter 3 m\\u00E5neders anciennitet.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 7, stk. 1\u0022,\u0022quote\u0022:\u0022Pensionsbidraget udg\\u00F8r 12,5 pct. af l\\u00F8nnen, hvoraf arbejdsgiveren betaler 8,0 pct. og medarbejderen 4,5 pct.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 7, stk. 2\u0022,\u0022quote\u0022:\u0022Medarbejdere er omfattet af pensionsordningen efter 3 m\\u00E5neders anciennitet.\u0022}]}"
+    }
+  ]
+}

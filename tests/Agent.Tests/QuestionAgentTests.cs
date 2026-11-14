@@ -43,7 +43,7 @@ public sealed class QuestionAgentTests
         // The model was given the search result and then the clause, as tool results.
         Assert.Contains(Holiday.Source.ClauseId, model.Results[0], StringComparison.Ordinal);
         Assert.Equal(Holiday.Source.Quote, model.Results[1]);
-        Assert.All(model.Options, options => Assert.Equal(ChatToolMode.RequireAny, options.ToolMode));
+        Assert.All(model.Options, options => Assert.Equal(5, options.Tools!.Count));
     }
 
     [Fact]
@@ -112,6 +112,14 @@ public sealed class QuestionAgentTests
 
         Assert.Equal((AnswerOutcome.NotInAgreement, QuestionAgent.NotInAgreement), (answer.Outcome, answer.Text));
         Assert.DoesNotContain("24", answer.Text, StringComparison.Ordinal);
+
+        // Said with nothing else in the call, it is taken the same way.
+        var (bare, _) = await Ask("Har en medarbejder ret til firmabil?", Call("give_answer", new { answered = false }));
+        Assert.Equal(AnswerOutcome.NotInAgreement, bare.Outcome);
+        // An answer with parts missing is not: it is sent back.
+        var (broken, _) = await Ask("Hvad er feriegodtgørelsen?", Call("give_answer", new { answered = true, text = "12,5 pct." }), Call("give_answer", new { text = "12,5 pct." }));
+        Assert.Equal(AnswerOutcome.Withheld, broken.Outcome);
+        Assert.All(broken.Trace, step => Assert.Equal("refused: The answer was not in the asked shape.", step));
     }
 
     [Fact]
@@ -124,7 +132,9 @@ public sealed class QuestionAgentTests
 
         Assert.Equal(AnswerOutcome.Withheld, endless.Outcome);
         Assert.Equal(QuestionAgent.MaxTurns, model.Options.Count);
-        Assert.Equal((AnswerOutcome.Withheld, "no tool call"), (silent.Outcome, silent.Trace[0]));
+        // Text outside a tool call is never shown. The model is reminded once, then stopped.
+        Assert.Equal((AnswerOutcome.Withheld, QuestionAgent.Withheld), (silent.Outcome, silent.Text));
+        Assert.Equal(["no tool call", "no tool call", "gave no answer within the allowed turns"], silent.Trace);
     }
 
     [Fact]

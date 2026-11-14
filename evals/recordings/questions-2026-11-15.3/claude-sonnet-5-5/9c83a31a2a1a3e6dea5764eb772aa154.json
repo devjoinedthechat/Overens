@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01E4EK5iPbs67B1kRSD9zQv5",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 5. maj 2026 g\\u00E6lder satserne pr. 1. marts 2026. En medarbejder med 14 m\\u00E5neders anciennitet er i gruppen \\u0022fra 12 m\\u00E5neders anciennitet\\u0022, s\\u00E5 mindstebetalingen er 140,75 kr. pr. time.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 4, stk. 1\u0022,\u0022quote\u0022:\u0022Der betales mindst f\\u00F8lgende timel\\u00F8n:\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 4, stk. 1\u0022,\u0022quote\u0022:\u0022Fra 12 m\\u00E5neders anciennitet | 140,75 kr. | 145,00 kr. | 149,00 kr.\u0022}]}"
+    }
+  ]
+}

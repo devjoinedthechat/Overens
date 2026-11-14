@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_013XdAJq7CqFM3sUdvZbxSG4",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:false,\u0022text\u0022:\u0022Overenskomsten indeholder ingen bestemmelse om barselsorlov med fuld l\\u00F8n, s\\u00E5 jeg kan ikke angive et antal uger. Den regulerer kun l\\u00F8n under sygdom i \\u00A7 10.\u0022,\u0022citations\u0022:\u0022\u0022}"
+    }
+  ]
+}

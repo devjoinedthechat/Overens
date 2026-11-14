@@ -1,0 +1,16 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01NDHMSt7Us2SUWSbHFkmfoU",
+      "Name": "rules_in_force",
+      "Arguments": "{\u0022date\u0022:\u00222027-04-15\u0022}"
+    },
+    {
+      "Id": "toolu_01HEH8j56KyjMK7Ubd5oVpFZ",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022pensionsbidrag procent af l\\u00F8nnen\u0022}"
+    }
+  ]
+}

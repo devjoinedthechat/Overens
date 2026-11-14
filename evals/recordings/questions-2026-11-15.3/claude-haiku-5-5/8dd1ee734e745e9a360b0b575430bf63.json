@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01CbnwfkeiXQUypuK16c6P4e",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:false,\u0022text\u0022:\u0022Overenskomsten fasts\\u00E6tter ikke et till\\u00E6g pr. time for arbejde p\\u00E5 helligdage som 1. juledag. Der findes kun et till\\u00E6g for arbejde p\\u00E5 s\\u00F8ndage (100 pct. af timel\\u00F8nnen), og till\\u00E6g for forskudt tid i \\u00A7 6. Sp\\u00F8rgsm\\u00E5let kan derfor ikke besvares ud fra overenskomsten.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 3\u0022,\u0022quote\u0022:\u0022For arbejde p\\u00E5 s\\u00F8ndage betales et till\\u00E6g p\\u00E5 100,0 pct. af timel\\u00F8nnen for alle timer.\u0022}]}"
+    }
+  ]
+}

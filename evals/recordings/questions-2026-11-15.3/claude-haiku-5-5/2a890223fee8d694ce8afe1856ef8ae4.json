@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_0153qRkiDCvfGK8rxwtwQSL9",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:false,\u0022text\u0022:\u0022Overenskomsten indeholder ingen bestemmelser om firmabil, og den kan ikke besvare sp\\u00F8rgsm\\u00E5let om ret til firmabil.\u0022,\u0022citations\u0022:[]}"
+    }
+  ]
+}

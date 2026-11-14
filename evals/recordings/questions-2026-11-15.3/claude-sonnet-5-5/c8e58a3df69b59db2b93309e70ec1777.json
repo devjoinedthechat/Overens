@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_011PFTR6NSaGiBMTJeKumWrL",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Feriegodtg\\u00F8relsen udg\\u00F8r 12,5 pct. af l\\u00F8nnen. Satsen g\\u00E6lder pr. 2026-11-15 og er ikke tidsbegr\\u00E6nset i de g\\u00E6ldende regler.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 8, stk. 2\u0022,\u0022quote\u0022:\u0022Feriegodtg\\u00F8relsen udg\\u00F8r 12,5 pct. af l\\u00F8nnen.\u0022}]}"
+    }
+  ]
+}

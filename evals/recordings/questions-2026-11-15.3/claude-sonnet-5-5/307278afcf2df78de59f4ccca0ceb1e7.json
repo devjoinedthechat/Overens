@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01YbFhKwcjKNQ4aHmBzoyrJW",
+      "Name": "calculate_pay",
+      "Arguments": "{\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002214:00\u0022,\u0022end\u0022:\u002223:30\u0022}]}"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Vy6QfeBTrC6V4w35eSC6Ct",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Overarbejdstill\\u00E6gget for vagten den 5. maj 2026 er 320,0 kr. Den f\\u00F8rste overarbejdstime udl\\u00F8ser 50 % till\\u00E6g (100,0 kr.), og de efterf\\u00F8lgende 1,1 time udl\\u00F8ser 100 % till\\u00E6g (220,0 kr.). Overarbejde er arbejde ud over 7 timer og 24 minutter om dagen. Satserne er dem, der g\\u00E6lder pr. 2026-05-05.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 2\u0022,\u0022quote\u0022:\u0022For den f\\u00F8rste times overarbejde pr. dag betales et till\\u00E6g p\\u00E5 50,0 pct. af timel\\u00F8nnen. For overarbejde herudover betales et till\\u00E6g p\\u00E5 100,0 pct. af timel\\u00F8nnen.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 1\u0022,\u0022quote\u0022:\u0022Overarbejde er arbejde ud over den daglige normale arbejdstid p\\u00E5 7 timer og 24 minutter.\u0022}]}"
+    }
+  ]
+}

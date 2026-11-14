@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "Medarbejdere er omfattet af pensionsordningen efter to måneders anciennitet. Det fremgår af § 7, stk. 2 i overenskomsten.",
+  "Calls": [
+    {
+      "Id": "toolu_01NiqfzGwBUiNjk711wXRhoX",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022En medarbejder skal have to m\\u00E5neders anciennitet for at v\\u00E6re omfattet af pensionsordningen. Det fremg\\u00E5r af \\u00A7 7, stk. 2.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 7, stk. 2\u0022,\u0022quote\u0022:\u0022Medarbejdere er omfattet af pensionsordningen efter to m\\u00E5neders anciennitet.\u0022}]}"
+    }
+  ]
+}

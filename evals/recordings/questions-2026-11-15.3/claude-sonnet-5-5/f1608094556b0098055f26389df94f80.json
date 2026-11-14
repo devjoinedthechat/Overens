@@ -1,0 +1,16 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01NpBuMNvi5QgtKyVKR2xsyS",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022firmabil\u0022}"
+    },
+    {
+      "Id": "toolu_0145Rm6bz8KyhmK3DvUxywaD",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022bil stillet til r\\u00E5dighed af arbejdsgiver\u0022}"
+    }
+  ]
+}

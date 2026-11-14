@@ -1,0 +1,16 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Ph5SY7ESG6DP2fUrUfDuA9",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022barselsorlov med l\\u00F8n\u0022}"
+    },
+    {
+      "Id": "toolu_018gTb6CgNGTgvRj4MeTm9tf",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022barsel frav\\u00E6r fuld l\\u00F8n uger\u0022}"
+    }
+  ]
+}

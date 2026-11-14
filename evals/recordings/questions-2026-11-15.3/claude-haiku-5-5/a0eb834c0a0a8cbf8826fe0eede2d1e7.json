@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01KnVokYRqb7vgooEFT6cfYF",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022pensionsordning anciennitet medarbejder omfattet m\\u00E5neder\u0022}"
+    },
+    {
+      "Id": "toolu_01Xxn4dVQfqz7Y1xmnLUwktJ",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 7\u0022}"
+    }
+  ]
+}

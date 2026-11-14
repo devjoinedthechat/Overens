@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01MMSKnFXLumULAzJZ8HWM9V",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022till\\u00E6g for arbejde p\\u00E5 helligdage\u0022}"
+    },
+    {
+      "Id": "toolu_01CRDfk4R6jz21rVjjYfhSWx",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u00221. juledag till\\u00E6g pr. time\u0022}"
+    }
+  ]
+}

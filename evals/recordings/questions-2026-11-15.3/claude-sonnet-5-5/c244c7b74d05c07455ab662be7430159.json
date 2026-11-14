@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01SpW7ZBDchPcVAmvhfDimsn",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 5. maj 2026 er mindstebetalingen 151,70 kr. pr. time for en medarbejder med 14 m\\u00E5neders anciennitet. Medarbejderen har over 1 \\u00E5rs anciennitet, men under 3 \\u00E5r, og satserne pr. 1. marts 2026 g\\u00E6lder.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 4, stk. 1\u0022,\u0022quote\u0022:\u0022Efter 1 \\u00E5rs anciennitet | 151,70 kr. | 155,20 kr. | 158,95 kr.\u0022}]}"
+    }
+  ]
+}

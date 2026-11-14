@@ -1,0 +1,21 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01ELTiGt7kajocpepPWRo4Tk",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 2\u0022}"
+    },
+    {
+      "Id": "toolu_01JD9YberpUG3SyN5p3CbFAJ",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 1\u0022}"
+    },
+    {
+      "Id": "toolu_011QcoivmpH81eLf9G995HnH",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022overarbejde daglig normal arbejdstid\u0022}"
+    }
+  ]
+}

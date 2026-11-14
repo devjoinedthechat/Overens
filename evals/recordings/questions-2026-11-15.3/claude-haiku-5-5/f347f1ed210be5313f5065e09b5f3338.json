@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01GPjpbbtKKP9VTMmbS5tFyV",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022barselsorlov med fuld l\\u00F8n uger\u0022}"
+    },
+    {
+      "Id": "toolu_013kuUhyXnqv8gsvvVRtbxc4",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022barsel\u0022}"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Wnk5gLUssRfiSXsAViy8Xv",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022pensionsordning anciennitet m\\u00E5neder\u0022}"
+    },
+    {
+      "Id": "toolu_01R6zePVuMuvcnWPdTVetrUf",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 7\u0022}"
+    }
+  ]
+}

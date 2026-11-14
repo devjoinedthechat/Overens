@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01DR5iyp67EZ22NFBUA1JyXt",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Till\\u00E6gget for forskudt tid er 130,00 kr. Vagten er en tirsdag (5. maj 2026), og till\\u00E6gget for mandag til fredag kl. 17.00-22.00 er 26,00 kr. pr. time (g\\u00E6ldende fra 01.03.2026); de 5 timer fra kl. 17.00 til 22.00 giver 130,00 kr., mens timen fra kl. 16.00 til 17.00 ikke udl\\u00F8ser till\\u00E6g. Till\\u00E6gget betales ud over eventuelt overarbejdstill\\u00E6g.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 1\u0022,\u0022quote\u0022:\u0022Mandag til fredag kl. 17.00-22.00 | 26,00 kr. | 27,00 kr. | 28,50 kr.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 3\u0022,\u0022quote\u0022:\u0022Till\\u00E6g for forskudt tid betales ud over eventuelt overarbejdstill\\u00E6g.\u0022}]}"
+    }
+  ]
+}

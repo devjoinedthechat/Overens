@@ -1,0 +1,16 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01WR3ZwT81WB3fYirqKjeSVr",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022barsel fuld l\\u00F8n\u0022}"
+    },
+    {
+      "Id": "toolu_015SqZzrY7AJXvn9vwzrqa77",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022barselsorlov graviditet f\\u00F8dsel for\\u00E6ldreorlov\u0022}"
+    }
+  ]
+}

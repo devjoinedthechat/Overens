@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01LuZnQRM2pMoXybBAvE95WF",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Till\\u00E6gget for vagten er 145,50 kr. Dato 5. maj 2026 er en tirsdag, s\\u00E5 satsen er 29,10 kr. pr. time for tidsrummet mandag til fredag kl. 17.00-22.00 (g\\u00E6ldende fra 1. marts 2026). Kun de 5 timer mellem kl. 17.00 og 22.00 giver till\\u00E6g, mens 16.00-17.00 ikke g\\u00F8r.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 1\u0022,\u0022quote\u0022:\u0022Mandag til fredag kl. 17.00-22.00 | 29,10 kr. | 29,85 kr. | 31,35 kr.\u0022}]}"
+    }
+  ]
+}

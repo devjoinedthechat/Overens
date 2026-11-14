@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "Overarbejdstillægget for vagten er 320,00 kr. Vagten på 9 timer og 30 minutter overstiger den daglige normale arbejdstid på 7 timer og 24 minutter med 2 timer og 6 minutter. Den første times overarbejde giver 50 % tillæg (100 kr.), og de resterende 66 minutter giver 100 % tillæg (220 kr.). Beregningen bygger på overenskomstens satser pr. 5. maj 2026 og forudsætter, at der ikke er holdt pause.",
+  "Calls": [
+    {
+      "Id": "toolu_01Cnwd6aGD7ynUxpZVJB2ZuH",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Overarbejdstill\\u00E6gget for vagten er 320,00 kr. Vagten p\\u00E5 9 timer og 30 minutter overstiger den daglige normale arbejdstid p\\u00E5 7 timer og 24 minutter med 2 timer og 6 minutter. Den f\\u00F8rste times overarbejde giver 50 % till\\u00E6g (100 kr.), og de resterende 66 minutter giver 100 % till\\u00E6g (220 kr.). Beregningen bruger satserne pr. 5. maj 2026 og foruds\\u00E6tter, at der ikke er holdt pause.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 1\u0022,\u0022quote\u0022:\u0022Overarbejde er arbejde ud over den daglige normale arbejdstid p\\u00E5 7 timer og 24 minutter.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 2\u0022,\u0022quote\u0022:\u0022For den f\\u00F8rste times overarbejde pr. dag betales et till\\u00E6g p\\u00E5 50,0 pct. af timel\\u00F8nnen. For overarbejde herudover betales et till\\u00E6g p\\u00E5 100,0 pct. af timel\\u00F8nnen.\u0022}]}"
+    }
+  ]
+}

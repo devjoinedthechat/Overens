@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Q89C2QPV7Qa5TW8cZBvEze",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022bil\u0022}"
+    },
+    {
+      "Id": "toolu_01XxYL3F23wTtN8ckL8r7X8r",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022transport og k\\u00F8rselsgodtg\\u00F8relse\u0022}"
+    }
+  ]
+}

@@ -42,6 +42,22 @@ public sealed class GateTests
         Assert.Equal(published, replayed);
     }
 
+    [Theory]
+    [MemberData(nameof(Models))]
+    public async Task No_answer_that_is_shown_is_wrong_and_nothing_unanswerable_is_answered(string model)
+    {
+        using var recorded = new ReplayChatClient(null, Path.Combine(Root(), "evals", "recordings", $"questions-{Agent.Questions.QuestionAgent.Version}", model));
+
+        var answers = await Questions.RunAsync(recorded, model);
+
+        Assert.Equal(48, answers.Count);
+        // What must never happen: a wrong answer shown, or an answer to what the agreement does not say.
+        Assert.DoesNotContain(answers, answer => answer.Verdict is "wrong" or "answered_unanswerable");
+        Assert.Equal(48, answers.Count(answer => answer.Verdict == "correct"));
+        var published = await File.ReadAllTextAsync(Path.Combine(Root(), "docs", "eval-report", "results", $"questions-{Agent.Questions.QuestionAgent.Version}", $"{model}.json"));
+        Assert.Equal(published, JsonSerializer.Serialize(answers, EvalResults.Json) + "\n");
+    }
+
     [Fact]
     public async Task The_default_models_wording_of_findings_is_nearly_always_fit_to_show()
     {

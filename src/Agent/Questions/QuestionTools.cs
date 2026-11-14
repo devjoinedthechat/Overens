@@ -47,7 +47,10 @@ public sealed class QuestionTools(RuleSet rules, IClauseIndex index)
             """),
     ];
 
-    /// <summary>The results of the tools that give numbers: the only numbers an answer may use beyond the agreement's own.</summary>
+    /// <summary>
+    /// What the two tools that give numbers were asked and what they answered: the only
+    /// numbers an answer may use beyond the agreement's own and the question's.
+    /// </summary>
     public List<string> Computed { get; } = [];
 
     /// <summary>Runs one tool call and gives its result as text. A call that cannot be carried out says why; it never throws.</summary>
@@ -66,9 +69,13 @@ public sealed class QuestionTools(RuleSet rules, IClauseIndex index)
                     return index.Read(id) ?? $"The agreement has no clause \"{id}\".";
                 case "rules_in_force":
                     var day = Day(input.GetProperty("date").GetString());
+                    // What was asked for is kept with what came back: an answer may name the date it looked up.
+                    Computed.Add(input.GetRawText());
                     return Keep(JsonSerializer.Serialize(Listed(rules.InForce(day)), Json));
                 case "calculate_pay":
-                    return Keep(Calculate(input));
+                    var pay = Calculate(input);
+                    Computed.Add(input.GetRawText());
+                    return Keep(pay);
                 default:
                     return $"There is no tool \"{name}\".";
             }

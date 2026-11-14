@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_016zy4x4Poek6HGnVHKw9KZr",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Efter pr\\u00F8vetiden er opsigelsesvarslet fra virksomhedens side 21 dage. Overenskomsten angiver ikke et andet varsel for medarbejdere med under et \\u00E5rs anciennitet.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 11, stk. 1\u0022,\u0022quote\u0022:\u0022Efter pr\\u00F8vetiden er opsigelsesvarslet fra virksomhedens side 21 dage og fra medarbejderens side 7 dage.\u0022}]}"
+    }
+  ]
+}

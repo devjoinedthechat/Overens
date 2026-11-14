@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_017cXZp35HLMHsbAntnH2r5n",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:false,\u0022text\u0022:\u0022Overenskomsten indeholder ikke et s\\u00E6rligt till\\u00E6g pr. time for arbejde p\\u00E5 helligdage som 1. juledag. S\\u00F8gninger p\\u00E5 \\u0022helligdag\\u0022 og p\\u00E5 juledag/helligdage gav intet svar. Den eneste till\\u00E6gsregel for hviledage er 100 pct. for s\\u00F8ndagsarbejde i \\u00A7 5, stk. 3, som ikke omfatter helligdage.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 3\u0022,\u0022quote\u0022:\u0022For arbejde p\\u00E5 s\\u00F8ndage betales et till\\u00E6g p\\u00E5 100,0 pct. af timel\\u00F8nnen for alle timer.\u0022}]}"
+    }
+  ]
+}

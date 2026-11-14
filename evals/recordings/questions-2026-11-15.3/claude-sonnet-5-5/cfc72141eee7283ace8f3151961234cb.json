@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "14 måneder = efter 1 års anciennitet: 141,15 kr.",
+  "Calls": [
+    {
+      "Id": "toolu_01RRqL3XxrCWwiWB1mHimtWs",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 5. maj 2026 g\\u00E6lder satserne pr. 1. marts 2026. En medarbejder med 14 m\\u00E5neders anciennitet har haft over 1 \\u00E5rs anciennitet, s\\u00E5 mindstebetalingen er 141,15 kr. pr. time.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 4, stk. 1\u0022,\u0022quote\u0022:\u0022Mindstebetalingen pr. time udg\\u00F8r f\\u00F8lgende satser:\u0022}]}"
+    }
+  ]
+}

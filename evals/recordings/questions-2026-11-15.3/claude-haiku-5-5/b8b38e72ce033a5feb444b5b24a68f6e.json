@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "Mindstebetalingen pr. time den 5. maj 2026 for en medarbejder med 14 måneders anciennitet er 141,15 kr. Satsen gælder fra 1. marts 2026, og 14 måneder er over 1 års anciennitet men under 2 år. Beregningen bygger på datoen 5. maj 2026.",
+  "Calls": [
+    {
+      "Id": "toolu_01KJv3tiChEb5S5KT6aUHBsy",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Mindstebetalingen pr. time den 5. maj 2026 for en medarbejder med 14 m\\u00E5neders anciennitet er 141,15 kr. (Satsen g\\u00E6lder fra 1. marts 2026, og 14 m\\u00E5neder er efter 1 \\u00E5rs anciennitet men f\\u00F8r 2 \\u00E5rs anciennitet.)\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 4, stk. 1\u0022,\u0022quote\u0022:\u0022Efter 1 \\u00E5rs anciennitet | 141,15 kr.\u0022}]}"
+    }
+  ]
+}

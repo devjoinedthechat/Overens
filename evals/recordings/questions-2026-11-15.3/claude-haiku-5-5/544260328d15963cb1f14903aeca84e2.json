@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Ka5dt2QSsJQzzvKHrBTDZ3",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:false,\u0022text\u0022:\u0022Overenskomsten indeholder ingen bestemmelse om firmabil, og den besvarer derfor ikke sp\\u00F8rgsm\\u00E5let om ret til firmabil. S\\u00F8gninger p\\u00E5 \\u0022firmabil\\u0022, \\u0022bil\\u0022 og \\u0022transport- og k\\u00F8rselsgodtg\\u00F8relse\\u0022 gav intet relevant resultat.\u0022,\u0022citations\u0022:[]}"
+    }
+  ]
+}

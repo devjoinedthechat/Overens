@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_018uUBiGojdpjk5xq9AbizrL",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022Protokollat 1, stk. 1\u0022}"
+    }
+  ]
+}

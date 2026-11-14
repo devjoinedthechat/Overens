@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01SKRupnM9HgXB4LUv8PibuS",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Till\\u00E6gget for forskudt tid er 130,00 kr. for vagten den 5. maj 2026 (tirsdag). Till\\u00E6gget er 26,00 kr. pr. time for de 5 timer mellem kl. 17.00 og 22.00. Timen fra kl. 16.00 til 17.00 giver intet till\\u00E6g.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 1\u0022,\u0022quote\u0022:\u0022For arbejde p\\u00E5 forskudt tid betales f\\u00F8lgende till\\u00E6g pr. time:\u0022}]}"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01FF42yuJmexxosT33kojBoP",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Efter pr\\u00F8vetiden er varslet fra virksomhedens side 21 dage for en medarbejder med under 1 \\u00E5rs anciennitet. Pr\\u00F8vetiden er de f\\u00F8rste tre m\\u00E5neder, hvor varslet er 14 dage fra begge sider.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 11, stk. 1\u0022,\u0022quote\u0022:\u0022Under 1 \\u00E5r | 21 dage | 7 dage\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 2, stk. 2\u0022,\u0022quote\u0022:\u0022De f\\u00F8rste tre m\\u00E5neder af ans\\u00E6ttelsen er pr\\u00F8vetid, hvor opsigelse kan ske med 14 dages varsel fra begge sider.\u0022}]}"
+    }
+  ]
+}

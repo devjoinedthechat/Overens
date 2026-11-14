@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "Ingen helligdagstillæg. Én søgning mere.",
+  "Calls": [
+    {
+      "Id": "toolu_01WHqJ89fiyb189Ayz3Jd5Vp",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022helligdag\u0022}"
+    }
+  ]
+}

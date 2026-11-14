@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Vu8kGgNumJKAVttXHHvhCU",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Arbejdsgiveren betaler 8,0 pct. af l\\u00F8nnen i pensionsbidrag den 15. april 2027, jf. reglerne der g\\u00E6lder fra 1. marts 2026 og fortsat er g\\u00E6ldende (ingen slutdato). Medarbejderen betaler 4,5 pct., s\\u00E5 det samlede bidrag er 12,5 pct.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 7, stk. 1\u0022,\u0022quote\u0022:\u0022Pensionsbidraget udg\\u00F8r 12,5 pct. af l\\u00F8nnen, hvoraf arbejdsgiveren betaler 8,0 pct. og medarbejderen 4,5 pct.\u0022}]}"
+    }
+  ]
+}

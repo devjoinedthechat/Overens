@@ -11,8 +11,8 @@ public sealed record Citation(string ClauseId, string Quote);
 ///
 /// - it cites at least one clause;
 /// - every cited clause exists and every quote stands in its clause word for word;
-/// - every number in the answer is printed in a cited clause, came from the rule lookup or
-///   the calculator in this conversation, or was in the question.
+/// - every number in the answer is printed in a cited clause, was in the question, or was
+///   put into or came out of the rule lookup or the calculator in this conversation.
 ///
 /// It cannot tell whether the answer is right. It can tell that the answer rests on the
 /// agreement's own words and on numbers the model did not make up.

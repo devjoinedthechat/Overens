@@ -1,0 +1,650 @@
+[
+  {
+    "agreement": "easy-2026",
+    "id": "holiday",
+    "kind": "lookup",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Feriegodtgørelsen udgør 12,5 pct. af lønnen. Satsen er den, der gælder pr. 2026-11-15 (i kraft siden 2026-03-01).",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022feriegodtgørelse procent af lønnen\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-11-15\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "pension-employer",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 betaler arbejdsgiveren 8,0 pct. af lønnen i pensionsbidrag. Medarbejderen betaler 4,5 pct., så det samlede bidrag er 12,5 pct. Satsen gælder fra 1. marts 2026 uden slutdato. Medarbejderen er først omfattet af ordningen efter 3 måneders anciennitet.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022pensionsbidrag procent af lønnen\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "pension-wait",
+    "kind": "lookup",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "En medarbejder er omfattet af pensionsordningen efter 3 måneders anciennitet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022pension anciennitet måneder omfattet af pensionsordningen\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 7\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "wage-new",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 er mindstebetalingen for en nyansat 139,05 kr. pr. time. Satsen gælder de første 12 måneder. Først efter 12 måneders anciennitet stiger den til 145,55 kr. pr. time. Jeg har brugt satserne i kraft fra 1. marts 2026, som stadig gælder på datoen.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022mindsteløn timeløn nyansat\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 4, stk. 1\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 4, stk. 2\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "wage-senior",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 5. maj 2026 er mindstebetalingen 145,55 kr. pr. time for en medarbejder med 14 måneders anciennitet, fordi satsen gælder efter 12 måneders anciennitet. Satsen på 139,05 kr. gælder kun under 12 måneder.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022mindsteløn pr. time anciennitet\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "savings",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Arbejdsgiveren indbetaler 6,0 pct. af lønnen til fritvalgskontoen den 15. april 2027. Satsen gælder fra 1. marts 2026 uden slutdato, og overenskomsten kan tidligst opsiges til 1. marts 2029.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022fritvalgskonto procent af lønnen\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 14, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "overtime-shift",
+    "kind": "calculation",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Overarbejdstillægget for vagten den 5. maj 2026 er 320,0 kr. Den første overarbejdstime udløser 50 % tillæg (100,0 kr.), og de efterfølgende 1,1 time udløser 100 % tillæg (220,0 kr.). Overarbejde er arbejde ud over 7 timer og 24 minutter om dagen. Satserne er dem, der gælder pr. 2026-05-05.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022overarbejde tillæg\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "calculate_pay {\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002214:00\u0022,\u0022end\u0022:\u002223:30\u0022}]}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "evening-shift",
+    "kind": "calculation",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Tillægget for forskudt tid er 132,80 kr. for vagten tirsdag den 5. maj 2026. Det gælder de fire timer mellem kl. 18.00 og kl. 22.00 med 33,20 kr. pr. time. Timerne fra kl. 16.00 til 18.00 giver intet tillæg.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022tillæg for forskudt arbejdstid\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "calculate_pay {\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002216:00\u0022,\u0022end\u0022:\u002222:00\u0022}]}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "notice",
+    "kind": "text",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Efter prøvetiden er opsigelsesvarslet fra virksomhedens side 21 dage. Overenskomsten angiver ikke et andet varsel for medarbejdere med under et års anciennitet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022opsigelsesvarsel fra virksomhedens side efter prøvetiden\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 11\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 11, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "parental-leave",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022barsel fuld løn\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022barselsorlov graviditet fødsel forældreorlov\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "public-holidays",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022tillæg helligdage juledag\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-11-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022arbejde på søn- og helligdage tillæg\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "easy-2026",
+    "id": "company-car",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022firmabil\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022bil stillet til rådighed af arbejdsgiver\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "holiday",
+    "kind": "lookup",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Feriegodtgørelsen udgør 12,5 pct. af lønnen. Satsen gælder pr. 2026-11-15 og har været gældende siden 1. marts 2026.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022feriegodtgørelse procent af lønnen\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-11-15\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "pension-employer",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 indbetaler arbejdsgiveren 10,0 pct. af lønnen til pensionsordningen (medarbejderen indbetaler 4,0 pct.). Medarbejderen er omfattet af ordningen efter to måneders anciennitet.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022pensionsbidrag procent af lønnen\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "pension-wait",
+    "kind": "lookup",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "En medarbejder er omfattet af pensionsordningen efter to måneders anciennitet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022pension anciennitet måneder omfattet af pensionsordningen\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "wage-new",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 gælder satserne pr. 1. marts 2027. For en nyansat (0-11 måneders anciennitet) er mindstebetalingen 136,00 kr. pr. time.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022mindsteløn timeløn nyansat\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 4, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "wage-senior",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 5. maj 2026 gælder satserne pr. 1. marts 2026. En medarbejder med 14 måneders anciennitet er i gruppen \u0022fra 12 måneders anciennitet\u0022, så mindstebetalingen er 140,75 kr. pr. time.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022mindsteløn pr. time anciennitet\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 4, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "savings",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 indbetaler arbejdsgiveren 5,5 pct. af lønnen til fritvalgskontoen. Satsen gælder fra 1. marts 2027 og stiger til 6,0 pct. fra 1. marts 2028.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022fritvalgskonto procent af lønnen\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "overtime-shift",
+    "kind": "calculation",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Overarbejdstillægget for vagten er 220,0 kr. Vagten er 9,5 timer, og den daglige norm er 7,4 timer. De første to overarbejdstimer giver 50 % tillæg (200,0 kr.), og de resterende 0,1 time giver 100 % tillæg (20,0 kr.). Jeg har brugt satserne, der gælder 5. maj 2026.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022overarbejde tillæg\u0022}",
+      "calculate_pay {\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002214:00\u0022,\u0022end\u0022:\u002223:30\u0022}]}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 5, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "evening-shift",
+    "kind": "calculation",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Tillægget for forskudt tid er 145,50 kr. for vagten den 5. maj 2026 (en tirsdag). Tillægget er 29,10 kr. pr. time for de 5 timer mellem kl. 17.00 og 22.00. Timen fra kl. 16.00 til 17.00 giver intet tillæg. Satsen er den, der gælder pr. 1. marts 2026.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022tillæg for forskudt tid\u0022}",
+      "calculate_pay {\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002216:00\u0022,\u0022end\u0022:\u002222:00\u0022}]}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "notice",
+    "kind": "text",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Efter prøvetiden er varslet fra virksomhedens side 21 dage for en medarbejder med under 1 års anciennitet. Medarbejderen selv skal give 7 dages varsel. Opsigelsen skal ske skriftligt.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022opsigelsesvarsel fra virksomhedens side efter prøvetid\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 11, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "parental-leave",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022barselsorlov fuld løn\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022barsel fravær fødsel\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "public-holidays",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022tillæg helligdage juledag\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-11-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022helligdag\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "medium-2026",
+    "id": "company-car",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022firmabil\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022bil stillet til rådighed af arbejdsgiver\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "holiday",
+    "kind": "lookup",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Feriegodtgørelsen udgør 12,5 pct. af lønnen. Satsen gælder pr. 2026-11-15 og er ikke tidsbegrænset i de gældende regler.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022feriegodtgørelse procent af lønnen\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-11-15\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "pension-employer",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 betaler arbejdsgiveren 9,5 pct. af lønnen i pensionsbidrag. Satsen er forhøjet fra 9,0 pct. med virkning fra 1. marts 2027. Medarbejderens bidrag er uændret 4,0 pct.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022pensionsbidrag procent\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "pension-wait",
+    "kind": "lookup",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "En medarbejder skal have seks måneders anciennitet for at være omfattet af pensionsordningen. Protokollat 1 om forhøjelse af pensionsbidraget ændrer ikke anciennitetskravet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022pension anciennitet måneder omfattet af pensionsordning\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 7\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "wage-new",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 er mindstebetalingen for en nyansat med under 1 års anciennitet 147,95 kr. pr. time. Satsen gælder fra 1. marts 2027.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022mindsteløn timeløn nyansat\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 4, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "wage-senior",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 5. maj 2026 er mindstebetalingen 151,70 kr. pr. time for en medarbejder med 14 måneders anciennitet. Medarbejderen har over 1 års anciennitet, men under 3 år, og satserne pr. 1. marts 2026 gælder.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022mindsteløn pr. time anciennitet\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 4, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "savings",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 indbetaler arbejdsgiveren 5,0 pct. af lønnen til fritvalgskontoen. Satsen gælder fra 1. marts 2027 til 1. marts 2028.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022fritvalgskonto procent af lønnen\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "overtime-shift",
+    "kind": "calculation",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Overarbejdstillægget for vagten den 5. maj 2026 er 220,0 kr. Det er 200,0 kr. for de første to timers overarbejde og 20,0 kr. for de resterende 6 minutter. Beregningen bruger de satser, der gælder pr. 5. maj 2026.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022overarbejde tillæg\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "calculate_pay {\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002214:00\u0022,\u0022end\u0022:\u002223:30\u0022}]}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "evening-shift",
+    "kind": "calculation",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Tillægget for forskudt tid er 118,00 kr. for vagten tirsdag den 5. maj 2026. Kun tiden kl. 18.00-22.00 (4 timer) udløser tillæg, med 29,50 kr. pr. time efter satsen pr. 1. marts 2026. Timerne kl. 16.00-18.00 giver intet tillæg.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022tillæg for forskudt tid\u0022}",
+      "calculate_pay {\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002216:00\u0022,\u0022end\u0022:\u002222:00\u0022}]}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 6, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "notice",
+    "kind": "text",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Efter prøvetiden er opsigelsesvarslet fra virksomhedens side 21 dage for en medarbejder med under 1 års anciennitet. Medarbejderen selv skal give 7 dages varsel. Opsigelsen skal ske skriftligt.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022opsigelsesvarsel fra virksomhedens side anciennitet\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 11\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 11, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "parental-leave",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022barselsorlov med løn\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022barsel fravær fuld løn uger\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "public-holidays",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022tillæg helligdage juledag\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-11-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022arbejde på helligdage\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "hard-2026",
+    "id": "company-car",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022firmabil\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022bil til rådighed for medarbejderen\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "holiday",
+    "kind": "lookup",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Feriegodtgørelsen udgør 12,5 pct. af lønnen. Satsen gælder pr. 2026-11-15 (i kraft fra 2026-03-01, uden slutdato).",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022feriegodtgørelse procent af lønnen\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-11-15\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "pension-employer",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 betaler arbejdsgiveren 9,5 pct. af lønnen i pensionsbidrag. Satsen gælder fra 1. marts 2027 efter Protokollat 1; før da var den 9,0 pct. Medarbejderens bidrag er uændret på 4,5 pct.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022pensionsbidrag procent\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "pension-wait",
+    "kind": "lookup",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Medarbejdere er omfattet af pensionsordningen efter to måneders anciennitet. Protokollat 1 om forhøjelse af pensionsbidraget ændrer ikke anciennitetskravet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022pension anciennitet måneder omfattet af pensionsordning\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 7\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "wage-new",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 er mindstebetalingen for en nyansat med under 1 års anciennitet 139,40 kr. pr. time. Satsen gælder fra 1. marts 2027, hvor satserne fra 2026 er forhøjet med 5,00 kr.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022mindsteløn timeløn nyansat\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 4, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "wage-senior",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 5. maj 2026 gælder satserne pr. 1. marts 2026. En medarbejder med 14 måneders anciennitet har haft over 1 års anciennitet, så mindstebetalingen er 141,15 kr. pr. time.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022mindsteløn pr. time anciennitet\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "savings",
+    "kind": "dated",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Den 15. april 2027 indbetaler arbejdsgiveren 6,0 pct. af lønnen til fritvalgskontoen. Satsen gælder fra 1. marts 2027. Protokollat 2 forhøjer den først med virkning fra 1. september 2027.",
+    "trace": [
+      "rules_in_force {\u0022date\u0022:\u00222027-04-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022fritvalgskonto bidrag procent af lønnen\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 9, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "overtime-shift",
+    "kind": "calculation",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Overarbejdstillægget for vagten den 5. maj 2026 er 320,0 kr. Det er 100,0 kr. for den første overarbejdstime (50,0 pct. tillæg) og 220,0 kr. for de 1,1 time herudover (100,0 pct. tillæg). Den daglige normaltid er 7,4 timer, og satserne er dem, der gælder fra 1. marts 2026.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022overarbejde tillæg\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "calculate_pay {\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002214:00\u0022,\u0022end\u0022:\u002223:30\u0022}]}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "evening-shift",
+    "kind": "calculation",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Tillægget for forskudt tid er 130,00 kr. for vagten den 5. maj 2026 (tirsdag). Tillægget er 26,00 kr. pr. time for de 5 timer mellem kl. 17.00 og 22.00. Timen fra kl. 16.00 til 17.00 giver intet tillæg.",
+    "trace": [
+      "calculate_pay {\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002216:00\u0022,\u0022end\u0022:\u002222:00\u0022}]}",
+      "search_clauses {\u0022query\u0022:\u0022tillæg for forskudt arbejdstid\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "notice",
+    "kind": "text",
+    "verdict": "correct",
+    "outcome": "Answered",
+    "text": "Efter prøvetiden er varslet fra virksomhedens side 21 dage for en medarbejder med under 1 års anciennitet. Prøvetiden er de første tre måneder, hvor varslet er 14 dage fra begge sider.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022opsigelsesvarsel fra virksomhedens side anciennitet\u0022}",
+      "read_clause {\u0022clause_id\u0022:\u0022§ 11, stk. 1\u0022}",
+      "answered"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "parental-leave",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022barselsorlov med fuld løn\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022barsel fødsel graviditet orlov\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "public-holidays",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022tillæg helligdage juledag\u0022}",
+      "rules_in_force {\u0022date\u0022:\u00222026-11-15\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022arbejde på helligdage\u0022}",
+      "answered: the agreement does not say"
+    ]
+  },
+  {
+    "agreement": "twist-all",
+    "id": "company-car",
+    "kind": "unanswerable",
+    "verdict": "correct",
+    "outcome": "NotInAgreement",
+    "text": "Overenskomsten giver ikke svar på spørgsmålet.",
+    "trace": [
+      "search_clauses {\u0022query\u0022:\u0022firmabil\u0022}",
+      "search_clauses {\u0022query\u0022:\u0022bil til rådighed for medarbejderen\u0022}",
+      "answered: the agreement does not say"
+    ]
+  }
+]

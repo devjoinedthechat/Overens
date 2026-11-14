@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01CoUXMP8ABFZfVDsyjpxDVT",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Overarbejdstill\\u00E6gget for vagten 5. maj 2026 (kl. 14.00-23.30, 9,5 timer) er 220,00 kr. Den normale daglige arbejdstid er 7 timer og 24 minutter, s\\u00E5 de f\\u00F8rste 2 timers overarbejde betales med 50 pct. (200,00 kr.) og den resterende tid med 100 pct. (20,00 kr.). Beregningen bruger den oplyste timel\\u00F8n p\\u00E5 200 kr.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 2\u0022,\u0022quote\u0022:\u0022For de f\\u00F8rste to timers overarbejde pr. dag betales et till\\u00E6g p\\u00E5 50,0 pct. af timel\\u00F8nnen. For overarbejde herudover betales et till\\u00E6g p\\u00E5 100,0 pct. af timel\\u00F8nnen.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 3, stk. 2\u0022,\u0022quote\u0022:\u0022Den daglige normale arbejdstid er 7 timer og 24 minutter.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 1\u0022,\u0022quote\u0022:\u0022Overarbejde er arbejde ud over den daglige normale arbejdstid, jf. \\u00A7 3, stk. 2.\u0022}]}"
+    }
+  ]
+}

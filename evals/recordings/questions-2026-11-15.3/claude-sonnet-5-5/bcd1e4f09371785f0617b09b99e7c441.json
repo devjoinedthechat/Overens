@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01QukiEtk2yHoJushztmXBmY",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Overarbejdstill\\u00E6gget for vagten den 5. maj 2026 er 220,0 kr. Det er 200,0 kr. for de f\\u00F8rste to timers overarbejde og 20,0 kr. for de resterende 6 minutter. Beregningen bruger de satser, der g\\u00E6lder pr. 5. maj 2026.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 2\u0022,\u0022quote\u0022:\u0022For de f\\u00F8rste to timers overarbejde pr. dag betales et till\\u00E6g p\\u00E5 50,0 pct. af timel\\u00F8nnen.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 1\u0022,\u0022quote\u0022:\u0022Overarbejde er arbejde ud over den daglige normale arbejdstid, jf. \\u00A7 3, stk. 2.\u0022}]}"
+    }
+  ]
+}
