@@ -2,6 +2,7 @@ using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Overens.Agent.Questions;
 using Overens.Data;
+using Overens.Gateway;
 using Overens.Ingestion.Reading;
 using Overens.Rules;
 
@@ -55,6 +56,8 @@ public static class QuestionEndpoints
             var rules = EffectiveRules.From(versions.Select(set => new RuleSet(set.AgreementId, set.Version, RuleJson.Read<List<Rule>>(set.Rules))));
             var index = new ClauseIndex(RuleJson.Read<ReadAgreement>(clauses).Sections);
             var answer = await questions.Agent.AskAsync(request.Question, DateOnly.FromDateTime(clock.GetUtcNow().UtcDateTime), rules, index, cancellationToken);
+            using var span = Telemetry.Start("question").With(Field.Tenant, caller.TenantId).With(Field.Agreement, agreementId).With(Field.Outcome, answer.Outcome.ToString()).With(Field.Steps, answer.Trace.Count);
+
             // That a question was asked is logged, with how it ended. The question itself is not.
             var note = JsonSerializer.Serialize(new { outcome = answer.Outcome.ToString(), steps = answer.Trace.Count });
             await database.RunAsync(caller.TenantId, caller.Name, db =>

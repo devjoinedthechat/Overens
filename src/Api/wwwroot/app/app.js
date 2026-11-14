@@ -119,8 +119,8 @@ function days(list) {
 }
 
 /** A rule's values as rows of label and value, in words a payroll specialist uses. */
-function facts(rule) {
-  const rows = [["In force", `${rule.inForce.from} ${rule.inForce.until ? `until ${rule.inForce.until}` : "onwards"}`]];
+function facts(rule, withPeriod = true) {
+  const rows = withPeriod ? [["In force", `${rule.inForce.from} ${rule.inForce.until ? `until ${rule.inForce.until}` : "onwards"}`]] : [];
   switch (rule.kind) {
     case "minimum_wage":
       for (const band of rule.bands) rows.push([band.fromMonths === 0 ? "From hiring" : `After ${band.fromMonths} months`, `${kr(band.hourlyRate)} an hour`]);
@@ -265,7 +265,15 @@ async function runView(runId) {
             open &&
               el(
                 "button",
-                { class: "danger", disabled: rule.decision === "rejected", onclick: () => act(() => api("POST", `/runs/${runId}/rules/${rule.id}/decision`, { decision: "rejected" })) },
+                {
+                  class: "danger",
+                  disabled: rule.decision === "rejected",
+                  onclick: () => {
+                    // The reason is kept: a rejected rule, with why, is a case for the evals.
+                    const reason = window.prompt("Why is this rule wrong? (optional)") ?? undefined;
+                    return act(() => api("POST", `/runs/${runId}/rules/${rule.id}/decision`, { decision: "rejected", reason }));
+                  },
+                },
                 "Reject",
               ),
           ),
@@ -296,6 +304,30 @@ async function runView(runId) {
             ),
           ),
       ),
+      open &&
+        run.changes &&
+        el(
+          "section",
+          {},
+          el("h2", {}, "What publishing would change"),
+          run.changes.length === 0
+            ? el("p", { class: "muted" }, "Nothing. The rules not rejected say what the published rules already say.")
+            : el(
+                "table",
+                {},
+                el("tr", {}, el("th", {}, "Rule"), el("th", {}, "Days"), el("th", {}, "Now"), el("th", {}, "After publishing")),
+                run.changes.map((change) =>
+                  el(
+                    "tr",
+                    {},
+                    el("td", {}, KINDS[change.kind] ?? change.kind),
+                    el("td", {}, `${change.from} ${change.until ? `until ${change.until}` : "onwards"}`),
+                    el("td", {}, change.before ? facts(change.before, false) : el("span", { class: "muted" }, "No rule")),
+                    el("td", {}, change.after ? facts(change.after, false) : el("span", { class: "pill bad" }, "No rule")),
+                  ),
+                ),
+              ),
+        ),
       run.rules.length > 0 && el("section", {}, el("h2", {}, "Proposed rules"), rules),
     );
 

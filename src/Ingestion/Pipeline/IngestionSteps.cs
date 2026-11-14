@@ -23,6 +23,7 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
     public async Task ReadAsync(RunRef run, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(run);
+        using var span = Telemetry.Start("agreement.read", run.RunId).With(Field.Tenant, run.TenantId);
         var document = await database.RunAsync(run.TenantId, async db =>
         {
             var row = await db.Runs.SingleAsync(row => row.Id == run.RunId, cancellationToken);
@@ -62,12 +63,14 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
             var row = await db.Runs.SingleAsync(row => row.Id == run.RunId, cancellationToken);
             (row.Title, row.Clauses) = (read.Title, RuleJson.Write(read));
         }, cancellationToken);
+        span.With(Field.Clauses, read.Pages.Count);
     }
 
     /// <summary>Asks the model for the rules, checks them, stores them, and hands the run to a reviewer.</summary>
     public async Task ExtractAsync(RunRef run, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(run);
+        using var span = Telemetry.Start("agreement.extract", run.RunId).With(Field.Tenant, run.TenantId).With(Field.PromptVersion, ExtractionPrompt.Version);
         var clauses = await database.RunAsync(run.TenantId, async db =>
         {
             var row = await db.Runs.SingleAsync(row => row.Id == run.RunId, cancellationToken);
@@ -119,6 +122,14 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
             (row.Model, row.PromptVersion, row.Gaps, row.Status) = (answeredBy, ExtractionPrompt.Version, RuleJson.Write(extraction.Gaps), "awaiting_review");
             (row.ModelCalls, row.InputTokens, row.OutputTokens, row.CostMicros) = (usage.Calls, usage.InputTokens, usage.OutputTokens, usage.CostMicros);
         }, cancellationToken);
+        span.With(Field.Model, usage.Models.Count == 0 ? modelId : string.Join(',', usage.Models))
+            .With(Field.RulesProposed, extraction.Rules.Count)
+            .With(Field.RulesFlagged, extraction.Rules.Count(rule => rule.Problems.Count > 0))
+            .With(Field.Gaps, extraction.Gaps.Count)
+            .With(Field.ModelCalls, usage.Calls)
+            .With(Field.InputTokens, usage.InputTokens)
+            .With(Field.OutputTokens, usage.OutputTokens)
+            .With(Field.CostMicros, usage.CostMicros);
     }
 
     /// <summary>
@@ -127,10 +138,11 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
     /// approved rules together still form a usable rule set.
     /// </summary>
     /// <returns>The published version.</returns>
-    public Task<int> PublishAsync(RunRef run, CancellationToken cancellationToken = default)
+    public async Task<int> PublishAsync(RunRef run, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(run);
-        return database.RunAsync(run.TenantId, async db =>
+        using var span = Telemetry.Start("agreement.publish", run.RunId).With(Field.Tenant, run.TenantId);
+        var version = await database.RunAsync(run.TenantId, async db =>
         {
             var approved = await db.ProposedRules
                 .Where(rule => rule.RunId == run.RunId && rule.Decision == "approved")
@@ -144,6 +156,8 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
 
             return await db.Database.SqlQuery<int>($"select publish_rule_set({run.RunId}, {clock.GetUtcNow()}) as \"Value\"").SingleAsync(cancellationToken);
         }, cancellationToken);
+        span.With(Field.Version, version);
+        return version;
     }
 
     /// <summary>Ends a run that will not produce a rule set, saying why.</summary>

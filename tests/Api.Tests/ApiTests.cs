@@ -58,6 +58,11 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         Assert.Equal(Site.Agreement.Document.Title, review.GetProperty("title").GetString());
         Assert.Equal(Site.Agreement.Truth.Rules.Count, review.GetProperty("rules").GetArrayLength());
 
+        // A first version changes everything from nothing: one change per kind of rule and period.
+        var changes = review.GetProperty("changes").EnumerateArray().ToList();
+        Assert.Equal(Site.Agreement.Truth.Rules.Count, changes.Count);
+        Assert.All(changes, change => Assert.Equal(JsonValueKind.Null, change.GetProperty("before").ValueKind));
+
         // Each rule comes with the words it was read from, and where they stand.
         var overtime = review.GetProperty("rules").EnumerateArray().Single(rule => rule.GetProperty("id").GetString() == "overtime-2026");
         var clauses = overtime.GetProperty("clauses").EnumerateArray().ToList();
@@ -153,6 +158,15 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         Assert.Equal(HttpStatusCode.OK, (await Decide(anna, run, "holiday_allowance-2026", "approved")).StatusCode);
         Assert.Equal(HttpStatusCode.Conflict, (await anna.PostAsync($"/runs/{run}/approval", null)).StatusCode);
         Assert.Equal(HttpStatusCode.OK, (await Decide(anna, run, "holiday_allowance-2026", "rejected")).StatusCode);
+
+        // A rejection carries the reviewer's reason, and is kept as a case for the evals.
+        Assert.Equal(HttpStatusCode.OK, (await anna.PostAsJsonAsync($"/runs/{run}/rules/pension-2026/decision", new { decision = "rejected", reason = "Arbejdsgiverens andel er 8,0 pct., ikke 99,5." })).StatusCode);
+        Assert.Equal(HttpStatusCode.BadRequest, (await anna.PostAsJsonAsync($"/runs/{run}/rules/pension-2027/decision", new { decision = "rejected", reason = new string('x', 501) })).StatusCode);
+        var feedback = Assert.Single((await Json(await anna.GetAsync("/feedback"))).EnumerateArray(), entry => entry.GetProperty("reason").ValueKind == JsonValueKind.String);
+        Assert.Equal(("Arbejdsgiverens andel er 8,0 pct., ikke 99,5.", "stand-in", "anna"), (feedback.GetProperty("reason").GetString(), feedback.GetProperty("model").GetString(), feedback.GetProperty("rejectedBy").GetString()));
+        Assert.Equal(99.5m, feedback.GetProperty("proposed").GetProperty("employerPercent").GetDecimal());
+        Assert.NotEmpty(feedback.GetProperty("clauses").EnumerateArray());
+        Assert.Contains(feedback.GetProperty("clauses").EnumerateArray(), clause => clause.GetProperty("text").GetString()!.Contains("Pensionsbidraget", StringComparison.Ordinal));
 
         await DecideAll(anna, run);
         Assert.Equal(HttpStatusCode.Accepted, (await anna.PostAsync($"/runs/{run}/approval", null)).StatusCode);
@@ -337,7 +351,6 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         var tenant = NewTenant();
         var anna = site.Client(site.Token(tenant));
         await Publish(anna);
-        await Publish(anna, Site.RenewalPdf);
         var employee = new Employee("emp-1", new(2020, 1, 15));
 
         async Task<int> Findings(SyntheticAgreement paidUnder, DateOnly day)
@@ -350,6 +363,16 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
             Assert.Equal(2, (await Json(response)).GetProperty("version").GetInt32());
             return (await Json(response)).GetProperty("findings").GetArrayLength();
         }
+
+        // While the renewal waited for review, the reviewer was shown what it would change: rates from March 2029 on, and nothing earlier.
+        var renewalRun = (await Json(await anna.PostAsync("/agreements/lager/runs", PdfBody(Site.RenewalPdf)))).GetProperty("id").GetString()!;
+        var wouldChange = (await Run(anna, renewalRun)).GetProperty("changes").EnumerateArray().ToList();
+        Assert.NotEmpty(wouldChange);
+        Assert.All(wouldChange, change => Assert.True(string.CompareOrdinal(change.GetProperty("from").GetString(), "2029-03-01") >= 0));
+        Assert.Contains(wouldChange, change => change.GetProperty("kind").GetString() == "minimum_wage" && change.GetProperty("before").ValueKind == JsonValueKind.Object);
+        Assert.DoesNotContain(wouldChange, change => change.GetProperty("kind").GetString() == "overtime");
+        await DecideAll(anna, renewalRun);
+        Assert.Equal(HttpStatusCode.Accepted, (await anna.PostAsync($"/runs/{renewalRun}/approval", null)).StatusCode);
 
         // Paid by the first agreement in 2027 and by the renewal in 2030: both right.
         Assert.Equal(0, await Findings(Site.Agreement, new(2027, 6, 8)));

@@ -107,6 +107,22 @@ public static partial class Endpoints
                 var agreement = run.Clauses is null ? null : RuleJson.Read<ReadAgreement>(run.Clauses);
                 var clauses = agreement?.Sections.SelectMany(section => section.Clauses).ToDictionary(clause => clause.Id);
                 var rules = await db.ProposedRules.Where(rule => rule.RunId == runId).OrderBy(rule => rule.RuleId).ToListAsync(cancellationToken);
+
+                // What publishing would change, against what is published now: the rules not rejected and not flagged, as the next version.
+                IReadOnlyList<RuleChange>? changes = null;
+                if (run.Status == "awaiting_review")
+                {
+                    var published = (await db.RuleSets.Where(set => set.AgreementId == run.AgreementId).ToListAsync(cancellationToken))
+                        .Select(set => new RuleSet(set.AgreementId, set.Version, RuleJson.Read<List<Rule>>(set.Rules))).ToList();
+                    var candidate = new RuleSet(run.AgreementId, published.Count + 1,
+                        [.. rules.Where(row => row.Decision != "rejected" && row.Problems == "[]").Select(row => RuleJson.Read<Rule>(row.Rule))]);
+                    // Rules in conflict cannot be laid over what is published until one of them is rejected.
+                    if (candidate.Rules.Count > 0 && RuleSetValidator.Validate(candidate).Count == 0)
+                    {
+                        changes = RuleChanges.Between(published.Count == 0 ? null : EffectiveRules.From(published), EffectiveRules.From([.. published, candidate]));
+                    }
+                }
+
                 return Results.Ok(new
                 {
                     id = run.Id,
@@ -119,6 +135,7 @@ public static partial class Endpoints
                     dispatched = run.DispatchedAt is not null,
                     cost = run.CostMicros is { } micros ? micros / 1_000_000m : (decimal?)null,
                     gaps = run.Gaps is null ? (JsonElement?)null : JsonSerializer.Deserialize<JsonElement>(run.Gaps),
+                    changes = changes is null ? (JsonElement?)null : JsonSerializer.SerializeToElement(changes, RuleJson.Options),
                     rules = rules.Select(row =>
                     {
                         var rule = RuleJson.Read<Rule>(row.Rule);
@@ -138,6 +155,7 @@ public static partial class Endpoints
                             problems = JsonSerializer.Deserialize<JsonElement>(row.Problems),
                             decision = row.Decision,
                             decidedBy = row.DecidedBy,
+                            reason = row.Reason,
                         };
                     }),
                 });
@@ -170,7 +188,13 @@ public static partial class Endpoints
                     return Problem(409, "The checks found a problem with this rule, so it cannot be approved as it stands.");
                 }
 
+                if (request.Reason is { Length: > 500 })
+                {
+                    return Problem(400, "A reason is at most 500 characters.");
+                }
+
                 (rule.Decision, rule.DecidedBy, rule.DecidedAt) = (request.Decision, caller.Name, clock.GetUtcNow());
+                rule.Reason = request.Decision == "rejected" && !string.IsNullOrWhiteSpace(request.Reason) ? request.Reason.Trim() : null;
                 return Results.Ok(new { id = ruleId, decision = rule.Decision });
             }, cancellationToken)));
 
@@ -253,6 +277,36 @@ public static partial class Endpoints
             return Results.Accepted($"/runs/{runId}", new { id = runId, status = "rejecting" });
         });
 
+        // Rules a reviewer rejected, with the reason, the model and prompt that proposed each, and the
+        // clauses it cited. This is the raw material for new eval cases: where the model was wrong, in the reviewer's words.
+        api.MapGet("/feedback", (HttpContext http, TenantScope database, CancellationToken cancellationToken) =>
+            AsCaller(http, caller => database.RunAsync(caller.TenantId, async db =>
+            {
+                var rejected = await db.ProposedRules.Where(rule => rule.Decision == "rejected").OrderByDescending(rule => rule.DecidedAt).Take(200).ToListAsync(cancellationToken);
+                var ids = rejected.Select(rule => rule.RunId).Distinct().ToList();
+                var runs = await db.Runs.Where(run => ids.Contains(run.Id)).ToDictionaryAsync(run => run.Id, cancellationToken);
+                return Results.Ok(rejected.Select(row =>
+                {
+                    var run = runs[row.RunId];
+                    var rule = RuleJson.Read<Rule>(row.Rule);
+                    var clauses = run.Clauses is null ? [] : RuleJson.Read<ReadAgreement>(run.Clauses).Sections.SelectMany(section => section.Clauses).ToList();
+                    var cited = new[] { rule.Source.ClauseId }.Concat(RuleJson.Read<List<string>>(row.AlsoFrom)).Distinct();
+                    return new
+                    {
+                        runId = row.RunId,
+                        agreementId = run.AgreementId,
+                        document = run.DocumentSha256,
+                        model = run.Model,
+                        promptVersion = run.PromptVersion,
+                        proposed = JsonSerializer.SerializeToElement(rule, RuleJson.Options),
+                        problems = JsonSerializer.Deserialize<JsonElement>(row.Problems),
+                        reason = row.Reason,
+                        rejectedBy = row.DecidedBy,
+                        clauses = clauses.Where(clause => cited.Contains(clause.Id)).Select(clause => new { id = clause.Id, text = ExtractionPrompt.Text(clause) }),
+                    };
+                }));
+            }, cancellationToken)));
+
         // The company's audit log, newest first: who did what to which run or agreement.
         api.MapGet("/audit", (HttpContext http, TenantScope database, CancellationToken cancellationToken) =>
             AsCaller(http, caller => database.RunAsync(caller.TenantId, async db =>
@@ -296,4 +350,6 @@ public static partial class Endpoints
     private static partial Regex AgreementId();
 }
 
-public sealed record DecisionRequest(string Decision);
+/// <param name="Decision">approved or rejected.</param>
+/// <param name="Reason">Why a rule is rejected. Kept, so that the rejection can become a case for the evals.</param>
+public sealed record DecisionRequest(string Decision, string? Reason = null);

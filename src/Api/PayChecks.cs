@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Overens.Agent;
 using Overens.Data;
+using Overens.Gateway;
 using Overens.Rules;
 
 namespace Overens.Api;
@@ -96,6 +97,8 @@ public static partial class PayChecks
                     explainedByModel = explanation.ByModel,
                 });
             }
+
+            using var span = Telemetry.Start("pay.check").With(Field.Tenant, caller.TenantId).With(Field.Agreement, agreementId).With(Field.Version, rules.Version).With(Field.Findings, findings.Count);
 
             // That a check was made is logged, with its size. Who was checked and what they were paid is not.
             var note = JsonSerializer.Serialize(new { version = rules.Version, findings = findings.Count });

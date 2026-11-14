@@ -252,6 +252,39 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
     }
 
     [Fact]
+    public async Task A_runs_spans_are_one_trace_and_say_nothing_of_what_the_agreement_says()
+    {
+        var spans = new System.Collections.Concurrent.ConcurrentBag<System.Diagnostics.Activity>();
+        using var listener = new System.Diagnostics.ActivityListener
+        {
+            ShouldListenTo = source => source.Name == Telemetry.SourceName,
+            Sample = (ref System.Diagnostics.ActivityCreationOptions<System.Diagnostics.ActivityContext> _) => System.Diagnostics.ActivitySamplingResult.AllData,
+            ActivityStopped = spans.Add,
+        };
+        System.Diagnostics.ActivitySource.AddActivityListener(listener);
+        using var worker = await stack.StartWorker(Model());
+
+        var run = await Upload(Pdf);
+        await Until(run, row => row.Status == "awaiting_review");
+        await Review(run, approve: true);
+        await Decide(run, publish: true);
+        await Until(run, row => row.Status == "published");
+
+        var mine = spans.Where(span => (string?)span.GetTagItem("overens.run") == run.RunId).ToList();
+        Assert.Equal(["agreement.extract", "agreement.publish", "agreement.read"], mine.Select(span => span.OperationName).Distinct().Order());
+        Assert.Single(mine.Select(span => span.TraceId).Distinct());
+        var extract = mine.First(span => span.OperationName == "agreement.extract");
+        Assert.Equal((13L, 0L, "stand-in"), (extract.GetTagItem("overens.rules.proposed"), extract.GetTagItem("overens.rules.flagged"), extract.GetTagItem("gen_ai.response.model")));
+
+        // Nothing the agreement says, in any attribute of any span.
+        var said = string.Join(' ', mine.SelectMany(span => span.TagObjects).Select(tag => $"{tag.Key}={tag.Value}"));
+        Assert.DoesNotContain("Tværhavn", said, StringComparison.Ordinal);
+        Assert.DoesNotContain("pct.", said, StringComparison.Ordinal);
+        Assert.DoesNotContain("§", said, StringComparison.Ordinal);
+        Assert.All(mine.SelectMany(span => span.TagObjects), tag => Assert.True(tag.Value is long or int || ((string)tag.Value!).Length <= 100));
+    }
+
+    [Fact]
     public async Task A_run_that_was_stored_and_never_started_is_started_by_the_worker()
     {
         using var worker = await stack.StartWorker(Model());

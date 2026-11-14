@@ -116,6 +116,44 @@ public sealed class GatewayTests
     }
 
     [Fact]
+    public void A_span_carries_ids_sizes_and_statuses_and_withholds_anything_that_reads_like_content()
+    {
+        using var listener = new System.Diagnostics.ActivityListener
+        {
+            ShouldListenTo = source => source.Name == Telemetry.SourceName,
+            Sample = (ref System.Diagnostics.ActivityCreationOptions<System.Diagnostics.ActivityContext> _) => System.Diagnostics.ActivitySamplingResult.AllData,
+        };
+        System.Diagnostics.ActivitySource.AddActivityListener(listener);
+
+        using var span = Telemetry.Start("agreement.extract", "run_0195")
+            .With(Field.Tenant, "tvaerhavn-loen")
+            .With(Field.Model, "claude-haiku-5-5,claude-sonnet-5-5")
+            .With(Field.RulesProposed, 13)
+            .With(Field.Agreement, "Feriegodtgørelsen udgør 12,5 pct. af lønnen.")
+            .With(Field.Outcome, "010190-1234")
+            .With(Field.Status, null);
+        span.Failed(new InvalidOperationException("Clause § 8 says: Feriegodtgørelsen udgør 12,5 pct."));
+
+        var tags = span!.TagObjects.ToDictionary(tag => tag.Key, tag => tag.Value);
+        Assert.Equal("run_0195", tags["overens.run"]);
+        Assert.Equal("tvaerhavn-loen", tags["overens.tenant"]);
+        Assert.Equal("claude-haiku-5-5,claude-sonnet-5-5", tags["gen_ai.response.model"]);
+        Assert.Equal(13L, tags["overens.rules.proposed"]);
+        // A sentence and a CPR number are not labels.
+        Assert.Equal(Telemetry.Withheld, tags["overens.agreement"]);
+        Assert.Equal(Telemetry.Withheld, tags["overens.outcome"]);
+        Assert.False(tags.ContainsKey("overens.status"));
+        // A failure is named by its kind. Its message may quote what was being read.
+        Assert.Equal("InvalidOperationException", span.StatusDescription);
+
+        // Every span of a run is in one trace, whoever makes it.
+        using var later = Telemetry.Start("agreement.publish", "run_0195");
+        using var other = Telemetry.Start("agreement.read", "run_0196");
+        Assert.Equal(span.TraceId, later!.TraceId);
+        Assert.NotEqual(span.TraceId, other!.TraceId);
+    }
+
+    [Fact]
     public async Task A_call_that_cannot_be_priced_is_not_made()
     {
         var model = new Echo();
