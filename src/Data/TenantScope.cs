@@ -10,13 +10,20 @@ namespace Overens.Data;
 /// </summary>
 public sealed class TenantScope(NpgsqlDataSource dataSource)
 {
-    public async Task<TResult> RunAsync<TResult>(string tenantId, Func<OverensDb, Task<TResult>> work, CancellationToken cancellationToken = default)
+    public Task<TResult> RunAsync<TResult>(string tenantId, Func<OverensDb, Task<TResult>> work, CancellationToken cancellationToken = default) =>
+        RunAsync(tenantId, null, work, cancellationToken);
+
+    /// <param name="tenantId">The company whose rows are visible.</param>
+    /// <param name="actor">The signed-in person the work is done for, as the audit log will name them.</param>
+    /// <param name="work">The work, done in one transaction.</param>
+    /// <param name="cancellationToken">Cancels the work.</param>
+    public async Task<TResult> RunAsync<TResult>(string tenantId, string? actor, Func<OverensDb, Task<TResult>> work, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(tenantId);
         ArgumentNullException.ThrowIfNull(work);
         await using var connection = await dataSource.OpenConnectionAsync(cancellationToken);
         await using var transaction = await connection.BeginTransactionAsync(cancellationToken);
-        await using (var scope = new NpgsqlCommand("select set_config('app.tenant_id', $1, true)", connection, transaction) { Parameters = { new() { Value = tenantId } } })
+        await using (var scope = new NpgsqlCommand("select set_config('app.tenant_id', $1, true), set_config('app.actor', $2, true)", connection, transaction) { Parameters = { new() { Value = tenantId }, new() { Value = actor ?? "" } } })
         {
             await scope.ExecuteNonQueryAsync(cancellationToken);
         }
@@ -33,7 +40,10 @@ public sealed class TenantScope(NpgsqlDataSource dataSource)
     }
 
     public Task RunAsync(string tenantId, Func<OverensDb, Task> work, CancellationToken cancellationToken = default) =>
-        RunAsync(tenantId, async db =>
+        RunAsync(tenantId, null, work, cancellationToken);
+
+    public Task RunAsync(string tenantId, string? actor, Func<OverensDb, Task> work, CancellationToken cancellationToken = default) =>
+        RunAsync(tenantId, actor, async db =>
         {
             await work(db);
             return true;

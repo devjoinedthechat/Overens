@@ -201,6 +201,36 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
         Assert.Equal(0, await stack.AsApi.RunAsync(run.TenantId, db => db.ProposedRules.CountAsync()));
     }
 
+    public static TheoryData<string, string> DamagedFiles => new()
+    {
+        { "cut short", "could not be read as a PDF" },
+        { "only a header", "could not be read as a PDF" },
+        { "scrambled", "could not be read as a PDF" },
+    };
+
+    [Theory]
+    [MemberData(nameof(DamagedFiles))]
+    public async Task A_damaged_pdf_fails_the_run_at_once_with_a_reason_and_never_reaches_the_model(string damage, string reason)
+    {
+        var model = Model();
+        using var worker = await stack.StartWorker(model);
+        var file = damage switch
+        {
+            "cut short" => Pdf[..(Pdf.Length / 3)],
+            "only a header" => "%PDF-1.7\n"u8.ToArray(),
+            _ => [.. "%PDF-1.7\n"u8, .. Pdf.Skip(9).Select((value, at) => (byte)(value ^ (at % 251)))],
+        };
+
+        var started = DateTimeOffset.UtcNow;
+        var run = await Upload(file);
+        var failed = await Until(run, row => row.Status == "failed");
+
+        Assert.Contains(reason, failed.Failure, StringComparison.Ordinal);
+        Assert.Empty(model.Requests);
+        // At once: an unreadable file is not retried with waits in between.
+        Assert.InRange(DateTimeOffset.UtcNow - started, TimeSpan.Zero, TimeSpan.FromSeconds(20));
+    }
+
     [Fact]
     public async Task A_model_that_fails_for_a_moment_is_asked_again()
     {

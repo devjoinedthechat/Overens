@@ -16,6 +16,8 @@ public sealed record RunRef(string TenantId, string RunId);
 /// </summary>
 public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, RuleExtractor extractor, string modelId, TimeProvider clock)
 {
+    public const int MaxPages = 500;
+
     /// <summary>Reads the run's document into numbered clauses and stores them.</summary>
     public async Task ReadAsync(RunRef run, CancellationToken cancellationToken = default)
     {
@@ -32,7 +34,23 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
             return;
         }
 
-        var read = ClauseSegmenter.Segment(await reader.ReadAsync(document, cancellationToken));
+        ReadAgreement read;
+        try
+        {
+            var pages = await reader.ReadAsync(document, cancellationToken);
+            if (pages.Count > MaxPages)
+            {
+                throw new UnreadableDocumentException($"The document has {pages.Count} pages. At most {MaxPages} are read.");
+            }
+
+            read = ClauseSegmenter.Segment(pages);
+        }
+        catch (Exception error) when (error is not (OperationCanceledException or UnreadableDocumentException))
+        {
+            // A file that is cut short, encrypted or not really a PDF. Whatever the reader made of it, trying again will not help.
+            throw new UnreadableDocumentException("The file could not be read as a PDF.", error);
+        }
+
         if (read.Sections.Count == 0)
         {
             throw new UnreadableDocumentException("No numbered clauses were found in the document.");
@@ -129,4 +147,19 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
 }
 
 /// <summary>The document cannot be turned into clauses. Trying again will not help.</summary>
-public sealed class UnreadableDocumentException(string message) : Exception(message);
+public sealed class UnreadableDocumentException : Exception
+{
+    public UnreadableDocumentException(string message)
+        : base(message)
+    {
+    }
+
+    public UnreadableDocumentException(string message, Exception inner)
+        : base(message, inner)
+    {
+    }
+
+    public UnreadableDocumentException()
+    {
+    }
+}

@@ -27,7 +27,13 @@ public sealed class IngestAgreement : TaskOrchestrator<RunRef, string>
         ArgumentNullException.ThrowIfNull(context);
         try
         {
-            await context.CallActivityAsync(nameof(ReadDocument), run, Retried);
+            // A document that cannot be read fails the run at once. Only passing trouble is tried again.
+            if (await context.CallActivityAsync<string?>(nameof(ReadDocument), run, Retried) is { } unreadable)
+            {
+                await context.CallActivityAsync(nameof(EndRun), new EndRunInput(run, "failed", unreadable));
+                return "failed";
+            }
+
             await context.CallActivityAsync(nameof(ExtractRules), run, Retried);
         }
         catch (TaskFailedException failure)
@@ -61,12 +67,20 @@ public sealed class IngestAgreement : TaskOrchestrator<RunRef, string>
 
 public sealed record EndRunInput(RunRef Run, string Status, string? Failure);
 
-public sealed class ReadDocument(IngestionSteps steps) : TaskActivity<RunRef, bool>
+/// <summary>Reads the document. Returns why it could not be read, or null when it was.</summary>
+public sealed class ReadDocument(IngestionSteps steps) : TaskActivity<RunRef, string?>
 {
-    public override async Task<bool> RunAsync(TaskActivityContext context, RunRef run)
+    public override async Task<string?> RunAsync(TaskActivityContext context, RunRef run)
     {
-        await steps.ReadAsync(run);
-        return true;
+        try
+        {
+            await steps.ReadAsync(run);
+            return null;
+        }
+        catch (UnreadableDocumentException unreadable)
+        {
+            return unreadable.Message;
+        }
     }
 }
 

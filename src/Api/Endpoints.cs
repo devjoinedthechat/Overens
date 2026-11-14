@@ -60,7 +60,7 @@ public static partial class Endpoints
 
             var sha = Convert.ToHexStringLower(SHA256.HashData(pdf));
             var run = new RunRef(caller.TenantId, $"run_{Guid.CreateVersion7():N}");
-            await database.RunAsync(caller.TenantId, async db =>
+            await database.RunAsync(caller.TenantId, caller.Name, async db =>
             {
                 // The same bytes are stored once, however often they are uploaded.
                 if (!await db.Documents.AnyAsync(document => document.Sha256 == sha, cancellationToken))
@@ -231,6 +231,21 @@ public static partial class Endpoints
             await pipeline.DecideAsync(new(caller.TenantId, runId), publish: false, cancellationToken);
             return Results.Accepted($"/runs/{runId}", new { id = runId, status = "rejecting" });
         });
+
+        // The company's audit log, newest first: who did what to which run or agreement.
+        api.MapGet("/audit", (HttpContext http, TenantScope database, CancellationToken cancellationToken) =>
+            AsCaller(http, caller => database.RunAsync(caller.TenantId, async db =>
+            {
+                var entries = await db.Audit.OrderByDescending(entry => entry.Seq).Take(200).ToListAsync(cancellationToken);
+                return Results.Ok(entries.Select(entry => new
+                {
+                    at = entry.At,
+                    actor = entry.Actor,
+                    @event = entry.Event,
+                    subject = entry.Subject,
+                    detail = JsonSerializer.Deserialize<JsonElement>(entry.Detail),
+                }));
+            }, cancellationToken)));
 
         // The published versions of an agreement's rules, newest first.
         api.MapGet("/agreements/{agreementId}/rule-sets", (string agreementId, HttpContext http, TenantScope database, CancellationToken cancellationToken) =>

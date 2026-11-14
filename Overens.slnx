@@ -50,6 +50,9 @@
   <Folder Name="/tests/Evals.Tests/">
     <Project Path="tests/Evals.Tests/Overens.Evals.Tests.csproj" />
   </Folder>
+  <Folder Name="/tests/Gateway.Tests/">
+    <Project Path="tests/Gateway.Tests/Overens.Gateway.Tests.csproj" />
+  </Folder>
   <Folder Name="/tests/Ingestion.Tests/">
     <Project Path="tests/Ingestion.Tests/Overens.Ingestion.Tests.csproj" />
   </Folder>

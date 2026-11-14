@@ -61,6 +61,17 @@ public sealed class RuleSetRow
     public required DateTimeOffset PublishedAt { get; init; }
 }
 
+public sealed class AuditRow
+{
+    public required long Seq { get; init; }
+    public required string TenantId { get; init; }
+    public required DateTimeOffset At { get; init; }
+    public required string Actor { get; init; }
+    public required string Event { get; init; }
+    public required string Subject { get; init; }
+    public required string Detail { get; init; }
+}
+
 /// <summary>Typed access to the tables. The schema itself is in <c>Schema/*.sql</c>, not generated from this.</summary>
 public sealed class OverensDb(DbContextOptions<OverensDb> options) : DbContext(options)
 {
@@ -73,6 +84,9 @@ public sealed class OverensDb(DbContextOptions<OverensDb> options) : DbContext(o
     public DbSet<ApprovalRow> Approvals => Set<ApprovalRow>();
 
     public DbSet<RuleSetRow> RuleSets => Set<RuleSetRow>();
+
+    /// <summary>The audit log, for reading. Entries are written by the database itself.</summary>
+    public DbSet<AuditRow> Audit => Set<AuditRow>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -91,6 +105,11 @@ public sealed class OverensDb(DbContextOptions<OverensDb> options) : DbContext(o
             rule.Property(row => row.Problems).HasColumnType("jsonb");
         });
         modelBuilder.Entity<ApprovalRow>().ToTable("approvals").HasKey(row => row.RunId);
+        modelBuilder.Entity<AuditRow>(audit =>
+        {
+            audit.ToTable("audit_log").HasKey(row => row.Seq);
+            audit.Property(row => row.Detail).HasColumnType("jsonb");
+        });
         modelBuilder.Entity<RuleSetRow>(set =>
         {
             set.ToTable("rule_sets").HasKey(row => new { row.TenantId, row.AgreementId, row.Version });

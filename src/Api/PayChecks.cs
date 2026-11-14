@@ -97,6 +97,11 @@ public static partial class PayChecks
                 });
             }
 
+            // That a check was made is logged, with its size. Who was checked and what they were paid is not.
+            var note = JsonSerializer.Serialize(new { version = rules.Version, findings = findings.Count });
+            await database.RunAsync(caller.TenantId, caller.Name, db =>
+                db.Database.ExecuteSqlAsync($"select audit_note('pay_checked', {agreementId}, {note}::jsonb)", cancellationToken), cancellationToken);
+
             return Results.Json(
                 new
                 {

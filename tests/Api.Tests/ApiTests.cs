@@ -80,6 +80,12 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         var listed = Assert.Single((await Json(await anna.GetAsync("/runs"))).EnumerateArray());
         Assert.Equal((run, "published"), (listed.GetProperty("id").GetString(), listed.GetProperty("status").GetString()));
 
+        // Every step is in the company's audit log, with the person who took it.
+        var log = (await Json(await anna.GetAsync("/audit"))).EnumerateArray().Reverse().Select(entry => $"{entry.GetProperty("event").GetString()} {entry.GetProperty("actor").GetString()}").ToList();
+        Assert.Equal(["document_stored anna", "run_started anna", "run_awaiting_review pipeline"], log.Take(3));
+        Assert.Equal(13, log.Count(entry => entry == "rule_approved anna"));
+        Assert.Equal(["run_approved anna", "rule_set_published anna", "run_published pipeline"], log.TakeLast(3));
+
         // A second upload of the same agreement becomes version 2.
         var again = await Upload(anna);
         await DecideAll(anna, again);
@@ -258,6 +264,15 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
                 Assert.Contains("kr.", finding.GetProperty("explanation").GetString(), StringComparison.Ordinal);
             });
         }
+
+        // Each check is logged with its size and who asked, and with nothing about the employee.
+        var checks = (await Json(await site.Client(site.Token(tenant)).GetAsync("/audit"))).EnumerateArray().Where(entry => entry.GetProperty("event").GetString() == "pay_checked").ToList();
+        Assert.Equal(30, checks.Count);
+        Assert.All(checks, entry =>
+        {
+            Assert.Equal("eva", entry.GetProperty("actor").GetString());
+            Assert.DoesNotContain("emp-", entry.GetRawText(), StringComparison.Ordinal);
+        });
 
         // A line that is too low names the clause the rule came from.
         var wrong = pay.Cases.First(payCase => pay.Errors.Any(error => error.EmployeeId == payCase.Timesheet.Employee.Id && error.PeriodStart == payCase.Timesheet.PeriodStart && error.Mistake == "special_savings_left_out"));

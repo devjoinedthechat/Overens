@@ -55,6 +55,11 @@ public static class QuestionEndpoints
             var rules = EffectiveRules.From(versions.Select(set => new RuleSet(set.AgreementId, set.Version, RuleJson.Read<List<Rule>>(set.Rules))));
             var index = new ClauseIndex(RuleJson.Read<ReadAgreement>(clauses).Sections);
             var answer = await questions.Agent.AskAsync(request.Question, DateOnly.FromDateTime(clock.GetUtcNow().UtcDateTime), rules, index, cancellationToken);
+            // That a question was asked is logged, with how it ended. The question itself is not.
+            var note = JsonSerializer.Serialize(new { outcome = answer.Outcome.ToString(), steps = answer.Trace.Count });
+            await database.RunAsync(caller.TenantId, caller.Name, db =>
+                db.Database.ExecuteSqlAsync($"select audit_note('question_asked', {agreementId}, {note}::jsonb)", cancellationToken), cancellationToken);
+
             return Results.Json(
                 new
                 {

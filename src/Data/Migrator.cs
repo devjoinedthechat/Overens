@@ -35,6 +35,29 @@ public static class Migrator
         }
     }
 
+    /// <summary>
+    /// Removes everything a company has stored: documents, runs, proposed rules, approvals and
+    /// rule sets. The audit log keeps that it happened. Run as the database's owner.
+    /// </summary>
+    /// <returns>How many rows of each kind were removed, as JSON.</returns>
+    public static async Task<string> EraseTenantAsync(string ownerConnectionString, string tenantId, CancellationToken cancellationToken = default)
+    {
+        await using var connection = new NpgsqlConnection(ownerConnectionString);
+        await connection.OpenAsync(cancellationToken);
+        await using var erase = new NpgsqlCommand("select erase_tenant($1)::text", connection) { Parameters = { new() { Value = tenantId } } };
+        return (string)(await erase.ExecuteScalarAsync(cancellationToken))!;
+    }
+
+    /// <summary>Checks the audit log's chain of hashes.</summary>
+    /// <returns>The first entry that does not fit, or null when every entry does.</returns>
+    public static async Task<long?> VerifyAuditAsync(string ownerConnectionString, CancellationToken cancellationToken = default)
+    {
+        await using var connection = new NpgsqlConnection(ownerConnectionString);
+        await connection.OpenAsync(cancellationToken);
+        await using var verify = new NpgsqlCommand("select audit_verify()", connection);
+        return await verify.ExecuteScalarAsync(cancellationToken) as long?;
+    }
+
     /// <summary>Gives the two run-time roles their passwords. Kept out of the schema so no password is in a file.</summary>
     public static async Task SetRolePasswordsAsync(string ownerConnectionString, string apiPassword, string workerPassword, CancellationToken cancellationToken = default)
     {
