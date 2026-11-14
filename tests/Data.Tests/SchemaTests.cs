@@ -126,6 +126,20 @@ public sealed class SchemaTests(Database database) : IClassFixture<Database>
     }
 
     [Fact]
+    public async Task A_decision_cannot_change_once_the_run_is_approved()
+    {
+        var (tenant, run) = await Seed();
+        await Decide(tenant, "approved");
+        await Approve(tenant, run);
+
+        // Between the approval and the publication, nobody can swap what was approved.
+        var error = await Refused(() => Decide(tenant, "rejected", "pension-2026"));
+
+        Assert.Contains("can no longer change", error.MessageText, StringComparison.Ordinal);
+        Assert.Equal(1, await Publish(database.AsWorker, tenant, run));
+    }
+
+    [Fact]
     public async Task A_published_rule_set_a_document_and_an_approval_cannot_be_changed_or_removed()
     {
         var (tenant, run) = await Seed();

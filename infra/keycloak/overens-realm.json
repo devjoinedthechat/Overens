@@ -1,0 +1,112 @@
+{
+  "realm": "overens",
+  "enabled": true,
+  "sslRequired": "external",
+  "accessTokenLifespan": 300,
+  "roles": {
+    "realm": [
+      { "name": "specialist", "description": "Uploads agreements, reviews proposed rules and approves rule sets" }
+    ]
+  },
+  "components": {
+    "org.keycloak.userprofile.UserProfileProvider": [
+      {
+        "providerId": "declarative-user-profile",
+        "config": {
+          "kc.user.profile.config": [
+            "{\"attributes\":[{\"name\":\"username\"},{\"name\":\"email\"},{\"name\":\"firstName\"},{\"name\":\"lastName\"}],\"unmanagedAttributePolicy\":\"ADMIN_EDIT\"}"
+          ]
+        }
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "overens-api",
+      "name": "The Overens API, as an audience",
+      "enabled": true,
+      "bearerOnly": true
+    },
+    {
+      "clientId": "overens-web",
+      "name": "Sign-in for people",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["http://localhost:5058/*"],
+      "webOrigins": ["http://localhost:5058"],
+      "attributes": { "pkce.code.challenge.method": "S256" },
+      "protocolMappers": [
+        {
+          "name": "tenant",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "config": {
+            "user.attribute": "tenant",
+            "claim.name": "tenant",
+            "jsonType.label": "String",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        },
+        {
+          "name": "roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "config": {
+            "claim.name": "roles",
+            "jsonType.label": "String",
+            "multivalued": "true",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        },
+        {
+          "name": "audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "overens-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "anna",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "anna@tvaerhavn-loen.example",
+      "firstName": "Anna",
+      "lastName": "Holm",
+      "attributes": { "tenant": ["tvaerhavn-loen"] },
+      "realmRoles": ["specialist"],
+      "credentials": [{ "type": "password", "value": "local-demo-password", "temporary": false }]
+    },
+    {
+      "username": "bo",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "bo@elmekaer-regnskab.example",
+      "firstName": "Bo",
+      "lastName": "Skov",
+      "attributes": { "tenant": ["elmekaer-regnskab"] },
+      "realmRoles": ["specialist"],
+      "credentials": [{ "type": "password", "value": "local-demo-password", "temporary": false }]
+    },
+    {
+      "username": "erik",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "erik@tvaerhavn-loen.example",
+      "firstName": "Erik",
+      "lastName": "Dam",
+      "attributes": { "tenant": ["tvaerhavn-loen"] },
+      "credentials": [{ "type": "password", "value": "local-demo-password", "temporary": false }]
+    }
+  ]
+}

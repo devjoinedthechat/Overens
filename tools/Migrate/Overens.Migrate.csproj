@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Applies the database schema and gives the run-time roles their passwords, then exits. -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Data\Overens.Data.csproj" />
+  </ItemGroup>
+
+</Project>

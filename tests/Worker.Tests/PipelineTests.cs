@@ -63,11 +63,17 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
                 (rule.Decision, rule.DecidedBy, rule.DecidedAt) = (rule.Problems == "[]" ? "approved" : "rejected", "anna", DateTimeOffset.UtcNow);
             }
 
-            if (approve)
+        });
+
+        // The approval is a request of its own, made after the decisions.
+        if (approve)
+        {
+            await stack.AsApi.RunAsync(run.TenantId, db =>
             {
                 db.Approvals.Add(new() { RunId = run.RunId, TenantId = run.TenantId, ApprovedBy = "anna", ApprovedAt = DateTimeOffset.UtcNow });
-            }
-        });
+                return Task.CompletedTask;
+            });
+        }
     }
 
     private Task Decide(RunRef run, bool publish) =>

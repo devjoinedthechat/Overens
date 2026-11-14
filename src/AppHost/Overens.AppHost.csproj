@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Api\Overens.Api.csproj" />
+    <ProjectReference Include="..\Worker\Overens.Worker.csproj" />
+    <ProjectReference Include="..\..\tools\Migrate\Overens.Migrate.csproj" />
   </ItemGroup>
 
 </Project>

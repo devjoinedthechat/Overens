@@ -14,7 +14,10 @@ An AI agent that checks payslips against Danish collective agreements, under con
 | `src/Ingestion` | From a PDF to proposed rules. It reads the PDF into numbered clauses with no model (tables from their ruled borders), asks Claude for each kind of rule under a strict schema, then checks every proposed rule with no model: the clause exists, the quote stands in it word for word, and every number and date is printed where the rule says. |
 | `src/Gateway` | The one place a model is called from: a spending cap, and recorded answers so evals rerun without a model. |
 | `evals/Runner` | Scores extraction against the rules each agreement really states. `dotnet run --project evals/Runner` replays the recorded answers and spends nothing. |
-| `src/Api`, `src/AppHost` | The web API and the one-command local stack. So far only health endpoints and Postgres. |
+| `src/Data` | The database schema in plain SQL: a role for the API and one for the worker, row-level security per company, tables that cannot be changed once written, and a publish function that refuses without a person's approval on record. |
+| `src/Worker` | The pipeline as a durable orchestration: read, extract, wait for a reviewer for as long as it takes, publish. A worker that dies is replaced and the run carries on. |
+| `src/Api` | Upload a PDF, review each proposed rule beside the clause it came from, approve or reject, read published rule sets. Tokens from the identity provider; uploads limited per company. |
+| `src/AppHost` | The one-command local stack: Postgres, the Durable Task Scheduler's emulator, Keycloak, the worker and the API. |
 
 The engine covers six kinds of rule: minimum wage by seniority, overtime, supplements for inconvenient hours, pension, holiday allowance and special savings. Each rule has the days it is in force, so a payslip is checked against the rules of its own date.
 
@@ -25,9 +28,28 @@ The agreements in the corpus are synthetic. The organisations and agreement name
 It needs the .NET 10 SDK and Docker.
 
 ```sh
-dotnet run --project src/AppHost    # starts Postgres and the API, with a dashboard
+dotnet run --project src/AppHost    # the whole system, with a dashboard at http://localhost:15034
+scripts/smoke.sh                    # start it, take one agreement from upload to a published rule set, stop it
 scripts/check.sh                    # secrets scan, build, format check, tests
+dotnet run --project evals/Runner   # extraction scored on the corpus, from recorded answers
 ```
+
+No model key is needed for any of these. Without `ANTHROPIC_API_KEY` the worker replays the answers recorded for the corpus agreements; with it, it calls Claude under a spending cap.
+
+| Service | Address | What it is |
+| --- | --- | --- |
+| API | `http://localhost:5058` | Upload, review, approve, read rule sets |
+| Keycloak | `http://localhost:8081` | Sign-in. Realm `overens`, admin `admin` / `admin` |
+| Scheduler | `http://localhost:8092` | The Durable Task dashboard: each run, step by step |
+| Dashboard | `http://localhost:15034` | Logs and traces of every service |
+
+Local accounts, all with the password `local-demo-password`:
+
+| User | Company | Role |
+| --- | --- | --- |
+| `anna` | `tvaerhavn-loen` | Specialist |
+| `bo` | `elmekaer-regnskab` | Specialist |
+| `erik` | `tvaerhavn-loen` | None: signed in, and let in nowhere |
 
 ## Licence
 

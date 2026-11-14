@@ -105,6 +105,20 @@ create trigger documents_no_truncate before truncate on documents execute functi
 create trigger rule_sets_no_truncate before truncate on rule_sets execute function refuse_change();
 create trigger approvals_no_truncate before truncate on approvals execute function refuse_change();
 
+-- Once a person has approved a run, its decisions are what they approved. They stay.
+create function refuse_decision_after_approval() returns trigger
+  language plpgsql
+  as $$
+begin
+  if exists (select from approvals where run_id = old.run_id) then
+    raise exception 'run % is approved; its decisions can no longer change', old.run_id;
+  end if;
+  return new;
+end $$;
+
+create trigger decisions_close_on_approval before update or delete on proposed_rules
+  for each row execute function refuse_decision_after_approval();
+
 -- Publishes a run's approved rules as the agreement's next version. This is the only way
 -- a row reaches rule_sets: neither role may insert there. It refuses unless a person's
 -- approval is on record, every rule has been decided, and at least one was approved.
