@@ -6,6 +6,8 @@
 #   scripts/smoke.sh          start, check, stop
 #   KEEP=1 scripts/smoke.sh   leave the system running afterwards
 #   SKIP_BROWSER=1            leave out the part that needs Google Chrome
+#   WITH_MODEL=1              use ANTHROPIC_API_KEY: findings are worded and one question is
+#                             answered by Claude Haiku. Costs about a cent.
 #   SHOTS=dir                 save screenshots of the console there
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -19,7 +21,9 @@ bad() { echo "  FAIL  $1"; failed=1; }
 check() { if [ "$2" = "$3" ]; then ok "$1"; else bad "$1 (expected $3, got $2)"; fi; }
 json() { python3 -c "import json,sys; d=json.load(sys.stdin); print($1)"; }
 
-ANTHROPIC_API_KEY= dotnet run --project src/AppHost >"$log" 2>&1 &
+# Without WITH_MODEL the key is withheld even if one is set, so the test never spends.
+if [ -z "${WITH_MODEL:-}" ]; then export ANTHROPIC_API_KEY=; fi
+dotnet run --project src/AppHost >"$log" 2>&1 &
 host=$!
 stop() {
   if [ -z "${KEEP:-}" ]; then
@@ -100,6 +104,17 @@ check "a correct payslip has no findings" "$(pay 0 | call "$eva" -X POST -H 'Con
 found=$(pay 1 | call "$eva" -X POST -H 'Content-Type: application/json' --data-binary @- "$api/agreements/lager/pay-checks")
 check "a wrong payslip has findings" "$(echo "$found" | json "len(d['findings']) > 0")" True
 check "each finding is explained in words" "$(echo "$found" | json "all('kr.' in f['explanation'] for f in d['findings'])")" True
+
+echo "Asking a question"
+ask() { call "$eva" -X POST -H 'Content-Type: application/json' -d "{\"question\": \"$1\"}" "$api/agreements/lager/questions"; }
+if [ -n "${WITH_MODEL:-}" ]; then
+  answer=$(ask "Hvor mange procent af lønnen udgør feriegodtgørelsen?")
+  check "a question is answered from the agreement" "$(echo "$answer" | json "d['outcome'] + ' ' + str('12,5' in d['text']) + ' ' + str(len(d['citations']) > 0)")" "Answered True True"
+  check "a question the agreement does not answer is not answered" "$(ask "Har en medarbejder ret til firmabil?" | json "d['outcome']")" NotInAgreement
+  check "a finding is worded by the model" "$(pay 1 | call "$eva" -X POST -H 'Content-Type: application/json' --data-binary @- "$api/agreements/lager/pay-checks" | json "any(f['explainedByModel'] for f in d['findings'])")" True
+else
+  check "with no model, a question is refused and not guessed at" "$(status "$eva" -X POST -H 'Content-Type: application/json' -d '{"question": "Hvad er feriegodtgørelsen?"}' "$api/agreements/lager/questions")" 503
+fi
 
 if [ -z "${SKIP_BROWSER:-}" ]; then
   echo "The console, in a real browser"

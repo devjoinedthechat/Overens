@@ -323,6 +323,56 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
     }
 
     [Fact]
+    public async Task A_question_is_answered_from_the_companys_own_published_agreement_or_not_at_all()
+    {
+        var holiday = Site.Agreement.Truth.Rules.OfType<HolidayAllowanceRule>().Single().Source;
+        site.QuestionModel = new Calls(
+            ("read_clause", new { clause_id = holiday.ClauseId }),
+            ("give_answer", new { answered = true, text = "Feriegodtgørelsen udgør 12,5 pct. af lønnen.", citations = new[] { new { clause_id = holiday.ClauseId, quote = holiday.Quote } } }));
+        await using var asking = site.Create(uploadsPerHour: 1000);
+        site.QuestionModel = null;
+        var tenant = NewTenant();
+        await Publish(site.Client(site.Token(tenant), asking));
+        var employer = site.Client(site.Token(tenant, "eva", roles: [Caller.Employer]), asking);
+        Task<HttpResponseMessage> Ask(HttpClient client, string question) => client.PostAsJsonAsync("/agreements/lager/questions", new { question });
+
+        var answer = await Json(await Ask(employer, "Hvad er feriegodtgørelsen?"));
+
+        Assert.Equal(("Answered", "Feriegodtgørelsen udgør 12,5 pct. af lønnen."), (answer.GetProperty("outcome").GetString(), answer.GetProperty("text").GetString()));
+        Assert.Equal(holiday.ClauseId, answer.GetProperty("citations")[0].GetProperty("clauseId").GetString());
+        Assert.Equal(2, answer.GetProperty("steps").GetArrayLength());
+
+        Assert.Equal(HttpStatusCode.NotFound, (await Ask(site.Client(site.Token(NewTenant()), asking), "Hvad er feriegodtgørelsen?")).StatusCode);
+        Assert.Equal(HttpStatusCode.BadRequest, (await Ask(employer, new string('a', 501))).StatusCode);
+        Assert.Equal(HttpStatusCode.Forbidden, (await Ask(site.Client(site.Token(tenant, roles: []), asking), "Hvad?")).StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await Ask(site.Client(null, asking), "Hvad?")).StatusCode);
+        // With no model configured, questions are refused, not guessed at.
+        Assert.Equal(HttpStatusCode.ServiceUnavailable, (await Ask(site.Client(site.Token(tenant, "eva", roles: [Caller.Employer])), "Hvad er feriegodtgørelsen?")).StatusCode);
+    }
+
+    /// <summary>A model that makes the tool calls it was given, one per turn.</summary>
+    private sealed class Calls(params (string Name, object Arguments)[] turns) : Microsoft.Extensions.AI.IChatClient
+    {
+        private int turn;
+
+        public Task<Microsoft.Extensions.AI.ChatResponse> GetResponseAsync(IEnumerable<Microsoft.Extensions.AI.ChatMessage> messages, Microsoft.Extensions.AI.ChatOptions? options = null, CancellationToken cancellationToken = default)
+        {
+            var (name, arguments) = turns[Math.Min(turn++, turns.Length - 1)];
+            var call = new Microsoft.Extensions.AI.FunctionCallContent(Guid.NewGuid().ToString("N"), name, JsonSerializer.Deserialize<Dictionary<string, object?>>(JsonSerializer.Serialize(arguments)));
+            return Task.FromResult(new Microsoft.Extensions.AI.ChatResponse(new Microsoft.Extensions.AI.ChatMessage(Microsoft.Extensions.AI.ChatRole.Assistant, [call])));
+        }
+
+        public IAsyncEnumerable<Microsoft.Extensions.AI.ChatResponseUpdate> GetStreamingResponseAsync(IEnumerable<Microsoft.Extensions.AI.ChatMessage> messages, Microsoft.Extensions.AI.ChatOptions? options = null, CancellationToken cancellationToken = default) =>
+            throw new NotSupportedException();
+
+        public object? GetService(Type serviceType, object? serviceKey = null) => null;
+
+        public void Dispose()
+        {
+        }
+    }
+
+    [Fact]
     public async Task The_console_is_served_with_a_policy_that_lets_it_load_only_its_own_code()
     {
         var page = await site.Client(null).GetAsync("/app/");

@@ -50,6 +50,7 @@ builder.AddProject<Projects.Overens_Api>("api")
     .WithEnvironment("ConnectionStrings__scheduler", Scheduler)
     .WithEnvironment("Auth__Authority", Authority)
     .WithEnvironment("Auth__Audience", "overens-api")
+    .WithEnvironment("ANTHROPIC_API_KEY", builder.Configuration["ANTHROPIC_API_KEY"] ?? "")
     .WaitForCompletion(migrate)
     .WaitFor(scheduler)
     .WaitFor(keycloak);

@@ -19,6 +19,7 @@ An AI agent that checks payslips against Danish collective agreements, under con
 | `src/Api` | Upload a PDF, review each proposed rule beside the clause it came from, approve or reject, read published rule sets. An employer checks a payslip against the published rules and gets each wrong line with its clause; nothing about the employee is stored and a CPR number is refused. Tokens from the identity provider; uploads limited per company. |
 | `src/Api/wwwroot/app` | The web console, in plain JavaScript with no build step. Sign-in at the identity provider with PKCE. A reviewer sees each proposed rule beside its clause with the quoted sentence marked. Served under a content policy that lets it load only its own code. |
 | `src/Agent` | Where a model words things for people. A finding is explained in plain Danish; the model's wording is used only if every number in it is the finding's own, and fixed wording is used otherwise. |
+| `src/Agent/Questions` | A question agent with its own loop. It can search and read the agreement, look up the published rules on a date, and have pay worked out by the same engine that checks payslips. Its answer is shown only if every quote stands in its clause and every number comes from the agreement, the question or a tool. Otherwise fixed wording is shown. |
 | `src/AppHost` | The one-command local stack: Postgres, the Durable Task Scheduler's emulator, Keycloak, the worker and the API. |
 
 The engine covers six kinds of rule: minimum wage by seniority, overtime, supplements for inconvenient hours, pension, holiday allowance and special savings. Each rule has the days it is in force, so a payslip is checked against the rules of its own date.
@@ -27,14 +28,18 @@ The agreements in the corpus are synthetic. The organisations and agreement name
 
 ## Results so far
 
-Extraction is scored from the PDF against the rules each agreement really states, on ten synthetic agreements: four the prompt was written with, and six written in ways it was not.
+On synthetic agreements, each written from a rule set so that the right answer is known:
 
-| Model | Rules found | Wrong rules the checks missed | Payslips checked correctly | Cost per agreement |
-| --- | --- | --- | --- | --- |
-| Claude Sonnet | 121 of 121 | 0 | 720 of 720 | $0.08 |
-| Claude Haiku | 121 of 121 | 0 | 720 of 720 | $0.005 |
+| What | Claude Sonnet | Claude Haiku |
+| --- | --- | --- |
+| Rules read out of ten agreements | 121 of 121 | 121 of 121 |
+| Wrong rules the model-free checks missed | 0 | 0 |
+| Payslips checked correctly with those rules | 720 of 720 | 720 of 720 |
+| Questions answered correctly, of 48 | 48 | 48 |
+| Wrong answers shown | 0 | 0 |
+| Cost to read one agreement | $0.08 | $0.005 |
 
-Both models are at the ceiling, so these documents do not show where extraction breaks on a real agreement. The [eval report](docs/eval-report/README.md) says what failed on the first run, how it was fixed, and what the numbers do not show.
+Both models are at the ceiling, so these documents do not show where the system breaks on a real agreement. The [eval report](docs/eval-report/README.md) says what failed on the first runs, how each was fixed, and what the numbers do not show.
 
 ## Run it
 
@@ -47,7 +52,7 @@ scripts/check.sh                    # secrets scan, build, format check, tests
 dotnet run --project evals/Runner   # extraction scored on the corpus, from recorded answers
 ```
 
-No model key is needed for any of these. Without `ANTHROPIC_API_KEY` the worker replays the answers recorded for the corpus agreements; with it, it calls Claude under a spending cap.
+No model key is needed for any of these. Without `ANTHROPIC_API_KEY` the worker replays the answers recorded for the corpus agreements, findings get fixed wording, and questions are refused. With it, Claude is called under a spending cap.
 
 | Service | Address | What it is |
 | --- | --- | --- |

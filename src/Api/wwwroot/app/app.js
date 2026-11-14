@@ -369,6 +369,54 @@ async function payView() {
   ];
 }
 
+// ------------------------------------------------------------------ questions
+
+async function askView() {
+  const result = el("div");
+  const agreement = el("input", { type: "text", placeholder: "lager", "aria-label": "Agreement id" });
+  const question = el("textarea", { "aria-label": "Question", placeholder: "Hvad er mindstebetalingen for en nyansat?" });
+
+  async function ask() {
+    result.replaceChildren(el("p", { class: "muted" }, "Reading the agreement…"));
+    try {
+      const answer = await api("POST", `/agreements/${encodeURIComponent(agreement.value.trim())}/questions`, { question: question.value });
+      result.replaceChildren(
+        el(
+          "section",
+          {},
+          el(
+            "div",
+            { class: "spread" },
+            el("h2", {}, "Answer"),
+            el("span", { class: `pill ${answer.outcome === "Answered" ? "good" : "warn"}` }, answer.outcome === "Answered" ? "Checked against the agreement" : answer.outcome === "NotInAgreement" ? "Not in the agreement" : "No answer given"),
+          ),
+          el("p", {}, answer.text),
+          answer.citations.map((citation) => el("div", { class: "clause" }, el("span", { class: "where" }, citation.clauseId), citation.quote)),
+          el("p", { class: "muted" }, `What the agent did: ${answer.steps.join(" → ")}`),
+        ),
+      );
+    } catch (error) {
+      result.replaceChildren(el("section", {}, failure(error)));
+    }
+  }
+
+  return [
+    el(
+      "section",
+      {},
+      el("h1", {}, "Ask about an agreement"),
+      el("p", { class: "muted" }, "An answer is shown only if it quotes the agreement word for word and every number in it comes from the agreement or the pay calculator."),
+      el("label", {}, "Agreement id"),
+      agreement,
+      el("label", {}, "Question"),
+      question,
+      el("p", {}, ""),
+      el("button", { class: "primary", onclick: ask }, "Ask"),
+    ),
+    result,
+  ];
+}
+
 // ------------------------------------------------------------------ frame
 
 async function show(view) {
@@ -402,8 +450,8 @@ try {
   } else {
     const roles = claims.roles ?? [];
     sessionBox.replaceChildren(el("span", {}, `${claims.preferred_username} · ${claims.tenant ?? "no company"}`), el("button", { onclick: signOut }, "Sign out"));
-    if (roles.includes("specialist")) tabs([["Agreements", agreementsView], ["Check a payslip", payView]]);
-    else if (roles.includes("employer")) tabs([["Check a payslip", payView]]);
+    if (roles.includes("specialist")) tabs([["Agreements", agreementsView], ["Check a payslip", payView], ["Ask", askView]]);
+    else if (roles.includes("employer")) tabs([["Check a payslip", payView], ["Ask", askView]]);
     else app.replaceChildren(el("section", {}, el("h1", {}, "No access"), el("p", {}, "Your account has no role in Overens. Ask an administrator.")));
   }
 } catch (error) {

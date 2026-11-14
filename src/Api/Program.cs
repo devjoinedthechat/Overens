@@ -4,6 +4,7 @@ using Microsoft.DurableTask.Client;
 using Microsoft.DurableTask.Client.AzureManaged;
 using Npgsql;
 using Overens.Agent;
+using Overens.Agent.Questions;
 using Overens.Api;
 using Overens.Data;
 using Overens.Gateway;
@@ -36,19 +37,23 @@ builder.Services.AddRateLimiter(limiter =>
     limiter.AddPolicy(Endpoints.UploadLimit, http => RateLimitPartition.GetFixedWindowLimiter(
         http.User.FindFirst("tenant")?.Value ?? "",
         _ => new() { PermitLimit = builder.Configuration.GetValue("Limits:UploadsPerHour", 20), Window = TimeSpan.FromHours(1) }));
+    limiter.AddPolicy(QuestionEndpoints.Limit, http => RateLimitPartition.GetFixedWindowLimiter(
+        http.User.FindFirst("tenant")?.Value ?? "",
+        _ => new() { PermitLimit = builder.Configuration.GetValue("Limits:QuestionsPerHour", 120), Window = TimeSpan.FromHours(1) }));
 });
 
 builder.Services.AddSingleton(_ => new TenantScope(NpgsqlDataSource.Create(Setting("ConnectionStrings:api"))));
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddProblemDetails();
 
-// Findings are worded by a model when there is a key, under a spending cap. Without one, fixed wording is used.
-var explainModel = builder.Configuration["EXPLAIN_MODEL"] ?? Models.Haiku;
-builder.Services.AddSingleton(_ => new FindingExplainer(
-    builder.Configuration["ANTHROPIC_API_KEY"] is { Length: > 0 } key
-        ? new MeteredChatClient(Claude.Create(key), new Spend(), decimal.Parse(builder.Configuration["MODEL_CAP_DOLLARS"] ?? "5", System.Globalization.CultureInfo.InvariantCulture))
-        : null,
-    explainModel));
+// With a model key, findings are worded and questions answered by a model, under one spending
+// cap for both. Without one, findings get fixed wording and questions are not answered.
+var modelId = builder.Configuration["API_MODEL"] ?? Models.Haiku;
+Microsoft.Extensions.AI.IChatClient? model = builder.Configuration["ANTHROPIC_API_KEY"] is { Length: > 0 } key
+    ? new MeteredChatClient(Claude.Create(key), new Spend(), decimal.Parse(builder.Configuration["MODEL_CAP_DOLLARS"] ?? "5", System.Globalization.CultureInfo.InvariantCulture))
+    : null;
+builder.Services.AddSingleton(_ => new FindingExplainer(model, modelId));
+builder.Services.AddSingleton(_ => new QuestionService(model is null ? null : new QuestionAgent(model, modelId)));
 if (builder.Configuration["ConnectionStrings:scheduler"] is { } scheduler)
 {
     builder.Services.AddDurableTaskClient(client => client.UseDurableTaskScheduler(scheduler));
@@ -83,6 +88,7 @@ app.MapDefaultEndpoints();
 app.MapGet("/", () => Results.Ok(new { service = "overens-api" }));
 app.MapOverens();
 app.MapPayChecks();
+app.MapQuestions();
 
 app.Run();
 

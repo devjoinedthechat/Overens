@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Npgsql;
+using Overens.Agent.Questions;
 using Overens.Data;
 using Overens.Ingestion.Extraction;
 using Overens.Ingestion.Pipeline;
@@ -45,6 +46,9 @@ public sealed class Site : IAsyncLifetime
 
     public static byte[] RenewalPdf { get; } = AgreementPdf.Render(Renewal.Document);
 
+    /// <summary>The model behind the question agent, for sites created after it is set. Null is no model.</summary>
+    public IChatClient? QuestionModel { get; set; }
+
     /// <summary>Lets a test spoil the model's answers for the uploads that follow.</summary>
     public Action<string, System.Text.Json.Nodes.JsonArray>? Spoil { get; set; }
 
@@ -59,8 +63,11 @@ public sealed class Site : IAsyncLifetime
         factory = Create(uploadsPerHour: 1000);
     }
 
-    public WebApplicationFactory<Program> Create(int uploadsPerHour) =>
-        new WebApplicationFactory<Program>().WithWebHostBuilder(host =>
+    public WebApplicationFactory<Program> Create(int uploadsPerHour)
+    {
+        // Taken now: the host is built later, on first use.
+        var questionModel = QuestionModel;
+        return new WebApplicationFactory<Program>().WithWebHostBuilder(host =>
         {
             host.UseSetting("environment", "Development");
             host.UseSetting("Auth:Authority", Issuer);
@@ -84,10 +91,13 @@ public sealed class Site : IAsyncLifetime
                         new StandInModel(Renewal.Document, Renewal.Truth)), "stand-in"),
                     "stand-in",
                     TimeProvider.System);
+                services.RemoveAll<QuestionService>();
+                services.AddSingleton(new QuestionService(questionModel is null ? null : new QuestionAgent(questionModel, "stand-in")));
                 services.RemoveAll<IPipeline>();
                 services.AddSingleton<IPipeline>(new PipelineAtOnce(steps));
             });
         });
+    }
 
     public async Task DisposeAsync()
     {
