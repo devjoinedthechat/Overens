@@ -84,5 +84,20 @@ check "the rule set is published" "$state" published
 check "as version 1, approved by anna" "$(call "$anna" "$api/agreements/lager/rule-sets" | json "f\"{d[0]['version']} {d[0]['approvedBy']} {len(d[0]['rules'])}\"")" "1 anna 13"
 check "another company sees none of it" "$(call "$bo" "$api/agreements/lager/rule-sets" | json "len(d)")" 0
 
+echo "Checking pay"
+eva=$(token eva)
+check "an employer cannot upload an agreement" "$(status "$eva" -X POST -H 'Content-Type: application/pdf' --data-binary @data/synthetic/hard-2026/agreement.pdf "$api/agreements/lager/runs")" 403
+pay() { python3 -c "
+import json
+cases = json.load(open('data/synthetic/hard-2026/pay.json'))
+answers = json.load(open('data/synthetic/hard-2026/pay-answers.json'))
+wrong = {(a['employeeId'], a['periodStart']) for a in answers}
+pick = [c for c in cases if ((c['timesheet']['employee']['id'], c['timesheet']['periodStart']) in wrong) == ($1 == 1)][0]
+print(json.dumps(pick))"; }
+check "a correct payslip has no findings" "$(pay 0 | call "$eva" -X POST -H 'Content-Type: application/json' --data-binary @- "$api/agreements/lager/pay-checks" | json "len(d['findings'])")" 0
+found=$(pay 1 | call "$eva" -X POST -H 'Content-Type: application/json' --data-binary @- "$api/agreements/lager/pay-checks")
+check "a wrong payslip has findings" "$(echo "$found" | json "len(d['findings']) > 0")" True
+check "each finding is explained in words" "$(echo "$found" | json "all('kr.' in f['explanation'] for f in d['findings'])")" True
+
 echo
 if [ "$failed" -eq 0 ]; then echo "All checks passed."; else echo "Some checks failed."; exit 1; fi

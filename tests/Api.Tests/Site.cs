@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.AI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -39,6 +40,11 @@ public sealed class Site : IAsyncLifetime
 
     public static byte[] Pdf { get; } = AgreementPdf.Render(Agreement.Document);
 
+    /// <summary>The agreement that renews <see cref="Agreement"/> from March 2029.</summary>
+    public static SyntheticAgreement Renewal { get; } = Corpus.Generate(Corpus.Agreements[3]);
+
+    public static byte[] RenewalPdf { get; } = AgreementPdf.Render(Renewal.Document);
+
     /// <summary>Lets a test spoil the model's answers for the uploads that follow.</summary>
     public Action<string, System.Text.Json.Nodes.JsonArray>? Spoil { get; set; }
 
@@ -73,7 +79,9 @@ public sealed class Site : IAsyncLifetime
                 var steps = new IngestionSteps(
                     new TenantScope(NpgsqlDataSource.Create(As("overens_worker", "worker-test"))),
                     new PdfLayoutReader(),
-                    new RuleExtractor(new StandInModel(Agreement.Document, Agreement.Truth, (kind, rules) => Spoil?.Invoke(kind, rules)), "stand-in"),
+                    new RuleExtractor(new ByTitle(
+                        new StandInModel(Agreement.Document, Agreement.Truth, (kind, rules) => Spoil?.Invoke(kind, rules)),
+                        new StandInModel(Renewal.Document, Renewal.Truth)), "stand-in"),
                     "stand-in",
                     TimeProvider.System);
                 services.RemoveAll<IPipeline>();
@@ -121,6 +129,26 @@ public sealed class Site : IAsyncLifetime
     }
 
     public HttpClient As(string tenant) => Client(Token(tenant));
+
+    /// <summary>Answers for whichever of the two agreements the request is about.</summary>
+    private sealed class ByTitle(StandInModel first, StandInModel renewal) : IChatClient
+    {
+        public Task<ChatResponse> GetResponseAsync(IEnumerable<ChatMessage> messages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+        {
+            var asked = messages.ToList();
+            var aboutRenewal = asked[^1].Text.Contains("1. marts 2029 og kan opsiges", StringComparison.Ordinal);
+            return (aboutRenewal ? renewal : first).GetResponseAsync(asked, options, cancellationToken);
+        }
+
+        public IAsyncEnumerable<ChatResponseUpdate> GetStreamingResponseAsync(IEnumerable<ChatMessage> messages, ChatOptions? options = null, CancellationToken cancellationToken = default) =>
+            throw new NotSupportedException();
+
+        public object? GetService(Type serviceType, object? serviceKey = null) => null;
+
+        public void Dispose()
+        {
+        }
+    }
 
     /// <summary>Runs each step when it is asked for, so a test sees the result at once.</summary>
     private sealed class PipelineAtOnce(IngestionSteps steps) : IPipeline

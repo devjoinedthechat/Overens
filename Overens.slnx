@@ -4,6 +4,9 @@
     <Project Path="evals/Runner/Overens.Evals.csproj" />
   </Folder>
   <Folder Name="/src/" />
+  <Folder Name="/src/Agent/">
+    <Project Path="src/Agent/Overens.Agent.csproj" />
+  </Folder>
   <Folder Name="/src/Api/">
     <Project Path="src/Api/Overens.Api.csproj" />
   </Folder>
@@ -35,6 +38,9 @@
     <Project Path="src/Worker/Overens.Worker.csproj" />
   </Folder>
   <Folder Name="/tests/" />
+  <Folder Name="/tests/Agent.Tests/">
+    <Project Path="tests/Agent.Tests/Overens.Agent.Tests.csproj" />
+  </Folder>
   <Folder Name="/tests/Api.Tests/">
     <Project Path="tests/Api.Tests/Overens.Api.Tests.csproj" />
   </Folder>

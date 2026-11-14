@@ -5,7 +5,8 @@
   "accessTokenLifespan": 300,
   "roles": {
     "realm": [
-      { "name": "specialist", "description": "Uploads agreements, reviews proposed rules and approves rule sets" }
+      { "name": "specialist", "description": "Uploads agreements, reviews proposed rules and approves rule sets" },
+      { "name": "employer", "description": "Checks pay against published rule sets" }
     ]
   },
   "components": {
@@ -96,6 +97,17 @@
       "lastName": "Skov",
       "attributes": { "tenant": ["elmekaer-regnskab"] },
       "realmRoles": ["specialist"],
+      "credentials": [{ "type": "password", "value": "local-demo-password", "temporary": false }]
+    },
+    {
+      "username": "eva",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "eva@tvaerhavn-loen.example",
+      "firstName": "Eva",
+      "lastName": "Lund",
+      "attributes": { "tenant": ["tvaerhavn-loen"] },
+      "realmRoles": ["employer"],
       "credentials": [{ "type": "password", "value": "local-demo-password", "temporary": false }]
     },
     {

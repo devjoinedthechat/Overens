@@ -17,6 +17,10 @@ public static class Danish
     /// <summary>142,50</summary>
     public static string Amount(decimal value) => value.ToString("0.00", CultureInfo.InvariantCulture).Replace('.', ',');
 
+    /// <summary>An amount as a payslip prints it, with a dot between thousands: 1.234,50</summary>
+    public static string Money(decimal value) =>
+        value.ToString("#,##0.00", CultureInfo.InvariantCulture).Replace(',', ' ').Replace('.', ',').Replace(' ', '.');
+
     /// <summary>142,50 kr.</summary>
     public static string Kroner(decimal value) => $"{Amount(value)} kr.";
 

@@ -16,7 +16,8 @@ An AI agent that checks payslips against Danish collective agreements, under con
 | `evals/Runner` | Scores extraction against the rules each agreement really states. `dotnet run --project evals/Runner` replays the recorded answers and spends nothing. |
 | `src/Data` | The database schema in plain SQL: a role for the API and one for the worker, row-level security per company, tables that cannot be changed once written, and a publish function that refuses without a person's approval on record. |
 | `src/Worker` | The pipeline as a durable orchestration: read, extract, wait for a reviewer for as long as it takes, publish. A worker that dies is replaced and the run carries on. |
-| `src/Api` | Upload a PDF, review each proposed rule beside the clause it came from, approve or reject, read published rule sets. Tokens from the identity provider; uploads limited per company. |
+| `src/Api` | Upload a PDF, review each proposed rule beside the clause it came from, approve or reject, read published rule sets. An employer checks a payslip against the published rules and gets each wrong line with its clause; nothing about the employee is stored and a CPR number is refused. Tokens from the identity provider; uploads limited per company. |
+| `src/Agent` | Where a model words things for people. A finding is explained in plain Danish; the model's wording is used only if every number in it is the finding's own, and fixed wording is used otherwise. |
 | `src/AppHost` | The one-command local stack: Postgres, the Durable Task Scheduler's emulator, Keycloak, the worker and the API. |
 
 The engine covers six kinds of rule: minimum wage by seniority, overtime, supplements for inconvenient hours, pension, holiday allowance and special savings. Each rule has the days it is in force, so a payslip is checked against the rules of its own date.
@@ -60,6 +61,7 @@ Local accounts, all with the password `local-demo-password`:
 | --- | --- | --- |
 | `anna` | `tvaerhavn-loen` | Specialist |
 | `bo` | `elmekaer-regnskab` | Specialist |
+| `eva` | `tvaerhavn-loen` | Employer: checks pay, nothing else |
 | `erik` | `tvaerhavn-loen` | None: signed in, and let in nowhere |
 
 ## Licence

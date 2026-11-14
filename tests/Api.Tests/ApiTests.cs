@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text.Json;
 using Microsoft.IdentityModel.Tokens;
 using Overens.Rules;
+using Overens.Synthetic;
 
 namespace Overens.Api.Tests;
 
@@ -214,6 +215,106 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         Assert.Equal(HttpStatusCode.Accepted, (await busy.PostAsync("/agreements/lager/runs", PdfBody())).StatusCode);
         Assert.Equal(HttpStatusCode.TooManyRequests, (await busy.PostAsync("/agreements/lager/runs", PdfBody())).StatusCode);
         Assert.Equal(HttpStatusCode.Accepted, (await other.PostAsync("/agreements/lager/runs", PdfBody())).StatusCode);
+    }
+
+    private static async Task Publish(HttpClient specialist, byte[]? pdf = null)
+    {
+        var run = (await Json(await specialist.PostAsync("/agreements/lager/runs", PdfBody(pdf)))).GetProperty("id").GetString()!;
+        await DecideAll(specialist, run);
+        Assert.Equal(HttpStatusCode.Accepted, (await specialist.PostAsync($"/runs/{run}/approval", null)).StatusCode);
+    }
+
+    private static Task<HttpResponseMessage> CheckPay(HttpClient client, object body, string agreement = "lager") =>
+        client.PostAsync($"/agreements/{agreement}/pay-checks", new StringContent(RuleJson.Write(body), System.Text.Encoding.UTF8, "application/json"));
+
+    [Fact]
+    public async Task An_employer_checks_payslips_and_gets_exactly_the_known_errors_each_with_its_clause()
+    {
+        var tenant = NewTenant();
+        await Publish(site.Client(site.Token(tenant)));
+        var employer = site.Client(site.Token(tenant, "eva", roles: [Caller.Employer]));
+        var pay = Synthetic.Corpus.Pay(Synthetic.Corpus.Agreements[2], Site.Agreement);
+
+        foreach (var payCase in pay.Cases.Take(30))
+        {
+            var answer = pay.Errors.SingleOrDefault(error => error.EmployeeId == payCase.Timesheet.Employee.Id && error.PeriodStart == payCase.Timesheet.PeriodStart);
+            var response = await CheckPay(employer, payCase);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var findings = (await Json(response)).GetProperty("findings").EnumerateArray().ToList();
+
+            Assert.Equal(
+                (answer?.Lines ?? []).Select(line => (line.Line.ToString(), line.Expected, line.Actual)).Order(),
+                findings.Where(finding => finding.GetProperty("line").ValueKind == JsonValueKind.String)
+                    .Select(finding => (finding.GetProperty("line").GetString()!, finding.GetProperty("expected").GetDecimal(), finding.GetProperty("actual").GetDecimal())).Order());
+            Assert.All(findings, finding =>
+            {
+                // No model key in the tests: the wording is the fixed one, and says so.
+                Assert.False(finding.GetProperty("explainedByModel").GetBoolean());
+                Assert.Contains("kr.", finding.GetProperty("explanation").GetString(), StringComparison.Ordinal);
+            });
+        }
+
+        // A line that is too low names the clause the rule came from.
+        var wrong = pay.Cases.First(payCase => pay.Errors.Any(error => error.EmployeeId == payCase.Timesheet.Employee.Id && error.PeriodStart == payCase.Timesheet.PeriodStart && error.Mistake == "special_savings_left_out"));
+        var missing = (await Json(await CheckPay(employer, wrong))).GetProperty("findings").EnumerateArray().Single();
+        Assert.Equal("MissingLine", missing.GetProperty("kind").GetString());
+        Assert.StartsWith("§ ", missing.GetProperty("clauses")[0].GetProperty("id").GetString(), StringComparison.Ordinal);
+        Assert.Contains("Fritvalgskonto står ikke på lønsedlen", missing.GetProperty("explanation").GetString(), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task After_a_renewal_each_payslip_is_checked_against_the_rules_of_its_own_date()
+    {
+        var tenant = NewTenant();
+        var anna = site.Client(site.Token(tenant));
+        await Publish(anna);
+        await Publish(anna, Site.RenewalPdf);
+        var employee = new Employee("emp-1", new(2020, 1, 15));
+
+        async Task<int> Findings(SyntheticAgreement paidUnder, DateOnly day)
+        {
+            var timesheet = new Timesheet(employee, new(day.Year, day.Month, 1), new(day.Year, day.Month, 28), [new(day, new(14, 0), new(23, 30))]);
+            var lines = PayEngine.Expect(paidUnder.Truth, timesheet, 250m).Components
+                .GroupBy(part => part.Line).Select(line => new PayLine(line.Key, line.Sum(part => part.Amount)));
+            var payslip = new Payslip(employee.Id, timesheet.PeriodStart, timesheet.PeriodEnd, 250m, [.. lines]);
+            var response = await CheckPay(anna, new { timesheet, payslip });
+            Assert.Equal(2, (await Json(response)).GetProperty("version").GetInt32());
+            return (await Json(response)).GetProperty("findings").GetArrayLength();
+        }
+
+        // Paid by the first agreement in 2027 and by the renewal in 2030: both right.
+        Assert.Equal(0, await Findings(Site.Agreement, new(2027, 6, 8)));
+        Assert.Equal(0, await Findings(Site.Renewal, new(2030, 6, 11)));
+        // Paid by the old rates after the renewal took over: wrong.
+        Assert.NotEqual(0, await Findings(Site.Agreement, new(2030, 6, 11)));
+    }
+
+    [Fact]
+    public async Task Pay_is_checked_only_for_ones_own_company_by_a_specialist_or_an_employer_and_never_under_a_cpr_number()
+    {
+        var tenant = NewTenant();
+        await Publish(site.Client(site.Token(tenant)));
+        var payCase = Synthetic.Corpus.Pay(Synthetic.Corpus.Agreements[2], Site.Agreement).Cases[0];
+        var employer = site.Client(site.Token(tenant, "eva", roles: [Caller.Employer]));
+
+        Assert.Equal(HttpStatusCode.OK, (await CheckPay(employer, payCase)).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await CheckPay(site.Client(site.Token(tenant)), payCase)).StatusCode);
+        Assert.Equal(HttpStatusCode.Forbidden, (await CheckPay(site.Client(site.Token(tenant, roles: [])), payCase)).StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await CheckPay(site.Client(null), payCase)).StatusCode);
+        // Another company has no such agreement, and an employer cannot do a specialist's work.
+        Assert.Equal(HttpStatusCode.NotFound, (await CheckPay(site.Client(site.Token(NewTenant(), roles: [Caller.Employer])), payCase)).StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, (await CheckPay(employer, payCase, agreement: "no-such")).StatusCode);
+        Assert.Equal(HttpStatusCode.Forbidden, (await employer.PostAsync("/agreements/lager/runs", PdfBody())).StatusCode);
+        Assert.Equal(HttpStatusCode.Forbidden, (await employer.GetAsync("/agreements/lager/rule-sets")).StatusCode);
+
+        async Task<HttpStatusCode> With(Func<Synthetic.PayCase, object> change) => (await CheckPay(employer, change(payCase))).StatusCode;
+        var cpr = payCase.Timesheet.Employee with { Id = "010190-1234" };
+        Assert.Equal(HttpStatusCode.BadRequest, await With(pay => pay with { Timesheet = pay.Timesheet with { Employee = cpr }, Payslip = pay.Payslip with { EmployeeId = cpr.Id } }));
+        Assert.Equal(HttpStatusCode.BadRequest, await With(pay => pay with { Timesheet = pay.Timesheet with { Employee = cpr with { Id = "0101901234" } } }));
+        Assert.Equal(HttpStatusCode.BadRequest, await With(pay => pay with { Payslip = pay.Payslip with { EmployeeId = "someone-else" } }));
+        Assert.Equal(HttpStatusCode.BadRequest, await With(pay => pay with { Timesheet = pay.Timesheet with { PeriodEnd = pay.Timesheet.PeriodStart.AddDays(90) } }));
+        Assert.Equal(HttpStatusCode.BadRequest, await With(_ => new { hello = "world" }));
+        Assert.Equal(HttpStatusCode.BadRequest, (await employer.PostAsync("/agreements/lager/pay-checks", new StringContent("{not json", System.Text.Encoding.UTF8, "application/json"))).StatusCode);
     }
 
     [Theory]
