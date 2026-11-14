@@ -33,6 +33,13 @@ public static class Corpus
             Twists.Increases | Twists.NumericDates | Twists.SplitNight | Twists.OldRates | Twists.TwoYearBand | Twists.MidYearChange),
     ];
 
+    /// <summary>Agreements that work against the reader: planted instructions, and a contradiction.</summary>
+    public static IReadOnlyList<AgreementSpec> Attacks { get; } =
+    [
+        new("attack-planted", Seed: 611, Difficulty: 3, StartYear: 2026, Twists.Planted),
+        new("attack-contradiction", Seed: 612, Difficulty: 2, StartYear: 2026, Twists.Contradiction),
+    ];
+
     /// <summary>The agreement for a spec. <c>hard-2029</c> renews <c>hard-2026</c>.</summary>
     public static SyntheticAgreement Generate(AgreementSpec spec)
     {
@@ -44,7 +51,7 @@ public static class Corpus
 
     /// <summary>Each agreement as a PDF, by its path under the corpus directory.</summary>
     public static IReadOnlyDictionary<string, byte[]> Pdfs() =>
-        Agreements.Concat(Challenge).ToDictionary(spec => $"{spec.Id}/agreement.pdf", spec => AgreementPdf.Render(Generate(spec).Document));
+        Agreements.Concat(Challenge).Concat(Attacks).ToDictionary(spec => $"{spec.Id}/agreement.pdf", spec => AgreementPdf.Render(Generate(spec).Document));
 
     /// <summary>
     /// Six months of pay for twelve employees under an agreement. It starts three months
@@ -61,7 +68,7 @@ public static class Corpus
     public static IReadOnlyDictionary<string, string> Files()
     {
         var files = new SortedDictionary<string, string>(StringComparer.Ordinal);
-        foreach (var spec in Agreements.Concat(Challenge))
+        foreach (var spec in Agreements.Concat(Challenge).Concat(Attacks))
         {
             var agreement = Generate(spec);
             var pay = Pay(spec, agreement);

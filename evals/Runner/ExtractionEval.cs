@@ -11,7 +11,7 @@ namespace Overens.Evals;
 /// <param name="Expected">Rules the agreement states.</param>
 /// <param name="Proposed">Rules the model proposed.</param>
 /// <param name="Correct">True rules that some proposed rule states, in period and every value.</param>
-/// <param name="Flagged">Proposed rules the model-free checks raised a problem on.</param>
+/// <param name="Flagged">Proposed rules the model-free checks raised a problem on, or reported as in conflict with another.</param>
 /// <param name="WrongAndUnflagged">Wrong rules the checks let through: what a reviewer alone would have to catch.</param>
 /// <param name="RightButFlagged">Correct rules the checks raised a problem on: needless work for a reviewer.</param>
 public sealed record KindScore(string Kind, int Expected, int Proposed, int Correct, int Flagged, int WrongAndUnflagged, int RightButFlagged)
@@ -55,13 +55,16 @@ public static partial class ExtractionEval
             var expected = truth.Rules.Where(rule => KindOf(rule) == kind).Select(Meaning).ToList();
             var proposed = extraction.Rules.Where(rule => KindOf(rule.Rule) == kind).ToList();
             var correct = proposed.Where(rule => expected.Contains(Meaning(rule.Rule))).ToList();
+            // A rule reported as in conflict with another has been put in front of a person, as a flagged rule has.
+            bool Raised(ProposedRule rule) => rule.Problems.Count > 0
+                || proposed.Any(other => !ReferenceEquals(other, rule) && other.Rule.InForce.Overlaps(rule.Rule.InForce));
             scores.Add(new(
                 kind,
                 expected.Count,
                 proposed.Count,
                 correct.Select(rule => Meaning(rule.Rule)).Distinct().Count(),
-                proposed.Count(rule => rule.Problems.Count > 0),
-                proposed.Except(correct).Count(rule => rule.Problems.Count == 0),
+                proposed.Count(Raised),
+                proposed.Except(correct).Count(rule => !Raised(rule)),
                 correct.Count(rule => rule.Problems.Count > 0)));
         }
 
@@ -76,7 +79,10 @@ public static partial class ExtractionEval
     {
         ArgumentNullException.ThrowIfNull(extraction);
         ArgumentNullException.ThrowIfNull(pay);
-        var rules = new RuleSet("extracted", 1, [.. extraction.Sound]);
+        // A rule in conflict with another is not approved until a person has chosen, so it checks no pay.
+        var sound = extraction.Sound.ToList();
+        var rules = new RuleSet("extracted", 1, [.. sound.Where(rule =>
+            !sound.Any(other => !ReferenceEquals(other, rule) && other.GetType() == rule.GetType() && other.InForce.Overlaps(rule.InForce)))]);
         var (right, missed, falseAlarms) = (0, 0, 0);
         foreach (var (timesheet, payslip) in pay.Cases)
         {

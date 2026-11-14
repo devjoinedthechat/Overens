@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01PGEXHfUkoJxGz2GrtXKn8v",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022Protokollat 2, stk. 1\u0022}"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_011nSHrw4Ks9i1H9BnJf246b",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Den 15. april 2027 betaler arbejdsgiveren 9,5 pct. af l\\u00F8nnen i pensionsbidrag, da forh\\u00F8jelsen til 9,5 pct. g\\u00E6lder fra 1. marts 2027. Medarbejderen er omfattet af ordningen efter tre m\\u00E5neders anciennitet, og medarbejderens bidrag p\\u00E5 4,5 pct. er u\\u00E6ndret.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022Protokollat 1, stk. 1\u0022,\u0022quote\u0022:\u0022Med virkning fra den 1. marts 2027 forh\\u00F8jes arbejdsgiverens pensionsbidrag til 9,5 pct. af l\\u00F8nnen.\u0022},{\u0022clause_id\u0022:\u0022Protokollat 1, stk. 2\u0022,\u0022quote\u0022:\u0022Medarbejderens bidrag og anciennitetskravet er u\\u00E6ndrede.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 7, stk. 2\u0022,\u0022quote\u0022:\u0022Medarbejdere er omfattet af pensionsordningen efter tre m\\u00E5neders anciennitet.\u0022}]}"
+    }
+  ]
+}

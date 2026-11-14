@@ -184,6 +184,37 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
     }
 
     [Fact]
+    public async Task Two_rules_that_conflict_cannot_both_be_approved_and_rejecting_one_settles_it()
+    {
+        site.Spoil = (kind, rules) =>
+        {
+            if (kind == "holiday_allowance")
+            {
+                // The model returns both figures of an agreement that contradicts itself.
+                rules.Add(JsonSerializer.Deserialize<System.Text.Json.Nodes.JsonNode>(rules[0]!.ToJsonString()));
+            }
+        };
+        var anna = site.As(NewTenant());
+        var run = await Upload(anna);
+        site.Spoil = null;
+
+        var conflict = Assert.Single((await Run(anna, run)).GetProperty("gaps").EnumerateArray());
+        Assert.Equal("conflicting_rules", conflict.GetProperty("code").GetString());
+
+        // Both approved: refused, and the review stays open.
+        await DecideAll(anna, run);
+        var refused = await anna.PostAsync($"/runs/{run}/approval", null);
+        Assert.Equal(HttpStatusCode.Conflict, refused.StatusCode);
+        Assert.Contains("cannot be published together", (await Json(refused)).GetProperty("detail").GetString(), StringComparison.Ordinal);
+
+        // One rejected: published, with one holiday rule.
+        Assert.Equal(HttpStatusCode.OK, (await Decide(anna, run, "holiday_allowance-2026b", "rejected")).StatusCode);
+        Assert.Equal(HttpStatusCode.Accepted, (await anna.PostAsync($"/runs/{run}/approval", null)).StatusCode);
+        var set = Assert.Single((await Json(await anna.GetAsync("/agreements/lager/rule-sets"))).EnumerateArray());
+        Assert.Single(RuleJson.Read<List<Rule>>(set.GetProperty("rules").GetRawText()).OfType<HolidayAllowanceRule>());
+    }
+
+    [Fact]
     public async Task A_rejected_run_publishes_nothing()
     {
         var anna = site.As(NewTenant());

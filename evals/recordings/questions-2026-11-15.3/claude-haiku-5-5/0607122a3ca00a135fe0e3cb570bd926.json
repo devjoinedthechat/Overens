@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_016Dz4SJaUd8b6FFRgp4mcJA",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Overarbejdstill\\u00E6gget for vagten er 320,00 kr. Vagten p\\u00E5 9,5 timer overstiger den daglige normale arbejdstid p\\u00E5 7 timer og 24 minutter. Den f\\u00F8rste times overarbejde betales med 50 % till\\u00E6g (100 kr.), og den resterende overarbejdstid med 100 % till\\u00E6g (220 kr.). Beregningen bruger dato 5. maj 2026 og timel\\u00F8nnen 200 kr.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 2\u0022,\u0022quote\u0022:\u0022For den f\\u00F8rste times overarbejde pr. dag betales et till\\u00E6g p\\u00E5 50,0 pct. af timel\\u00F8nnen. For overarbejde herudover betales et till\\u00E6g p\\u00E5 100,0 pct. af timel\\u00F8nnen.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 3, stk. 2\u0022,\u0022quote\u0022:\u0022Den daglige normale arbejdstid er 7 timer og 24 minutter.\u0022},{\u0022clause_id\u0022:\u0022\\u00A7 5, stk. 1\u0022,\u0022quote\u0022:\u0022Overarbejde er arbejde ud over den daglige normale arbejdstid, jf. \\u00A7 3, stk. 2.\u0022}]}"
+    }
+  ]
+}

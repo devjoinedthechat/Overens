@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_015fQnEpqyj42oDGa9jLJUNE",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022En medarbejder er omfattet af pensionsordningen efter tre m\\u00E5neders anciennitet (\\u00A7 7, stk. 2). Det er ikke n\\u00F8dvendigt at beregne noget for at besvare sp\\u00F8rgsm\\u00E5let.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 7, stk. 2\u0022,\u0022quote\u0022:\u0022Medarbejdere er omfattet af pensionsordningen efter tre m\\u00E5neders anciennitet.\u0022}]}"
+    }
+  ]
+}

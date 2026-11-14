@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01JuGnMbjHgZxC25QRQZy4VH",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022pensionsordning anciennitet krav tre m\\u00E5neder indbetaling\u0022}"
+    }
+  ]
+}

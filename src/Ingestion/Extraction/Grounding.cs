@@ -11,7 +11,8 @@ namespace Overens.Ingestion.Extraction;
 ///
 /// - the clause a rule names exists;
 /// - its quote stands in that clause word for word;
-/// - every number in the rule is printed in the clauses it cites (for a rate given as an
+/// - every number in the rule is printed in the section its quote is in or in another clause
+///   it cites (for a rate given as an
 ///   increase, the increase is, and the sum is made by code);
 /// - every date in the rule is printed in the agreement;
 /// - the rules together are a usable rule set.
@@ -63,6 +64,14 @@ public static partial class Grounding
                 }
             }
 
+            // A rule's values are usually spread over the clauses of one section: the percentage in
+            // stk. 1, the waiting period in stk. 2. The section the quote is in counts as cited,
+            // whether or not the model listed its other clauses.
+            if (agreement.Sections.FirstOrDefault(section => section.Clauses.Any(inSection => inSection.Id == rule.Source.ClauseId)) is { } home)
+            {
+                cited.AddRange(home.Clauses.Select(inSection => clauses[inSection.Id]));
+            }
+
             var citedText = string.Join(' ', cited);
             // A rate that was added up here is not printed anywhere. What must be printed is the increase.
             var values = increase is { } added ? [($"The increase of {added}", Money(added))] : Values(rule);
@@ -82,7 +91,9 @@ public static partial class Grounding
                 }
             }
 
-            problems.AddRange(asASet.Where(problem => problem.RuleId == rule.Id));
+            // Two rules of a kind for the same days are not a fault in either rule. They are a
+            // conflict for a person to settle, and are reported with the gaps.
+            problems.AddRange(asASet.Where(problem => problem.RuleId == rule.Id && problem.Code != "overlapping_period"));
             proposed.Add(new(rule, alsoFrom, problems));
         }
 
@@ -90,7 +101,8 @@ public static partial class Grounding
     }
 
     /// <summary>
-    /// What a set of proposed rules leaves uncovered. Every kind of rule is expected to apply
+    /// What a set of proposed rules leaves for a person to settle: days no rule covers, and
+    /// rules that cover the same days. Every kind of rule is expected to apply
     /// from the day the first rule of any kind starts, with no days missing, and to have a
     /// last rule with no end.
     /// </summary>
@@ -107,6 +119,15 @@ public static partial class Grounding
         foreach (var (type, kind) in KindNames)
         {
             var ofKind = rules.Where(rule => rule.GetType() == type).OrderBy(rule => rule.InForce.From).ToList();
+            for (var first = 0; first < ofKind.Count; first++)
+            {
+                foreach (var second in ofKind.Skip(first + 1).Where(second => ofKind[first].InForce.Overlaps(second.InForce)))
+                {
+                    gaps.Add(new(kind, "conflicting_rules",
+                        $"{ofKind[first].Id} (from {ofKind[first].Source.ClauseId}) and {second.Id} (from {second.Source.ClauseId}) apply on the same days. Only one of them can be approved."));
+                }
+            }
+
             if (ofKind.Count == 0)
             {
                 gaps.Add(new(kind, "no_rule_of_kind", "No rule of this kind was proposed."));

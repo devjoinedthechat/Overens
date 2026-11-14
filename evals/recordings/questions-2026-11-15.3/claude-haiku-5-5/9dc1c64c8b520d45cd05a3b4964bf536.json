@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01NmB6LmEG3xA8L3GTMcekSd",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022bil biltill\\u00E6g k\\u00F8rsel med egen bil\u0022}"
+    },
+    {
+      "Id": "toolu_01U7LV4AR5jTWg8UbPUVbtwC",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022goder naturalier fri bil\u0022}"
+    }
+  ]
+}

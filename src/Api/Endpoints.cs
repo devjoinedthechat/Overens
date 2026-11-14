@@ -192,6 +192,14 @@ public static partial class Endpoints
                     return Problem(409, "No rule is approved. Reject the run instead.");
                 }
 
+                // The approved rules must work together. Checked before the approval is written, because after it nothing can change.
+                var approved = await db.ProposedRules.Where(rule => rule.RunId == runId && rule.Decision == "approved").Select(rule => rule.Rule).ToListAsync(cancellationToken);
+                var conflicts = RuleSetValidator.Validate(new(runId, 0, [.. approved.Select(RuleJson.Read<Rule>)]));
+                if (conflicts.Count > 0)
+                {
+                    return Problem(409, $"The approved rules cannot be published together: {string.Join(" ", conflicts.Select(conflict => $"{conflict.RuleId}: {conflict.Message}"))}");
+                }
+
                 // Approving twice is harmless: the first approval stands.
                 if (!await db.Approvals.AnyAsync(approval => approval.RunId == runId, cancellationToken))
                 {

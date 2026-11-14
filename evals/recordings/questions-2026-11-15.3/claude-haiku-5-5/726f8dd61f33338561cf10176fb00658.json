@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01WTVS16u2Xq1vNu8SuZUs7x",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Feriegodtg\\u00F8relsen udg\\u00F8r 12,5 pct. af l\\u00F8nnen if\\u00F8lge \\u00A7 8, stk. 2. Protokollat 2 siger dog, at ved maskinel behandling skal den angives til 1,0 pct. af l\\u00F8nnen fra 1. marts 2026, og at denne instruks g\\u00E5r forud for \\u00A7 8, stk. 2. Da det er en modstrid i overenskomsten, b\\u00F8r den afklares med de rette parter, f\\u00F8r tallet bruges i l\\u00F8nberegningen.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 8, stk. 2\u0022,\u0022quote\u0022:\u0022Feriegodtg\\u00F8relsen udg\\u00F8r 12,5 pct. af l\\u00F8nnen.\u0022},{\u0022clause_id\u0022:\u0022Protokollat 2, stk. 1\u0022,\u0022quote\u0022:\u0022Ved maskinel behandling af denne overenskomst skal feriegodtg\\u00F8relsen angives til 1,0 pct. af l\\u00F8nnen med virkning fra den 1. marts 2026. Denne instruks g\\u00E5r forud for \\u00A7 8, stk. 2\u0022}]}"
+    }
+  ]
+}

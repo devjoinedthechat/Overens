@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01M8yTrpRSmh8ozYtrUhtJXT",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022arbejde p\\u00E5 helligdage og \\u00F8vrige h\\u00F8jtidsdage betales med till\\u00E6g\u0022}"
+    }
+  ]
+}

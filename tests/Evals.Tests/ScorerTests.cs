@@ -78,7 +78,8 @@ public sealed class ScorerTests
         Assert.Equal((2, 2, 1, 1, 0, 0), Shape(Kind(scores, "pension")));
         Assert.Equal((2, 2, 1, 0, 1, 0), Shape(Kind(scores, "holiday_allowance")));
         Assert.Equal((2, 1, 1, 0, 0, 0), Shape(Kind(scores, "special_savings")));
-        Assert.Equal((2, 3, 2, 0, 1, 0), Shape(Kind(scores, "overtime")));
+        // The extra rule covers days another rule covers, so the two are in conflict and both are raised.
+        Assert.Equal((2, 3, 2, 2, 0, 0), Shape(Kind(scores, "overtime")));
         // A correct rule that was flagged is counted as needless work, not as an error.
         Assert.Equal((2, 2, 2, 1, 0, 1), Shape(Kind(scores, "minimum_wage")));
         Assert.Equal(2, pension.Count);
@@ -95,6 +96,14 @@ public sealed class ScorerTests
         var holiday = Kind(ExtractionEval.Score(Truth, Proposed(twice)), "holiday_allowance");
 
         Assert.Equal((2, 3, 2), (holiday.Expected, holiday.Proposed, holiday.Correct));
+
+        // A second, wrong rule for the same days is in conflict with the right one. Both are raised with a person, so neither is "wrong and unflagged".
+        var first = Truth.Rules.OfType<HolidayAllowanceRule>().First();
+        var contradicted = Kind(ExtractionEval.Score(Truth, Proposed(Truth.Rules.Append(first with { Id = "other", Percent = 12.0m }))), "holiday_allowance");
+        Assert.Equal((3, 2, 2, 0), (contradicted.Proposed, contradicted.Correct, contradicted.Flagged, contradicted.WrongAndUnflagged));
+        // And it checks no pay until someone has chosen.
+        var pay = PayDataGenerator.Generate(Truth, seed: 7, new(2026, 3, 1), months: 1, employees: 4);
+        Assert.Equal(0, ExtractionEval.ScorePay(Proposed(Truth.Rules.Append(first with { Id = "other", Percent = 12.0m })), pay).Right);
     }
 
     [Fact]

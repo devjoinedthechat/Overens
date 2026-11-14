@@ -36,12 +36,15 @@ public static class Evals
         .. Corpus.Challenge.Select(spec => ("challenge", spec)),
     ];
 
+    /// <summary>The agreements that work against the reader. Scored like the others, reported apart.</summary>
+    public static IReadOnlyList<(string Set, AgreementSpec Spec)> Attacks { get; } = [.. Corpus.Attacks.Select(spec => ("attack", spec))];
+
     /// <summary>Runs extraction on every agreement, from its PDF, and scores it.</summary>
-    public static async Task<EvalResults> RunAsync(IChatClient model, string modelId, Func<AgreementSpec, bool>? only = null)
+    public static async Task<EvalResults> RunAsync(IChatClient model, string modelId, Func<AgreementSpec, bool>? only = null, bool attacks = false)
     {
         var extractor = new RuleExtractor(model, modelId);
         var results = new List<AgreementResult>();
-        foreach (var (set, spec) in Agreements.Where(agreement => only?.Invoke(agreement.Spec) ?? true))
+        foreach (var (set, spec) in (attacks ? Attacks : Agreements).Where(agreement => only?.Invoke(agreement.Spec) ?? true))
         {
             var agreement = Corpus.Generate(spec);
             var read = ClauseSegmenter.Segment(await new PdfLayoutReader().ReadAsync(AgreementPdf.Render(agreement.Document)));
@@ -51,7 +54,7 @@ public static class Evals
                 set,
                 ExtractionEval.Score(agreement.Truth, extraction),
                 ExtractionEval.ScorePay(extraction, Corpus.Pay(spec, agreement)),
-                [.. extraction.Rules.SelectMany(rule => rule.Problems).Concat(extraction.Unreadable).Select(problem => $"{problem.RuleId}: {problem.Code}")],
+                [.. extraction.Rules.SelectMany(rule => rule.Problems).Concat(extraction.Unreadable).Select(problem => $"{problem.RuleId}: {problem.Code}: {problem.Message}")],
                 [.. extraction.Gaps.Select(gap => $"{gap.RuleId}: {gap.Message}")]));
         }
 

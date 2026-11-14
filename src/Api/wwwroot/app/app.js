@@ -282,7 +282,7 @@ async function runView(runId) {
         el("div", { class: "spread" }, el("h1", {}, run.title ?? run.agreementId), pill(run.status)),
         el("p", { class: "muted" }, `Agreement ${run.agreementId}${run.model ? ` · read by ${run.model}, prompt ${run.promptVersion}` : ""}`),
         run.failure && el("div", { class: "notice bad" }, run.failure),
-        (run.gaps ?? []).map((gap) => el("div", { class: "notice" }, `Nothing proposed: ${KINDS[gap.ruleId] ?? gap.ruleId}. ${gap.message}`)),
+        (run.gaps ?? []).map((gap) => el("div", { class: "notice" }, `${KINDS[gap.ruleId] ?? gap.ruleId}: ${gap.message}`)),
         open &&
           el(
             "div",

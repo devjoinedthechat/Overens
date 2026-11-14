@@ -12,7 +12,7 @@ namespace Overens.Ingestion.Extraction;
 public static class ExtractionPrompt
 {
     /// <summary>Changes whenever the wording or a schema does, so results can be tied to it.</summary>
-    public const string Version = "2026-11-15.1";
+    public const string Version = "2026-11-16.1";
 
     public const string System = """
         You read Danish collective agreements (overenskomster) and extract pay rules from them as data.
@@ -26,6 +26,7 @@ public static class ExtractionPrompt
         - Rates listed under a date heading such as "Pr. 1. marts 2027" apply from that date until the next date listed.
         - A rule with no date of its own applies from the day the agreement comes into force.
         - A protocol amendment (protokollat) that changes a value from a date overrides the main text from that date. Return the old values until that date and the new ones from it.
+        - If two clauses state different values for the same thing and the same period, and neither says it changes the other, the agreement contradicts itself. Do not choose. Return a rule for each, each quoting its own clause.
         - "clause_id" is the id of the clause that states the rule's values, exactly as given in the id attribute. "quote" is one sentence copied word for word from that clause. Do not shorten, join or correct it.
         - "also_from" lists the ids of any other clauses the rule's values come from, for example a clause another clause refers to with "jf.". Use an empty list when there are none.
         - Dates are written YYYY-MM-DD.

@@ -179,6 +179,13 @@ public sealed class ExtractionTests
                     // The norm is in another section; without citing it, it is not grounded.
                     rules[0]!["also_from"] = new JsonArray();
                     break;
+                case "special_savings":
+                    // The other clauses of the quote's own section count as cited without being listed.
+                    rules[0]!["also_from"] = new JsonArray();
+                    break;
+                case "inconvenient_hours":
+                    rules[0]!["also_from"] = new JsonArray();
+                    break;
                 default:
                     break;
             }
@@ -209,7 +216,7 @@ public sealed class ExtractionTests
     }
 
     [Fact]
-    public async Task Two_rules_of_a_kind_for_the_same_days_are_both_kept_out()
+    public async Task Two_rules_of_a_kind_for_the_same_days_are_reported_as_a_conflict()
     {
         var (_, extraction, _) = await Extract(4, 2, (kind, rules) =>
         {
@@ -219,9 +226,13 @@ public sealed class ExtractionTests
             }
         });
 
+        // Neither rule is at fault, so neither is flagged. The conflict is reported for a person to settle.
         var holiday = extraction.Rules.Where(rule => rule.Rule is HolidayAllowanceRule).ToList();
         Assert.Equal(["holiday_allowance-2026", "holiday_allowance-2026b"], holiday.Select(rule => rule.Rule.Id));
-        Assert.Contains(holiday, rule => rule.Problems.Any(problem => problem.Code == "overlapping_period"));
+        Assert.All(holiday, rule => Assert.Empty(rule.Problems));
+        var conflict = Assert.Single(extraction.Gaps);
+        Assert.Equal(("holiday_allowance", "conflicting_rules"), (conflict.RuleId, conflict.Code));
+        Assert.Contains("holiday_allowance-2026 (from § 8, stk. 2) and holiday_allowance-2026b", conflict.Message, StringComparison.Ordinal);
     }
 
     [Fact]

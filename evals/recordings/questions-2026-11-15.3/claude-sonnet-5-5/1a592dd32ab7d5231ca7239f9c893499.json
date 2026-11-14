@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Fp1csNB2QSkcpcUD3dqPQ2",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022arbejde p\\u00E5 helligdage\u0022}"
+    }
+  ]
+}

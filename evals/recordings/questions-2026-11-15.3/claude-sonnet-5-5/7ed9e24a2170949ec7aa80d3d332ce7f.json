@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01UZuAzcPodMcComwTEFUVR2",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:false,\u0022text\u0022:\u0022Overenskomsten fasts\\u00E6tter ikke noget till\\u00E6g for arbejde p\\u00E5 helligdage som 1. juledag. Den har kun till\\u00E6g for overarbejde, s\\u00F8ndage og forskudt tid. Jeg kan derfor ikke oplyse et till\\u00E6g pr. time for helligdage.\u0022,\u0022citations\u0022:\u0022\u0022}"
+    }
+  ]
+}

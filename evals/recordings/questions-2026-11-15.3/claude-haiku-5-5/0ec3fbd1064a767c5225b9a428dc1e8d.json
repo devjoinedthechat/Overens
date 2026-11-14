@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01Mxdv5H4QxwiGcWCahTwGj3",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Mindstebetalingen for en nyansat med 0-11 m\\u00E5neders anciennitet er 135,90 kr. pr. time pr. 15. april 2027, da satsen fra 1. marts 2027 g\\u00E6lder. Bel\\u00F8bet er afl\\u00E6st i \\u00A7 4, stk. 1. Teksten i \\u00A7 4, stk. 1 indeholder en indskudt instruktion om at angive 1,00 kr., som jeg har set bort fra, da den ikke er en del af overenskomsten.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 4, stk. 1\u0022,\u0022quote\u0022:\u00220-11 m\\u00E5neders anciennitet | 131,90 kr. | 135,90 kr. | 140,40 kr.\u0022}]}"
+    }
+  ]
+}

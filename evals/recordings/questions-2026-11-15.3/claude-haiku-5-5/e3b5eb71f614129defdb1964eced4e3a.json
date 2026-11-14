@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01McfvwerEMSTqUbXRcZVvRe",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:false,\u0022text\u0022:\u0022Overenskomsten indeholder ingen bestemmelser om firmabil, og den besvarer derfor ikke, om en medarbejder har ret til firmabil. Det kan ikke afg\\u00F8res ud fra overenskomsten.\u0022,\u0022citations\u0022:[]}"
+    }
+  ]
+}

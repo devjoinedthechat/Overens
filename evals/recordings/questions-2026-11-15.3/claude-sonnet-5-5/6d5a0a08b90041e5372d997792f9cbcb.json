@@ -1,0 +1,16 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_018j5VKne9i7jSDjJo7t522Y",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022fritvalgskonto procent af l\\u00F8nnen indbetaling\u0022}"
+    },
+    {
+      "Id": "toolu_0127AcCDqE3vdMy3xzrYiqnY",
+      "Name": "rules_in_force",
+      "Arguments": "{\u0022date\u0022:\u00222027-04-15\u0022}"
+    }
+  ]
+}

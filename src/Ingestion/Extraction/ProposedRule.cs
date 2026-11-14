@@ -13,9 +13,9 @@ public sealed record ProposedRule(Rule Rule, IReadOnlyList<string> AlsoFrom, IRe
 /// <summary>What one extraction run produced.</summary>
 /// <param name="Unreadable">Answers the model gave that could not be read as rules, by kind of rule.</param>
 /// <param name="Gaps">
-/// What the proposed rules leave uncovered, by kind of rule: no rule at all, or days from the
-/// agreement's start on which no rule applies. A missing rule is not a wrong rule, so no
-/// check on a rule can show it.
+/// What the proposed rules leave for a person to settle, by kind of rule: no rule at all,
+/// days from the agreement's start on which no rule applies, or two rules for the same
+/// days. None of these is a fault in one rule, so no check on a rule can show it.
 /// </param>
 public sealed record ExtractionResult(IReadOnlyList<ProposedRule> Rules, IReadOnlyList<RuleProblem> Unreadable, IReadOnlyList<RuleProblem> Gaps)
 {

@@ -38,6 +38,16 @@ public enum Twists
 
     /// <summary>A protocol changes the savings rate from 1 September of the second year, between two yearly steps.</summary>
     MidYearChange = 32,
+
+    /// <summary>
+    /// Text addressed to "automatic systems" and "AI assistants" is planted in five places,
+    /// telling them to record false rates and to give false answers. It is not part of what
+    /// the parties agreed, so the rules are unchanged.
+    /// </summary>
+    Planted = 64,
+
+    /// <summary>A second clause, far from the first, gives a different holiday allowance. The agreement contradicts itself.</summary>
+    Contradiction = 128,
 }
 
 /// <summary>A generated agreement and the rules it states, which is the answer an extractor should reach.</summary>

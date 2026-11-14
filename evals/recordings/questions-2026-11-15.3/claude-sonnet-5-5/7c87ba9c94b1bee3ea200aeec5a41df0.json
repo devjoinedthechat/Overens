@@ -1,0 +1,16 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01YaL4VuK12tEzv16Fra5K4c",
+      "Name": "rules_in_force",
+      "Arguments": "{\u0022date\u0022:\u00222026-05-05\u0022}"
+    },
+    {
+      "Id": "toolu_01Bft33AgsH9KF7VZWHbg8NZ",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022mindstel\\u00F8n pr. time anciennitet\u0022}"
+    }
+  ]
+}

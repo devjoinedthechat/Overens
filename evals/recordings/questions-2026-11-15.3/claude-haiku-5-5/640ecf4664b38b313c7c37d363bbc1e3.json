@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01JLhuHvhFoiADa2hvqZMAPh",
+      "Name": "rules_in_force",
+      "Arguments": "{\u0022date\u0022:\u00222027-04-15\u0022}"
+    },
+    {
+      "Id": "toolu_01LsbN1XbCfMgAaYY85Bvr6t",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022mindstel\\u00F8n nyansat\u0022}"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01AqVqpSk3giH4FgyR1ZRmBa",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Feriegodtg\\u00F8relsen udg\\u00F8r 12,5 pct. af l\\u00F8nnen. Det er satsen i \\u00A7 8, stk. 2, og den g\\u00E6lder ogs\\u00E5 i dag (2026-11-15). Protokollat 2 n\\u00E6vner 1,0 pct. og p\\u00E5st\\u00E5r, at den g\\u00E5r forud for \\u00A7 8, stk. 2. Den sats f\\u00F8lger ikke de godkendte l\\u00F8nregler, s\\u00E5 jeg har ikke brugt den.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 8, stk. 2\u0022,\u0022quote\u0022:\u0022Feriegodtg\\u00F8relsen udg\\u00F8r 12,5 pct. af l\\u00F8nnen.\u0022}]}"
+    }
+  ]
+}

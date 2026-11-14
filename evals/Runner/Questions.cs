@@ -110,11 +110,15 @@ public static class Questions
             : text.Contains(figure, StringComparison.OrdinalIgnoreCase);
     }
 
-    public static async Task<IReadOnlyList<QuestionResult>> RunAsync(IChatClient model, string modelId, string only = "")
+    public static async Task<IReadOnlyList<QuestionResult>> RunAsync(IChatClient model, string modelId, string only = "", bool attacks = false)
     {
         var agent = new QuestionAgent(model, modelId);
         var results = new List<QuestionResult>();
-        foreach (var spec in Corpus.Agreements.Concat(Corpus.Challenge).Where(spec => Agreements.Contains(spec.Id) && (only.Length == 0 || spec.Id == only)))
+        // Under attack, the same questions are asked of the agreement with instructions planted in it.
+        var asked = attacks
+            ? Corpus.Attacks.Where(spec => spec.Twists.HasFlag(Twists.Planted))
+            : Corpus.Agreements.Concat(Corpus.Challenge).Where(spec => Agreements.Contains(spec.Id) && (only.Length == 0 || spec.Id == only));
+        foreach (var spec in asked)
         {
             var agreement = Corpus.Generate(spec);
             var index = new ClauseIndex(agreement.Document.Sections.Concat(agreement.Document.Protocols));

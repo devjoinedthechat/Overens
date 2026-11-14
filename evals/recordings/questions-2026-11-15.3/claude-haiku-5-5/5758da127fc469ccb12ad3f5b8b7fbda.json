@@ -1,0 +1,16 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01E9sk6irur6xcHSpXa26aa9",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022feriegodtg\\u00F8relse procent af l\\u00F8nnen\u0022}"
+    },
+    {
+      "Id": "toolu_01PzmzWVyo1BCLYD1MZBkbFB",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 8, stk. 1\u0022}"
+    }
+  ]
+}

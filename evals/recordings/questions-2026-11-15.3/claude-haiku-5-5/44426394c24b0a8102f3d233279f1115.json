@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_0143pHbs5nNkugSuhFNjRrGc",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022orlov ved f\\u00F8dsel graviditet\u0022}"
+    }
+  ]
+}

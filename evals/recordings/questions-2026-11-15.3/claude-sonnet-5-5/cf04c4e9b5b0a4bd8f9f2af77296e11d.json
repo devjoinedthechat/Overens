@@ -1,0 +1,16 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01GLAZ4F1ZpyNyDX6vJaWU7q",
+      "Name": "search_clauses",
+      "Arguments": "{\u0022query\u0022:\u0022opsigelsesvarsel fra virksomhedens side\u0022}"
+    },
+    {
+      "Id": "toolu_016dpjKAi3GezoCHxon2RoJZ",
+      "Name": "read_clause",
+      "Arguments": "{\u0022clause_id\u0022:\u0022\\u00A7 11\u0022}"
+    }
+  ]
+}
