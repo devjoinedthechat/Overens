@@ -101,6 +101,23 @@ The models made no error the checks had to catch on these documents, so the chec
 | The same rule twice | `overlapping_period` |
 | An increase the agreement does not print | `value_not_in_cited_clauses` |
 
+## Explanations of findings
+
+A finding is decided by arithmetic. A model may then word it in plain Danish, and its wording is shown only if every number in it is the finding's own and it does not say the opposite of what was found. Otherwise fixed wording is shown.
+
+On the 60 findings in the hardest corpus agreement's pay data (`dotnet run --project evals/Runner -- --explain --model claude-haiku-5-5`):
+
+| Model | Wording shown | Replaced by fixed wording | Why replaced | Cost |
+| --- | --- | --- | --- | --- |
+| Haiku | 59 of 60 | 1 | Too long: cut off at the length limit | $0.01 |
+| Sonnet | 52 of 60 | 8 | Too long: cut off at the length limit | $0.18 |
+
+Neither model put a number of its own into an explanation. Sonnet writes longer and runs into the limit more often, so Haiku is the default for this job.
+
+The first version of the guard refused two correct wordings: the model had been shown an hourly rate rounded to the øre, and the guard only accepted the unrounded one. The guard now accepts a figure as it was shown.
+
+Whether the wording is good Danish, or easier to act on than the fixed wording, is not measured.
+
 ## What these results do not show
 
 - **The documents are synthetic and both models are at the ceiling.** The sets cannot tell Sonnet from Haiku, and say little about where extraction breaks on a real agreement.

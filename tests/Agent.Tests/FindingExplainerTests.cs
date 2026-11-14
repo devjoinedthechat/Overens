@@ -45,6 +45,21 @@ public sealed class FindingExplainerTests
     }
 
     [Fact]
+    public void The_guard_says_why_it_refused_and_accepts_figures_as_the_model_was_shown_them()
+    {
+        Assert.Equal("numbers not in the finding: 85.7, 14", FindingExplainer.Refusal("Der mangler 900,00 kr., 85,7 pct., inden 14 dage.", TooLow, Check.Expected));
+        Assert.Equal("says too much of a shortfall", FindingExplainer.Refusal("Der er udbetalt 900,00 kr. for meget.", TooLow, Check.Expected));
+        Assert.Equal("too long", FindingExplainer.Refusal(new string('a', 701), TooLow, Check.Expected));
+
+        // 114 minutes at 72.225 an hour is shown to the model as 1,90 timer and 72,23 kr.
+        var part = new Component(PayLineKind.Overtime, "overtime", 114, null, 72.225m, 137.23m);
+        var finding = TooLow with { Expected = 137.23m, Actual = 132.72m };
+        Assert.Null(FindingExplainer.Refusal("1,90 timer à 72,23 kr. giver 137,23 kr., men der er udbetalt 132,72 kr. Der mangler 4,51 kr.", finding, [part]));
+        // Another line's figures are not this finding's.
+        Assert.NotNull(FindingExplainer.Refusal("Der mangler 4,51 kr. af 665,63 kr.", finding, [part, new(PayLineKind.HolidayAllowance, "holiday", null, 5325m, 12.5m, 665.63m)]));
+    }
+
+    [Fact]
     public async Task Wording_that_says_the_opposite_of_what_was_found_is_replaced()
     {
         Assert.False((await Explain("Der er udbetalt 900,00 kr. for meget i overarbejdstillæg.")).ByModel);

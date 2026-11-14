@@ -42,6 +42,19 @@ public sealed class GateTests
         Assert.Equal(published, replayed);
     }
 
+    [Fact]
+    public async Task The_default_models_wording_of_findings_is_nearly_always_fit_to_show()
+    {
+        using var recorded = new ReplayChatClient(null, Path.Combine(Root(), "evals", "recordings", $"explain-{Agent.FindingExplainer.Version}", Gateway.Models.Haiku));
+
+        var outcome = await Explanations.RunAsync(recorded, Gateway.Models.Haiku);
+
+        Assert.Equal(60, outcome.Findings);
+        Assert.InRange(outcome.Shown, 57, 60);
+        // What was refused was cut off for length. No wording carried a number of its own.
+        Assert.DoesNotContain(outcome.Replaced, replaced => replaced.StartsWith("[numbers not in the finding", StringComparison.Ordinal));
+    }
+
     [Theory]
     [MemberData(nameof(Models))]
     public async Task No_wrong_rule_gets_past_the_checks_and_the_default_model_finds_every_rule(string model)

@@ -47,6 +47,9 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
         [PayLineKind.SpecialSavings] = "Fritvalgskonto",
     };
 
+    /// <summary>Why the most recent wording was refused, for logs and evals. Null when it was shown.</summary>
+    public string? LastRefusal { get; private set; }
+
     public async Task<Explanation> ExplainAsync(Finding finding, IReadOnlyList<Component> expected, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(finding);
@@ -82,11 +85,13 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
                 cancellationToken);
             using var answer = JsonDocument.Parse(response.Text);
             var text = answer.RootElement.GetProperty("text").GetString() ?? "";
-            return Allowed(text, finding, parts) ? new(text.Trim(), true) : new(Fixed(finding), false);
+            LastRefusal = Refusal(text, finding, parts);
+            return LastRefusal is null ? new(text.Trim(), true) : new(Fixed(finding), false);
         }
         catch (Exception error) when (error is not OperationCanceledException)
         {
             // A model that is down, slow or answers badly must not cost the person their finding.
+            LastRefusal = error is JsonException ? "the answer was cut off or was not in the asked shape" : "the model could not be reached";
             return new(Fixed(finding), false);
         }
     }
@@ -109,25 +114,36 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
         };
     }
 
+    /// <summary>Whether a model's wording may be shown.</summary>
+    public static bool Allowed(string text, Finding finding, IReadOnlyList<Component> parts) => Refusal(text, finding, parts) is null;
+
     /// <summary>
-    /// Whether a model's wording may be shown: not empty, not long, every number in it is one
-    /// of the finding's own, and it does not say "too much" of a shortfall or the reverse.
+    /// Why a model's wording may not be shown, or null when it may: it is empty or long, a
+    /// number in it is not one of the finding's own, or it says "too much" of a shortfall or
+    /// the reverse.
     /// </summary>
-    public static bool Allowed(string text, Finding finding, IReadOnlyList<Component> parts)
+    public static string? Refusal(string text, Finding finding, IReadOnlyList<Component> parts)
     {
         ArgumentNullException.ThrowIfNull(text);
         ArgumentNullException.ThrowIfNull(finding);
         ArgumentNullException.ThrowIfNull(parts);
-        if (string.IsNullOrWhiteSpace(text) || text.Length > 700)
+        if (string.IsNullOrWhiteSpace(text))
         {
-            return false;
+            return "empty";
+        }
+
+        if (text.Length > 700)
+        {
+            return "too long";
         }
 
         var allowed = new HashSet<decimal> { finding.Expected, finding.Actual, Math.Abs(finding.Difference) };
-        foreach (var part in parts)
+        foreach (var part in parts.Where(part => part.Line == finding.Line))
         {
             allowed.Add(part.Amount);
+            // A rate is shown to the model rounded to the øre, so the rounded figure is the finding's too.
             allowed.Add(part.Rate);
+            allowed.Add(decimal.Round(part.Rate, 2, MidpointRounding.AwayFromZero));
             if (part.Basis is { } basis)
             {
                 allowed.Add(basis);
@@ -137,6 +153,7 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
             {
                 allowed.Add(minutes);
                 allowed.Add(minutes / 60m);
+                allowed.Add(decimal.Round(minutes / 60m, 2, MidpointRounding.AwayFromZero));
             }
         }
 
@@ -147,15 +164,19 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
             allowed.UnionWith(Numbers(source.Quote));
         }
 
-        if (!Numbers(text).All(allowed.Contains))
+        var foreign = Numbers(text).Where(number => !allowed.Contains(number)).Distinct().ToList();
+        if (foreign.Count > 0)
         {
-            return false;
+            return $"numbers not in the finding: {string.Join(", ", foreign.Select(number => number.ToString(CultureInfo.InvariantCulture)))}";
         }
 
         var shortfall = finding.Kind is FindingKind.TooLow or FindingKind.MissingLine or FindingKind.RateBelowMinimum;
-        var saysTooMuch = TooMuch().IsMatch(text);
-        var saysTooLittle = TooLittle().IsMatch(text);
-        return shortfall ? !saysTooMuch : !saysTooLittle || finding.Kind == FindingKind.UnexpectedLine;
+        if (shortfall && TooMuch().IsMatch(text))
+        {
+            return "says too much of a shortfall";
+        }
+
+        return finding.Kind == FindingKind.TooHigh && TooLittle().IsMatch(text) ? "says too little of an overpayment" : null;
     }
 
     /// <summary>The numbers in a text, read the Danish way: 1.234,50 is one number, and so is 12,5.</summary>
