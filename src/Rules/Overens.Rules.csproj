@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- The rule model and the rule engine. No dependencies, and no model. -->
+
+</Project>

@@ -1,0 +1,447 @@
+[
+  {
+    "employeeId": "emp-007",
+    "periodStart": "2026-12-01",
+    "mistake": "pension_without_qualifying_period",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "PensionEmployer",
+        "expected": 0,
+        "actual": 2570.82
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 0,
+        "actual": 1209.80
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-011",
+    "periodStart": "2026-12-01",
+    "mistake": "minimum_wage_not_applied",
+    "rateBelowMinimum": true,
+    "lines": [
+      {
+        "line": "BasePay",
+        "expected": 21343.50,
+        "actual": 20371.50
+      },
+      {
+        "line": "Overtime",
+        "expected": 434.78,
+        "actual": 414.98
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 2722.29,
+        "actual": 2598.31
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 871.13,
+        "actual": 831.46
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-012",
+    "periodStart": "2026-12-01",
+    "mistake": "pension_without_qualifying_period",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "PensionEmployer",
+        "expected": 0,
+        "actual": 2915.04
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 0,
+        "actual": 1371.78
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-002",
+    "periodStart": "2027-01-01",
+    "mistake": "all_overtime_at_first_tier",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "Overtime",
+        "expected": 2476.95,
+        "actual": 2468.53
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 4386.96,
+        "actual": 4385.91
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 1403.83,
+        "actual": 1403.49
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-006",
+    "periodStart": "2027-01-01",
+    "mistake": "minimum_wage_not_applied",
+    "rateBelowMinimum": true,
+    "lines": [
+      {
+        "line": "BasePay",
+        "expected": 18972.00,
+        "actual": 18936.00
+      },
+      {
+        "line": "Overtime",
+        "expected": 711.45,
+        "actual": 710.10
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 3254.23,
+        "actual": 3249.56
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 1041.35,
+        "actual": 1039.86
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-007",
+    "periodStart": "2027-01-01",
+    "mistake": "no_inconvenient_hours_supplement",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "InconvenientHours",
+        "expected": 293.43,
+        "actual": 0
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 4492.50,
+        "actual": 4455.82
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 1437.60,
+        "actual": 1425.86
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-008",
+    "periodStart": "2027-01-01",
+    "mistake": "holiday_allowance_on_base_pay_only",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "HolidayAllowance",
+        "expected": 4663.69,
+        "actual": 3645.00
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-001",
+    "periodStart": "2027-02-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 1392.44,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-003",
+    "periodStart": "2027-02-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 953.44,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-007",
+    "periodStart": "2027-02-01",
+    "mistake": "no_inconvenient_hours_supplement",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "InconvenientHours",
+        "expected": 106.70,
+        "actual": 0
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 4157.42,
+        "actual": 4144.08
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 1330.37,
+        "actual": 1326.11
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-009",
+    "periodStart": "2027-02-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 1204.20,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-002",
+    "periodStart": "2027-03-01",
+    "mistake": "line_mistyped",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "HolidayAllowance",
+        "expected": 3901.22,
+        "actual": 3902.12
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-003",
+    "periodStart": "2027-03-01",
+    "mistake": "line_mistyped",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "Overtime",
+        "expected": 789.07,
+        "actual": 879.07
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-008",
+    "periodStart": "2027-03-01",
+    "mistake": "pension_without_qualifying_period",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "PensionEmployer",
+        "expected": 0,
+        "actual": 3022.43
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 0,
+        "actual": 1422.32
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-009",
+    "periodStart": "2027-03-01",
+    "mistake": "holiday_allowance_on_base_pay_only",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "HolidayAllowance",
+        "expected": 4615.88,
+        "actual": 3498.00
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-010",
+    "periodStart": "2027-03-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 1910.28,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-004",
+    "periodStart": "2027-04-01",
+    "mistake": "holiday_allowance_on_base_pay_only",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "HolidayAllowance",
+        "expected": 3656.26,
+        "actual": 3517.44
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-007",
+    "periodStart": "2027-04-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 1714.40,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-008",
+    "periodStart": "2027-04-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 1600.11,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-009",
+    "periodStart": "2027-04-01",
+    "mistake": "pension_without_qualifying_period",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "PensionEmployer",
+        "expected": 0,
+        "actual": 2853.45
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 0,
+        "actual": 1342.80
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-010",
+    "periodStart": "2027-04-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 1823.45,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-011",
+    "periodStart": "2027-04-01",
+    "mistake": "special_savings_left_out",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "SpecialSavings",
+        "expected": 1310.57,
+        "actual": 0
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-005",
+    "periodStart": "2027-05-01",
+    "mistake": "no_inconvenient_hours_supplement",
+    "rateBelowMinimum": false,
+    "lines": [
+      {
+        "line": "InconvenientHours",
+        "expected": 6817.20,
+        "actual": 0
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 3961.80,
+        "actual": 3109.65
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 1426.25,
+        "actual": 1119.47
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-006",
+    "periodStart": "2027-05-01",
+    "mistake": "minimum_wage_not_applied",
+    "rateBelowMinimum": true,
+    "lines": [
+      {
+        "line": "BasePay",
+        "expected": 21880.00,
+        "actual": 20160.00
+      },
+      {
+        "line": "Overtime",
+        "expected": 820.50,
+        "actual": 756.00
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 3734.56,
+        "actual": 3511.50
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 1344.44,
+        "actual": 1264.14
+      }
+    ]
+  },
+  {
+    "employeeId": "emp-010",
+    "periodStart": "2027-05-01",
+    "mistake": "minimum_wage_not_applied",
+    "rateBelowMinimum": true,
+    "lines": [
+      {
+        "line": "BasePay",
+        "expected": 17504.00,
+        "actual": 16512.00
+      },
+      {
+        "line": "Overtime",
+        "expected": 656.40,
+        "actual": 619.20
+      },
+      {
+        "line": "HolidayAllowance",
+        "expected": 2987.65,
+        "actual": 2859.00
+      },
+      {
+        "line": "SpecialSavings",
+        "expected": 1075.55,
+        "actual": 1029.24
+      }
+    ]
+  }
+]

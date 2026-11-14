@@ -1,0 +1,26 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{json,yml,yaml,csproj,props,slnx,md}]
+indent_size = 2
+
+[*.cs]
+csharp_style_namespace_declarations = file_scoped:warning
+dotnet_sort_system_directives_first = true
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+# Library code here is not shipped as a package for others to await.
+dotnet_diagnostic.CA2007.severity = none
+# Nothing here is consumed from Visual Basic, so names like From, To and End are fine.
+dotnet_diagnostic.CA1716.severity = none
+
+[tests/**.cs]
+# Test names are sentences.
+dotnet_diagnostic.CA1707.severity = none

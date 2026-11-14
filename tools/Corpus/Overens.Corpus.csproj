@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Writes the synthetic test material to disk. Run this project with dotnet run. -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Synthetic\Overens.Synthetic.csproj" />
+  </ItemGroup>
+
+</Project>

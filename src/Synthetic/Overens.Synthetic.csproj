@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Makes test material from rule sets: agreements, timesheets and payslips with known answers. -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rules\Overens.Rules.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PDFsharp-MigraDoc" />
+    <!-- Liberation Serif, under the SIL Open Font License. See Fonts/LICENSE.txt. -->
+    <EmbeddedResource Include="Fonts\*.ttf" />
+  </ItemGroup>
+
+</Project>

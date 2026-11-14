@@ -1,0 +1,32 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Api/">
+    <Project Path="src/Api/Overens.Api.csproj" />
+  </Folder>
+  <Folder Name="/src/AppHost/">
+    <Project Path="src/AppHost/Overens.AppHost.csproj" />
+  </Folder>
+  <Folder Name="/src/Rules/">
+    <Project Path="src/Rules/Overens.Rules.csproj" />
+  </Folder>
+  <Folder Name="/src/ServiceDefaults/">
+    <Project Path="src/ServiceDefaults/Overens.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/src/Synthetic/">
+    <Project Path="src/Synthetic/Overens.Synthetic.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/Api.Tests/">
+    <Project Path="tests/Api.Tests/Overens.Api.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Rules.Tests/">
+    <Project Path="tests/Rules.Tests/Overens.Rules.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Synthetic.Tests/">
+    <Project Path="tests/Synthetic.Tests/Overens.Synthetic.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/" />
+  <Folder Name="/tools/Corpus/">
+    <Project Path="tools/Corpus/Overens.Corpus.csproj" />
+  </Folder>
+</Solution>

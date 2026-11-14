@@ -1,0 +1,30 @@
+# private working documents and local-only settings
+.build-plan.md
+.failure-log.md
+.dev-log.md
+.private-patterns
+.architecture-target.html
+
+# build output
+bin/
+obj/
+TestResults/
+*.user
+.vs/
+.idea/
+.DS_Store
+
+.env
+.env.*
+!.env.example
+
+# credentials and keys
+*.pem
+*.p12
+*.key
+id_rsa*
+id_ed25519*
+
+# raw model transcripts, which can hold account details; publish only reviewed reports
+recordings/
+*.transcript.json
