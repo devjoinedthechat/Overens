@@ -220,7 +220,7 @@ public static class AgreementGenerator
             [Text("For arbejde på søndage betales et tillæg på 100,0 pct. af timelønnen for alle timer. Søndagstimer medregnes ikke ved opgørelsen efter stk. 1.")],
             [Text("Overarbejde skal så vidt muligt varsles senest dagen før.")]);
         rules.Add(new OvertimeRule(
-            "overtime",
+            Id("overtime", start),
             whole,
             new($"{overtime}, stk. 2", tierQuote),
             7.4m,
@@ -302,7 +302,7 @@ public static class AgreementGenerator
             [Text("Ferie holdes i overensstemmelse med ferielovens regler.")],
             [Text(holidayQuote)],
             [Text("Ud over ferie har medarbejderen ret til fem feriefridage pr. ferieår.")]);
-        rules.Add(new HolidayAllowanceRule("holiday_allowance", whole, new($"{holiday}, stk. 2", holidayQuote), 12.5m));
+        rules.Add(new HolidayAllowanceRule(Id("holiday_allowance", start), whole, new($"{holiday}, stk. 2", holidayQuote), 12.5m));
 
         var savingsSection = Next();
         string savingsQuote;

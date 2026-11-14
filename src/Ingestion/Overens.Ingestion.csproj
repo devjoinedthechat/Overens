@@ -3,6 +3,7 @@
   <!-- From an agreement's PDF to a rule set a person has approved. -->
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.AI" />
     <PackageReference Include="PdfPig" />
   </ItemGroup>
 

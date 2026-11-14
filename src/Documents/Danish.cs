@@ -1,9 +1,9 @@
 using System.Globalization;
 
-namespace Overens.Synthetic;
+namespace Overens.Documents;
 
 /// <summary>Numbers, dates and times the way a Danish agreement writes them.</summary>
-internal static class Danish
+public static class Danish
 {
     private static readonly string[] Months =
     [

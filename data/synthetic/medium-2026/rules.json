@@ -82,7 +82,7 @@
         }
       ],
       "sundayPercent": 100.0,
-      "id": "overtime",
+      "id": "overtime-2026",
       "inForce": {
         "from": "2026-03-01",
         "until": null
@@ -254,7 +254,7 @@
     {
       "kind": "holiday_allowance",
       "percent": 12.5,
-      "id": "holiday_allowance",
+      "id": "holiday_allowance-2026",
       "inForce": {
         "from": "2026-03-01",
         "until": null
