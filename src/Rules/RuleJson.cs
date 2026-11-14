@@ -14,6 +14,8 @@ public static class RuleJson
     public static JsonSerializerOptions Options { get; } = new(JsonSerializerDefaults.Web)
     {
         WriteIndented = true,
+        // A database that stores JSON may hand it back with its keys in another order, "kind" no longer first.
+        AllowOutOfOrderMetadataProperties = true,
         Converters = { new JsonStringEnumConverter() },
         // Danish letters and the section sign stay readable in the files.
         Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),

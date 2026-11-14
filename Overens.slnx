@@ -31,6 +31,9 @@
   <Folder Name="/src/Synthetic/">
     <Project Path="src/Synthetic/Overens.Synthetic.csproj" />
   </Folder>
+  <Folder Name="/src/Worker/">
+    <Project Path="src/Worker/Overens.Worker.csproj" />
+  </Folder>
   <Folder Name="/tests/" />
   <Folder Name="/tests/Api.Tests/">
     <Project Path="tests/Api.Tests/Overens.Api.Tests.csproj" />
@@ -46,6 +49,9 @@
   </Folder>
   <Folder Name="/tests/Synthetic.Tests/">
     <Project Path="tests/Synthetic.Tests/Overens.Synthetic.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Worker.Tests/">
+    <Project Path="tests/Worker.Tests/Overens.Worker.Tests.csproj" />
   </Folder>
   <Folder Name="/tools/" />
   <Folder Name="/tools/Corpus/">

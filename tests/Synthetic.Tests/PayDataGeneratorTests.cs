@@ -66,5 +66,9 @@ public sealed class PayDataGeneratorTests
         Assert.IsType<OvertimeRule>(read.Rules[1]);
         Assert.Contains("\"kind\": \"minimum_wage\"", json, StringComparison.Ordinal);
         Assert.Contains("§ 4, stk. 1", json, StringComparison.Ordinal);
+
+        // Stored as jsonb, a rule comes back with "id" and "inForce" ahead of "kind".
+        var reordered = """{"id": "holiday", "inForce": {"from": "2026-03-01", "until": null}, "kind": "holiday_allowance", "percent": 12.5, "source": {"quote": "q", "clauseId": "§ 1"}}""";
+        Assert.Equal(12.5m, Assert.IsType<HolidayAllowanceRule>(RuleJson.Read<Rule>(reordered)).Percent);
     }
 }

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <!-- Runs the ingestion pipeline as a durable orchestration. -->
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DurableTask.Worker.AzureManaged" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gateway\Overens.Gateway.csproj" />
+    <ProjectReference Include="..\Ingestion\Overens.Ingestion.csproj" />
+    <ProjectReference Include="..\ServiceDefaults\Overens.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+</Project>
