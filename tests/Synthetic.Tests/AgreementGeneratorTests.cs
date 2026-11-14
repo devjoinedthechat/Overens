@@ -114,6 +114,57 @@ public sealed class AgreementGeneratorTests
             agreement.Document.Sections.SelectMany(section => section.Clauses).SelectMany(clause => clause.Blocks);
     }
 
+    public static TheoryData<string> ChallengeIds => [.. Corpus.Challenge.Select(spec => spec.Id)];
+
+    [Theory]
+    [MemberData(nameof(ChallengeIds))]
+    public void A_twisted_agreement_still_states_a_usable_rule_set_and_quotes_its_own_clauses(string id)
+    {
+        var agreement = Corpus.Generate(Corpus.Challenge.Single(spec => spec.Id == id));
+        var clauses = agreement.Document.Sections.Concat(agreement.Document.Protocols)
+            .SelectMany(section => section.Clauses)
+            .ToDictionary(clause => clause.Id, clause => AgreementText.Render(clause, 1));
+
+        Assert.Empty(RuleSetValidator.Validate(agreement.Truth));
+        Assert.All(agreement.Truth.Rules, rule => Assert.Contains(rule.Source.Quote, clauses[rule.Source.ClauseId], StringComparison.Ordinal));
+    }
+
+    [Theory]
+    [InlineData(Twists.Increases, "Satserne forhøjes pr. 1. marts 2027 med")]
+    [InlineData(Twists.NumericDates, "Pr. 01.03.2027")]
+    [InlineData(Twists.SplitNight, "Alle dage kl. 00.00-06.00")]
+    public void A_twist_changes_how_the_agreement_is_written_and_not_what_it_says(Twists twist, string wording)
+    {
+        var plain = AgreementGenerator.Generate(new("a", 21, 2, 2026));
+        var twisted = AgreementGenerator.Generate(new("a", 21, 2, 2026, twist));
+
+        Assert.Equal(RuleJson.Write(plain.Truth), RuleJson.Write(twisted.Truth));
+        Assert.DoesNotContain(wording, AgreementText.Render(plain.Document), StringComparison.Ordinal);
+        Assert.Contains(wording, AgreementText.Render(twisted.Document), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void The_twists_that_change_the_rules_change_only_what_they_say_they_do()
+    {
+        var plain = AgreementGenerator.Generate(new("a", 21, 3, 2026));
+        var twisted = AgreementGenerator.Generate(new("a", 21, 3, 2026, Twists.MidYearChange | Twists.TwoYearBand | Twists.OldRates));
+
+        // A savings rate from 1 September of the second year, between two yearly steps.
+        var savings = twisted.Truth.Rules.OfType<SpecialSavingsRule>().OrderBy(rule => rule.InForce.From).ToList();
+        Assert.Equal(
+            [new DateOnly(2026, 3, 1), new(2027, 3, 1), new(2027, 9, 1), new(2028, 3, 1)],
+            savings.Select(rule => rule.InForce.From));
+        Assert.True(savings[1].Percent < savings[2].Percent && savings[2].Percent <= savings[3].Percent);
+        Assert.StartsWith("Protokollat 2", savings[2].Source.ClauseId, StringComparison.Ordinal);
+
+        // A top band after two years, and old rates that are in no rule.
+        Assert.All(twisted.Truth.Rules.OfType<MinimumWageRule>(), wage => Assert.Equal([0, 12, 24], wage.Bands.Select(band => band.FromMonths)));
+        Assert.Contains("Tidligere sats", AgreementText.Render(twisted.Document), StringComparison.Ordinal);
+        Assert.Equal(
+            RuleJson.Write(plain.Truth.Rules.Where(rule => rule is not (SpecialSavingsRule or MinimumWageRule))),
+            RuleJson.Write(twisted.Truth.Rules.Where(rule => rule is not (SpecialSavingsRule or MinimumWageRule))));
+    }
+
     [Fact]
     public void A_renewal_keeps_the_parties_and_carries_the_rates_on_upwards()
     {

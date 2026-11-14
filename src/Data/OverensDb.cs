@@ -23,6 +23,7 @@ public sealed class IngestionRunRow
     public string? PromptVersion { get; set; }
     public string? Title { get; set; }
     public string? Clauses { get; set; }
+    public string? Gaps { get; set; }
     public string? Failure { get; set; }
     public required DateTimeOffset CreatedAt { get; init; }
     public DateTimeOffset? FinishedAt { get; set; }
@@ -80,6 +81,7 @@ public sealed class OverensDb(DbContextOptions<OverensDb> options) : DbContext(o
         {
             run.ToTable("ingestion_runs").HasKey(row => row.Id);
             run.Property(row => row.Clauses).HasColumnType("jsonb");
+            run.Property(row => row.Gaps).HasColumnType("jsonb");
         });
         modelBuilder.Entity<ProposedRuleRow>(rule =>
         {

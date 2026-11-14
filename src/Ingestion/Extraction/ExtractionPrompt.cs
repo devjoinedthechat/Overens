@@ -12,7 +12,7 @@ namespace Overens.Ingestion.Extraction;
 public static class ExtractionPrompt
 {
     /// <summary>Changes whenever the wording or a schema does, so results can be tied to it.</summary>
-    public const string Version = "2026-11-14.1";
+    public const string Version = "2026-11-15.1";
 
     public const string System = """
         You read Danish collective agreements (overenskomster) and extract pay rules from them as data.
@@ -38,8 +38,10 @@ public static class ExtractionPrompt
             Extract the general minimum hourly wage (mindstebetaling, mindsteløn, timeløn).
             "bands" lists the rate by full months of employment (anciennitet), lowest first. The first band starts at 0 months. One year is 12 months.
             Rates for special groups, such as young workers (ungarbejdere) or apprentices (lærlinge), are not the general minimum. Leave them out.
+            If a later period's rates are given only as an increase on the earlier rates (for example "forhøjes med 4,25 kr. pr. time"), do not add it up. Return that period with an empty "bands" list and "increase" set to the amount added per hour, and quote the sentence that states the increase. An increase "yderligere" is on top of the period before it. In every other case "increase" is null.
             """,
             """
+            "increase": { "type": ["number", "null"] },
             "bands": { "type": "array", "items": { "type": "object", "properties": {
               "from_months": { "type": "integer" }, "hourly_rate": { "type": "number" } },
               "required": ["from_months", "hourly_rate"], "additionalProperties": false } }

@@ -24,9 +24,9 @@ public sealed class ExtractionTests
     }
 
     private static async Task<(SyntheticAgreement Agreement, ExtractionResult Extraction, StandInModel Model)> Extract(
-        int seed, int difficulty, Action<string, JsonArray>? spoil = null)
+        int seed, int difficulty, Action<string, JsonArray>? spoil = null, Twists twists = Twists.None)
     {
-        var agreement = AgreementGenerator.Generate(new($"extract-{seed}", seed, difficulty, 2026));
+        var agreement = AgreementGenerator.Generate(new($"extract-{seed}", seed, difficulty, 2026, twists));
         var read = ClauseSegmenter.Segment(await new PdfLayoutReader().ReadAsync(AgreementPdf.Render(agreement.Document)));
         var model = new StandInModel(agreement.Document, agreement.Truth, spoil);
         return (agreement, await new RuleExtractor(model, "stand-in").ExtractAsync(read), model);
@@ -45,6 +45,7 @@ public sealed class ExtractionTests
         var (agreement, extraction, _) = await Extract(seed, difficulty);
 
         Assert.Empty(extraction.Unreadable);
+        Assert.Empty(extraction.Gaps);
         Assert.Empty(extraction.Rules.SelectMany(rule => rule.Problems));
         Assert.Equal(Sorted(agreement.Truth.Rules), Sorted(extraction.Sound));
     }
@@ -66,6 +67,82 @@ public sealed class ExtractionTests
                 rule.GetProperty("properties").EnumerateObject().Select(property => property.Name).Order(),
                 rule.GetProperty("required").EnumerateArray().Select(name => name.GetString()!).Order());
         });
+    }
+
+    /// <summary>Reports the later years as the agreement prints them: an increase, with the sentence that states it.</summary>
+    private static Action<string, JsonArray> AsIncreases(SyntheticAgreement agreement, decimal off = 0) => (kind, rules) =>
+    {
+        if (kind != "minimum_wage")
+        {
+            return;
+        }
+
+        var lowest = rules.Select(rule => rule!["bands"]![0]!["hourly_rate"]!.GetValue<decimal>()).ToList();
+        for (var year = 1; year < rules.Count; year++)
+        {
+            rules[year]!["increase"] = lowest[year] - lowest[year - 1] + off;
+            rules[year]!["bands"] = new JsonArray();
+            rules[year]!["quote"] = IncreaseSentence(agreement);
+        }
+    };
+
+    private static string IncreaseSentence(SyntheticAgreement agreement) =>
+        agreement.Document.Sections.SelectMany(section => section.Clauses).SelectMany(clause => clause.Blocks)
+            .OfType<Overens.Documents.Paragraph>().Single(paragraph => paragraph.Text.StartsWith("Satserne forhøjes", StringComparison.Ordinal)).Text;
+
+    [Fact]
+    public async Task A_rate_given_as_an_increase_is_added_up_by_code_and_checked_by_the_increase()
+    {
+        var printed = AgreementGenerator.Generate(new("extract-5", 5, 3, 2026, Twists.Increases));
+        var (agreement, extraction, _) = await Extract(5, 3, AsIncreases(printed), Twists.Increases);
+
+        Assert.Empty(extraction.Rules.SelectMany(rule => rule.Problems));
+        Assert.Equal(Sorted(agreement.Truth.Rules), Sorted(extraction.Sound.Select(rule =>
+            rule is MinimumWageRule wage ? wage with { Source = agreement.Truth.Rules.Single(truth => truth.Id == wage.Id).Source } : rule)));
+
+        // An increase the agreement does not print is caught, and so is every rate built on it.
+        var (_, wrong, _) = await Extract(5, 3, AsIncreases(printed, off: 1), Twists.Increases);
+        Assert.Equal(
+            ["minimum_wage-2027", "minimum_wage-2028"],
+            wrong.Rules.Where(rule => rule.Problems.Any(problem => problem.Code == "value_not_in_cited_clauses")).Select(rule => rule.Rule.Id).Order());
+
+        // Sums the model made itself are not printed either, and are caught the same way.
+        var (_, summed, _) = await Extract(5, 3, twists: Twists.Increases);
+        Assert.Equal(2, summed.Rules.Count(rule => rule.Problems.Count > 0));
+    }
+
+    [Fact]
+    public async Task A_rule_the_model_left_out_is_reported_as_a_gap()
+    {
+        var (_, extraction, _) = await Extract(4, 2, (kind, rules) =>
+        {
+            switch (kind)
+            {
+                case "minimum_wage":
+                    // Only the first year, as a model does that will not add up an increase.
+                    rules.RemoveAt(2);
+                    rules.RemoveAt(1);
+                    break;
+                case "inconvenient_hours":
+                    rules.RemoveAt(1);
+                    break;
+                case "pension":
+                    rules.Clear();
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        // Nothing is wrong with any rule that was proposed.
+        Assert.Empty(extraction.Rules.SelectMany(rule => rule.Problems));
+        Assert.Equal(
+            [
+                "inconvenient_hours: No rule of this kind applies from 2027-03-01 until 2028-03-01.",
+                "minimum_wage: No rule of this kind applies from 2027-03-01.",
+                "pension: No rule of this kind was proposed.",
+            ],
+            extraction.Gaps.Select(gap => $"{gap.RuleId}: {gap.Message}").Order());
     }
 
     [Fact]

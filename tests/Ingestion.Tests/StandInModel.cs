@@ -51,6 +51,7 @@ internal sealed partial class StandInModel(AgreementDocument document, RuleSet t
         switch (rule)
         {
             case MinimumWageRule wage:
+                json["increase"] = null;
                 json["bands"] = new JsonArray([.. wage.Bands.Select(band => new JsonObject { ["from_months"] = band.FromMonths, ["hourly_rate"] = band.HourlyRate })]);
                 return ("minimum_wage", json);
             case OvertimeRule overtime:

@@ -23,6 +23,17 @@ The engine covers six kinds of rule: minimum wage by seniority, overtime, supple
 
 The agreements in the corpus are synthetic. The organisations and agreement names in them are invented (Tværhavn and Elmekær are not real places), and each PDF says so on its front page. The PDFs use Liberation Serif, under the SIL Open Font License.
 
+## Results so far
+
+Extraction is scored from the PDF against the rules each agreement really states, on ten synthetic agreements: four the prompt was written with, and six written in ways it was not.
+
+| Model | Rules found | Wrong rules the checks missed | Payslips checked correctly | Cost per agreement |
+| --- | --- | --- | --- | --- |
+| Claude Sonnet | 121 of 121 | 0 | 720 of 720 | $0.08 |
+| Claude Haiku | 121 of 121 | 0 | 720 of 720 | $0.005 |
+
+Both models are at the ceiling, so these documents do not show where extraction breaks on a real agreement. The [eval report](docs/eval-report/README.md) says what failed on the first run, how it was fixed, and what the numbers do not show.
+
 ## Run it
 
 It needs the .NET 10 SDK and Docker.

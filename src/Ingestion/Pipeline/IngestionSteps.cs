@@ -84,7 +84,7 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
                 AlsoFrom = RuleJson.Write(proposed.AlsoFrom),
                 Problems = RuleJson.Write(proposed.Problems),
             }));
-            (row.Model, row.PromptVersion, row.Status) = (modelId, ExtractionPrompt.Version, "awaiting_review");
+            (row.Model, row.PromptVersion, row.Gaps, row.Status) = (modelId, ExtractionPrompt.Version, RuleJson.Write(extraction.Gaps), "awaiting_review");
         }, cancellationToken);
     }
 

@@ -95,6 +95,7 @@ public static partial class Endpoints
                     model = run.Model,
                     promptVersion = run.PromptVersion,
                     failure = run.Failure,
+                    gaps = run.Gaps is null ? (JsonElement?)null : JsonSerializer.Deserialize<JsonElement>(run.Gaps),
                     rules = rules.Select(row =>
                     {
                         var rule = RuleJson.Read<Rule>(row.Rule);

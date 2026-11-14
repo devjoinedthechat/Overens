@@ -131,6 +131,7 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         var run = await Upload(anna);
         site.Spoil = null;
 
+        Assert.Equal(0, (await Run(anna, run)).GetProperty("gaps").GetArrayLength());
         Assert.Equal(HttpStatusCode.Conflict, (await anna.PostAsync($"/runs/{run}/approval", null)).StatusCode);
         Assert.Equal(HttpStatusCode.Conflict, (await Decide(anna, run, "pension-2026", "approved")).StatusCode);
         Assert.Equal(HttpStatusCode.BadRequest, (await Decide(anna, run, "pension-2026", "maybe")).StatusCode);
@@ -149,6 +150,25 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         Assert.Equal(HttpStatusCode.Conflict, (await anna.PostAsync($"/runs/{run}/rejection", null)).StatusCode);
         var set = Assert.Single((await Json(await anna.GetAsync("/agreements/lager/rule-sets"))).EnumerateArray());
         Assert.DoesNotContain("99.5", set.GetProperty("rules").GetRawText(), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task A_reviewer_is_told_which_kinds_of_rule_the_model_left_out()
+    {
+        site.Spoil = (kind, rules) =>
+        {
+            if (kind == "special_savings")
+            {
+                rules.Clear();
+            }
+        };
+        var anna = site.As(NewTenant());
+        var run = await Upload(anna);
+        site.Spoil = null;
+
+        var gap = Assert.Single((await Run(anna, run)).GetProperty("gaps").EnumerateArray());
+
+        Assert.Equal(("special_savings", "no_rule_of_kind"), (gap.GetProperty("ruleId").GetString(), gap.GetProperty("code").GetString()));
     }
 
     [Fact]

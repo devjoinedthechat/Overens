@@ -116,7 +116,18 @@ public static class AgreementGenerator
             sections.Add(new(number, heading, [.. clauses.Select((blocks, index) => new Clause($"{number}, stk. {index + 1}", blocks))]));
         }
 
-        string[] stepHeader = [.. steps.Select(step => $"Pr. {Danish.Date(step)}")];
+        // Twists change the wording only. They draw nothing from the random numbers above,
+        // so an agreement's rules are the same with and without them.
+        bool Twisted(Twists twist) => hard >= 2 && spec.Twists.HasFlag(twist);
+        if (Twisted(Twists.TwoYearBand) || Twisted(Twists.OldRates))
+        {
+            afterThreeYears ??= afterOneYear + 4.00m;
+        }
+
+        var topBandMonths = Twisted(Twists.TwoYearBand) ? 24 : 36;
+        string[] stepHeader = [.. steps.Select(step => Twisted(Twists.NumericDates)
+            ? $"Pr. {step.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture)}"
+            : $"Pr. {Danish.Date(step)}")];
 
         // ---------------------------------------------------------------- opening sections
 
@@ -161,10 +172,23 @@ public static class AgreementGenerator
             };
             if (afterThreeYears is { } third)
             {
-                rows.Add(Row(variant == 0 ? "Efter 3 års anciennitet" : "Fra 36 måneders anciennitet", starter, third));
+                rows.Add(Row(variant == 0 ? $"Efter {topBandMonths / 12} års anciennitet" : $"Fra {topBandMonths} måneders anciennitet", starter, third));
             }
 
-            wageBlocks = [Text(wageQuote), new TableBlock(["Anciennitet", .. stepHeader], rows)];
+            if (Twisted(Twists.Increases))
+            {
+                // Only the first year is printed. The later rates are sums the reader has to make.
+                wageBlocks =
+                [
+                    Text(wageQuote),
+                    new TableBlock(["Anciennitet", stepHeader[0]], [.. rows.Select(row => (IReadOnlyList<string>)[row[0], row[1]])]),
+                    Text($"Satserne forhøjes pr. {Danish.Date(steps[1])} med {Danish.Kroner(starter[1] - starter[0])} pr. time og pr. {Danish.Date(steps[2])} med yderligere {Danish.Kroner(starter[2] - starter[1])} pr. time."),
+                ];
+            }
+            else
+            {
+                wageBlocks = [Text(wageQuote), new TableBlock(["Anciennitet", .. stepHeader], rows)];
+            }
         }
 
         for (var step = 0; step < steps.Length; step++)
@@ -172,7 +196,7 @@ public static class AgreementGenerator
             var bands = new List<SeniorityBand> { new(0, starter[step]), new(12, starter[step] + afterOneYear) };
             if (afterThreeYears is { } third)
             {
-                bands.Add(new(36, starter[step] + third));
+                bands.Add(new(topBandMonths, starter[step] + third));
             }
 
             rules.Add(new MinimumWageRule(Id("minimum_wage", steps[step]), StepPeriod(step), new(wageClause, wageQuote), bands));
@@ -185,6 +209,16 @@ public static class AgreementGenerator
             [Text("Ved lønnen forstås i denne overenskomst timeløn, overarbejdstillæg og tillæg for forskudt tid.")],
             [Text("Alle beløb afrundes til nærmeste øre.")],
         ];
+        if (Twisted(Twists.OldRates))
+        {
+            decimal[] old = [starter[0] - 4.25m];
+            payClauses.Add(
+            [
+                Text($"Indtil den {Danish.Date(start.AddDays(-1))} gjaldt følgende mindstebetaling pr. time efter den tidligere overenskomst:"),
+                new TableBlock(["Anciennitet", "Tidligere sats"], [Row("Under 1 års anciennitet", old, 0), Row("Efter 1 års anciennitet", old, afterOneYear)]),
+            ]);
+        }
+
         if (hard >= 3)
         {
             // Rates that look like minimum wages and are not: the rule model has no young workers.
@@ -250,8 +284,17 @@ public static class AgreementGenerator
             {
                 Row($"Mandag til fredag {Danish.Clock(eveningFrom)}-22.00", evening, 0),
                 Row("Lørdag kl. 14.00-24.00", evening, saturdayExtra!.Value),
-                Row("Alle dage kl. 22.00-06.00", evening, nightExtra),
             };
+            if (Twisted(Twists.SplitNight))
+            {
+                rows.Add(Row("Alle dage kl. 22.00-24.00", evening, nightExtra));
+                rows.Add(Row("Alle dage kl. 00.00-06.00", evening, nightExtra));
+            }
+            else
+            {
+                rows.Add(Row("Alle dage kl. 22.00-06.00", evening, nightExtra));
+            }
+
             windowBlocks = [Text(windowQuote), new TableBlock(["Tidsrum", .. stepHeader], rows)];
         }
 
@@ -327,9 +370,12 @@ public static class AgreementGenerator
         Add("Fritvalgskonto",
             savingsBlocks,
             [Text("Medarbejderen kan vælge at få saldoen udbetalt i forbindelse med ferie og fridage eller indbetalt som ekstra pensionsbidrag.")]);
+        // A protocol may raise the rate part-way through the second year.
+        var midYear = Twisted(Twists.MidYearChange) ? new DateOnly(steps[1].Year, 9, 1) : (DateOnly?)null;
         for (var step = 0; step < steps.Length; step++)
         {
-            rules.Add(new SpecialSavingsRule(Id("special_savings", steps[step]), StepPeriod(step), new($"{savingsSection}, stk. 1", savingsQuote), savings[step]));
+            var period = step == 1 && midYear is { } until ? new Period(steps[1], until) : StepPeriod(step);
+            rules.Add(new SpecialSavingsRule(Id("special_savings", steps[step]), period, new($"{savingsSection}, stk. 1", savingsQuote), savings[step]));
         }
 
         // ---------------------------------------------------------------- closing sections
@@ -386,6 +432,19 @@ public static class AgreementGenerator
                 raised,
                 employeePension,
                 qualifyingMonths));
+        }
+
+        if (midYear is { } changed)
+        {
+            var number = $"Protokollat {protocols.Count + 1}";
+            var between = savings[1] + 0.25m;
+            var changeQuote = $"Med virkning fra den {Danish.Date(changed)} forhøjes arbejdsgiverens bidrag til fritvalgskontoen til {Danish.Percent(between)} af lønnen.";
+            protocols.Add(new(number, "Forhøjelse af bidrag til fritvalgskonto",
+            [
+                new($"{number}, stk. 1", [Text($"Parterne er enige om at fremrykke en del af forhøjelsen i {savingsSection}, stk. 1. {changeQuote}")]),
+                new($"{number}, stk. 2", [Text($"Satsen pr. {Danish.Date(steps[2])} er uændret.")]),
+            ]));
+            rules.Add(new SpecialSavingsRule($"special_savings-{changed.Year}b", new(changed, steps[2]), new($"{number}, stk. 1", changeQuote), between));
         }
 
         var document = new AgreementDocument(

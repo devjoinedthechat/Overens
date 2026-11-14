@@ -1,18 +1,17 @@
 using System.Globalization;
+using System.Text.Json;
 using Microsoft.Extensions.AI;
 using Overens.Evals;
 using Overens.Gateway;
 using Overens.Ingestion.Extraction;
-using Overens.Ingestion.Reading;
-using Overens.Rules;
-using Overens.Synthetic;
 
-// Extraction on the corpus:
+// Extraction on every agreement, scored against the rules each one really states:
 //
-//   dotnet run --project evals/Runner -- [--model claude-sonnet-5-5] [--only hard-2026] [--cap 2] [--record]
+//   dotnet run --project evals/Runner -- [--model claude-sonnet-5-5] [--only twist-all] [--cap 2] [--record] [--save]
 //
 // Without --record only recorded answers are used and nothing is spent. With it,
 // ANTHROPIC_API_KEY must be set; calls not yet recorded go to the model, up to the cap in dollars.
+// --save writes the results to docs/eval-report/results, where a test holds them to the recordings.
 string Option(string name, string fallback) => Array.IndexOf(args, name) is >= 0 and var at && at + 1 < args.Length ? args[at + 1] : fallback;
 var modelId = Option("--model", Models.Sonnet);
 var only = Option("--only", "");
@@ -35,43 +34,37 @@ if (record)
 }
 
 using var model = new ReplayChatClient(live, recordings);
-var extractor = new RuleExtractor(model, modelId);
-var totals = new Dictionary<string, KindScore>();
-foreach (var spec in Corpus.Agreements.Where(spec => only.Length == 0 || spec.Id == only))
+var results = await Evals.RunAsync(model, modelId, spec => only.Length == 0 || spec.Id == only);
+foreach (var agreement in results.Agreements)
 {
-    var agreement = Corpus.Generate(spec);
-    var read = ClauseSegmenter.Segment(await new PdfLayoutReader().ReadAsync(AgreementPdf.Render(agreement.Document)));
-    var extraction = await extractor.ExtractAsync(read);
-
-    Console.WriteLine($"\n{spec.Id}");
-    foreach (var score in ExtractionEval.Score(agreement.Truth, extraction))
+    Console.WriteLine($"\n{agreement.Agreement} ({agreement.Set})");
+    foreach (var score in agreement.Kinds.Where(score => score.Correct != score.Expected || score.Proposed != score.Expected || score.Flagged > 0))
     {
         Console.WriteLine($"  {score.Kind,-20} expected {score.Expected}  proposed {score.Proposed}  correct {score.Correct}  flagged {score.Flagged}  wrong-unflagged {score.WrongAndUnflagged}  right-flagged {score.RightButFlagged}");
-        var sum = totals.GetValueOrDefault(score.Kind) ?? new(score.Kind, 0, 0, 0, 0, 0, 0);
-        totals[score.Kind] = sum with
-        {
-            Expected = sum.Expected + score.Expected,
-            Proposed = sum.Proposed + score.Proposed,
-            Correct = sum.Correct + score.Correct,
-            Flagged = sum.Flagged + score.Flagged,
-            WrongAndUnflagged = sum.WrongAndUnflagged + score.WrongAndUnflagged,
-            RightButFlagged = sum.RightButFlagged + score.RightButFlagged,
-        };
     }
 
-    foreach (var problem in extraction.Rules.SelectMany(rule => rule.Problems).Concat(extraction.Unreadable))
+    foreach (var problem in agreement.Problems.Concat(agreement.Gaps.Select(gap => $"gap in {gap}")))
     {
-        Console.WriteLine($"  ! {problem.RuleId}: {problem.Code}: {problem.Message}");
+        Console.WriteLine($"  ! {problem}");
     }
 
-    if (args.Contains("--show"))
-    {
-        Console.WriteLine(RuleJson.Write(extraction.Rules.Select(rule => rule.Rule)));
-    }
+    Console.WriteLine($"  payslips: {agreement.Pay.Right} of {agreement.Pay.Cases} right, {agreement.Pay.MissedErrors} with a missed error, {agreement.Pay.FalseAlarms} false alarms");
 }
 
-var all = totals.Values.ToList();
 Console.WriteLine($"\nModel {modelId}, prompt {ExtractionPrompt.Version}");
-Console.WriteLine($"Rules: {all.Sum(score => score.Correct)} of {all.Sum(score => score.Expected)} found, {all.Sum(score => score.Proposed)} proposed, {all.Sum(score => score.WrongAndUnflagged)} wrong and unflagged, {all.Sum(score => score.RightButFlagged)} right but flagged.");
+foreach (var set in results.Agreements.Select(agreement => agreement.Set).Distinct())
+{
+    var (rules, pay) = (results.Total(set), results.Pay(set));
+    Console.WriteLine($"{set,-10} rules: {rules.Correct} of {rules.Expected} found, {rules.Proposed} proposed, {rules.Flagged} flagged, {rules.WrongAndUnflagged} wrong and unflagged, {rules.RightButFlagged} right but flagged.  payslips: {pay.Right} of {pay.Cases} right.");
+}
+
 Console.WriteLine(record ? $"Spent ${spend.Dollars:0.0000} in {spend.Calls} calls ({spend.InputTokens} tokens in, {spend.OutputTokens} out)." : "Replayed from recordings. Nothing spent.");
+if (args.Contains("--save") && only.Length == 0)
+{
+    var file = Path.Combine("docs", "eval-report", "results", ExtractionPrompt.Version, $"{modelId}.json");
+    Directory.CreateDirectory(Path.GetDirectoryName(file)!);
+    await File.WriteAllTextAsync(file, JsonSerializer.Serialize(results, EvalResults.Json) + "\n");
+    Console.WriteLine($"Saved {file}");
+}
+
 return 0;

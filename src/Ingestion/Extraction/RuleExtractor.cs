@@ -35,16 +35,27 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
             return (kind, response.Text);
         }));
 
-        var rules = new List<(Rule Rule, IReadOnlyList<string> AlsoFrom)>();
+        var rules = new List<(Rule Rule, IReadOnlyList<string> AlsoFrom, decimal? Increase)>();
         var unreadable = new List<RuleProblem>();
         foreach (var (kind, text) in answers)
         {
             try
             {
                 using var answer = JsonDocument.Parse(text);
-                foreach (var item in answer.RootElement.GetProperty("rules").EnumerateArray())
+                // In date order, so that a period given as an increase finds the period it builds on.
+                foreach (var item in answer.RootElement.GetProperty("rules").EnumerateArray().OrderBy(item => item.GetProperty("from").GetString(), StringComparer.Ordinal))
                 {
                     var rule = Read(kind.Name, item);
+                    decimal? increase = null;
+                    if (rule is MinimumWageRule wage && item.GetProperty("increase").ValueKind == JsonValueKind.Number)
+                    {
+                        // The model reports the increase as printed. The sum is made here.
+                        increase = item.GetProperty("increase").GetDecimal();
+                        var before = rules.Select(other => other.Rule).OfType<MinimumWageRule>().LastOrDefault()
+                            ?? throw new FormatException("A minimum wage is given as an increase, with no earlier rates to increase.");
+                        rule = wage with { Bands = [.. before.Bands.Select(band => band with { HourlyRate = band.HourlyRate + increase.Value })] };
+                    }
+
                     // Ids are given here, never by the model: the kind and the year it starts.
                     var id = $"{kind.Name}-{rule.InForce.From.Year}";
                     while (rules.Any(other => other.Rule.Id == id))
@@ -52,7 +63,7 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
                         id += "b";
                     }
 
-                    rules.Add((rule with { Id = id }, [.. item.GetProperty("also_from").EnumerateArray().Select(clause => clause.GetString()!)]));
+                    rules.Add((rule with { Id = id }, [.. item.GetProperty("also_from").EnumerateArray().Select(clause => clause.GetString()!)], increase));
                 }
             }
             catch (Exception error) when (error is JsonException or KeyNotFoundException or FormatException or InvalidOperationException)
@@ -61,7 +72,7 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
             }
         }
 
-        return new(Grounding.Check(agreement, rules), unreadable);
+        return new(Grounding.Check(agreement, rules), unreadable, Grounding.Gaps([.. rules.Select(rule => rule.Rule)]));
     }
 
     private static Rule Read(string kind, JsonElement item)

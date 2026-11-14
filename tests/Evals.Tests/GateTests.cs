@@ -1,0 +1,64 @@
+using System.Text.Json;
+using Overens.Gateway;
+using Overens.Ingestion.Extraction;
+
+namespace Overens.Evals.Tests;
+
+/// <summary>
+/// The release gate. It replays the answers each model gave when the evals were last
+/// recorded, so it costs nothing and needs no key. It fails when the prompt, a schema or a
+/// document has changed without the evals being recorded again, and when the recorded
+/// results are below the bar.
+/// </summary>
+public sealed class GateTests
+{
+    public static TheoryData<string> Models => [Gateway.Models.Sonnet, Gateway.Models.Haiku];
+
+    private static string Root()
+    {
+        var directory = new DirectoryInfo(AppContext.BaseDirectory);
+        while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "Overens.slnx")))
+        {
+            directory = directory.Parent;
+        }
+
+        return directory?.FullName ?? throw new InvalidOperationException("The repository root was not found.");
+    }
+
+    private static async Task<EvalResults> Replay(string model)
+    {
+        using var recorded = new ReplayChatClient(null, Path.Combine(Root(), "evals", "recordings", ExtractionPrompt.Version, model));
+        return await Evals.RunAsync(recorded, model);
+    }
+
+    [Theory]
+    [MemberData(nameof(Models))]
+    public async Task The_published_results_are_what_the_recorded_answers_give(string model)
+    {
+        var published = await File.ReadAllTextAsync(Path.Combine(Root(), "docs", "eval-report", "results", ExtractionPrompt.Version, $"{model}.json"));
+
+        var replayed = JsonSerializer.Serialize(await Replay(model), EvalResults.Json) + "\n";
+
+        Assert.Equal(published, replayed);
+    }
+
+    [Theory]
+    [MemberData(nameof(Models))]
+    public async Task No_wrong_rule_gets_past_the_checks_and_the_default_model_finds_every_rule(string model)
+    {
+        var results = await Replay(model);
+
+        foreach (var set in new[] { "corpus", "challenge" })
+        {
+            var rules = results.Total(set);
+            // The bar that matters most: a wrong rule the checks did not flag reaches a reviewer looking sound.
+            Assert.Equal(0, rules.WrongAndUnflagged);
+            Assert.Equal(0, results.Pay(set).FalseAlarms);
+            if (model == Gateway.Models.Sonnet)
+            {
+                Assert.Equal(rules.Expected, rules.Correct);
+                Assert.Equal(results.Pay(set).Cases, results.Pay(set).Right);
+            }
+        }
+    }
+}

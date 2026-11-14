@@ -11,7 +11,8 @@ namespace Overens.Ingestion.Extraction;
 ///
 /// - the clause a rule names exists;
 /// - its quote stands in that clause word for word;
-/// - every number in the rule is printed in the clauses it cites;
+/// - every number in the rule is printed in the clauses it cites (for a rate given as an
+///   increase, the increase is, and the sum is made by code);
 /// - every date in the rule is printed in the agreement;
 /// - the rules together are a usable rule set.
 ///
@@ -20,7 +21,7 @@ namespace Overens.Ingestion.Extraction;
 /// </summary>
 public static partial class Grounding
 {
-    public static IReadOnlyList<ProposedRule> Check(ReadAgreement agreement, IReadOnlyList<(Rule Rule, IReadOnlyList<string> AlsoFrom)> rules)
+    public static IReadOnlyList<ProposedRule> Check(ReadAgreement agreement, IReadOnlyList<(Rule Rule, IReadOnlyList<string> AlsoFrom, decimal? Increase)> rules)
     {
         ArgumentNullException.ThrowIfNull(agreement);
         ArgumentNullException.ThrowIfNull(rules);
@@ -30,7 +31,7 @@ public static partial class Grounding
         var asASet = RuleSetValidator.Validate(new("proposed", 0, [.. rules.Select(rule => rule.Rule)]));
 
         var proposed = new List<ProposedRule>();
-        foreach (var (rule, alsoFrom) in rules)
+        foreach (var (rule, alsoFrom, increase) in rules)
         {
             var problems = new List<RuleProblem>();
             void Problem(string code, string message) => problems.Add(new(rule.Id, code, message));
@@ -63,7 +64,9 @@ public static partial class Grounding
             }
 
             var citedText = string.Join(' ', cited);
-            foreach (var (what, ways) in Values(rule))
+            // A rate that was added up here is not printed anywhere. What must be printed is the increase.
+            var values = increase is { } added ? [($"The increase of {added}", Money(added))] : Values(rule);
+            foreach (var (what, ways) in values)
             {
                 if (!ways.Any(way => way.All(form => Printed(citedText, form))))
                 {
@@ -85,6 +88,61 @@ public static partial class Grounding
 
         return proposed;
     }
+
+    /// <summary>
+    /// What a set of proposed rules leaves uncovered. Every kind of rule is expected to apply
+    /// from the day the first rule of any kind starts, with no days missing, and to have a
+    /// last rule with no end.
+    /// </summary>
+    public static IReadOnlyList<RuleProblem> Gaps(IReadOnlyList<Rule> rules)
+    {
+        ArgumentNullException.ThrowIfNull(rules);
+        var gaps = new List<RuleProblem>();
+        if (rules.Count == 0)
+        {
+            return [.. KindNames.Values.Select(kind => new RuleProblem(kind, "no_rule_of_kind", "No rule of this kind was proposed."))];
+        }
+
+        var start = rules.Min(rule => rule.InForce.From);
+        foreach (var (type, kind) in KindNames)
+        {
+            var ofKind = rules.Where(rule => rule.GetType() == type).OrderBy(rule => rule.InForce.From).ToList();
+            if (ofKind.Count == 0)
+            {
+                gaps.Add(new(kind, "no_rule_of_kind", "No rule of this kind was proposed."));
+                continue;
+            }
+
+            DateOnly? coveredUntil = start;
+            foreach (var rule in ofKind)
+            {
+                if (coveredUntil is { } until && rule.InForce.From > until)
+                {
+                    gaps.Add(new(kind, "period_not_covered", $"No rule of this kind applies from {until:yyyy-MM-dd} until {rule.InForce.From:yyyy-MM-dd}."));
+                }
+
+                coveredUntil = coveredUntil is null || rule.InForce.Until is null ? null
+                    : rule.InForce.Until > coveredUntil ? rule.InForce.Until : coveredUntil;
+            }
+
+            if (coveredUntil is { } end)
+            {
+                gaps.Add(new(kind, "period_not_covered", $"No rule of this kind applies from {end:yyyy-MM-dd}."));
+            }
+        }
+
+        return gaps;
+    }
+
+    private static readonly Dictionary<Type, string> KindNames = new()
+    {
+        [typeof(MinimumWageRule)] = "minimum_wage",
+        [typeof(OvertimeRule)] = "overtime",
+        [typeof(InconvenientHoursRule)] = "inconvenient_hours",
+        [typeof(PensionRule)] = "pension",
+        [typeof(HolidayAllowanceRule)] = "holiday_allowance",
+        [typeof(SpecialSavingsRule)] = "special_savings",
+    };
 
     /// <summary>
     /// Each number in a rule, with the ways an agreement may print it. A way is a set of

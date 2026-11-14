@@ -41,6 +41,9 @@
   <Folder Name="/tests/Data.Tests/">
     <Project Path="tests/Data.Tests/Overens.Data.Tests.csproj" />
   </Folder>
+  <Folder Name="/tests/Evals.Tests/">
+    <Project Path="tests/Evals.Tests/Overens.Evals.Tests.csproj" />
+  </Folder>
   <Folder Name="/tests/Ingestion.Tests/">
     <Project Path="tests/Ingestion.Tests/Overens.Ingestion.Tests.csproj" />
   </Folder>

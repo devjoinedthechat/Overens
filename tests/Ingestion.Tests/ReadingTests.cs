@@ -40,6 +40,19 @@ public sealed class ReadingTests
         Assert.Equal(RuleJson.Write(document.Sections.Concat(document.Protocols)), RuleJson.Write(read.Sections));
     }
 
+    public static TheoryData<string> CorpusIds => [.. Corpus.Agreements.Concat(Corpus.Challenge).Select(spec => spec.Id)];
+
+    [Theory]
+    [MemberData(nameof(CorpusIds))]
+    public async Task Every_agreement_in_the_corpus_reads_back_exactly(string id)
+    {
+        var document = Corpus.Generate(Corpus.Agreements.Concat(Corpus.Challenge).Single(spec => spec.Id == id)).Document;
+
+        var read = await Read(document);
+
+        Assert.Equal(RuleJson.Write(document.Sections.Concat(document.Protocols)), RuleJson.Write(read.Sections));
+    }
+
     [Fact]
     public async Task Every_clause_knows_its_pages_and_none_is_on_the_front_page_or_in_the_contents()
     {

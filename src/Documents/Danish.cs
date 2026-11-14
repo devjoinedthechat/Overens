@@ -21,7 +21,7 @@ public static class Danish
     public static string Kroner(decimal value) => $"{Amount(value)} kr.";
 
     /// <summary>12,5 pct. and 8,0 pct.</summary>
-    public static string Percent(decimal value) => $"{value.ToString("0.0", CultureInfo.InvariantCulture).Replace('.', ',')} pct.";
+    public static string Percent(decimal value) => $"{value.ToString("0.0#", CultureInfo.InvariantCulture).Replace('.', ',')} pct.";
 
     /// <summary>1. marts 2026</summary>
     public static string Date(DateOnly day) => $"{day.Day}. {Months[day.Month - 1]} {day.Year}";
