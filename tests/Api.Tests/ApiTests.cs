@@ -76,6 +76,10 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
             RuleJson.Write(Site.Agreement.Truth.Rules.OrderBy(rule => rule.Id, StringComparer.Ordinal)),
             RuleJson.Write(rules.OrderBy(rule => rule.Id, StringComparer.Ordinal)));
 
+        // The company's runs are listed, newest first.
+        var listed = Assert.Single((await Json(await anna.GetAsync("/runs"))).EnumerateArray());
+        Assert.Equal((run, "published"), (listed.GetProperty("id").GetString(), listed.GetProperty("status").GetString()));
+
         // A second upload of the same agreement becomes version 2.
         var again = await Upload(anna);
         await DecideAll(anna, again);
@@ -108,6 +112,7 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         var run = await Upload(anna);
 
         Assert.Equal(HttpStatusCode.NotFound, (await mallory.GetAsync($"/runs/{run}")).StatusCode);
+        Assert.Empty((await Json(await mallory.GetAsync("/runs"))).EnumerateArray());
         Assert.Equal(HttpStatusCode.NotFound, (await Decide(mallory, run, "pension-2026", "rejected")).StatusCode);
         Assert.Equal(HttpStatusCode.NotFound, (await mallory.PostAsync($"/runs/{run}/approval", null)).StatusCode);
         Assert.Equal(HttpStatusCode.NotFound, (await mallory.PostAsync($"/runs/{run}/rejection", null)).StatusCode);
@@ -315,6 +320,22 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         Assert.Equal(HttpStatusCode.BadRequest, await With(pay => pay with { Timesheet = pay.Timesheet with { PeriodEnd = pay.Timesheet.PeriodStart.AddDays(90) } }));
         Assert.Equal(HttpStatusCode.BadRequest, await With(_ => new { hello = "world" }));
         Assert.Equal(HttpStatusCode.BadRequest, (await employer.PostAsync("/agreements/lager/pay-checks", new StringContent("{not json", System.Text.Encoding.UTF8, "application/json"))).StatusCode);
+    }
+
+    [Fact]
+    public async Task The_console_is_served_with_a_policy_that_lets_it_load_only_its_own_code()
+    {
+        var page = await site.Client(null).GetAsync("/app/");
+        var policy = string.Join(' ', page.Headers.GetValues("Content-Security-Policy"));
+
+        Assert.Equal(HttpStatusCode.OK, page.StatusCode);
+        Assert.Contains("<script src=\"app.js\"", await page.Content.ReadAsStringAsync(), StringComparison.Ordinal);
+        Assert.Contains("default-src 'none'", policy, StringComparison.Ordinal);
+        Assert.Contains("script-src 'self';", policy, StringComparison.Ordinal);
+        Assert.Contains("connect-src 'self' https://identity.test;", policy, StringComparison.Ordinal);
+        Assert.DoesNotContain("unsafe", policy, StringComparison.Ordinal);
+        Assert.Equal(HttpStatusCode.OK, (await site.Client(null).GetAsync("/app/app.js")).StatusCode);
+        Assert.Equal("overens-web", (await Json(await site.Client(null).GetAsync("/app/config.json"))).GetProperty("clientId").GetString());
     }
 
     [Theory]

@@ -5,6 +5,8 @@
 #
 #   scripts/smoke.sh          start, check, stop
 #   KEEP=1 scripts/smoke.sh   leave the system running afterwards
+#   SKIP_BROWSER=1            leave out the part that needs Google Chrome
+#   SHOTS=dir                 save screenshots of the console there
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -98,6 +100,12 @@ check "a correct payslip has no findings" "$(pay 0 | call "$eva" -X POST -H 'Con
 found=$(pay 1 | call "$eva" -X POST -H 'Content-Type: application/json' --data-binary @- "$api/agreements/lager/pay-checks")
 check "a wrong payslip has findings" "$(echo "$found" | json "len(d['findings']) > 0")" True
 check "each finding is explained in words" "$(echo "$found" | json "all('kr.' in f['explanation'] for f in d['findings'])")" True
+
+if [ -z "${SKIP_BROWSER:-}" ]; then
+  echo "The console, in a real browser"
+  # shellcheck disable=SC2086
+  if ! dotnet run --project tools/UiCheck -- ${SHOTS:-}; then failed=1; fi
+fi
 
 echo
 if [ "$failed" -eq 0 ]; then echo "All checks passed."; else echo "Some checks failed."; exit 1; fi

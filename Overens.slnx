@@ -69,4 +69,7 @@
   <Folder Name="/tools/Migrate/">
     <Project Path="tools/Migrate/Overens.Migrate.csproj" />
   </Folder>
+  <Folder Name="/tools/UiCheck/">
+    <Project Path="tools/UiCheck/Overens.UiCheck.csproj" />
+  </Folder>
 </Solution>

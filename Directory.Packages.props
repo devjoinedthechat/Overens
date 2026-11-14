@@ -13,6 +13,7 @@
     <PackageVersion Include="Microsoft.Extensions.AI" Version="10.11.0" />
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.10.0" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.10.0" />
+    <PackageVersion Include="Microsoft.Playwright" Version="1.64.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <!-- Stay on 6.2: it is MIT. From 6.5 the library is AGPL and refuses to run without a licence. -->
     <PackageVersion Include="PDFsharp-MigraDoc" Version="6.2.4" />

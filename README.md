@@ -17,6 +17,7 @@ An AI agent that checks payslips against Danish collective agreements, under con
 | `src/Data` | The database schema in plain SQL: a role for the API and one for the worker, row-level security per company, tables that cannot be changed once written, and a publish function that refuses without a person's approval on record. |
 | `src/Worker` | The pipeline as a durable orchestration: read, extract, wait for a reviewer for as long as it takes, publish. A worker that dies is replaced and the run carries on. |
 | `src/Api` | Upload a PDF, review each proposed rule beside the clause it came from, approve or reject, read published rule sets. An employer checks a payslip against the published rules and gets each wrong line with its clause; nothing about the employee is stored and a CPR number is refused. Tokens from the identity provider; uploads limited per company. |
+| `src/Api/wwwroot/app` | The web console, in plain JavaScript with no build step. Sign-in at the identity provider with PKCE. A reviewer sees each proposed rule beside its clause with the quoted sentence marked. Served under a content policy that lets it load only its own code. |
 | `src/Agent` | Where a model words things for people. A finding is explained in plain Danish; the model's wording is used only if every number in it is the finding's own, and fixed wording is used otherwise. |
 | `src/AppHost` | The one-command local stack: Postgres, the Durable Task Scheduler's emulator, Keycloak, the worker and the API. |
 
@@ -37,11 +38,11 @@ Both models are at the ceiling, so these documents do not show where extraction 
 
 ## Run it
 
-It needs the .NET 10 SDK and Docker.
+It needs the .NET 10 SDK and Docker. The smoke test's browser part also needs Google Chrome (`SKIP_BROWSER=1` leaves it out).
 
 ```sh
 dotnet run --project src/AppHost    # the whole system, with a dashboard at http://localhost:15034
-scripts/smoke.sh                    # start it, take one agreement from upload to a published rule set, stop it
+scripts/smoke.sh                    # start it, take one agreement from upload to checked payslips, also in a browser, stop it
 scripts/check.sh                    # secrets scan, build, format check, tests
 dotnet run --project evals/Runner   # extraction scored on the corpus, from recorded answers
 ```
@@ -50,7 +51,8 @@ No model key is needed for any of these. Without `ANTHROPIC_API_KEY` the worker 
 
 | Service | Address | What it is |
 | --- | --- | --- |
-| API | `http://localhost:5058` | Upload, review, approve, read rule sets |
+| Console | `http://localhost:5058/app/` | The web console: upload and review as `anna`, check a payslip as `eva` |
+| API | `http://localhost:5058` | The same, for programs |
 | Keycloak | `http://localhost:8081` | Sign-in. Realm `overens`, admin `admin` / `admin` |
 | Scheduler | `http://localhost:8092` | The Durable Task dashboard: each run, step by step |
 | Dashboard | `http://localhost:15034` | Logs and traces of every service |

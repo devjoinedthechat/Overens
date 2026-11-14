@@ -57,6 +57,25 @@ if (builder.Configuration["ConnectionStrings:scheduler"] is { } scheduler)
 
 var app = builder.Build();
 
+// The console is static files. It may load its own scripts and styles and nothing else,
+// and may talk only to this API and the identity provider.
+var authority = new Uri(Setting("Auth:Authority"));
+app.Use(async (http, next) =>
+{
+    if (http.Request.Path.StartsWithSegments("/app"))
+    {
+        http.Response.Headers.ContentSecurityPolicy =
+            $"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' {authority.GetLeftPart(UriPartial.Authority)}; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
+        http.Response.Headers.XContentTypeOptions = "nosniff";
+        http.Response.Headers["Referrer-Policy"] = "no-referrer";
+    }
+
+    await next(http);
+});
+app.UseDefaultFiles();
+app.UseStaticFiles();
+app.MapGet("/app/config.json", () => Results.Ok(new { authority = authority.ToString().TrimEnd('/'), clientId = app.Configuration["Auth:WebClient"] ?? "overens-web" }));
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseRateLimiter();

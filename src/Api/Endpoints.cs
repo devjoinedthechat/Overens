@@ -74,6 +74,16 @@ public static partial class Endpoints
             return Results.Accepted($"/runs/{run.RunId}", new { id = run.RunId, status = "started" });
         }).RequireRateLimiting(UploadLimit);
 
+        // The company's runs, newest first.
+        api.MapGet("/runs", (HttpContext http, TenantScope database, CancellationToken cancellationToken) =>
+            AsCaller(http, caller => database.RunAsync(caller.TenantId, async db =>
+            {
+                var runs = await db.Runs.OrderByDescending(run => run.CreatedAt).Take(50)
+                    .Select(run => new { id = run.Id, agreementId = run.AgreementId, status = run.Status, title = run.Title, createdAt = run.CreatedAt })
+                    .ToListAsync(cancellationToken);
+                return Results.Ok(runs);
+            }, cancellationToken)));
+
         // What a reviewer needs to judge a run: each proposed rule beside the words it came from.
         api.MapGet("/runs/{runId}", (string runId, HttpContext http, TenantScope database, CancellationToken cancellationToken) =>
             AsCaller(http, caller => database.RunAsync(caller.TenantId, async db =>
