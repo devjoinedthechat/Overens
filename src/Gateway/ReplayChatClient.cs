@@ -33,7 +33,15 @@ public sealed class ReplayChatClient : DelegatingChatClient
         if (File.Exists(file))
         {
             var kept = JsonSerializer.Deserialize<Kept>(await File.ReadAllTextAsync(file, cancellationToken))!;
-            return new(new ChatMessage(ChatRole.Assistant, kept.Text)) { ModelId = kept.Model };
+            var contents = new List<AIContent>();
+            if (kept.Text.Length > 0)
+            {
+                contents.Add(new TextContent(kept.Text));
+            }
+
+            contents.AddRange((kept.Calls ?? []).Select(call => new FunctionCallContent(
+                call.Id, call.Name, JsonSerializer.Deserialize<Dictionary<string, object?>>(call.Arguments))));
+            return new(new ChatMessage(ChatRole.Assistant, contents)) { ModelId = kept.Model };
         }
 
         if (!record)
@@ -47,7 +55,7 @@ public sealed class ReplayChatClient : DelegatingChatClient
         // Only the answer is kept. Token counts and anything else about the account stay out of the file.
         await File.WriteAllTextAsync(
             file,
-            JsonSerializer.Serialize(new Kept(options?.ModelId ?? "", response.Text), Indented) + "\n",
+            JsonSerializer.Serialize(new Kept(options?.ModelId ?? "", response.Text, Calls(response)), Indented) + "\n",
             cancellationToken);
         return response;
     }
@@ -56,6 +64,7 @@ public sealed class ReplayChatClient : DelegatingChatClient
     {
         WriteIndented = true,
         Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRanges.All),
+        DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
     };
 
     private static string Key(List<ChatMessage> messages, ChatOptions? options)
@@ -66,15 +75,45 @@ public sealed class ReplayChatClient : DelegatingChatClient
             request.Append(schema.GetRawText()).Append('\n');
         }
 
+        foreach (var tool in options?.Tools?.OfType<AIFunctionDeclaration>() ?? [])
+        {
+            request.Append("tool ").Append(tool.Name).Append('\n').Append(tool.Description).Append('\n').Append(tool.JsonSchema.GetRawText()).Append('\n');
+        }
+
         foreach (var message in messages)
         {
             request.Append(message.Role.Value).Append('\n').Append(message.Text).Append('\n');
+            // A turn in a tool loop is told apart by the calls made and the results returned so far.
+            foreach (var content in message.Contents)
+            {
+                switch (content)
+                {
+                    case FunctionCallContent call:
+                        request.Append("call ").Append(call.Name).Append(' ').Append(JsonSerializer.Serialize(call.Arguments)).Append('\n');
+                        break;
+                    case FunctionResultContent result:
+                        request.Append("result ").Append(result.Result?.ToString()).Append('\n');
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         return Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes(request.ToString())))[..32];
     }
 
-    private sealed record Kept(string Model, string Text);
+    private static List<KeptCall>? Calls(ChatResponse response)
+    {
+        var calls = response.Messages.SelectMany(message => message.Contents).OfType<FunctionCallContent>()
+            .Select(call => new KeptCall(call.CallId, call.Name, JsonSerializer.Serialize(call.Arguments)))
+            .ToList();
+        return calls.Count == 0 ? null : calls;
+    }
+
+    private sealed record Kept(string Model, string Text, List<KeptCall>? Calls = null);
+
+    private sealed record KeptCall(string Id, string Name, string Arguments);
 
     private sealed class NoModel : IChatClient
     {

@@ -118,16 +118,7 @@ public static class ExtractionPrompt
     }
 
     /// <summary>A clause's words, with each table row on its own line. Quotes are checked against this.</summary>
-    public static string Text(Clause clause)
-    {
-        ArgumentNullException.ThrowIfNull(clause);
-        return string.Join('\n', clause.Blocks.Select(block => block switch
-        {
-            Paragraph paragraph => paragraph.Text,
-            TableBlock table => string.Join('\n', table.Rows.Prepend(table.Header).Select(row => string.Join(" | ", row))),
-            _ => "",
-        }));
-    }
+    public static string Text(Clause clause) => ClauseText.Of(clause);
 }
 
 /// <summary>One kind of rule: what to ask for it, and the fields its answer adds to the common ones.</summary>

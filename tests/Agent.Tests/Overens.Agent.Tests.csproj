@@ -13,6 +13,7 @@
   <ItemGroup>
     <Using Include="Xunit" />
     <ProjectReference Include="..\..\src\Agent\Overens.Agent.csproj" />
+    <ProjectReference Include="..\..\src\Synthetic\Overens.Synthetic.csproj" />
     <Compile Include="..\Rules.Tests\Sample.cs" Link="Sample.cs" />
   </ItemGroup>
 
