@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Overens.Synthetic;
+namespace Overens.Documents;
 
 /// <summary>An agreement as plain text, the way it reads on the page.</summary>
 public static class AgreementText

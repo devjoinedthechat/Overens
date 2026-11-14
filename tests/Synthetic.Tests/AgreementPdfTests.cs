@@ -1,3 +1,5 @@
+using Overens.Documents;
+
 namespace Overens.Synthetic.Tests;
 
 public sealed class AgreementPdfTests

@@ -2,6 +2,7 @@ using System.Reflection;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
+using Overens.Documents;
 using PdfSharp.Fonts;
 
 namespace Overens.Synthetic;
@@ -98,7 +99,7 @@ public static class AgreementPdf
                 {
                     switch (block)
                     {
-                        case Paragraph text:
+                        case Documents.Paragraph text:
                             var paragraph = page.AddParagraph();
                             if (opening)
                             {

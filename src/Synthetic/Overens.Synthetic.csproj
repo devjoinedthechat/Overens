@@ -3,6 +3,7 @@
   <!-- Makes test material from rule sets: agreements, timesheets and payslips with known answers. -->
 
   <ItemGroup>
+    <ProjectReference Include="..\Documents\Overens.Documents.csproj" />
     <ProjectReference Include="..\Rules\Overens.Rules.csproj" />
   </ItemGroup>
 

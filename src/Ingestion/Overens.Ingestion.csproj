@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- From an agreement's PDF to a rule set a person has approved. -->
+
+  <ItemGroup>
+    <PackageReference Include="PdfPig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Documents\Overens.Documents.csproj" />
+    <ProjectReference Include="..\Rules\Overens.Rules.csproj" />
+  </ItemGroup>
+
+</Project>
