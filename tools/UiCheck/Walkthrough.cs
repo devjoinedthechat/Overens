@@ -16,7 +16,7 @@ using Microsoft.Playwright;
 internal static class Walkthrough
 {
     private const string Console_ = "http://localhost:5058/app/";
-    private const int Width = 900;
+    private const int Width = 1000;
     private const int Height = 600;
     private const int Hold = 6;
 
@@ -61,10 +61,10 @@ internal static class Walkthrough
         {
             await page.GetByLabel("Agreement id").FillAsync("lager");
             await page.GetByLabel("Agreement PDF").SetInputFilesAsync(Path.Combine("data", "synthetic", "hard-2026", "agreement.pdf"));
-            await Still(page, page.Locator("header"), "A payroll specialist uploads a collective agreement as a PDF.");
+            await Still(page, page.Locator("main"), "A payroll specialist uploads a collective agreement as a PDF.");
             await page.GetByRole(AriaRole.Button, new() { Name = "Upload" }).ClickAsync();
             await page.GetByText("Waiting for review").WaitForAsync(new() { Timeout = 90_000 });
-            await Still(page, page.Locator("header"), "The pipeline read it and proposed 13 rules. Nothing is published yet.");
+            await Still(page, page.Locator("main"), "The pipeline read it and proposed 13 rules. Nothing is published yet.");
             await Still(page, page.Locator(".rule[data-rule='overtime-2026']"), "Each rule stands beside the clause it was read from, with the quoted sentence marked.");
 
             for (var rule = 0; rule < 13; rule++)
@@ -75,7 +75,7 @@ internal static class Walkthrough
 
             await page.GetByRole(AriaRole.Button, new() { Name = "Approve and publish" }).ClickAsync();
             await page.GetByText("Published", new() { Exact = true }).WaitForAsync(new() { Timeout = 90_000 });
-            await Still(page, page.Locator("header"), "A person approved every rule. Only then will the database publish them.");
+            await Still(page, page.Locator("main"), "A person approved every rule. Only then will the database publish them.");
         });
 
         await As("eva", async page =>

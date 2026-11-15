@@ -68,7 +68,7 @@ flowchart LR
 
 ![A specialist uploads an agreement, reviews each proposed rule beside its clause and publishes; an employer checks a payslip and asks a question](docs/walkthrough/overens-walkthrough.svg)
 
-The system running on one machine with Claude as the model. Every picture is the real console, and the explanation and the answer in the last two are the model's, after passing the checks.
+The system running on one machine with Claude as the model. Every picture is the real console. On the left of each rule are its values; on the right, in print, the clauses it was read from, with the quoted sentence marked. The explanation and the answer in the last two pictures are the model's, after passing the checks.
 
 ## Stack
 
@@ -280,7 +280,7 @@ See also the [threat model](docs/threat-model.md), [what was left out, and why](
 - **One model provider.** Failover is between Claude models, which covers a model short of capacity and not the provider being down.
 - **One machine.** The system runs locally, with development settings: plain HTTP, fixed demo passwords and a default Keycloak admin.
 - **A reviewer approves or rejects.** Editing a proposed rule is not built.
-- **A small console.** One page, in English, written without a framework. Agreements, findings and answers are in Danish.
+- **A small console.** One page, in English, written without a framework or a build step. Agreements, findings and answers are in Danish, and the agreement's own words are set apart from the interface as print.
 
 ## Licence
 

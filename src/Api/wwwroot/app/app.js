@@ -118,9 +118,14 @@ function days(list) {
   return ordered.join(", ");
 }
 
+// A date folds between its parts otherwise, so its hyphens are the kind a line cannot break at.
+function period(from, until) {
+  return `${from} ${until ? `until ${until}` : "onwards"}`.replaceAll("-", "\u2011");
+}
+
 /** A rule's values as rows of label and value, in words a payroll specialist uses. */
 function facts(rule, withPeriod = true) {
-  const rows = withPeriod ? [["In force", `${rule.inForce.from} ${rule.inForce.until ? `until ${rule.inForce.until}` : "onwards"}`]] : [];
+  const rows = withPeriod ? [["In force", period(rule.inForce.from, rule.inForce.until)]] : [];
   switch (rule.kind) {
     case "minimum_wage":
       for (const band of rule.bands) rows.push([band.fromMonths === 0 ? "From hiring" : `After ${band.fromMonths} months`, `${kr(band.hourlyRate)} an hour`]);
@@ -315,14 +320,14 @@ async function runView(runId) {
             ? el("p", { class: "muted" }, "Nothing. The rules not rejected say what the published rules already say.")
             : el(
                 "table",
-                {},
+                { class: "changes" },
                 el("tr", {}, el("th", {}, "Rule"), el("th", {}, "Days"), el("th", {}, "Now"), el("th", {}, "After publishing")),
                 run.changes.map((change) =>
                   el(
                     "tr",
                     {},
                     el("td", {}, KINDS[change.kind] ?? change.kind),
-                    el("td", {}, `${change.from} ${change.until ? `until ${change.until}` : "onwards"}`),
+                    el("td", {}, period(change.from, change.until)),
                     el("td", {}, change.before ? facts(change.before, false) : el("span", { class: "muted" }, "No rule")),
                     el("td", {}, change.after ? facts(change.after, false) : el("span", { class: "pill bad" }, "No rule")),
                   ),
@@ -480,11 +485,17 @@ try {
   await finishSignIn();
   if (!token) {
     app.replaceChildren(
-      el("section", {}, el("h1", {}, "Overens"), el("p", {}, "Pay rules read from collective agreements, reviewed by a person, and used to check payslips."), el("button", { class: "primary", onclick: signIn }, "Sign in")),
+      el(
+        "section",
+        {},
+        el("h1", {}, "What the agreement says, checked against what was paid."),
+        el("p", { class: "muted" }, "Pay rules are read from a collective agreement, approved by a person, and used to check payslips. Sign in to begin."),
+        el("button", { class: "primary", onclick: signIn }, "Sign in"),
+      ),
     );
   } else {
     const roles = claims.roles ?? [];
-    sessionBox.replaceChildren(el("span", {}, `${claims.preferred_username} · ${claims.tenant ?? "no company"}`), el("button", { onclick: signOut }, "Sign out"));
+    sessionBox.replaceChildren(el("strong", {}, claims.preferred_username), el("span", {}, claims.tenant ?? "no company"), el("button", { onclick: signOut }, "Sign out"));
     if (roles.includes("specialist")) tabs([["Agreements", agreementsView], ["Check a payslip", payView], ["Ask", askView]]);
     else if (roles.includes("employer")) tabs([["Check a payslip", payView], ["Ask", askView]]);
     else app.replaceChildren(el("section", {}, el("h1", {}, "No access"), el("p", {}, "Your account has no role in Overens. Ask an administrator.")));

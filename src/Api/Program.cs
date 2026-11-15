@@ -70,7 +70,7 @@ app.Use(async (http, next) =>
     if (http.Request.Path.StartsWithSegments("/app"))
     {
         http.Response.Headers.ContentSecurityPolicy =
-            $"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' {authority.GetLeftPart(UriPartial.Authority)}; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
+            $"default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self' {authority.GetLeftPart(UriPartial.Authority)}; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
         http.Response.Headers.XContentTypeOptions = "nosniff";
         http.Response.Headers["Referrer-Policy"] = "no-referrer";
     }
