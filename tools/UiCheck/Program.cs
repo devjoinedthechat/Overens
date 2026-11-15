@@ -7,6 +7,12 @@ using Microsoft.Playwright;
 //
 // The system must be running (`dotnet run --project src/AppHost`). It fails on any script
 // or console error, so a page that breaks its own content policy fails here.
+if (args is ["--walkthrough", var svg])
+{
+    await Walkthrough.Record(svg);
+    return 0;
+}
+
 const string Console_ = "http://localhost:5058/app/";
 const string Password = "local-demo-password";
 var shots = args.Length > 0 ? args[0] : null;
@@ -95,6 +101,9 @@ await As("anna", async page =>
     await page.GetByRole(AriaRole.Button, new() { Name = "Approve and publish" }).ClickAsync();
     await page.GetByText("Published", new() { Exact = true }).WaitForAsync(new() { Timeout = 60_000 });
     Ok("a specialist approves each rule and publishes the run");
+    // A value that should have been left out, printed as a word, is a bug the eye catches and a test should.
+    var stray = (await page.Locator("main").InnerTextAsync()).Split('\n').Where(line => line.Trim() is "false" or "undefined" or "null" or "NaN").ToList();
+    await Expect(stray.Count == 0, "nothing on the page is a stray false, undefined or null");
     await Shot(page, "2-published");
 });
 

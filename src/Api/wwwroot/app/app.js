@@ -211,6 +211,7 @@ async function agreementsView() {
       id,
       el("label", {}, "PDF"),
       file,
+      el("p", {}, ""),
       el("div", { class: "row" }, el("button", { class: "primary", onclick: upload }, "Upload"), message),
     ),
     el("section", {}, el("h2", {}, "Agreements"), list),
@@ -283,7 +284,7 @@ async function runView(runId) {
       ),
     );
 
-    body.replaceChildren(
+    const parts = [
       el(
         "section",
         {},
@@ -329,7 +330,9 @@ async function runView(runId) {
               ),
         ),
       run.rules.length > 0 && el("section", {}, el("h2", {}, "Proposed rules"), rules),
-    );
+    ];
+    // Unlike el(), replaceChildren would print a false as the word "false".
+    body.replaceChildren(...parts.filter(Boolean));
 
     // A run that is being read, or published, moves on its own.
     if (run.status === "started" || (open && undecided === 0 && approved > 0)) timer = setTimeout(() => load().catch(() => {}), 1500);
