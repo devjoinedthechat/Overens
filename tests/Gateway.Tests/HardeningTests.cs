@@ -163,6 +163,9 @@ public sealed class HardeningTests
             Assert.Equal(ChatFinishReason.Length, replayed.FinishReason);
             Assert.Throws<IncompleteAnswerException>(() => replayed.RequireComplete());
 
+            // The same question with more room for the answer is another request: the short answer is not replayed for it.
+            await Assert.ThrowsAsync<InvalidOperationException>(() => replaying.GetResponseAsync([new(ChatRole.User, "a")], For(Models.Haiku, 1500)));
+
             // Sonnet was asked and Haiku answered: that is not Sonnet's answer, and is not kept as it.
             using var other = new ReplayChatClient(new Scripted { AnswersAs = Models.Haiku }, directory);
             await Assert.ThrowsAsync<InvalidOperationException>(() => other.GetResponseAsync([new(ChatRole.User, "b")], For(Models.Sonnet)));

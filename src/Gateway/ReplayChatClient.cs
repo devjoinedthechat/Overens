@@ -84,6 +84,12 @@ public sealed class ReplayChatClient : DelegatingChatClient
     private static string Key(List<ChatMessage> messages, ChatOptions? options)
     {
         var request = new StringBuilder(options?.ModelId).Append('\n');
+        // How long the answer may be is part of the request: a model given more room can answer differently.
+        if (options?.MaxOutputTokens is { } limit)
+        {
+            request.Append("max ").Append(limit).Append('\n');
+        }
+
         if (options?.ResponseFormat is ChatResponseFormatJson { Schema: { } schema })
         {
             request.Append(schema.GetRawText()).Append('\n');
