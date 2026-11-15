@@ -1,4 +1,4 @@
 {
   "Model": "claude-sonnet-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Tillæg for forskudt tid\\\u0022 mangler på lønsedlen: der er udbetalt 0,00 kr., men der skulle have været udbetalt 2.563,75 kr., altså en difference på 2.563,75 kr. Reglen står i § 6, stk. 1, om tillæg pr. time for arbejde på forskudt tid. Beløbet er gjort op som 80,00 timer til 29,50 kr. i timen, 2.360,00 kr., og 5,00 timer til 40,75 kr. i timen, 203,75 kr.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Tillæg for forskudt tid\\\u0022 mangler på lønsedlen: der blev udbetalt 0,00 kr., men der skulle have været udbetalt 2.563,75 kr., altså en forskel på 2.563,75 kr. Reglen står i § 6, stk. 1, som siger, at der for arbejde på forskudt tid betales et tillæg pr. time. Beløbet er opgjort som 80,00 timer til 29,50 kr. (2.360,00 kr.) og 5,00 timer til 40,75 kr. (203,75 kr.).\u0022}"
 }

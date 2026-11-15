@@ -14,6 +14,13 @@ public interface IClauseIndex
     /// <summary>A clause's full text, or null when the agreement has no such clause.</summary>
     string? Read(string clauseId);
 
+    /// <summary>
+    /// Every wording a clause id has had: in the agreement as it reads now, then in the
+    /// earlier agreements whose rules still apply. A rule from an earlier agreement cites
+    /// that agreement's words.
+    /// </summary>
+    IReadOnlyList<string> Wordings(string clauseId);
+
     /// <summary>The agreement's sections, as a table of contents: each number with its heading.</summary>
     IReadOnlyList<string> Outline { get; }
 }
@@ -27,11 +34,15 @@ public sealed partial class ClauseIndex : IClauseIndex
 {
     private readonly List<(ClauseHit Hit, string Text, List<string> Words)> clauses = [];
     private readonly List<string> outline = [];
+    private readonly List<(string Id, string Text)> earlier = [];
     private readonly double averageLength;
 
-    public ClauseIndex(IEnumerable<Section> sections)
+    /// <param name="sections">The agreement as it reads now. Searches and the outline cover this.</param>
+    /// <param name="earlierAgreements">Earlier agreements whose rules may still apply, newest first.</param>
+    public ClauseIndex(IEnumerable<Section> sections, IEnumerable<IEnumerable<Section>>? earlierAgreements = null)
     {
         ArgumentNullException.ThrowIfNull(sections);
+        earlier.AddRange((earlierAgreements ?? []).SelectMany(agreement => agreement).SelectMany(section => section.Clauses).Select(clause => (clause.Id, ClauseText.Of(clause))));
         foreach (var section in sections)
         {
             outline.Add($"{section.Number}. {section.Heading}");
@@ -59,7 +70,10 @@ public sealed partial class ClauseIndex : IClauseIndex
 
     public IReadOnlyList<string> Outline => outline;
 
-    public string? Read(string clauseId) => clauses.FirstOrDefault(clause => clause.Hit.Id == clauseId).Text;
+    public string? Read(string clauseId) => Wordings(clauseId) is [var newest, ..] ? newest : null;
+
+    public IReadOnlyList<string> Wordings(string clauseId) =>
+        [.. clauses.Where(clause => clause.Hit.Id == clauseId).Select(clause => clause.Text), .. earlier.Where(clause => clause.Id == clauseId).Select(clause => clause.Text)];
 
     private double Score(string term, List<string> words)
     {

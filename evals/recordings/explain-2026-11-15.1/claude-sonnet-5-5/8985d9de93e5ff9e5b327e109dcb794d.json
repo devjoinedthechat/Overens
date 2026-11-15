@@ -1,4 +1,4 @@
 {
   "Model": "claude-sonnet-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen Fritvalgskonto er for lav: Der blev udbetalt 1.483,88 kr., men der skulle have været udbetalt 1.562,91 kr., altså en difference på 79,03 kr. Reglen står i § 9, stk. 1, og beløbet er 5,0 pct. af 31.258,22 kr.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen Fritvalgskonto er for lav: der er udbetalt 1.483,88 kr., men der skulle have været udbetalt 1.562,91 kr., altså en forskel på 79,03 kr. Reglen står i § 9, stk. 1, hvor arbejdsgiverens bidrag til fritvalgskontoen er en andel af lønnen. Beløbet er 5,0 pct. af 31.258,22 kr., som giver 1.562,91 kr.\u0022}"
 }

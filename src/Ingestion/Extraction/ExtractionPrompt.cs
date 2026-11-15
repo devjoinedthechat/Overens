@@ -106,10 +106,10 @@ public static class ExtractionPrompt
         var text = new StringBuilder("<agreement>\n");
         foreach (var section in agreement.Sections)
         {
-            text.Append("<section number=\"").Append(section.Number).Append("\" heading=\"").Append(section.Heading).Append("\">\n");
+            text.Append("<section number=\"").Append(section.Number).Append("\" heading=\"").Append(Attribute(section.Heading)).Append("\">\n");
             foreach (var clause in section.Clauses)
             {
-                text.Append("<clause id=\"").Append(clause.Id).Append("\">\n").Append(Text(clause)).Append("\n</clause>\n");
+                text.Append("<clause id=\"").Append(Attribute(clause.Id)).Append("\">\n").Append(Words(Text(clause))).Append("\n</clause>\n");
             }
 
             text.Append("</section>\n");
@@ -117,6 +117,16 @@ public static class ExtractionPrompt
 
         return text.Append("</agreement>").ToString();
     }
+
+    /// <summary>
+    /// The agreement's own words can never close a tag or open one: a clause that prints
+    /// "&lt;/clause&gt;" stays inside its clause. Agreements do not print angle brackets, so a
+    /// quote from one that does will not match its clause and is flagged for the reviewer.
+    /// </summary>
+    private static string Words(string words) => words.Replace("<", "&lt;", StringComparison.Ordinal);
+
+    /// <summary>A heading or an id inside a tag: it cannot end the attribute it stands in either.</summary>
+    private static string Attribute(string value) => Words(value).Replace("\"", "&quot;", StringComparison.Ordinal);
 
     /// <summary>A clause's words, with each table row on its own line. Quotes are checked against this.</summary>
     public static string Text(Clause clause) => ClauseText.Of(clause);

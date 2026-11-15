@@ -1,9 +1,18 @@
 using Microsoft.DurableTask;
 using Microsoft.DurableTask.Client;
+using Microsoft.Extensions.Options;
 using Npgsql;
 using Overens.Ingestion.Pipeline;
 
 namespace Overens.Worker;
+
+/// <summary>How often the starter looks, and how long a run must have waited before it is taken.</summary>
+public sealed class RunStarterOptions
+{
+    public TimeSpan Every { get; set; } = TimeSpan.FromSeconds(5);
+
+    public TimeSpan OlderThan { get; set; } = TimeSpan.FromSeconds(10);
+}
 
 /// <summary>
 /// Starts runs that were stored and never started: the API was stopped, or could not reach
@@ -11,11 +20,13 @@ namespace Overens.Worker;
 /// waited longer than a moment. Starting a run twice is harmless: the run's id is the
 /// orchestration's id, and the scheduler refuses a second one.
 /// </summary>
-public sealed partial class RunStarter(NpgsqlDataSource database, DurableTaskClient scheduler, TimeProvider clock, ILogger<RunStarter> logger) : BackgroundService
+public sealed partial class RunStarter(NpgsqlDataSource database, DurableTaskClient scheduler, TimeProvider clock, IOptions<RunStarterOptions> options, ILogger<RunStarter> logger) : BackgroundService
 {
-    public static TimeSpan Every { get; set; } = TimeSpan.FromSeconds(5);
+    private readonly TimeSpan every = options.Value.Every;
+    private readonly TimeSpan olderThan = options.Value.OlderThan;
 
-    public static TimeSpan OlderThan { get; set; } = TimeSpan.FromSeconds(10);
+    /// <summary>How many times this starter has looked for runs, whether or not it found any.</summary>
+    public int Looks { get; private set; }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -31,7 +42,8 @@ public sealed partial class RunStarter(NpgsqlDataSource database, DurableTaskCli
                 CouldNotLook(logger, error);
             }
 
-            await Task.Delay(Every, clock, stoppingToken).ConfigureAwait(ConfigureAwaitOptions.SuppressThrowing);
+            Looks++;
+            await Task.Delay(every, clock, stoppingToken).ConfigureAwait(ConfigureAwaitOptions.SuppressThrowing);
         }
     }
 
@@ -40,7 +52,7 @@ public sealed partial class RunStarter(NpgsqlDataSource database, DurableTaskCli
         var waiting = new List<RunRef>();
         await using (var find = database.CreateCommand("select tenant_id, id from runs_to_start($1)"))
         {
-            find.Parameters.Add(new() { Value = clock.GetUtcNow() - OlderThan });
+            find.Parameters.Add(new() { Value = clock.GetUtcNow() - olderThan });
             await using var rows = await find.ExecuteReaderAsync(cancellationToken);
             while (await rows.ReadAsync(cancellationToken))
             {
@@ -52,7 +64,7 @@ public sealed partial class RunStarter(NpgsqlDataSource database, DurableTaskCli
         {
             try
             {
-                await scheduler.ScheduleNewOrchestrationInstanceAsync(nameof(IngestAgreement), run, new StartOrchestrationOptions(InstanceId: run.RunId), cancellationToken);
+                await scheduler.ScheduleNewOrchestrationInstanceAsync(PipelineContract.Orchestration, run, new StartOrchestrationOptions(InstanceId: run.RunId), cancellationToken);
                 Started(logger, run.RunId);
             }
             catch (Exception refused) when (refused is not OperationCanceledException)

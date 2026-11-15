@@ -1,4 +1,4 @@
 {
   "Model": "claude-haiku-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen Timeløn er udbetalt med 24.872,05 kr., mens der skulle have været udbetalt 25.856,55 kr., så der mangler 984,50 kr. Beregningen er 179,00 timer à 144,45 kr. pr. time, og reglen fremgår af § 4, stk. 1, hvor der står: \\\u0022Mindstebetalingen pr. time udgør følgende satser:\\\u0022.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Timeløn\\\u0022 er udbetalt med 24.872,05 kr., men skulle have været 25.856,55 kr., så der mangler 984,50 kr. Beregningen er 179,00 timer à 144,45 kr. pr. time, og reglen findes i § 4, stk. 1, som fastsætter mindstebetalingen pr. time.\u0022}"
 }

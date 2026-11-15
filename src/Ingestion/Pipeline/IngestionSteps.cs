@@ -10,6 +10,22 @@ namespace Overens.Ingestion.Pipeline;
 /// <summary>Which run, for which tenant.</summary>
 public sealed record RunRef(string TenantId, string RunId);
 
+/// <summary>What a reviewer decided about a run as a whole.</summary>
+public sealed record ReviewDecision(bool Publish);
+
+/// <summary>
+/// The names the API and the worker must agree on to reach the same pipeline. They are
+/// written once, here, where both can see them.
+/// </summary>
+public static class PipelineContract
+{
+    /// <summary>The orchestration that takes one agreement from a stored PDF to a published rule set.</summary>
+    public const string Orchestration = "IngestAgreement";
+
+    /// <summary>The event that carries a reviewer's <see cref="ReviewDecision"/> to a waiting run.</summary>
+    public const string DecisionEvent = "decision";
+}
+
 /// <summary>
 /// The pipeline's steps, each safe to run again: a step that is repeated after a crash finds
 /// its own earlier work and does not do it twice. They run as the worker's database role,
@@ -18,6 +34,12 @@ public sealed record RunRef(string TenantId, string RunId);
 public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, RuleExtractor extractor, string modelId, TimeProvider clock, decimal dailyBudgetDollars = 20m)
 {
     public const int MaxPages = 500;
+
+    /// <summary>
+    /// The longest agreement sent to a model, in characters. Longer than this and it would
+    /// not fit beside the task and the answer, and every call would be refused.
+    /// </summary>
+    public const int MaxCharacters = 400_000;
 
     /// <summary>Reads the run's document into numbered clauses and stores them.</summary>
     public async Task ReadAsync(RunRef run, CancellationToken cancellationToken = default)
@@ -91,17 +113,34 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
             throw new BudgetReachedException($"The company's daily budget for reading agreements (${dailyBudgetDollars}) is used up. Try again tomorrow.");
         }
 
-        using var usage = Usage.Begin();
-        var extraction = await extractor.ExtractAsync(RuleJson.Read<ReadAgreement>(clauses), cancellationToken);
-        if (extraction.Unreadable.Count > 0)
+        var agreement = RuleJson.Read<ReadAgreement>(clauses);
+        if (ExtractionPrompt.Document(agreement).Length > MaxCharacters)
         {
-            // Part of an answer is not a set of rules. A reviewer must never see a rule set with a kind silently missing.
-            throw new InvalidOperationException($"The model's answer for {string.Join(", ", extraction.Unreadable.Select(problem => problem.RuleId))} could not be read.");
+            throw new UnreadableDocumentException($"The agreement is longer than a model can read in one piece ({MaxCharacters:N0} characters).");
+        }
+
+        using var usage = Usage.Begin();
+        ExtractionResult extraction;
+        try
+        {
+            extraction = await extractor.ExtractAsync(agreement, cancellationToken);
+            if (extraction.Unreadable.Count > 0)
+            {
+                // Part of an answer is not a set of rules. A reviewer must never see a rule set with a kind silently missing.
+                throw new InvalidOperationException($"The model's answer for {string.Join(", ", extraction.Unreadable.Select(problem => problem.RuleId))} could not be read.");
+            }
+        }
+        catch (Exception) when (usage.Calls > 0)
+        {
+            // An attempt that failed was paid for all the same, and counts against the company's budget.
+            await database.RunAsync(run.TenantId, async db => Charge(await db.Runs.SingleAsync(row => row.Id == run.RunId, CancellationToken.None), usage), CancellationToken.None);
+            throw;
         }
 
         await database.RunAsync(run.TenantId, async db =>
         {
             var row = await db.Runs.SingleAsync(row => row.Id == run.RunId, cancellationToken);
+            Charge(row, usage);
             // The status is checked again inside the transaction that writes, so two copies of this step cannot both store rules.
             if (row.Status != "started")
             {
@@ -120,7 +159,6 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
             // The model recorded is the one that answered. Under failover that is not always the one asked for.
             var answeredBy = usage.Models.Count == 0 ? modelId : string.Join(", ", usage.Models);
             (row.Model, row.PromptVersion, row.Gaps, row.Status) = (answeredBy, ExtractionPrompt.Version, RuleJson.Write(extraction.Gaps), "awaiting_review");
-            (row.ModelCalls, row.InputTokens, row.OutputTokens, row.CostMicros) = (usage.Calls, usage.InputTokens, usage.OutputTokens, usage.CostMicros);
         }, cancellationToken);
         span.With(Field.Model, usage.Models.Count == 0 ? modelId : string.Join(',', usage.Models))
             .With(Field.RulesProposed, extraction.Rules.Count)
@@ -138,11 +176,61 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
     /// approved rules together still form a usable rule set.
     /// </summary>
     /// <returns>The published version.</returns>
+    /// <exception cref="PublishRefusedException">The checks or the database said no, and will say no again.</exception>
     public async Task<int> PublishAsync(RunRef run, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(run);
         using var span = Telemetry.Start("agreement.publish", run.RunId).With(Field.Tenant, run.TenantId);
-        var version = await database.RunAsync(run.TenantId, async db =>
+        int version;
+        try
+        {
+            version = await PublishApprovedAsync(run, cancellationToken);
+        }
+        catch (Exception refused) when (Raised(refused) is { } said)
+        {
+            // The database's own "no": no approval on record, rules still undecided, nothing approved.
+            throw new PublishRefusedException(said, refused);
+        }
+
+        span.With(Field.Version, version);
+        return version;
+    }
+
+    /// <summary>Writes on a run that is still open why it could not be published.</summary>
+    public Task NoteAsync(RunRef run, string refusal, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(run);
+        return database.RunAsync(run.TenantId, async db =>
+        {
+            var row = await db.Runs.SingleAsync(row => row.Id == run.RunId, cancellationToken);
+            if (row.Status == "awaiting_review")
+            {
+                row.Failure = refusal;
+            }
+        }, cancellationToken);
+    }
+
+    /// <summary>The message of an exception the database raised on purpose, wherever it sits in the chain.</summary>
+    private static string? Raised(Exception error)
+    {
+        for (var inner = error; inner is not null; inner = inner.InnerException)
+        {
+            if (inner is Npgsql.PostgresException { SqlState: Npgsql.PostgresErrorCodes.RaiseException } raised)
+            {
+                return raised.MessageText;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>What a piece of work cost is added to what the run has cost so far: a run can be tried more than once.</summary>
+    private static void Charge(IngestionRunRow row, Usage usage) =>
+        (row.ModelCalls, row.InputTokens, row.OutputTokens, row.CostMicros) =
+            ((row.ModelCalls ?? 0) + usage.Calls, (row.InputTokens ?? 0) + usage.InputTokens, (row.OutputTokens ?? 0) + usage.OutputTokens, (row.CostMicros ?? 0) + usage.CostMicros);
+
+    private Task<int> PublishApprovedAsync(RunRef run, CancellationToken cancellationToken) =>
+        database.RunAsync(run.TenantId, async db =>
         {
             var approved = await db.ProposedRules
                 .Where(rule => rule.RunId == run.RunId && rule.Decision == "approved")
@@ -151,14 +239,11 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
             var problems = RuleSetValidator.Validate(new(run.RunId, 0, [.. approved.Select(RuleJson.Read<Rule>)]));
             if (problems.Count > 0)
             {
-                throw new InvalidOperationException($"The approved rules do not form a usable rule set: {string.Join("; ", problems.Select(problem => $"{problem.RuleId} {problem.Code}"))}.");
+                throw new PublishRefusedException($"The approved rules do not form a usable rule set: {string.Join("; ", problems.Select(problem => $"{problem.RuleId} {problem.Code}"))}.");
             }
 
             return await db.Database.SqlQuery<int>($"select publish_rule_set({run.RunId}, {clock.GetUtcNow()}) as \"Value\"").SingleAsync(cancellationToken);
         }, cancellationToken);
-        span.With(Field.Version, version);
-        return version;
-    }
 
     /// <summary>Ends a run that will not produce a rule set, saying why.</summary>
     public Task EndAsync(RunRef run, string status, string? failure, CancellationToken cancellationToken = default)
@@ -172,6 +257,24 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
                 (row.Status, row.Failure, row.FinishedAt) = (status, failure, clock.GetUtcNow());
             }
         }, cancellationToken);
+    }
+}
+
+/// <summary>The run's rules were not published, and asking again will not change that.</summary>
+public sealed class PublishRefusedException : Exception
+{
+    public PublishRefusedException(string message)
+        : base(message)
+    {
+    }
+
+    public PublishRefusedException(string message, Exception inner)
+        : base(message, inner)
+    {
+    }
+
+    public PublishRefusedException()
+    {
     }
 }
 

@@ -9,6 +9,9 @@ namespace Overens.Rules;
 /// </summary>
 public static class PayEngine
 {
+    /// <summary>Above any real hourly wage, and far below where the arithmetic could overflow.</summary>
+    public const decimal MaxHourlyRate = 100_000m;
+
     public static PayCheck Check(RuleSet ruleSet, Timesheet timesheet, Payslip payslip)
     {
         ArgumentNullException.ThrowIfNull(ruleSet);
@@ -30,7 +33,12 @@ public static class PayEngine
     {
         ArgumentNullException.ThrowIfNull(ruleSet);
         ArgumentNullException.ThrowIfNull(timesheet);
+        if (hourlyRate is < 0 or > MaxHourlyRate)
+        {
+            throw new ArgumentException($"An hourly wage is between 0 and {MaxHourlyRate:0} kr.", nameof(hourlyRate));
+        }
 
+        DateTime? busyUntil = null;
         var minutes = new Dictionary<WageKey, int>();
         var worked = new Dictionary<DateOnly, DayCount>();
         var shortfalls = new Dictionary<MinimumWageRule, decimal>();
@@ -41,6 +49,15 @@ public static class PayEngine
             {
                 throw new ArgumentException($"The shift on {shift.Date:yyyy-MM-dd} is outside the period or has no length.", nameof(timesheet));
             }
+
+            // The same time worked twice would be paid twice, and a correct payslip would look too low.
+            var begins = shift.Date.ToDateTime(shift.Start);
+            if (begins < busyUntil)
+            {
+                throw new ArgumentException($"The shift on {shift.Date:yyyy-MM-dd} at {shift.Start:HH\\:mm} overlaps the shift before it.", nameof(timesheet));
+            }
+
+            busyUntil = begins.AddMinutes(shift.Minutes);
 
             var rules = ruleSet.InForce(shift.Date);
             var months = timesheet.Employee.MonthsEmployedOn(shift.Date);

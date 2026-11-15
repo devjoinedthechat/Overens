@@ -1,4 +1,4 @@
 {
   "Model": "claude-sonnet-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Medarbejderens pensionsbidrag\\\u0022 er forkert, fordi den ikke skulle have været på lønsedlen. Der blev betalt 1.725,40 kr., men der skulle"
+  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Medarbejderens pensionsbidrag\\\u0022 er ikke forventet på lønsedlen. Der er udbetalt 1.725,40 kr., men der skulle have været udbetalt 0,00 kr., en forskel på 1.725,40 kr. Der er ikke angivet nogen paragraf for reglen i denne afvigelse.\u0022}"
 }

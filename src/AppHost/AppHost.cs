@@ -24,7 +24,7 @@ var migrate = builder.AddProject<Projects.Overens_Migrate>("migrate")
 var scheduler = builder.AddContainer("scheduler", "mcr.microsoft.com/dts/dts-emulator@sha256:82ceb7df2fdfc2e22b0013c7b87b7a8e443bcd220d4fb37c32ced8ee23438719")
     .WithHttpEndpoint(port: 8090, targetPort: 8080, name: "grpc")
     .WithHttpEndpoint(port: 8092, targetPort: 8082, name: "dashboard");
-const string Scheduler = "Endpoint=http://localhost:8090;TaskHub=default;Authentication=None";
+var schedulerAt = ReferenceExpression.Create($"Endpoint={scheduler.GetEndpoint("grpc")};TaskHub=default;Authentication=None");
 
 var keycloak = builder.AddContainer("keycloak", "quay.io/keycloak/keycloak", "26.8.2")
     .WithArgs("start-dev", "--import-realm")
@@ -35,22 +35,25 @@ var keycloak = builder.AddContainer("keycloak", "quay.io/keycloak/keycloak", "26
     .WithHttpEndpoint(port: 8081, targetPort: 8080, name: "http")
     .WithHttpEndpoint(targetPort: 9000, name: "management")
     .WithHttpHealthCheck("/health/ready", endpointName: "management");
-const string Authority = "http://localhost:8081/realms/overens";
+var authority = ReferenceExpression.Create($"{keycloak.GetEndpoint("http")}/realms/overens");
+
+// A secret to the host: its value is not shown in the dashboard or written to a manifest. Empty when there is no key.
+var modelKey = builder.AddParameter("anthropic-api-key", builder.Configuration["ANTHROPIC_API_KEY"] ?? "", secret: true);
 
 builder.AddProject<Projects.Overens_Worker>("worker")
     .WithEnvironment("ConnectionStrings__worker", As("overens_worker", workerPassword))
-    .WithEnvironment("ConnectionStrings__scheduler", Scheduler)
-    .WithEnvironment("ANTHROPIC_API_KEY", builder.Configuration["ANTHROPIC_API_KEY"] ?? "")
+    .WithEnvironment("ConnectionStrings__scheduler", schedulerAt)
+    .WithEnvironment("ANTHROPIC_API_KEY", modelKey)
     .WithEnvironment("RECORDINGS_DIR", Path.GetFullPath(Path.Combine(builder.AppHostDirectory, "..", "..", "evals", "recordings")))
     .WaitForCompletion(migrate)
     .WaitFor(scheduler);
 
 builder.AddProject<Projects.Overens_Api>("api")
     .WithEnvironment("ConnectionStrings__api", As("overens_api", apiPassword))
-    .WithEnvironment("ConnectionStrings__scheduler", Scheduler)
-    .WithEnvironment("Auth__Authority", Authority)
+    .WithEnvironment("ConnectionStrings__scheduler", schedulerAt)
+    .WithEnvironment("Auth__Authority", authority)
     .WithEnvironment("Auth__Audience", "overens-api")
-    .WithEnvironment("ANTHROPIC_API_KEY", builder.Configuration["ANTHROPIC_API_KEY"] ?? "")
+    .WithEnvironment("ANTHROPIC_API_KEY", modelKey)
     .WaitForCompletion(migrate)
     .WaitFor(scheduler)
     .WaitFor(keycloak);

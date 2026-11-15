@@ -41,7 +41,11 @@ public sealed class ReplayChatClient : DelegatingChatClient
 
             contents.AddRange((kept.Calls ?? []).Select(call => new FunctionCallContent(
                 call.Id, call.Name, JsonSerializer.Deserialize<Dictionary<string, object?>>(call.Arguments))));
-            return new(new ChatMessage(ChatRole.Assistant, contents)) { ModelId = kept.Model };
+            return new(new ChatMessage(ChatRole.Assistant, contents))
+            {
+                ModelId = kept.Model,
+                FinishReason = kept.Finish is { } ended ? new ChatFinishReason(ended) : null,
+            };
         }
 
         if (!record)
@@ -51,12 +55,22 @@ public sealed class ReplayChatClient : DelegatingChatClient
         }
 
         var response = await base.GetResponseAsync(asked, options, cancellationToken);
+        // A recording is filed under the model asked. An answer another model gave must not be kept as its own.
+        if (response.ModelId is { } answered && options?.ModelId is { } wanted && !answered.StartsWith(wanted, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"{wanted} was asked and {answered} answered. The answer is not recorded.");
+        }
+
         Directory.CreateDirectory(directory);
-        // Only the answer is kept. Token counts and anything else about the account stay out of the file.
+        // Only the answer is kept, and how it ended when that was not the ordinary way. Token counts and anything else about the account stay out of the file.
+        var finish = response.FinishReason is { } reason && reason != ChatFinishReason.Stop && reason != ChatFinishReason.ToolCalls ? reason.Value : null;
+        // Written beside the file and moved into place, so a recording is never half a file.
+        var draft = $"{file}.{Guid.NewGuid():N}.tmp";
         await File.WriteAllTextAsync(
-            file,
-            JsonSerializer.Serialize(new Kept(options?.ModelId ?? "", response.Text, Calls(response)), Indented) + "\n",
+            draft,
+            JsonSerializer.Serialize(new Kept(options?.ModelId ?? "", response.Text, Calls(response), finish), Indented) + "\n",
             cancellationToken);
+        File.Move(draft, file, overwrite: true);
         return response;
     }
 
@@ -111,7 +125,7 @@ public sealed class ReplayChatClient : DelegatingChatClient
         return calls.Count == 0 ? null : calls;
     }
 
-    private sealed record Kept(string Model, string Text, List<KeptCall>? Calls = null);
+    private sealed record Kept(string Model, string Text, List<KeptCall>? Calls = null, string? Finish = null);
 
     private sealed record KeptCall(string Id, string Name, string Arguments);
 

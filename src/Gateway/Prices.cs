@@ -1,7 +1,26 @@
+using Microsoft.Extensions.AI;
+
 namespace Overens.Gateway;
 
 /// <summary>US dollars per million tokens.</summary>
-public sealed record ModelPrice(decimal Input, decimal Output, decimal CacheRead, decimal CacheWrite);
+public sealed record ModelPrice(decimal Input, decimal Output, decimal CacheRead, decimal CacheWrite)
+{
+    /// <summary>
+    /// What one call cost, in millionths of a dollar. The provider reports input as one sum
+    /// of what was read fresh, what was read from its cache and what was written to it; each
+    /// part has its own price.
+    /// </summary>
+    public decimal Micros(UsageDetails? usage)
+    {
+        var read = usage?.CachedInputTokenCount ?? 0;
+        var written = usage?.AdditionalCounts?.GetValueOrDefault(CacheWritten) ?? 0;
+        var fresh = Math.Max(0, (usage?.InputTokenCount ?? 0) - read - written);
+        return (fresh * Input) + (read * CacheRead) + (written * CacheWrite) + ((usage?.OutputTokenCount ?? 0) * Output);
+    }
+
+    /// <summary>The name the provider's client gives the count of tokens written to the cache.</summary>
+    public const string CacheWritten = "CacheCreationInputTokens";
+}
 
 public static class Models
 {

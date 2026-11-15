@@ -108,22 +108,49 @@ public static class Extensions
         return builder;
     }
 
+    /// <summary>
+    /// Adds a check that must pass before the service is ready for traffic: something it
+    /// cannot work without, such as its database. The probe passes by returning and fails by
+    /// throwing or by taking longer than five seconds.
+    /// </summary>
+    public static IServiceCollection AddReadinessCheck(this IServiceCollection services, string name, Func<IServiceProvider, CancellationToken, Task> probe)
+    {
+        services.AddHealthChecks().Add(new HealthCheckRegistration(name, provider => new Probe(provider, probe), HealthStatus.Unhealthy, ["ready"], TimeSpan.FromSeconds(5)));
+        return services;
+    }
+
     public static WebApplication MapDefaultEndpoints(this WebApplication app)
     {
-        // Adding health checks endpoints to applications in non-development environments has security implications.
-        // See https://aka.ms/aspire/healthchecks for details before enabling these endpoints in non-development environments.
-        if (app.Environment.IsDevelopment())
-        {
-            // All health checks must pass for app to be considered ready to accept traffic after starting
-            app.MapHealthChecks(HealthEndpointPath);
+        // Mapped in every environment: the platform's probes need them where the service is
+        // deployed, not only on a developer's machine. They say "Healthy" or "Unhealthy" and
+        // nothing else, so there is nothing in them to protect.
 
-            // Only health checks tagged with the "live" tag must pass for app to be considered alive
-            app.MapHealthChecks(AlivenessEndpointPath, new HealthCheckOptions
-            {
-                Predicate = r => r.Tags.Contains("live")
-            });
-        }
+        // All health checks must pass for app to be considered ready to accept traffic after starting
+        app.MapHealthChecks(HealthEndpointPath).AllowAnonymous().DisableRateLimiting();
+
+        // Only health checks tagged with the "live" tag must pass for app to be considered alive
+        app.MapHealthChecks(AlivenessEndpointPath, new HealthCheckOptions
+        {
+            Predicate = r => r.Tags.Contains("live")
+        }).AllowAnonymous().DisableRateLimiting();
 
         return app;
+    }
+
+    private sealed class Probe(IServiceProvider services, Func<IServiceProvider, CancellationToken, Task> probe) : IHealthCheck
+    {
+        public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                await probe(services, cancellationToken);
+                return HealthCheckResult.Healthy();
+            }
+            catch (Exception error) when (error is not OperationCanceledException || !cancellationToken.IsCancellationRequested)
+            {
+                // The reason goes to the logs through the health check service, not into the response.
+                return new HealthCheckResult(context.Registration.FailureStatus, exception: error);
+            }
+        }
     }
 }

@@ -139,12 +139,14 @@ On the 60 findings in the hardest corpus agreement's pay data (`dotnet run --pro
 
 | Model | Wording shown | Replaced by fixed wording | Cost |
 | --- | --- | --- | --- |
-| Haiku | 59 of 60 | 1 | $0.01 |
-| Sonnet | 52 of 60 | 8 | $0.18 |
+| Haiku | 60 of 60 | 0 | $0.01 |
+| Sonnet | 60 of 60 | 0 | $0.19 |
 
-Every replaced wording was too long and was cut off at the length limit.
+Neither model put a number of its own into an explanation. Haiku is the default for this job: it costs a twentieth as much.
 
-Neither model put a number of its own into an explanation. Sonnet writes longer and runs into the limit more often, so Haiku is the default for this job.
+**A limit that was too tight.** An earlier run showed 59 of 60 for Haiku and 52 of 60 for Sonnet. Every replaced wording had been cut off: the limit on the answer's length left room for three sentences and none for the model's reasoning, which counts against the same limit. The limit was raised, and the guard's own bound of 700 characters still holds the wording short.
+
+The cut-off answers had looked like badly shaped ones. The reason a model stopped is read since then: a cut-off answer is told apart, is not asked for again, and its recording says how it ended.
 
 The first version of the guard refused two correct wordings: the model had been shown an hourly rate rounded to the øre, and the guard only accepted the unrounded one. The guard was changed to accept a figure as it was shown.
 
@@ -178,6 +180,9 @@ No answer was withheld by either model.
 - **A judge that was too strict.** "118 kr." was marked wrong against "118,00". Numbers are compared as numbers since then.
 - **A "not answered" that was refused.** On a parental-leave question Sonnet called `give_answer` with only `answered: false`, twice, and was stopped for leaving fields out. The person would have got "ask a payroll specialist": unhelpful, not wrong. A call that says only "not answered" is taken as it is since then. The same recorded answers then give 48 of 48; before the change they gave 47 and one withheld.
 - **A check that was too strict.** An answer that said which date it had looked the rules up for was refused, because the date was not in the question. A date or figure the agent put into a tool is allowed in the answer since then.
+
+- **A number written as a word.** The check read digits only, so "tolv" would have passed unseen. A number spelled out must stand, as that word, in a cited clause. On replay one Sonnet answer said "de fire timer" where the clause prints the hours in digits; it was refused, sent back once, and came back as "de 4 timer". The result is still 48 of 48.
+- **Money from a clause nobody approved.** A planted clause that exists and is quoted word for word passed every check. An amount in kroner or a percentage must come from the rule lookup, the calculator, or a clause an approved rule rests on. Both models' recorded answers pass unchanged.
 
 **What the answer check did.** In every calculation answer the amounts came from the calculator, and the check confirmed it. No model put a figure of its own into an answer that was shown.
 

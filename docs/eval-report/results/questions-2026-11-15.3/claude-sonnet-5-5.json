@@ -100,11 +100,12 @@
     "kind": "calculation",
     "verdict": "correct",
     "outcome": "Answered",
-    "text": "Tillægget for forskudt tid er 132,80 kr. for vagten tirsdag den 5. maj 2026. Det gælder de fire timer mellem kl. 18.00 og kl. 22.00 med 33,20 kr. pr. time. Timerne fra kl. 16.00 til 18.00 giver intet tillæg.",
+    "text": "Tillægget for forskudt tid er 132,80 kr. for vagten tirsdag den 5. maj 2026. Det gælder de 4 timer mellem kl. 18.00 og kl. 22.00 med 33,20 kr. pr. time. Timerne fra kl. 16.00 til 18.00 giver intet tillæg.",
     "trace": [
       "search_clauses {\u0022query\u0022:\u0022tillæg for forskudt arbejdstid\u0022}",
       "rules_in_force {\u0022date\u0022:\u00222026-05-05\u0022}",
       "calculate_pay {\u0022hourly_rate\u0022:200,\u0022hired_on\u0022:\u00222021-05-05\u0022,\u0022shifts\u0022:[{\u0022date\u0022:\u00222026-05-05\u0022,\u0022start\u0022:\u002216:00\u0022,\u0022end\u0022:\u002222:00\u0022}]}",
+      "refused: These numbers are written as words and are not in a cited clause: fire. Write a number in digits, as the agreement or the tool gave it.",
       "answered"
     ]
   },

@@ -1,4 +1,4 @@
 {
   "Model": "claude-sonnet-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Overarbejdstillæg\\\u0022 er for lav: der blev udbetalt 132,72 kr., men der skulle have været udbetalt 137,23 kr., en forskel på 4,51 kr. Reglen står i § 5, stk. 2, hvor der for de første to timers overarbejde pr. dag skal betales et tillæg på 50,0 pct. af timelønnen. Beregningen er 1,90 timer til 72,23 kr. i timen, som giver 137,23 kr.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Overarbejdstillæg\\\u0022 er for lav: Der er udbetalt 132,72 kr., men der skulle have været udbetalt 137,23 kr., en forskel på 4,51 kr. Reglen står i § 5, stk. 2, hvor der for de første to timers overarbejde pr. dag skal betales et tillæg på 50,0 pct. af timelønnen. Beløbet er opgjort som 1,90 timer til 72,23 kr. i timen, hvilket giver 137,23 kr.\u0022}"
 }

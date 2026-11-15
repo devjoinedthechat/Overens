@@ -85,7 +85,7 @@ public static partial class Grounding
 
             foreach (var day in new[] { rule.InForce.From, rule.InForce.Until }.OfType<DateOnly>())
             {
-                if (!everything.Contains(Danish.Date(day), StringComparison.Ordinal))
+                if (!PrintedDate(everything, Danish.Date(day)))
                 {
                     Problem("date_not_in_agreement", $"The date {day:yyyy-MM-dd} is not printed in the agreement.");
                 }
@@ -259,6 +259,10 @@ public static partial class Grounding
                 ? $@"(?<![\d]|\d[.,]){Regex.Escape(form)}(?!\d|[.,]\d)"
                 : $@"(?<!\p{{L}}){Regex.Escape(form)}(?!\p{{L}})",
             RegexOptions.CultureInvariant);
+
+    /// <summary>Whether a date is printed, and not merely the tail of another: "1. marts" is not in "11. marts".</summary>
+    private static bool PrintedDate(string text, string date) =>
+        Regex.IsMatch(text, $@"(?<!\d){Regex.Escape(date)}(?!\d)", RegexOptions.CultureInvariant);
 
     private static string Flatten(string text) => WhiteSpace().Replace(text, " ").Trim();
 

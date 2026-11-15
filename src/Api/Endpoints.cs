@@ -34,7 +34,8 @@ public static partial class Endpoints
                 return Problem(400, "An agreement id is 1 to 64 lower-case letters, digits or hyphens.");
             }
 
-            if (http.Request.ContentType != "application/pdf")
+            // The type may carry parameters; only the type itself is compared.
+            if (!System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(http.Request.ContentType, out var sent) || !string.Equals(sent.MediaType, "application/pdf", StringComparison.OrdinalIgnoreCase))
             {
                 return Problem(415, "Send the agreement as application/pdf.");
             }
@@ -62,12 +63,11 @@ public static partial class Endpoints
             var run = new RunRef(caller.TenantId, $"run_{Guid.CreateVersion7():N}");
             await database.RunAsync(caller.TenantId, caller.Name, async db =>
             {
-                // The same bytes are stored once, however often they are uploaded.
-                if (!await db.Documents.AnyAsync(document => document.Sha256 == sha, cancellationToken))
-                {
-                    db.Documents.Add(new() { TenantId = caller.TenantId, Sha256 = sha, FileName = $"{agreementId}.pdf", Content = pdf, UploadedBy = caller.Name, UploadedAt = clock.GetUtcNow() });
-                }
-
+                // The same bytes are stored once, however often they are uploaded, and two uploads at the same moment do not collide.
+                var (fileName, now) = ($"{agreementId}.pdf", clock.GetUtcNow());
+                await db.Database.ExecuteSqlAsync(
+                    $"insert into documents (tenant_id, sha256, file_name, content, uploaded_by, uploaded_at) values ({caller.TenantId}, {sha}, {fileName}, {pdf}, {caller.Name}, {now}) on conflict (tenant_id, sha256) do nothing",
+                    cancellationToken);
                 db.Runs.Add(new() { Id = run.RunId, TenantId = caller.TenantId, AgreementId = agreementId, DocumentSha256 = sha, Status = "started", CreatedAt = clock.GetUtcNow() });
             }, cancellationToken);
             // The run is stored. If the pipeline cannot be told now, the worker finds the run and starts it.
@@ -82,18 +82,23 @@ public static partial class Endpoints
                 NotStarted(http.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger("Overens.Api.Upload"), run.RunId, unreachable);
             }
 
-            return Results.Accepted($"/runs/{run.RunId}", new { id = run.RunId, status = "started" });
-        }).RequireRateLimiting(UploadLimit);
+            return Results.Accepted($"/runs/{run.RunId}", new RunAccepted(run.RunId, "started"));
+        }).RequireRateLimiting(UploadLimit)
+            .WithSummary("Upload an agreement's PDF and start a run")
+            .Accepts<IFormFile>("application/pdf")
+            .Produces<RunAccepted>(StatusCodes.Status202Accepted)
+            .ProducesProblem(StatusCodes.Status400BadRequest).ProducesProblem(StatusCodes.Status413PayloadTooLarge)
+            .ProducesProblem(StatusCodes.Status415UnsupportedMediaType).ProducesProblem(StatusCodes.Status429TooManyRequests);
 
         // The company's runs, newest first.
         api.MapGet("/runs", (HttpContext http, TenantScope database, CancellationToken cancellationToken) =>
             AsCaller(http, caller => database.RunAsync(caller.TenantId, async db =>
             {
                 var runs = await db.Runs.OrderByDescending(run => run.CreatedAt).Take(50)
-                    .Select(run => new { id = run.Id, agreementId = run.AgreementId, status = run.Status, title = run.Title, createdAt = run.CreatedAt })
+                    .Select(run => new RunSummary(run.Id, run.AgreementId, run.Status, run.Title, run.CreatedAt))
                     .ToListAsync(cancellationToken);
                 return Results.Ok(runs);
-            }, cancellationToken)));
+            }, cancellationToken))).WithSummary("The company's runs, newest first").Produces<List<RunSummary>>();
 
         // What a reviewer needs to judge a run: each proposed rule beside the words it came from.
         api.MapGet("/runs/{runId}", (string runId, HttpContext http, TenantScope database, CancellationToken cancellationToken) =>
@@ -123,43 +128,34 @@ public static partial class Endpoints
                     }
                 }
 
-                return Results.Ok(new
-                {
-                    id = run.Id,
-                    agreementId = run.AgreementId,
-                    status = run.Status,
-                    title = run.Title,
-                    model = run.Model,
-                    promptVersion = run.PromptVersion,
-                    failure = run.Failure,
-                    dispatched = run.DispatchedAt is not null,
-                    cost = run.CostMicros is { } micros ? micros / 1_000_000m : (decimal?)null,
-                    gaps = run.Gaps is null ? (JsonElement?)null : JsonSerializer.Deserialize<JsonElement>(run.Gaps),
-                    changes = changes is null ? (JsonElement?)null : JsonSerializer.SerializeToElement(changes, RuleJson.Options),
-                    rules = rules.Select(row =>
+                return Results.Ok(new RunDetail(
+                    run.Id,
+                    run.AgreementId,
+                    run.Status,
+                    run.Title,
+                    run.Model,
+                    run.PromptVersion,
+                    run.Failure,
+                    Dispatched: run.DispatchedAt is not null,
+                    Cost: run.CostMicros is { } micros ? micros / 1_000_000m : null,
+                    Gaps: run.Gaps is null ? null : JsonSerializer.Deserialize<JsonElement>(run.Gaps),
+                    Changes: changes is null ? null : JsonSerializer.SerializeToElement(changes, RuleJson.Options),
+                    Rules: [.. rules.Select(row =>
                     {
                         var rule = RuleJson.Read<Rule>(row.Rule);
                         var cited = new[] { rule.Source.ClauseId }.Concat(RuleJson.Read<List<string>>(row.AlsoFrom)).Distinct();
-                        return new
-                        {
-                            id = row.RuleId,
-                            rule = JsonSerializer.SerializeToElement(rule, RuleJson.Options),
-                            quote = rule.Source.Quote,
-                            clauses = cited.Where(id => clauses is not null && clauses.ContainsKey(id)).Select(id => new
-                            {
-                                id,
-                                text = ExtractionPrompt.Text(clauses![id]),
-                                firstPage = agreement!.Pages[id].First,
-                                lastPage = agreement.Pages[id].Last,
-                            }),
-                            problems = JsonSerializer.Deserialize<JsonElement>(row.Problems),
-                            decision = row.Decision,
-                            decidedBy = row.DecidedBy,
-                            reason = row.Reason,
-                        };
-                    }),
-                });
-            }, cancellationToken)));
+                        return new ProposedRuleView(
+                            row.RuleId,
+                            JsonSerializer.SerializeToElement(rule, RuleJson.Options),
+                            rule.Source.Quote,
+                            [.. cited.Where(id => clauses is not null && clauses.ContainsKey(id)).Select(id =>
+                                new ClauseView(id, ExtractionPrompt.Text(clauses![id]), agreement!.Pages[id].First, agreement.Pages[id].Last))],
+                            JsonSerializer.Deserialize<JsonElement>(row.Problems),
+                            row.Decision,
+                            row.DecidedBy,
+                            row.Reason);
+                    })]));
+            }, cancellationToken))).WithSummary("One run, with each proposed rule beside the clauses it cites").Produces<RunDetail>().ProducesProblem(StatusCodes.Status404NotFound);
 
         // A reviewer approves or rejects one proposed rule.
         api.MapPost("/runs/{runId}/rules/{ruleId}/decision", (
@@ -195,8 +191,9 @@ public static partial class Endpoints
 
                 (rule.Decision, rule.DecidedBy, rule.DecidedAt) = (request.Decision, caller.Name, clock.GetUtcNow());
                 rule.Reason = request.Decision == "rejected" && !string.IsNullOrWhiteSpace(request.Reason) ? request.Reason.Trim() : null;
-                return Results.Ok(new { id = ruleId, decision = rule.Decision });
-            }, cancellationToken)));
+                return Results.Ok(new DecisionMade(ruleId, rule.Decision));
+            }, cancellationToken))).WithSummary("Approve or reject one proposed rule")
+            .Produces<DecisionMade>().ProducesProblem(StatusCodes.Status400BadRequest).ProducesProblem(StatusCodes.Status404NotFound).ProducesProblem(StatusCodes.Status409Conflict);
 
         // A reviewer approves the run as a whole. This is the person's approval the database requires before it publishes.
         api.MapPost("/runs/{runId}/approval", async (string runId, HttpContext http, TenantScope database, IPipeline pipeline, TimeProvider clock, CancellationToken cancellationToken) =>
@@ -251,8 +248,9 @@ public static partial class Endpoints
             }
 
             await pipeline.DecideAsync(new(caller.TenantId, runId), publish: true, cancellationToken);
-            return Results.Accepted($"/runs/{runId}", new { id = runId, status = "publishing" });
-        });
+            return Results.Accepted($"/runs/{runId}", new RunAccepted(runId, "publishing"));
+        }).WithSummary("Approve a run as a whole, which lets its approved rules be published")
+            .Produces<RunAccepted>(StatusCodes.Status202Accepted).ProducesProblem(StatusCodes.Status404NotFound).ProducesProblem(StatusCodes.Status409Conflict);
 
         // A reviewer rejects the run as a whole. Nothing is published.
         api.MapPost("/runs/{runId}/rejection", async (string runId, HttpContext http, TenantScope database, IPipeline pipeline, CancellationToken cancellationToken) =>
@@ -274,8 +272,9 @@ public static partial class Endpoints
             }
 
             await pipeline.DecideAsync(new(caller.TenantId, runId), publish: false, cancellationToken);
-            return Results.Accepted($"/runs/{runId}", new { id = runId, status = "rejecting" });
-        });
+            return Results.Accepted($"/runs/{runId}", new RunAccepted(runId, "rejecting"));
+        }).WithSummary("Reject a run as a whole; nothing is published")
+            .Produces<RunAccepted>(StatusCodes.Status202Accepted).ProducesProblem(StatusCodes.Status404NotFound).ProducesProblem(StatusCodes.Status409Conflict);
 
         // Rules a reviewer rejected, with the reason, the model and prompt that proposed each, and the
         // clauses it cited. This is the raw material for new eval cases: where the model was wrong, in the reviewer's words.
@@ -290,52 +289,37 @@ public static partial class Endpoints
                     var run = runs[row.RunId];
                     var rule = RuleJson.Read<Rule>(row.Rule);
                     var clauses = run.Clauses is null ? [] : RuleJson.Read<ReadAgreement>(run.Clauses).Sections.SelectMany(section => section.Clauses).ToList();
-                    var cited = new[] { rule.Source.ClauseId }.Concat(RuleJson.Read<List<string>>(row.AlsoFrom)).Distinct();
-                    return new
-                    {
-                        runId = row.RunId,
-                        agreementId = run.AgreementId,
-                        document = run.DocumentSha256,
-                        model = run.Model,
-                        promptVersion = run.PromptVersion,
-                        proposed = JsonSerializer.SerializeToElement(rule, RuleJson.Options),
-                        problems = JsonSerializer.Deserialize<JsonElement>(row.Problems),
-                        reason = row.Reason,
-                        rejectedBy = row.DecidedBy,
-                        clauses = clauses.Where(clause => cited.Contains(clause.Id)).Select(clause => new { id = clause.Id, text = ExtractionPrompt.Text(clause) }),
-                    };
-                }));
-            }, cancellationToken)));
+                    var cited = new[] { rule.Source.ClauseId }.Concat(RuleJson.Read<List<string>>(row.AlsoFrom)).Distinct().ToList();
+                    return new FeedbackItem(
+                        row.RunId,
+                        run.AgreementId,
+                        run.DocumentSha256,
+                        run.Model,
+                        run.PromptVersion,
+                        JsonSerializer.SerializeToElement(rule, RuleJson.Options),
+                        JsonSerializer.Deserialize<JsonElement>(row.Problems),
+                        row.Reason,
+                        row.DecidedBy,
+                        [.. clauses.Where(clause => cited.Contains(clause.Id)).Select(clause => new ClauseWords(clause.Id, ExtractionPrompt.Text(clause)))]);
+                }).ToList());
+            }, cancellationToken))).WithSummary("Rules a reviewer rejected, with the reason: material for new eval cases").Produces<List<FeedbackItem>>();
 
         // The company's audit log, newest first: who did what to which run or agreement.
         api.MapGet("/audit", (HttpContext http, TenantScope database, CancellationToken cancellationToken) =>
             AsCaller(http, caller => database.RunAsync(caller.TenantId, async db =>
             {
                 var entries = await db.Audit.OrderByDescending(entry => entry.Seq).Take(200).ToListAsync(cancellationToken);
-                return Results.Ok(entries.Select(entry => new
-                {
-                    at = entry.At,
-                    actor = entry.Actor,
-                    @event = entry.Event,
-                    subject = entry.Subject,
-                    detail = JsonSerializer.Deserialize<JsonElement>(entry.Detail),
-                }));
-            }, cancellationToken)));
+                return Results.Ok(entries.Select(entry => new AuditEntry(entry.At, entry.Actor, entry.Event, entry.Subject, JsonSerializer.Deserialize<JsonElement>(entry.Detail))).ToList());
+            }, cancellationToken))).WithSummary("The company's audit log, newest first").Produces<List<AuditEntry>>();
 
         // The published versions of an agreement's rules, newest first.
         api.MapGet("/agreements/{agreementId}/rule-sets", (string agreementId, HttpContext http, TenantScope database, CancellationToken cancellationToken) =>
             AsCaller(http, caller => database.RunAsync(caller.TenantId, async db =>
             {
                 var sets = await db.RuleSets.Where(set => set.AgreementId == agreementId).OrderByDescending(set => set.Version).ToListAsync(cancellationToken);
-                return Results.Ok(sets.Select(set => new
-                {
-                    agreementId = set.AgreementId,
-                    version = set.Version,
-                    approvedBy = set.ApprovedBy,
-                    publishedAt = set.PublishedAt,
-                    rules = JsonSerializer.SerializeToElement(RuleJson.Read<List<Rule>>(set.Rules), RuleJson.Options),
-                }));
-            }, cancellationToken)));
+                return Results.Ok(sets.Select(set => new RuleSetView(
+                    set.AgreementId, set.Version, set.ApprovedBy, set.PublishedAt, JsonSerializer.SerializeToElement(RuleJson.Read<List<Rule>>(set.Rules), RuleJson.Options))).ToList());
+            }, cancellationToken))).WithSummary("The published versions of an agreement's rules, newest first").Produces<List<RuleSetView>>();
     }
 
     private static async Task<IResult> AsCaller(HttpContext http, Func<Caller, Task<IResult>> work) =>

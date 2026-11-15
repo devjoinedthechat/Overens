@@ -62,7 +62,7 @@ public sealed class GatewayTests
     public async Task When_a_model_cannot_be_reached_the_other_one_answers_and_the_answer_says_which()
     {
         var provider = new Echo { Down = [Models.Sonnet] };
-        using var client = new MeteredChatClient(Claude.Wrap(provider), new Spend(), capDollars: 1m);
+        using var client = new MeteredChatClient(Claude.Wrap(provider, Claude.Interactive), new Spend(), capDollars: 1m);
         using var usage = Usage.Begin();
 
         var response = await client.GetResponseAsync([new(ChatRole.User, "Hvad er satsen?")], For(Models.Sonnet));
@@ -82,7 +82,7 @@ public sealed class GatewayTests
     public async Task A_request_the_provider_refuses_as_wrong_is_not_sent_to_another_model()
     {
         var provider = new Echo { Refuses = true };
-        using var client = Claude.Wrap(provider);
+        using var client = Claude.Wrap(provider, Claude.Interactive);
 
         await Assert.ThrowsAsync<ArgumentException>(() => client.GetResponseAsync([new(ChatRole.User, "a")], For(Models.Sonnet)));
         Assert.Equal([Models.Sonnet], provider.Asked);

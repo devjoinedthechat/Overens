@@ -340,7 +340,8 @@ async function runView(runId) {
     body.replaceChildren(...parts.filter(Boolean));
 
     // A run that is being read, or published, moves on its own.
-    if (run.status === "started" || (open && undecided === 0 && approved > 0)) timer = setTimeout(() => load().catch(() => {}), 1500);
+    // A run the pipeline could not publish says why, and waits for a person.
+    if (run.status === "started" || (open && undecided === 0 && approved > 0 && !run.failure)) timer = setTimeout(() => load().catch(() => {}), 1500);
   }
 
   load().catch((error) => body.replaceChildren(failure(error)));

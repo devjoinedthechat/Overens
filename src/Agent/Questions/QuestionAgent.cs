@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Microsoft.Extensions.AI;
+using Overens.Gateway;
 using Overens.Rules;
 
 namespace Overens.Agent.Questions;
@@ -59,6 +60,7 @@ public sealed class QuestionAgent(IChatClient model, string modelId)
         ArgumentNullException.ThrowIfNull(rules);
         ArgumentNullException.ThrowIfNull(index);
         var tools = new QuestionTools(rules, index);
+        var ruleClauses = rules.Rules.Select(rule => rule.Source.ClauseId).ToHashSet(StringComparer.Ordinal);
         var trace = new List<string>();
         var options = new ChatOptions
         {
@@ -79,7 +81,18 @@ public sealed class QuestionAgent(IChatClient model, string modelId)
 
         for (var turn = 0; turn < MaxTurns; turn++)
         {
-            var response = await model.GetResponseAsync(messages, options, cancellationToken);
+            ChatResponse response;
+            try
+            {
+                response = (await model.GetResponseAsync(messages, options, cancellationToken)).RequireComplete();
+            }
+            catch (IncompleteAnswerException cut)
+            {
+                // Half a turn cannot be checked, and asking again would end the same way.
+                trace.Add($"stopped: {cut.Message}");
+                return new(AnswerOutcome.Withheld, Withheld, [], trace);
+            }
+
             messages.AddRange(response.Messages);
             var calls = response.Messages.SelectMany(message => message.Contents).OfType<FunctionCallContent>().ToList();
             if (calls.Count == 0)
@@ -113,7 +126,7 @@ public sealed class QuestionAgent(IChatClient model, string modelId)
                     return new(AnswerOutcome.NotInAgreement, NotInAgreement, [], trace);
                 }
 
-                var refusal = malformed ?? AnswerCheck.Refusal(question, text, citations, index, tools.Computed);
+                var refusal = malformed ?? AnswerCheck.Refusal(question, text, citations, index, tools.Computed, ruleClauses);
                 if (refusal is null)
                 {
                     trace.Add("answered");

@@ -22,7 +22,27 @@ public sealed class PayEnginePropertyTests
 
     private static readonly Gen<(RuleSet Rules, Timesheet Timesheet, decimal Rate)> AnyCase =
         Gen.Select(AnyAgreement, AnyEmployee, AnyShift.Array[0, 12], AnyRate)
-            .Select((rules, employee, shifts, rate) => (rules, Sample.Sheet(employee, shifts), rate));
+            .Select((rules, employee, shifts, rate) => (rules, Sample.Sheet(employee, Apart(shifts)), rate));
+
+    /// <summary>The shifts that do not run into one before them: nobody works two shifts at once.</summary>
+    private static Shift[] Apart(IEnumerable<Shift> shifts)
+    {
+        var kept = new List<Shift>();
+        DateTime? busyUntil = null;
+        foreach (var shift in shifts.OrderBy(shift => shift.Date).ThenBy(shift => shift.Start))
+        {
+            var begins = shift.Date.ToDateTime(shift.Start);
+            if (busyUntil is null || begins >= busyUntil)
+            {
+                kept.Add(shift);
+                busyUntil = begins.AddMinutes(shift.Minutes);
+            }
+        }
+
+        return [.. kept];
+    }
+
+    private static bool FitsIn(Timesheet timesheet, Shift extra) => Apart([.. timesheet.Shifts, extra]).Length == timesheet.Shifts.Count + 1;
 
     [Fact]
     public void A_payslip_that_pays_what_is_expected_has_no_line_findings()
@@ -65,7 +85,7 @@ public sealed class PayEnginePropertyTests
                 return new Shift(Sample.Start.AddDays(day), from, from.AddMinutes(length));
             });
 
-        Gen.Select(AnyCase, sameDayShift, Gen.Int[1, 838]).Sample((test, shift, cut) =>
+        Gen.Select(AnyCase, sameDayShift, Gen.Int[1, 838]).Where(drawn => FitsIn(drawn.Item1.Timesheet, drawn.Item2)).Sample((test, shift, cut) =>
         {
             var at = shift.Start.AddMinutes(Math.Min(cut, shift.Minutes - 1));
             var whole = test.Timesheet with { Shifts = [.. test.Timesheet.Shifts, shift] };
@@ -83,7 +103,7 @@ public sealed class PayEnginePropertyTests
     [Fact]
     public void More_work_never_lowers_any_line_and_every_amount_is_in_whole_oere()
     {
-        Gen.Select(AnyCase, AnyShift).Sample((test, extra) =>
+        Gen.Select(AnyCase, AnyShift).Where(drawn => FitsIn(drawn.Item1.Timesheet, drawn.Item2)).Sample((test, extra) =>
         {
             var before = PayEngine.Expect(test.Rules, test.Timesheet, test.Rate).Components;
             var after = PayEngine.Expect(

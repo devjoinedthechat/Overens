@@ -1,4 +1,4 @@
 {
   "Model": "claude-haiku-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Arbejdsgiverens pensionsbidrag\\\u0022 er udbetalt med 2.652,58 kr., men skulle have været 0,00 kr., så differencen er 2.652,58 kr. Der er ingen paragraf eller klausul angivet for linjen, da den ikke burde være på lønsedlen.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Arbejdsgiverens pensionsbidrag\\\u0022 er udbetalt med 2.652,58 kr., men skulle have været 0,00 kr. Forskellen er 2.652,58 kr. Der er ikke angivet nogen klausul for denne linje, da den ikke har hjemmel i en bestemt regel.\u0022}"
 }

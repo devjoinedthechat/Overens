@@ -3,10 +3,12 @@ using Microsoft.DurableTask;
 using Microsoft.DurableTask.Client;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.AI;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Overens.Data;
 using Overens.Gateway;
 using Overens.Ingestion.Pipeline;
+using Overens.Ingestion.Reading;
 using Overens.Ingestion.Tests;
 using Overens.Rules;
 using Overens.Synthetic;
@@ -85,7 +87,7 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
     }
 
     private Task Decide(RunRef run, bool publish) =>
-        stack.Client.RaiseEventAsync(run.RunId, IngestAgreement.DecisionEvent, new ReviewDecision(publish));
+        stack.Client.RaiseEventAsync(run.RunId, PipelineContract.DecisionEvent, new ReviewDecision(publish));
 
     [Fact]
     public async Task A_pdf_becomes_a_published_rule_set_once_a_person_approves_it()
@@ -125,7 +127,6 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
         // Nobody is running the pipeline. The review happens anyway.
         await Review(run, approve: true);
         await Decide(run, publish: true);
-        await Task.Delay(1500);
         Assert.Equal("awaiting_review", (await Until(run, _ => true)).Status);
 
         using var second = await stack.StartWorker(model);
@@ -146,9 +147,11 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
         // Every rule is decided, but no person has approved the run.
         await Review(run, approve: false);
         await Decide(run, publish: true);
-        await Task.Delay(3000);
 
-        Assert.Equal("awaiting_review", (await Until(run, _ => true)).Status);
+        // The pipeline tried, was refused, and wrote on the run why. The run is still open.
+        var refused = await Until(run, row => row.Failure is not null);
+        Assert.Contains("has not been approved by a person", refused.Failure, StringComparison.Ordinal);
+        Assert.Equal("awaiting_review", refused.Status);
         Assert.Equal(0, await stack.AsApi.RunAsync(run.TenantId, db => db.RuleSets.CountAsync()));
 
         // The run is still open: an approval and a second decision publish it.
@@ -221,7 +224,8 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
     public async Task A_damaged_pdf_fails_the_run_at_once_with_a_reason_and_never_reaches_the_model(string damage, string reason)
     {
         var model = Model();
-        using var worker = await stack.StartWorker(model);
+        var reader = new CountingReader();
+        using var worker = await stack.StartWorker(model, configure: services => services.AddSingleton<ILayoutReader>(reader));
         var file = damage switch
         {
             "cut short" => Pdf[..(Pdf.Length / 3)],
@@ -229,14 +233,28 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
             _ => [.. "%PDF-1.7\n"u8, .. Pdf.Skip(9).Select((value, at) => (byte)(value ^ (at % 251)))],
         };
 
-        var started = DateTimeOffset.UtcNow;
         var run = await Upload(file);
         var failed = await Until(run, row => row.Status == "failed");
 
         Assert.Contains(reason, failed.Failure, StringComparison.Ordinal);
         Assert.Empty(model.Requests);
-        // At once: an unreadable file is not retried with waits in between.
-        Assert.InRange(DateTimeOffset.UtcNow - started, TimeSpan.Zero, TimeSpan.FromSeconds(20));
+        // At once: an unreadable file is read once and not tried again.
+        Assert.Equal(1, reader.Reads);
+    }
+
+    /// <summary>The real reader, counting how often it is asked.</summary>
+    private sealed class CountingReader : ILayoutReader
+    {
+        private readonly PdfLayoutReader inner = new();
+        private int reads;
+
+        public int Reads => reads;
+
+        public Task<IReadOnlyList<LayoutPage>> ReadAsync(ReadOnlyMemory<byte> pdf, CancellationToken cancellationToken = default)
+        {
+            Interlocked.Increment(ref reads);
+            return inner.ReadAsync(pdf, cancellationToken);
+        }
     }
 
     [Fact]
@@ -295,7 +313,12 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
         var waiting = await Until(run, row => row.Status == "awaiting_review");
         Assert.NotNull(waiting.DispatchedAt);
         // Looked at again and again, it is started once.
-        await Task.Delay(3000);
+        var starter = worker.Services.GetServices<IHostedService>().OfType<RunStarter>().Single();
+        for (var looks = starter.Looks; starter.Looks < looks + 3;)
+        {
+            await Task.Delay(100);
+        }
+
         Assert.Equal(Agreement.Truth.Rules.Count, await stack.AsApi.RunAsync(run.TenantId, db => db.ProposedRules.CountAsync()));
     }
 
@@ -322,13 +345,44 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
     [Fact]
     public async Task When_the_model_asked_for_is_down_the_other_one_reads_the_agreement_and_the_run_says_so()
     {
-        using var model = new MeteredChatClient(Claude.Wrap(new DownFor(Gateway.Models.Sonnet, new Uses(Model(), 1000, 100))), new Spend(), capDollars: 5m);
+        using var model = new MeteredChatClient(Claude.Wrap(new DownFor(Gateway.Models.Sonnet, new Uses(Model(), 1000, 100)), Claude.Background), new Spend(), capDollars: 5m);
         using var worker = await stack.StartWorker(model, Gateway.Models.Sonnet);
 
         var run = await Until(await Upload(Pdf), row => row.Status == "awaiting_review");
 
         Assert.Equal(Gateway.Models.Haiku, run.Model);
         Assert.Equal(Agreement.Truth.Rules.Count, await stack.AsApi.RunAsync(run.TenantId, db => db.ProposedRules.CountAsync()));
+    }
+
+    [Fact]
+    public async Task An_answer_that_is_cut_off_fails_the_run_at_once_and_what_it_cost_still_counts()
+    {
+        using var model = new MeteredChatClient(new CutOff(new Uses(Model(), 100_000, 4_000)), new Spend(), capDollars: 5m);
+        using var worker = await stack.StartWorker(model, Gateway.Models.Haiku, dailyBudgetDollars: 0.01m);
+        var tenant = $"cut-{Guid.NewGuid():N}";
+
+        var failed = await Until(await Upload(Pdf, tenant), row => row.Status is "failed" or "awaiting_review");
+
+        Assert.Equal("failed", failed.Status);
+        Assert.Contains("cut off", failed.Failure, StringComparison.Ordinal);
+        // Asked once and not again: the same request would be cut off the same way. It was paid for all the same.
+        Assert.Equal((1, 100_000L, 4_000L, 12_000L), (failed.ModelCalls, failed.InputTokens, failed.OutputTokens, failed.CostMicros));
+        Assert.Equal(0, await stack.AsApi.RunAsync(tenant, db => db.ProposedRules.CountAsync()));
+
+        // The failed attempt used up the company's day: the next agreement is refused before a model is called.
+        var next = await Until(await Upload(Pdf, tenant), row => row.Status is "failed" or "awaiting_review");
+        Assert.Contains("daily budget", next.Failure, StringComparison.Ordinal);
+    }
+
+    /// <summary>A model every answer of which ran out of room.</summary>
+    private sealed class CutOff(IChatClient inner) : DelegatingChatClient(inner)
+    {
+        public override async Task<ChatResponse> GetResponseAsync(IEnumerable<ChatMessage> messages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+        {
+            var response = await base.GetResponseAsync(messages, options, cancellationToken);
+            response.FinishReason = ChatFinishReason.Length;
+            return response;
+        }
     }
 
     /// <summary>A model that reports how many tokens each call used.</summary>

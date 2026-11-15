@@ -3,12 +3,16 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.AI;
 using Overens.Documents;
+using Overens.Gateway;
 using Overens.Rules;
 
 namespace Overens.Agent;
 
 /// <summary>A finding in words, and whether a model wrote them or the fixed wording was used.</summary>
-public sealed record Explanation(string Text, bool ByModel);
+/// <param name="Text">What is shown.</param>
+/// <param name="ByModel">Whether the words are a model's.</param>
+/// <param name="Refusal">Why a model's wording was not used, for logs and evals. Null when it was shown or no model was asked.</param>
+public sealed record Explanation(string Text, bool ByModel, string? Refusal = null);
 
 /// <summary>
 /// Puts a finding into plain Danish for the person who has to act on it. The finding itself
@@ -47,9 +51,6 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
         [PayLineKind.SpecialSavings] = "Fritvalgskonto",
     };
 
-    /// <summary>Why the most recent wording was refused, for logs and evals. Null when it was shown.</summary>
-    public string? LastRefusal { get; private set; }
-
     public async Task<Explanation> ExplainAsync(Finding finding, IReadOnlyList<Component> expected, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(finding);
@@ -81,18 +82,23 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
             }, Json);
             var response = await model.GetResponseAsync(
                 [new(ChatRole.System, System), new(ChatRole.User, $"<finding>\n{facts}\n</finding>")],
-                new ChatOptions { ModelId = modelId, MaxOutputTokens = 400, ResponseFormat = ChatResponseFormat.ForJsonSchema(Schema, "explanation") },
+                // Room for the model's own reasoning as well as the three sentences: a limit that only fits the sentences cuts the answer off.
+                new ChatOptions { ModelId = modelId, MaxOutputTokens = 1500, ResponseFormat = ChatResponseFormat.ForJsonSchema(Schema, "explanation") },
                 cancellationToken);
-            using var answer = JsonDocument.Parse(response.Text);
+            using var answer = JsonDocument.Parse(response.RequireComplete().Text);
             var text = answer.RootElement.GetProperty("text").GetString() ?? "";
-            LastRefusal = Refusal(text, finding, parts);
-            return LastRefusal is null ? new(text.Trim(), true) : new(Fixed(finding), false);
+            return Refusal(text, finding, parts) is { } refusal ? new(Fixed(finding), false, refusal) : new(text.Trim(), true);
         }
         catch (Exception error) when (error is not OperationCanceledException)
         {
-            // A model that is down, slow or answers badly must not cost the person their finding.
-            LastRefusal = error is JsonException ? "the answer was cut off or was not in the asked shape" : "the model could not be reached";
-            return new(Fixed(finding), false);
+            // A model that is down, slow, out of budget or answers badly must not cost the person their finding.
+            return new(Fixed(finding), false, error switch
+            {
+                IncompleteAnswerException => "the answer was cut off or declined",
+                JsonException or KeyNotFoundException or InvalidOperationException => "the answer was not in the asked shape",
+                BudgetExceededException => "the spending cap is reached",
+                _ => "the model could not be reached",
+            });
         }
     }
 
@@ -164,6 +170,13 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
             allowed.UnionWith(Numbers(source.Quote));
         }
 
+        // A number spelled out is held to the same rule as one in digits: it must be the clause's own.
+        var spelled = NumberWords(text).Except(finding.Rules.SelectMany(rule => NumberWords(rule.Source.Quote))).ToList();
+        if (spelled.Count > 0)
+        {
+            return $"numbers written as words that are not in the clause: {string.Join(", ", spelled)}";
+        }
+
         var foreign = Numbers(text).Where(number => !allowed.Contains(number)).Distinct().ToList();
         if (foreign.Count > 0)
         {
@@ -202,8 +215,16 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
         Encoder = global::System.Text.Encodings.Web.JavaScriptEncoder.Create(global::System.Text.Unicode.UnicodeRanges.All),
     };
 
+    /// <summary>The numbers a text spells out, which no check of digits would see: "to", "tolv", "halvanden".</summary>
+    public static IEnumerable<string> NumberWords(string text) =>
+        NumberWord().Matches(text ?? "").Select(match => match.Value.ToLowerInvariant()).Distinct();
+
     [GeneratedRegex(@"\d[\d.,]*")]
     private static partial Regex Number();
+
+    /// <summary>Danish number words from two up, and the words for a half and for one and a half. "En" and "et" are also articles, and are left alone.</summary>
+    [GeneratedRegex(@"\b(?:to|tre|fire|fem|seks|syv|otte|ni|ti|elleve|tolv|tretten|fjorten|femten|seksten|sytten|atten|nitten|tyve|tredive|fyrre|halvtreds|tres|halvfjerds|firs|halvfems|hundrede|tusind|halvanden|halvandet)\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private static partial Regex NumberWord();
 
     [GeneratedRegex(@"^\d{1,3}(\.\d{3})+$")]
     private static partial Regex Thousands();

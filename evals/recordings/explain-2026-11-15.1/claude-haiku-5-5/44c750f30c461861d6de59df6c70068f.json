@@ -1,4 +1,4 @@
 {
   "Model": "claude-haiku-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen Overarbejdstillæg er udbetalt for lavt: der er udbetalt 132,72 kr., mens der skulle være udbetalt 137,23 kr., hvilket giver en forskel på 4,51 kr. Reglen står i § 5, stk. 2, som fastsætter et tillæg på 50,0 pct. af timelønnen for de første to timers overarbejde pr. dag. Beregningen er 1,90 timer à 72,23 kr., hvilket giver 137,23 kr.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen Overarbejdstillæg er udbetalt for lavt: der er udbetalt 132,72 kr., mens der skulle have været udbetalt 137,23 kr., hvilket giver en difference på 4,51 kr. Reglen findes i § 5, stk. 2, som fastsætter et tillæg på 50,0 pct. af timelønnen for de første to timers overarbejde pr. dag. Beregningen er 1,90 timer à 72,23 kr., hvilket giver 137,23 kr.\u0022}"
 }

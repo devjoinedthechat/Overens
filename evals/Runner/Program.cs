@@ -32,7 +32,8 @@ if (record)
         return 2;
     }
 
-    live = new MeteredChatClient(Claude.Create(key), spend, cap);
+    // No failover while recording: an answer is filed under the model asked, so that model must be the one that gave it.
+    live = new MeteredChatClient(Claude.Create(key, Claude.Background, failover: false), spend, cap);
 }
 
 if (args.Contains("--explain"))

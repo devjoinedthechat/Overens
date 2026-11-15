@@ -1,4 +1,4 @@
 {
   "Model": "claude-haiku-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen Fritvalgskonto er udbetalt med 1.833,98 kr., men skulle have været 1.833,89 kr., hvilket giver en forskel på 0,09 kr. for meget. Reglen findes i § 9, stk. 1, som fastsætter arbejdsgiverens bidrag til medarbejderens fritvalgskonto som en andel af lønnen; beregningen er 5,0 pct. af 36.677,70 kr., som giver 1.833,89 kr.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen Fritvalgskonto er udbetalt med 1.833,98 kr., men skulle have været 1.833,89 kr., så der er udbetalt 0,09 kr. for meget. Reglen findes i § 9, stk. 1, som fastsætter arbejdsgiverens bidrag til medarbejderens fritvalgskonto som en procentdel af lønnen.\u0022}"
 }

@@ -12,12 +12,12 @@ public interface IPipeline
     Task DecideAsync(RunRef run, bool publish, CancellationToken cancellationToken);
 }
 
-/// <summary>The pipeline as a Durable Task orchestration, named and shaped as the worker defines it.</summary>
+/// <summary>The pipeline as a Durable Task orchestration, named and shaped by the contract the worker shares.</summary>
 public sealed class DurablePipeline(DurableTaskClient client) : IPipeline
 {
     public Task StartAsync(RunRef run, CancellationToken cancellationToken) =>
-        client.ScheduleNewOrchestrationInstanceAsync("IngestAgreement", run, new StartOrchestrationOptions(InstanceId: run.RunId), cancellationToken);
+        client.ScheduleNewOrchestrationInstanceAsync(PipelineContract.Orchestration, run, new StartOrchestrationOptions(InstanceId: run.RunId), cancellationToken);
 
     public Task DecideAsync(RunRef run, bool publish, CancellationToken cancellationToken) =>
-        client.RaiseEventAsync(run.RunId, "decision", new { Publish = publish }, cancellationToken);
+        client.RaiseEventAsync(run.RunId, PipelineContract.DecisionEvent, new ReviewDecision(publish), cancellationToken);
 }

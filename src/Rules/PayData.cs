@@ -3,11 +3,16 @@ namespace Overens.Rules;
 /// <summary>An employee, known here only by an id that says nothing about the person.</summary>
 public sealed record Employee(string Id, DateOnly HiredOn)
 {
-    /// <summary>Full months of employment on a day.</summary>
+    /// <summary>
+    /// Full months of employment on a day. A month is full on the day of the month the
+    /// employee was hired, or on the month's last day when it has no such day: hired on
+    /// 31 August, six months are full on 28 February.
+    /// </summary>
     public int MonthsEmployedOn(DateOnly day)
     {
         var months = ((day.Year - HiredOn.Year) * 12) + day.Month - HiredOn.Month;
-        return Math.Max(0, day.Day < HiredOn.Day ? months - 1 : months);
+        var reached = day.Day >= HiredOn.Day || day.Day == DateTime.DaysInMonth(day.Year, day.Month);
+        return Math.Max(0, reached ? months : months - 1);
     }
 }
 

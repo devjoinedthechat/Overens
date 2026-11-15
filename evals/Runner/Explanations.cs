@@ -35,7 +35,7 @@ public static class Explanations
                 }
                 else
                 {
-                    replaced.Add($"[{explainer.LastRefusal ?? "no answer"}] {finding.Kind} {finding.Line}: {listening.Last}");
+                    replaced.Add($"[{explanation.Refusal ?? "no answer"}] {finding.Kind} {finding.Line}: {listening.Last}");
                 }
             }
         }

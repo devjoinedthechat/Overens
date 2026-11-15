@@ -1,4 +1,4 @@
 {
   "Model": "claude-sonnet-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Tillæg for forskudt tid\\\u0022 mangler på lønsedlen: Der blev udbetalt 0,00 kr., men der skulle have været udbetalt 7.304,00 kr. Forskellen er 7.304,00 kr. Reglen står i § 6, stk. 1, og beløbet svarer til 176,00 timer med en sats på 41,50 kr. pr. time.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Tillæg for forskudt tid\\\u0022 mangler på lønsedlen. Der blev udbetalt 0,00 kr., men der skulle have været udbetalt 7.304,00 kr., så forskellen er 7.304,00 kr. Reglen står i § 6, stk. 1, og beløbet er 176,00 timer til 41,50 kr. pr. time.\u0022}"
 }

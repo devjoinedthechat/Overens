@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Documents\Overens.Documents.csproj" />
+    <ProjectReference Include="..\Gateway\Overens.Gateway.csproj" />
     <ProjectReference Include="..\Rules\Overens.Rules.csproj" />
   </ItemGroup>
 

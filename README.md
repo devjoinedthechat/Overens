@@ -76,7 +76,7 @@ The system running on one machine with Claude as the model. Every picture is the
 | --- | --- | --- |
 | Language | C# on .NET 10, warnings as errors | One language across services, engine, evals and tests |
 | Model | Claude Sonnet and Haiku, Anthropic C# SDK | Reads agreements, words findings, answers questions |
-| Model seam | `Microsoft.Extensions.AI` | Redaction, failover, budget and replay are layers on one interface |
+| Model seam | `Microsoft.Extensions.AI` | Redaction, failover, time limits, budget and replay are layers on one interface |
 | Agent loop | Own, about a hundred lines | Five read-only tools; the answer is checked before it is shown |
 | Rules | Typed records and an engine on `decimal` | Every sum, with no model |
 | Durable work | Durable Task Scheduler | One orchestration per upload; waits days for a reviewer; survives a dead worker |
@@ -102,7 +102,9 @@ Each row is a property and the test that attacks it. Where a control was added, 
 | A missing rule is reported | A stand-in returns only the first year; nothing is flagged on any rule, and the gap is reported |
 | A contradiction is put to a person | Two clauses give different figures; both are proposed, the conflict names both clauses, and approving both is refused |
 | An explanation uses only the finding's numbers | A percentage the model worked out; a deadline it invented; "too much" said of a shortfall |
-| An answer rests on the agreement | A sum the model made; a reworded quote; a number from a clause it did not cite |
+| An answer rests on the agreement | A sum the model made; a reworded quote; a number from a clause it did not cite; a number written as a word |
+| Money in an answer is money a person approved | A planted clause, quoted word for word, that states a wage; its figure is not repeated |
+| Half an answer is not an answer | A model that runs out of room; the run fails at once, is not asked again, and says why |
 | What the agreement does not say is not answered | Twelve unanswerable questions per model; the fixed sentence is the only correct outcome |
 
 ### A person publishes
@@ -144,8 +146,11 @@ Each row is a property and the test that attacks it. Where a control was added, 
 | A run survives its worker dying | The worker is stopped while a run waits; the review is done with nothing running; a second worker finishes without reading again |
 | An upload is never lost | The scheduler is unreachable at upload; the worker finds the run and starts it once |
 | A model that is down is replaced | The asked-for model fails; the other answers, and the run records which |
-| One company cannot spend without limit | A daily budget of five cents; the second agreement is refused at once |
-| Every change is logged, and the log cannot be edited | Each role tries to write, change and empty it; the owner's edit breaks the hash chain |
+| One company cannot spend without limit | A daily budget of five cents; the second agreement is refused at once, and a failed attempt counts too |
+| Calls at the same moment cannot pass the cap together | Two calls start together under a cap one of them fills; the second is refused |
+| A slow model is not waited for | A model that never answers; the other one does, inside the time limit |
+| Bad input is the caller's mistake, not a crash | Seven malformed payslips, overlapping shifts; each is a 400 with a reason |
+| Every change is logged, and the log cannot be edited | Each role tries to write, change and empty it; the owner's edit breaks that company's hash chain; a rolled-back write does not |
 | An agent cannot run forever | A stand-in that only ever searches |
 
 ## Results on real models
@@ -174,6 +179,7 @@ It needs the .NET 10 SDK and Docker. The browser part of the smoke test also nee
 git clone https://github.com/devjoinedthechat/Overens && cd Overens
 scripts/check.sh      # secrets scan, build, format check, every test
 scripts/smoke.sh      # the whole system from nothing, one agreement from upload to checked payslips
+git config core.hooksPath .githooks   # once per clone: the secrets scan runs before every commit
 ```
 
 No model key is needed for either. Tests use stand-in models, and the system replays the answers recorded for the corpus agreements.
@@ -187,7 +193,7 @@ dotnet run --project src/AppHost
 | Service | Address | What it is |
 | --- | --- | --- |
 | Console | `http://localhost:5058/app/` | Upload and review as a specialist; check pay and ask as an employer |
-| API | `http://localhost:5058` | The same, for programs |
+| API | `http://localhost:5058` | The same, for programs. Contract at `/openapi/v1.json`, probes at `/health` and `/alive` |
 | Keycloak | `http://localhost:8081` | Sign-in. Realm `overens`, admin `admin` / `admin` |
 | Scheduler | `http://localhost:8092` | Each run, step by step |
 | Dashboard | `http://localhost:15034` | Logs and traces of every service |
@@ -203,7 +209,7 @@ Local accounts, all with the password `local-demo-password`:
 
 Upload `data/synthetic/hard-2026/agreement.pdf` as `anna`. Check a case from `data/synthetic/hard-2026/pay.json` as `eva`; `pay-answers.json` says which are wrong and how.
 
-With `ANTHROPIC_API_KEY` set, Claude is called under a spending cap: findings are worded by a model and questions are answered. Without it, findings get fixed wording and questions are refused.
+With `ANTHROPIC_API_KEY` set, Claude is called: findings are worded by a model and questions are answered. Each company has a daily budget for that, and each process a cap behind it. Without a key, findings get fixed wording and questions are refused.
 
 ### Evals
 
@@ -271,7 +277,7 @@ The corpus is generated, never edited by hand: `dotnet run --project tools/Corpu
 10. [The audit log is written by the database, and telemetry carries no content](docs/adr/0010-logged-by-the-database.md)
 11. [One model provider, and no real agreements](docs/adr/0011-one-provider.md)
 
-See also the [threat model](docs/threat-model.md), [what was left out, and why](docs/cut-list.md), and [the EU AI Act and this system](docs/ai-act.md).
+See also the [threat model](docs/threat-model.md), [what was left out, and why](docs/cut-list.md), and [the EU AI Act and this system](docs/ai-act.md). To report a vulnerability, see [SECURITY.md](SECURITY.md); to change something, [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Scope
 

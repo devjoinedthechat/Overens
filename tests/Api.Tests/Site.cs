@@ -49,6 +49,9 @@ public sealed class Site : IAsyncLifetime
     /// <summary>The model behind the question agent, for sites created after it is set. Null is no model.</summary>
     public IChatClient? QuestionModel { get; set; }
 
+    /// <summary>The id the question agent asks its model under, for sites created after it is set.</summary>
+    public string QuestionModelId { get; set; } = "stand-in";
+
     /// <summary>For sites created after it is set: the pipeline cannot be reached.</summary>
     public bool PipelineDown { get; set; }
 
@@ -66,10 +69,11 @@ public sealed class Site : IAsyncLifetime
         factory = Create(uploadsPerHour: 1000);
     }
 
-    public WebApplicationFactory<Program> Create(int uploadsPerHour)
+    public WebApplicationFactory<Program> Create(int uploadsPerHour, params (string Name, string Value)[] settings)
     {
         // Taken now: the host is built later, on first use.
         var questionModel = QuestionModel;
+        var questionModelId = QuestionModelId;
         var pipelineDown = PipelineDown;
         return new WebApplicationFactory<Program>().WithWebHostBuilder(host =>
         {
@@ -77,7 +81,14 @@ public sealed class Site : IAsyncLifetime
             host.UseSetting("Auth:Authority", Issuer);
             host.UseSetting("Auth:Audience", Audience);
             host.UseSetting("ConnectionStrings:api", As("overens_api", "api-test"));
+            // Never dialled: the pipeline is replaced below.
+            host.UseSetting("ConnectionStrings:scheduler", "Endpoint=http://localhost:1;TaskHub=default;Authentication=None");
             host.UseSetting("Limits:UploadsPerHour", uploadsPerHour.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            foreach (var (name, value) in settings)
+            {
+                host.UseSetting(name, value);
+            }
+
             host.ConfigureServices(services =>
             {
                 // The provider's keys are given directly, so nothing is fetched over the network.
@@ -96,7 +107,7 @@ public sealed class Site : IAsyncLifetime
                     "stand-in",
                     TimeProvider.System);
                 services.RemoveAll<QuestionService>();
-                services.AddSingleton(new QuestionService(questionModel is null ? null : new QuestionAgent(questionModel, "stand-in")));
+                services.AddSingleton(new QuestionService(questionModel is null ? null : new QuestionAgent(questionModel, questionModelId)));
                 services.RemoveAll<IPipeline>();
                 services.AddSingleton<IPipeline>(pipelineDown ? new PipelineAway() : new PipelineAtOnce(steps));
             });

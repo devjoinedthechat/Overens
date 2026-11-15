@@ -440,13 +440,38 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
     /// <summary>A model that makes the tool calls it was given, one per turn.</summary>
     private sealed class Calls(params (string Name, object Arguments)[] turns) : Microsoft.Extensions.AI.IChatClient
     {
+        private readonly Exception? failure;
         private int turn;
+
+        /// <summary>A model that fails every call.</summary>
+        public Calls(Exception failure)
+            : this()
+        {
+            this.failure = failure;
+        }
+
+        /// <summary>What each turn is said to have used.</summary>
+        public long InputTokens { get; init; }
 
         public Task<Microsoft.Extensions.AI.ChatResponse> GetResponseAsync(IEnumerable<Microsoft.Extensions.AI.ChatMessage> messages, Microsoft.Extensions.AI.ChatOptions? options = null, CancellationToken cancellationToken = default)
         {
+            if (failure is not null)
+            {
+                throw failure;
+            }
+
+            // The turns start again with each conversation: a new one has no tool result in it yet.
+            if (!messages.Any(message => message.Role == Microsoft.Extensions.AI.ChatRole.Tool))
+            {
+                turn = 0;
+            }
+
             var (name, arguments) = turns[Math.Min(turn++, turns.Length - 1)];
             var call = new Microsoft.Extensions.AI.FunctionCallContent(Guid.NewGuid().ToString("N"), name, JsonSerializer.Deserialize<Dictionary<string, object?>>(JsonSerializer.Serialize(arguments)));
-            return Task.FromResult(new Microsoft.Extensions.AI.ChatResponse(new Microsoft.Extensions.AI.ChatMessage(Microsoft.Extensions.AI.ChatRole.Assistant, [call])));
+            return Task.FromResult(new Microsoft.Extensions.AI.ChatResponse(new Microsoft.Extensions.AI.ChatMessage(Microsoft.Extensions.AI.ChatRole.Assistant, [call]))
+            {
+                Usage = new() { InputTokenCount = InputTokens, OutputTokenCount = 0 },
+            });
         }
 
         public IAsyncEnumerable<Microsoft.Extensions.AI.ChatResponseUpdate> GetStreamingResponseAsync(IEnumerable<Microsoft.Extensions.AI.ChatMessage> messages, Microsoft.Extensions.AI.ChatOptions? options = null, CancellationToken cancellationToken = default) =>
@@ -482,5 +507,147 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
     public async Task The_api_answers_health_checks_without_a_token(string path)
     {
         Assert.Equal(HttpStatusCode.OK, (await site.Client(null).GetAsync(path)).StatusCode);
+    }
+
+    private const string Period = "\"periodStart\":\"2026-03-01\",\"periodEnd\":\"2026-03-31\"";
+
+    [Theory]
+    [InlineData("{\"timesheet\":{\"employee\":{},\"shifts\":[]},\"payslip\":{\"lines\":[]}}")]
+    [InlineData("{\"timesheet\":{\"employee\":{\"id\":\"e1\",\"hiredOn\":\"2025-01-01\"}," + Period + ",\"shifts\":[null]},\"payslip\":{\"employeeId\":\"e1\"," + Period + ",\"hourlyRate\":150,\"lines\":[]}}")]
+    [InlineData("{\"timesheet\":{\"employee\":{\"id\":\"e1\",\"hiredOn\":\"2025-01-01\"}," + Period + ",\"shifts\":[]},\"payslip\":{\"employeeId\":\"e1\"," + Period + ",\"hourlyRate\":150,\"lines\":[null]}}")]
+    [InlineData("{\"timesheet\":{\"employee\":{\"id\":\"e1\",\"hiredOn\":\"2025-01-01\"}," + Period + ",\"shifts\":[]},\"payslip\":{" + Period + ",\"hourlyRate\":150,\"lines\":[]}}")]
+    [InlineData("{\"timesheet\":{\"employee\":{\"id\":\"e1\",\"hiredOn\":\"2025-01-01\"}," + Period + ",\"shifts\":[]},\"payslip\":{\"employeeId\":\"e1\"," + Period + ",\"hourlyRate\":1e27,\"lines\":[]}}")]
+    [InlineData("{\"timesheet\":{\"employee\":{\"id\":\"e1\",\"hiredOn\":\"2025-01-01\"}," + Period + ",\"shifts\":[]},\"payslip\":{\"employeeId\":\"e1\"," + Period + ",\"hourlyRate\":150,\"lines\":[{\"kind\":\"BasePay\",\"amount\":1e27}]}}")]
+    [InlineData("null")]
+    public async Task A_pay_check_with_a_part_missing_or_out_of_range_is_refused_as_the_callers_mistake(string body)
+    {
+        var employer = site.Client(site.Token(NewTenant(), "eva", roles: [Caller.Employer]));
+
+        var response = await employer.PostAsync("/agreements/lager/pay-checks", new StringContent(body, System.Text.Encoding.UTF8, "application/json"));
+
+        // Never a 500: what the caller sent wrong is the caller's to fix, and is said so.
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Equal("application/problem+json", response.Content.Headers.ContentType?.MediaType);
+    }
+
+    [Fact]
+    public async Task Overlapping_shifts_are_refused_and_not_paid_twice()
+    {
+        var tenant = NewTenant();
+        await Publish(site.Client(site.Token(tenant)));
+        var payCase = Synthetic.Corpus.Pay(Synthetic.Corpus.Agreements[2], Site.Agreement).Cases[0];
+        var twice = payCase with { Timesheet = payCase.Timesheet with { Shifts = [.. payCase.Timesheet.Shifts, payCase.Timesheet.Shifts[0]] } };
+
+        var response = await CheckPay(site.Client(site.Token(tenant, "eva", roles: [Caller.Employer])), twice);
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Contains("overlaps", (await Json(response)).GetProperty("detail").GetString(), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task A_bare_status_leaves_as_a_problem_document_and_the_contract_can_be_read()
+    {
+        var specialist = site.As(NewTenant());
+
+        var missing = await specialist.GetAsync("/runs/no-such-run");
+        var nowhere = await specialist.GetAsync("/no-such-path");
+        var contract = await site.Client(null).GetAsync("/openapi/v1.json");
+
+        Assert.Equal((HttpStatusCode.NotFound, "application/problem+json"), (missing.StatusCode, missing.Content.Headers.ContentType?.MediaType));
+        Assert.Equal(404, (await Json(missing)).GetProperty("status").GetInt32());
+        Assert.Equal((HttpStatusCode.NotFound, "application/problem+json"), (nowhere.StatusCode, nowhere.Content.Headers.ContentType?.MediaType));
+        Assert.Equal(HttpStatusCode.OK, contract.StatusCode);
+        var paths = (await Json(contract)).GetProperty("paths");
+        Assert.True(paths.TryGetProperty("/agreements/{agreementId}/pay-checks", out _));
+        Assert.True(paths.TryGetProperty("/runs/{runId}", out var run));
+        Assert.Contains("RunDetail", run.GetRawText(), StringComparison.Ordinal);
+        // The console's own files and the health checks are not part of the contract.
+        Assert.False(paths.TryGetProperty("/app/config.json", out _));
+    }
+
+    [Fact]
+    public async Task One_company_cannot_check_pay_without_limit_and_is_told_when_to_come_back()
+    {
+        await using var limited = site.Create(uploadsPerHour: 1000, ("Limits:PayChecksPerHour", "2"));
+        var tenant = NewTenant();
+        await Publish(site.Client(site.Token(tenant), limited));
+        var payCase = Synthetic.Corpus.Pay(Synthetic.Corpus.Agreements[2], Site.Agreement).Cases[0];
+        var employer = site.Client(site.Token(tenant, "eva", roles: [Caller.Employer]), limited);
+
+        Assert.Equal(HttpStatusCode.OK, (await CheckPay(employer, payCase)).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await CheckPay(employer, payCase)).StatusCode);
+        var refused = await CheckPay(employer, payCase);
+
+        Assert.Equal(HttpStatusCode.TooManyRequests, refused.StatusCode);
+        Assert.InRange(refused.Headers.RetryAfter!.Delta!.Value, TimeSpan.FromSeconds(1), TimeSpan.FromHours(1));
+        Assert.Equal("application/problem+json", refused.Content.Headers.ContentType?.MediaType);
+        // The limit is each company's own.
+        var other = NewTenant();
+        await Publish(site.Client(site.Token(other), limited));
+        Assert.Equal(HttpStatusCode.OK, (await CheckPay(site.Client(site.Token(other, "eva", roles: [Caller.Employer]), limited), payCase)).StatusCode);
+    }
+
+    [Fact]
+    public async Task A_model_that_cannot_be_reached_is_said_to_be_away_and_is_not_a_broken_api()
+    {
+        site.QuestionModel = new Calls(new HttpRequestException("529 overloaded"));
+        await using var asking = site.Create(uploadsPerHour: 1000);
+        site.QuestionModel = null;
+        var tenant = NewTenant();
+        await Publish(site.Client(site.Token(tenant), asking));
+
+        var response = await site.Client(site.Token(tenant, "eva", roles: [Caller.Employer]), asking).PostAsJsonAsync("/agreements/lager/questions", new { question = "Hvad er feriegodtgørelsen?" });
+
+        Assert.Equal(HttpStatusCode.ServiceUnavailable, response.StatusCode);
+        Assert.Contains("cannot be reached right now", (await Json(response)).GetProperty("detail").GetString(), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task What_a_companys_questions_cost_is_counted_and_a_company_that_has_spent_its_day_is_refused()
+    {
+        var holiday = Site.Agreement.Truth.Rules.OfType<HolidayAllowanceRule>().Single().Source;
+        // Each turn uses a million tokens in: ten cents at Haiku's prices, so twenty cents a question.
+        site.QuestionModel = new Overens.Gateway.MeteredChatClient(
+            new Calls(
+                ("read_clause", new { clause_id = holiday.ClauseId }),
+                ("give_answer", new { answered = true, text = "Feriegodtgørelsen udgør 12,5 pct. af lønnen.", citations = new[] { new { clause_id = holiday.ClauseId, quote = holiday.Quote } } }))
+            { InputTokens = 1_000_000 },
+            new Overens.Gateway.Spend(),
+            capDollars: 100m);
+        site.QuestionModelId = Overens.Gateway.Models.Haiku;
+        await using var asking = site.Create(uploadsPerHour: 1000, ("TENANT_DAILY_ANSWER_DOLLARS", "0.15"));
+        (site.QuestionModel, site.QuestionModelId) = (null, "stand-in");
+        var (tenant, other) = (NewTenant(), NewTenant());
+        await Publish(site.Client(site.Token(tenant), asking));
+        await Publish(site.Client(site.Token(other), asking));
+        Task<HttpResponseMessage> Ask(string company) =>
+            site.Client(site.Token(company, "eva", roles: [Caller.Employer]), asking).PostAsJsonAsync("/agreements/lager/questions", new { question = "Hvad er feriegodtgørelsen?" });
+
+        var first = await Ask(tenant);
+        var second = await Ask(tenant);
+
+        Assert.Equal(HttpStatusCode.OK, first.StatusCode);
+        Assert.Equal(HttpStatusCode.TooManyRequests, second.StatusCode);
+        Assert.Contains("daily budget", (await Json(second)).GetProperty("detail").GetString(), StringComparison.Ordinal);
+        // The other company's budget is its own.
+        Assert.Equal(HttpStatusCode.OK, (await Ask(other)).StatusCode);
+    }
+
+    [Fact]
+    public async Task After_a_renewal_an_answer_may_still_quote_the_agreement_an_older_rule_came_from()
+    {
+        var wage = Site.Agreement.Truth.Rules.OfType<MinimumWageRule>().OrderBy(rule => rule.InForce.From).First().Source;
+        Assert.DoesNotContain(wage.Quote, Documents.AgreementText.Render(Site.Renewal.Document), StringComparison.Ordinal);
+        site.QuestionModel = new Calls(("give_answer", new { answered = true, text = "Mindstebetalingen fremgår af overenskomsten.", citations = new[] { new { clause_id = wage.ClauseId, quote = wage.Quote } } }));
+        await using var asking = site.Create(uploadsPerHour: 1000);
+        site.QuestionModel = null;
+        var tenant = NewTenant();
+        var specialist = site.Client(site.Token(tenant), asking);
+        await Publish(specialist);
+        await Publish(specialist, Site.RenewalPdf);
+
+        var answer = await Json(await specialist.PostAsJsonAsync("/agreements/lager/questions", new { question = "Hvor står mindstebetalingen?" }));
+
+        Assert.Equal("Answered", answer.GetProperty("outcome").GetString());
     }
 }

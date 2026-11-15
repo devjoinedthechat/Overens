@@ -48,15 +48,12 @@ public sealed class Usage : IDisposable
     {
         for (var usage = Current.Value; usage is not null; usage = usage.outer)
         {
-            var cached = used?.CachedInputTokenCount ?? 0;
-            var input = Math.Max(0, (used?.InputTokenCount ?? 0) - cached);
-            var output = used?.OutputTokenCount ?? 0;
             lock (usage.gate)
             {
                 usage.Calls++;
-                usage.InputTokens += input + cached;
-                usage.OutputTokens += output;
-                usage.CostMicros += (long)Math.Ceiling((input * price.Input) + (cached * price.CacheRead) + (output * price.Output));
+                usage.InputTokens += used?.InputTokenCount ?? 0;
+                usage.OutputTokens += used?.OutputTokenCount ?? 0;
+                usage.CostMicros += (long)Math.Ceiling(price.Micros(used));
                 usage.models.Add(model);
             }
         }

@@ -1,3 +1,5 @@
+using System.Net;
+using Anthropic.Exceptions;
 using Microsoft.Extensions.AI;
 
 namespace Overens.Gateway;
@@ -42,21 +44,15 @@ public sealed class FailoverChatClient(IChatClient inner, IReadOnlyDictionary<st
     public static bool IsUnavailable(Exception error, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(error);
-        if (error is OperationCanceledException)
+        return error switch
         {
             // A timeout, unless the caller itself gave up.
-            return !cancellationToken.IsCancellationRequested;
-        }
-
-        if (error is HttpRequestException or TimeoutException or IOException)
-        {
-            return true;
-        }
-
-        // The provider's own errors carry the status in their type's name: rate limit, overloaded, 5xx.
-        var name = error.GetType().Name;
-        return name.Contains("RateLimit", StringComparison.Ordinal) || name.Contains("5xx", StringComparison.Ordinal)
-            || name.Contains("Overloaded", StringComparison.Ordinal) || name.Contains("ServiceUnavailable", StringComparison.Ordinal)
-            || name.Contains("InternalServer", StringComparison.Ordinal);
+            OperationCanceledException => !cancellationToken.IsCancellationRequested,
+            HttpRequestException or TimeoutException or IOException => true,
+            // The provider's client: the connection failed, or the provider answered "too many", "too slow" or "not now".
+            AnthropicIOException => true,
+            AnthropicApiException answered => answered.StatusCode is HttpStatusCode.RequestTimeout or HttpStatusCode.TooManyRequests || (int)answered.StatusCode >= 500,
+            _ => false,
+        };
     }
 }

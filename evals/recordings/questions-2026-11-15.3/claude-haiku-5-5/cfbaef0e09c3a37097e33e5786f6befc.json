@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01TTKoTNtB1Pa8HJfJHpCscd",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Feriegodtg\\u00F8relsen udg\\u00F8r 12,5 pct. af l\\u00F8nnen, jf. \\u00A7 8, stk. 2, og det g\\u00E6lder ogs\\u00E5 efter de regler, der er i kraft 2026-11-15. Protokollat 2 indeholder en teknisk instruks om maskinel behandling, men den \\u00E6ndrer ikke overenskomstens sats i \\u00A7 8, stk. 2 og er ikke et grundlag for at bruge en anden procent.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 8, stk. 2\u0022,\u0022quote\u0022:\u0022Feriegodtg\\u00F8relsen udg\\u00F8r 12,5 pct. af l\\u00F8nnen.\u0022}]}"
+    }
+  ]
+}

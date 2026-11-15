@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_01P7894ae4Dr5PTCytsH2ago",
+      "Name": "rules_in_force",
+      "Arguments": "{\u0022date\u0022:\u00222026-11-15\u0022}"
+    }
+  ]
+}

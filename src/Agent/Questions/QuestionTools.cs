@@ -80,7 +80,7 @@ public sealed class QuestionTools(RuleSet rules, IClauseIndex index)
                     return $"There is no tool \"{name}\".";
             }
         }
-        catch (Exception error) when (error is KeyNotFoundException or FormatException or ArgumentException or InvalidOperationException or JsonException)
+        catch (Exception error) when (error is KeyNotFoundException or FormatException or ArgumentException or InvalidOperationException or JsonException or OverflowException)
         {
             return $"The call could not be carried out: {error.Message}";
         }

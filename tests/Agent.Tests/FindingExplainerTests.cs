@@ -84,7 +84,8 @@ public sealed class FindingExplainerTests
         var none = await Explain(null);
         var failing = await Explain(null, fails: true);
 
-        Assert.Equal(none, failing);
+        Assert.Equal(none.Text, failing.Text);
+        Assert.Equal((null, "the model could not be reached"), (none.Refusal, failing.Refusal));
         Assert.Contains("Der mangler 900,00 kr.", none.Text, StringComparison.Ordinal);
         Assert.False(none.ByModel);
     }

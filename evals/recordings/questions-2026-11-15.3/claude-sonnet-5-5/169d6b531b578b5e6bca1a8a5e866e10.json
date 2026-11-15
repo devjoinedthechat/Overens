@@ -1,0 +1,11 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_017kJKBsHSoHFyU967AixwKB",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022Till\\u00E6gget for forskudt tid er 132,80 kr. for vagten tirsdag den 5. maj 2026. Det g\\u00E6lder de 4 timer mellem kl. 18.00 og kl. 22.00 med 33,20 kr. pr. time. Timerne fra kl. 16.00 til 18.00 giver intet till\\u00E6g.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 1\u0022,\u0022quote\u0022:\u0022For arbejde mandag til fredag mellem kl. 18.00 og kl. 22.00 betales et till\\u00E6g p\\u00E5 33,20 kr. pr. time.\u0022}]}"
+    }
+  ]
+}

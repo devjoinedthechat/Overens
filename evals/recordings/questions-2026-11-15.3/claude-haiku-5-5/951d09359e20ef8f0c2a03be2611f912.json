@@ -1,0 +1,11 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "",
+  "Calls": [
+    {
+      "Id": "toolu_013uaNCDAQHU1cRh2ajExX3L",
+      "Name": "give_answer",
+      "Arguments": "{\u0022answered\u0022:true,\u0022text\u0022:\u0022For vagten 5. maj 2026 kl. 16.00-22.00 skal der betales 126,60 kr. i till\\u00E6g for forskudt tid. Till\\u00E6gget g\\u00E6lder kun timerne kl. 18.00-22.00 p\\u00E5 hverdage, som er 4 timer \\u00E0 31,65 kr. (satsen pr. 1. marts 2026). Beregningen bygger p\\u00E5 de g\\u00E6ldende satser for den dato.\u0022,\u0022citations\u0022:[{\u0022clause_id\u0022:\u0022\\u00A7 6, stk. 1\u0022,\u0022quote\u0022:\u0022Mandag til fredag kl. 18.00-22.00 | 31,65 kr. | 32,90 kr. | 34,15 kr.\u0022}]}"
+    }
+  ]
+}
