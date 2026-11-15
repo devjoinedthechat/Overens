@@ -21,12 +21,22 @@ bad() { echo "  FAIL  $1"; failed=1; }
 check() { if [ "$2" = "$3" ]; then ok "$1"; else bad "$1 (expected $3, got $2)"; fi; }
 json() { python3 -c "import json,sys; d=json.load(sys.stdin); print($1)"; }
 
+# The system listens on fixed ports. One that is taken fails the start in a way that is hard to read, so it is said here.
+for port in 5058 8081 8089 8090 8092; do
+  if (exec 3<>"/dev/tcp/127.0.0.1/$port") 2>/dev/null; then
+    echo "Port $port is in use. Stop what is listening there (an earlier run left with KEEP=1?) and try again."
+    exit 1
+  fi
+done
+
 # Without WITH_MODEL the key is withheld even if one is set, so the test never spends.
 if [ -z "${WITH_MODEL:-}" ]; then export ANTHROPIC_API_KEY=; fi
 dotnet run --project src/AppHost >"$log" 2>&1 &
 host=$!
 stop() {
-  if [ -z "${KEEP:-}" ]; then
+  # A command that fails under "set -e" ends the script without passing through bad(): count that as a failure too.
+  if [ "$?" -ne 0 ]; then failed=1; fi
+  if [ -z "${KEEP:-}" ] || [ "$failed" -ne 0 ]; then
     kill "$host" 2>/dev/null || true
     wait "$host" 2>/dev/null || true
   else

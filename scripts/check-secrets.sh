@@ -49,7 +49,7 @@ while IFS= read -r file; do
     failed=1
     continue
   fi
-  # This script and its test list the patterns, so they would match themselves.
+  # This script lists the patterns, so it would match itself.
   case "$file" in scripts/check-secrets.sh) continue ;; esac
   # Only line numbers are printed, so the secret itself never reaches a log.
   if lines=$(show "$file" 2>/dev/null | grep -a -n -E -e "$regex" | cut -d: -f1 | paste -sd, -); then

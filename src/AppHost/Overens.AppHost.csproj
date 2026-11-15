@@ -5,6 +5,9 @@
     <!-- Runs with plain `dotnet run`: nothing to install beyond the .NET SDK and Docker. -->
     <AspireUseCliBundle>false</AspireUseCliBundle>
     <NoWarn>$(NoWarn);ASPIRE010</NoWarn>
+    <!-- No lock file here: the host pulls in packages named after the machine it runs on (its dashboard and orchestrator), so a file written on one system would not restore on another. -->
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
+    <RestoreLockedMode>false</RestoreLockedMode>
   </PropertyGroup>
 
   <ItemGroup>

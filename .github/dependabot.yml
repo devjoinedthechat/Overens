@@ -1,0 +1,30 @@
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      # Packages that are released together are raised together.
+      dotnet:
+        patterns: ["Microsoft.*", "System.*", "Npgsql*"]
+      aspire:
+        patterns: ["Aspire.*"]
+      opentelemetry:
+        patterns: ["OpenTelemetry.*"]
+      tests:
+        patterns: ["xunit*", "Testcontainers*", "CsCheck", "Microsoft.NET.Test.Sdk", "Microsoft.Playwright"]
+    ignore:
+      # From 6.5 the library is AGPL and refuses to run without a licence. 6.2 is MIT.
+      - dependency-name: PDFsharp-MigraDoc
+        versions: [">=6.5.0"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ["*"]
