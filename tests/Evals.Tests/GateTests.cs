@@ -99,12 +99,15 @@ public sealed class GateTests
     {
         var results = await Replay(model);
 
-        // The long agreements: no wrong rule passes, and no payslip is called wrong for want of a rule.
-        // One of them states the employee's pension share as "half". Neither model yields a pension
-        // rule that can be approved, and the pay check says of all 72 payslips that pension was not checked.
+        // The long agreements: no wrong rule passes the checks, and no payslip is called wrong.
+        // Sonnet reads every rule. Haiku takes the apprentices' pension for a second pension rule in
+        // one agreement; the two are reported as in conflict, and until a person has chosen, the pay
+        // check says of that agreement's 72 payslips that pension was not checked.
         var longer = (results.Total("long"), results.Pay("long"));
-        Assert.Equal((0, 0, 0, 72), (longer.Item1.WrongAndUnflagged, longer.Item2.FalseAlarms, longer.Item2.MissedErrors, longer.Item2.NotChecked));
-        Assert.Equal(longer.Item2.Cases - 72, longer.Item2.Right);
+        Assert.Equal((79, 79), (longer.Item1.Expected, longer.Item1.Correct));
+        Assert.Equal((0, 0, 0), (longer.Item1.WrongAndUnflagged, longer.Item2.FalseAlarms, longer.Item2.MissedErrors));
+        Assert.Equal(model == Gateway.Models.Sonnet ? 0 : 72, longer.Item2.NotChecked);
+        Assert.Equal(longer.Item2.Cases - longer.Item2.NotChecked, longer.Item2.Right);
 
         foreach (var set in new[] { "corpus", "challenge" })
         {

@@ -41,7 +41,7 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
         // The kinds do not depend on each other, so they are asked for at the same time.
         var answers = await Task.WhenAll(ExtractionPrompt.Kinds.Select(Ask));
 
-        var rules = new List<(Rule Rule, IReadOnlyList<string> AlsoFrom, decimal? Increase)>();
+        var rules = new List<(Rule Rule, IReadOnlyList<string> AlsoFrom, decimal? Increase, string? Share)>();
         var unreadable = new List<RuleProblem>();
         foreach (var (kind, text) in answers)
         {
@@ -51,7 +51,14 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
                 // In date order, so that a period given as an increase finds the period it builds on.
                 foreach (var item in answer.RootElement.GetProperty("rules").EnumerateArray().OrderBy(item => item.GetProperty("from").GetString(), StringComparer.Ordinal))
                 {
+                    // A pension with no employee's share, as a figure or as a part, is not a rule. Left out, it shows as a gap.
+                    if (kind.Name == "pension" && item.GetProperty("employee_percent").ValueKind == JsonValueKind.Null && item.GetProperty("employee_share").ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+
                     var rule = Read(kind.Name, item);
+                    var share = rule is PensionRule ? item.GetProperty("employee_share").GetString() : null;
                     decimal? increase = null;
                     if (rule is MinimumWageRule wage && item.GetProperty("increase").ValueKind == JsonValueKind.Number)
                     {
@@ -69,7 +76,7 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
                         id += "b";
                     }
 
-                    rules.Add((rule with { Id = id }, [.. item.GetProperty("also_from").EnumerateArray().Select(clause => clause.GetString()!)], increase));
+                    rules.Add((rule with { Id = id }, [.. item.GetProperty("also_from").EnumerateArray().Select(clause => clause.GetString()!)], increase, share));
                 }
             }
             catch (Exception error) when (error is JsonException or KeyNotFoundException or FormatException or InvalidOperationException or ArgumentException or OverflowException)
@@ -104,7 +111,10 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
                     Time(window.GetProperty("from").GetString()!),
                     Time(window.GetProperty("to").GetString()!),
                     window.GetProperty("amount_per_hour").GetDecimal()))]),
-            "pension" => new PensionRule("", period, source, Number("employer_percent"), Number("employee_percent"), item.GetProperty("qualifying_months").GetInt32()),
+            // The model reports a share as the agreement words it, "half". The percentage is worked out here.
+            "pension" => new PensionRule("", period, source, Number("employer_percent"),
+                item.GetProperty("employee_share").GetString() is { } part ? Shares.Of(part, Number("employer_percent")) : Number("employee_percent"),
+                item.GetProperty("qualifying_months").GetInt32()),
             "holiday_allowance" => new HolidayAllowanceRule("", period, source, Number("percent")),
             "special_savings" => new SpecialSavingsRule("", period, source, Number("percent")),
             _ => throw new InvalidOperationException($"Unknown kind of rule {kind}."),
@@ -113,4 +123,27 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
         static DateOnly Day(string text) => DateOnly.ParseExact(text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
         static TimeOnly Time(string text) => TimeOnly.ParseExact(text, "HH:mm", CultureInfo.InvariantCulture);
     }
+}
+
+/// <summary>
+/// A part of another figure, as a model may report it when the agreement gives a share in
+/// words and prints no percentage.
+/// </summary>
+public static class Shares
+{
+    private static readonly Dictionary<string, (int Parts, int Of, string[] Words)> Known = new(StringComparer.Ordinal)
+    {
+        ["half"] = (1, 2, ["halvdelen", "det halve", "1/2"]),
+        ["third"] = (1, 3, ["en tredjedel", "1/3"]),
+        ["two_thirds"] = (2, 3, ["to tredjedele", "2/3"]),
+        ["quarter"] = (1, 4, ["en fjerdedel", "1/4"]),
+        ["three_quarters"] = (3, 4, ["tre fjerdedele", "3/4"]),
+    };
+
+    /// <summary>That share of a figure. Multiplied first and divided once, so half of 8,0 is 4,0 and nothing is lost on the way.</summary>
+    public static decimal Of(string share, decimal whole) =>
+        Known.TryGetValue(share, out var known) ? whole * known.Parts / known.Of : throw new FormatException($"Unknown share \"{share}\".");
+
+    /// <summary>The ways an agreement writes the share. One of them must be printed where the rule cites.</summary>
+    public static IReadOnlyList<string> Words(string share) => Known[share].Words;
 }

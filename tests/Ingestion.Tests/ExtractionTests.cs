@@ -51,6 +51,34 @@ public sealed class ExtractionTests
     }
 
     [Fact]
+    public async Task A_pension_share_given_as_half_comes_through_as_the_true_rule_with_nothing_flagged()
+    {
+        var (agreement, extraction, _) = await Extract(5, 3, twists: Twists.Fraction);
+
+        Assert.Empty(extraction.Gaps);
+        Assert.Empty(extraction.Rules.SelectMany(rule => rule.Problems));
+        Assert.Equal(Sorted(agreement.Truth.Rules), Sorted(extraction.Sound));
+        // Both periods: the main text, and the protocol that raises the employer's share and keeps the half.
+        Assert.All(agreement.Truth.Rules.OfType<PensionRule>(), pension => Assert.Equal(pension.EmployerPercent / 2, pension.EmployeePercent));
+    }
+
+    [Fact]
+    public async Task A_pension_with_no_employees_share_at_all_is_left_out_and_shows_as_a_gap()
+    {
+        var (_, extraction, _) = await Extract(5, 3, (kind, rules) =>
+        {
+            foreach (var rule in kind == "pension" ? rules : [])
+            {
+                (rule!["employee_percent"], rule["employee_share"]) = (null, null);
+            }
+        });
+
+        Assert.Empty(extraction.Unreadable);
+        Assert.DoesNotContain(extraction.Rules, rule => rule.Rule is PensionRule);
+        Assert.Contains(extraction.Gaps, gap => gap.RuleId == "pension" && gap.Code == "no_rule_of_kind");
+    }
+
+    [Fact]
     public async Task One_request_per_kind_carries_the_whole_agreement_and_a_strict_schema()
     {
         var (agreement, _, model) = await Extract(3, 3);

@@ -70,7 +70,10 @@ internal sealed partial class StandInModel(AgreementDocument document, RuleSet t
                 return ("inconvenient_hours", json);
             case PensionRule pension:
                 json["employer_percent"] = pension.EmployerPercent;
-                json["employee_percent"] = pension.EmployeePercent;
+                // Where the agreement gives the employee's share as "half", a careful reader reports the half and no figure.
+                var half = sections.SelectMany(section => section.Clauses).Any(clause => ClauseText.Of(clause).Contains("halvdelen af arbejdsgiverens bidrag", StringComparison.Ordinal));
+                json["employee_percent"] = half ? null : pension.EmployeePercent;
+                json["employee_share"] = half ? "half" : null;
                 json["qualifying_months"] = pension.QualifyingMonths;
                 return ("pension", json);
             case HolidayAllowanceRule holiday:

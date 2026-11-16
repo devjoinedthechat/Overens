@@ -25,7 +25,7 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
         new(Agreement.Document, Agreement.Truth, spoil);
 
     /// <summary>What the API does when a specialist uploads an agreement: store it, open a run, start the pipeline.</summary>
-    private async Task<RunRef> Upload(byte[] pdf, string? tenant = null, bool start = true)
+    private async Task<RunRef> Upload(byte[] pdf, string? tenant = null, bool start = true, bool dispatched = false)
     {
         var number = Interlocked.Increment(ref counter);
         var run = new RunRef(tenant ?? $"tenant-{number}", $"run-{number}");
@@ -37,7 +37,17 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
                 db.Documents.Add(new() { TenantId = run.TenantId, Sha256 = sha, FileName = "agreement.pdf", Content = pdf, UploadedBy = "anna", UploadedAt = DateTimeOffset.UtcNow });
             }
 
-            db.Runs.Add(new() { Id = run.RunId, TenantId = run.TenantId, AgreementId = "lager", DocumentSha256 = sha, Status = "started", CreatedAt = DateTimeOffset.UtcNow });
+            db.Runs.Add(new()
+            {
+                Id = run.RunId,
+                TenantId = run.TenantId,
+                AgreementId = "lager",
+                DocumentSha256 = sha,
+                Status = "started",
+                CreatedAt = DateTimeOffset.UtcNow,
+                // As the API records it: handed to the pipeline now, or (to play a lost pipeline) a while ago whether or not it was.
+                DispatchedAt = dispatched ? DateTimeOffset.UtcNow.AddMinutes(-5) : start ? DateTimeOffset.UtcNow : null,
+            });
         });
         if (start)
         {
@@ -352,6 +362,32 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
 
         Assert.Equal(Gateway.Models.Haiku, run.Model);
         Assert.Equal(Agreement.Truth.Rules.Count, await stack.AsApi.RunAsync(run.TenantId, db => db.ProposedRules.CountAsync()));
+    }
+
+    [Fact]
+    public async Task A_run_whose_pipeline_is_gone_is_ended_and_a_run_that_is_waiting_for_review_is_left_alone()
+    {
+        using var worker = await stack.StartWorker(Model());
+
+        // Handed to the pipeline, by the record, and the scheduler has never heard of it: the pipeline was lost.
+        var lost = await Upload(Pdf, start: false, dispatched: true);
+        // An ordinary run that reaches review and waits there, with its pipeline alive.
+        var waiting = await Upload(Pdf);
+
+        var ended = await Until(lost, row => row.Status == "failed");
+        Assert.Equal(RunStarter.PipelineGone, ended.Failure);
+        Assert.NotNull(ended.FinishedAt);
+
+        // The waiting run has been looked at too, more than once, and is still open.
+        await Until(waiting, row => row.Status == "awaiting_review" && row.CheckedAt is not null);
+        var first = (await Until(waiting, _ => true)).CheckedAt;
+        var later = await Until(waiting, row => row.CheckedAt > first);
+        Assert.Equal(("awaiting_review", null), (later.Status, later.Failure));
+
+        // And it can still be published.
+        await Review(waiting, approve: true);
+        await Decide(waiting, publish: true);
+        await Until(waiting, row => row.Status == "published");
     }
 
     [Fact]

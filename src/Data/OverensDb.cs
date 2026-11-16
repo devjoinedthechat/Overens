@@ -25,6 +25,7 @@ public sealed class IngestionRunRow
     public string? Clauses { get; set; }
     public string? Gaps { get; set; }
     public DateTimeOffset? DispatchedAt { get; set; }
+    public DateTimeOffset? CheckedAt { get; set; }
     public int? ModelCalls { get; set; }
     public long? InputTokens { get; set; }
     public long? OutputTokens { get; set; }

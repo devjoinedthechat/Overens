@@ -12,7 +12,7 @@ namespace Overens.Ingestion.Extraction;
 public static class ExtractionPrompt
 {
     /// <summary>Changes whenever the wording or a schema does, so results can be tied to it.</summary>
-    public const string Version = "2026-11-16.1";
+    public const string Version = "2026-11-16.2";
 
     public const string System = """
         You read Danish collective agreements (overenskomster) and extract pay rules from them as data.
@@ -76,10 +76,12 @@ public static class ExtractionPrompt
             """
             Extract the pension contributions as percentages of pay: the employer's share and the employee's share, separately. A total is not a share.
             "qualifying_months" is how many months of employment (anciennitet) an employee needs before the pension scheme applies.
+            If the employee's share is given only as a part of the employer's contribution (for example "halvdelen af arbejdsgiverens bidrag", "en tredjedel"), do not work it out. Set "employee_percent" to null and "employee_share" to that part. If a later clause says the employee's share is still that part, do the same for its period. In every other case "employee_share" is null.
             """,
             """
             "employer_percent": { "type": "number" },
-            "employee_percent": { "type": "number" },
+            "employee_percent": { "type": ["number", "null"] },
+            "employee_share": { "anyOf": [{ "type": "string", "enum": ["half", "third", "two_thirds", "quarter", "three_quarters"] }, { "type": "null" }] },
             "qualifying_months": { "type": "integer" }
             """),
         new("holiday_allowance",

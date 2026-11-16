@@ -59,7 +59,7 @@ public sealed class Services : IAsyncLifetime
         builder.Logging.SetMinimumLevel(LogLevel.Warning);
         builder.Services.AddIngestionWorker(As("overens_worker", "worker-test"), Scheduler, model, modelId, dailyBudgetDollars);
         // Look often, and take any run that has not been started, so a test need not wait.
-        builder.Services.Configure<RunStarterOptions>(options => (options.Every, options.OlderThan) = (TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2)));
+        builder.Services.Configure<RunStarterOptions>(options => (options.Every, options.OlderThan, options.CheckEvery, options.CheckAfter) = (TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(3)));
         configure?.Invoke(builder.Services);
         var host = builder.Build();
         await host.StartAsync();

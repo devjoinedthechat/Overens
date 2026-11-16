@@ -2,7 +2,7 @@
 
 How well Overens reads pay rules out of a collective agreement, and what happens to payslips checked with the rules it read.
 
-Extraction prompt `2026-11-16.1`. Recorded on 16 November 2026. Every figure here is reproduced, at no cost and with no model key, by:
+Extraction prompt `2026-11-16.2`. Recorded on 16 November 2026. Every figure here is reproduced, at no cost and with no model key, by:
 
 ```sh
 dotnet run --project evals/Runner                             # Claude Sonnet
@@ -60,16 +60,16 @@ The figures about other things are the ones most like a rule: shift-work supplem
 
 ## Results
 
-Current prompt, `2026-11-16.1`:
+Current prompt, `2026-11-16.2`:
 
 | Model and set | Rules found | Wrong and unflagged | Payslips right |
 | --- | --- | --- | --- |
 | Sonnet, corpus | 44 of 44 | 0 | 288 of 288 |
 | Sonnet, challenge | 77 of 77 | 0 | 432 of 432 |
-| Sonnet, long | 79 of 79, 2 flagged | 0 | 360 of 432, 72 not checked |
+| Sonnet, long | 79 of 79 | 0 | 432 of 432 |
 | Haiku, corpus | 44 of 44 | 0 | 288 of 288 |
 | Haiku, challenge | 77 of 77 | 0 | 432 of 432 |
-| Haiku, long | 77 of 79 | 0 | 360 of 432, 72 not checked |
+| Haiku, long | 79 of 79, and 1 extra in conflict | 0 | 360 of 432, 72 not checked |
 
 Cost and size:
 
@@ -84,22 +84,32 @@ The agreement is sent once per kind of rule, six times in all, which is most of 
 
 **Prompt caching was tried and removed.** Marking the agreement for the provider to keep made every call pay the price of storing it and none read it back: 25 pct. more, not less. The provider reads a kept prompt only when everything before it is the same, and that includes the answer's schema, which differs for each kind of rule. One schema with a list for every kind was refused as too large to compile. The long set above is priced without the marking.
 
-## Where it stops: the long agreements
+## The long agreements
 
-Length, chapters, non-pay sections full of other figures, appendices, a cross-reference, a mixed table and another way of numbering changed nothing. Both models found every rule in five of the six agreements, proposed none from the shift-work, apprentice or public-holiday figures, and every payslip checked with their rules came out right.
+Length, chapters, non-pay sections full of other figures, appendices, a cross-reference, a mixed table and another way of numbering changed nothing for Sonnet: every rule found, none proposed from the shift-work, apprentice or public-holiday figures, every payslip right.
 
-One thing did: **a value that is stated and not printed.** The agreement says the employer pays 9,0 pct. and the employee "half of the employer's contribution".
+Two things did go wrong on the way.
 
-| Model | What it did | What the checks did | What a reviewer gets |
+**A value that is stated and not printed.** One agreement says the employer pays 9,0 pct. and the employee "half of the employer's contribution". On the first run, with prompt `2026-11-16.1`:
+
+| Model | What it did | What the checks did | What a reviewer got |
 | --- | --- | --- | --- |
-| Haiku | Proposed no pension rule at all | Reported the kind as missing | A gap to act on, and no rule |
-| Sonnet | Worked out 4,5 pct. itself, against the prompt, and was right | Flagged both rules: 4,5 is printed nowhere | Two correct rules that cannot be approved |
+| Haiku | Proposed no pension rule at all | Reported the kind as missing | A gap, and no rule |
+| Sonnet | Worked out 4,5 pct. itself, against the prompt, and was right | Flagged both rules: 4,5 is printed nowhere | Two correct rules that could not be approved |
 
-Either way no pension rule is published from that agreement, which is the safe outcome and not a useful one. The same thing was met before with a wage "raised by 5,00 kr." and was closed by having the model report the increase as printed and the code add it up. A share given as a fraction could be closed the same way. It is left open here as the known boundary: **the system reads what is printed and cannot be made to trust what a model derived.**
+Either way no pension rule was published: safe, and not useful. It was closed the way "raised by 5,00 kr." was. The model reports the share as the agreement words it ("half"), the code works out the percentage, and the check requires the word to be printed where the rule cites. A share that gives no exact percentage, such as a third of 8,5 pct., is put to a person. Both models read that agreement fully on the current prompt.
 
-**What happens to pay.** With no pension rule, the first run of this set called the pension lines on 52 correct payslips wrong. That was a fault in the pay check, not in the reading: a missing rule is not a rule that says nothing is owed.
+**A figure of the right kind about the wrong people.** The pension answers were recorded again for the changed prompt, and on one long agreement Haiku this time proposed a second pension rule from the clause on apprentices' pension (4,0 and 2,0 pct.). It had not done so on the first run.
 
-The check says since then that a line has no approved rule and was not checked, and calls it neither right nor wrong. Percentages taken of pay are treated the same way when a supplement rule is missing, since the pay they are taken of is then unknown. All 72 payslips of that agreement are counted as not checked.
+- The checks could not flag it as a wrong value: the clause exists, the quote is exact and the figures are printed there.
+- They reported it another way: two pension rules for the same days cannot both be approved, so the conflict was put to a person.
+- Until someone rejects the apprentices' rule, no pension rule is in force, and the pay check says of that agreement's 72 payslips that pension was not checked.
+
+Nothing wrong passed. It is the failure the report names under "What these results do not show": a value printed in the cited clause that belongs to something else. Here a second rule for the same days gave it away. A figure that replaced the true one, and did not stand beside it, would not have been caught.
+
+**What happens to pay without a rule.** On the first run, with no pension rule, the pay check called the pension lines on 52 correct payslips wrong. That was a fault in the pay check, not in the reading: a missing rule is not a rule that says nothing is owed.
+
+The check says since then that a line has no approved rule and was not checked, and calls it neither right nor wrong. Percentages taken of pay are treated the same way when a supplement rule is missing, since the pay they are taken of is then unknown.
 
 ## A mistake in the test data
 
@@ -240,7 +250,7 @@ No answer was withheld by either model.
 ## What these results do not show
 
 - **The documents are synthetic.** No real agreement has been measured: a published agreement is someone's copyrighted text, and none is used here. The long set is closer to one in length and in what surrounds the rules, and is still written by a generator from fixed phrasings. About 24 pages is short for a real agreement.
-- **The sets barely tell the models apart.** They differ on one agreement, and there by which safe outcome they reach.
+- **The sets barely tell the models apart.** They differ on one long agreement, where Haiku proposed one rule too many and the conflict check caught it.
 - **What a real agreement would add is known only in outline.** The reader understood one way of numbering clauses until a second was added. A real agreement states pay in more ways than six kinds of rule, such as monthly salaries, half rates for the young and public holidays. Its tables are not always ruled.
 - **Each model answered once per prompt version.** There is no proper measure of how much an answer varies from run to run. The one time everything was run again, Haiku's answers differed enough to trip a check twice.
 - **Six kinds of rule.** Anything else an agreement says about pay, such as shift work, on-call pay or public holidays, is not extracted and not counted as missing.

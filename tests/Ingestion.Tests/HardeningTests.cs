@@ -17,7 +17,7 @@ public sealed class HardeningTests
     private static IReadOnlyList<RuleProblem> Problems(string clauseText, DateOnly from)
     {
         var rule = new HolidayAllowanceRule("holiday_allowance-2027", new Period(from), new("§ 8, stk. 1", "Feriegodtgørelsen udgør 12,5 pct. af lønnen"), 12.5m);
-        return Grounding.Check(Agreement(clauseText), [(rule, [], null)])[0].Problems;
+        return Grounding.Check(Agreement(clauseText), [(rule, [], null, null)])[0].Problems;
     }
 
     [Fact]
@@ -69,6 +69,33 @@ public sealed class HardeningTests
         Assert.Equal(ExtractionPrompt.Kinds.Count, model.Asked);
         Assert.Single(model.Users.Select(user => user.Text[..user.Text.IndexOf("<task", StringComparison.Ordinal)]).Distinct());
         Assert.Equal(ExtractionPrompt.Kinds.Count, model.Users.Select(user => user.Text).Distinct().Count());
+    }
+
+    [Fact]
+    public void A_share_given_as_a_part_is_worked_out_by_code_and_must_be_printed_as_words()
+    {
+        var agreement = Agreement("Fra den 1. marts 2026 gælder: Arbejdsgiveren indbetaler 9,0 pct. af lønnen til pensionsordningen. Medarbejderen betaler selv et bidrag, der udgør halvdelen af arbejdsgiverens bidrag.");
+        PensionRule Pension(decimal employer, decimal employee) =>
+            new("pension-2026", new Period(new(2026, 3, 1)), new("§ 8, stk. 1", "Arbejdsgiveren indbetaler 9,0 pct. af lønnen til pensionsordningen."), employer, employee, 0);
+        IEnumerable<string> Codes(PensionRule rule, string? share) => Grounding.Check(agreement, [(rule, [], null, share)])[0].Problems.Select(problem => problem.Code);
+
+        Assert.Equal(4.5m, Shares.Of("half", 9.0m));
+        // Reported as "half": the word is printed, so the rule stands, with the figure code made of it.
+        Assert.Empty(Codes(Pension(9.0m, 4.5m), "half"));
+        // The same figure with no word for it is a figure printed nowhere.
+        Assert.Equal(["value_not_in_cited_clauses"], Codes(Pension(9.0m, 4.5m), null));
+        // A part the agreement does not name is not printed either.
+        Assert.Equal(["value_not_in_cited_clauses"], Codes(Pension(9.0m, 3.0m), "third"));
+        Assert.Throws<FormatException>(() => Shares.Of("most", 9.0m));
+    }
+
+    [Fact]
+    public void A_part_that_gives_no_exact_percentage_is_put_to_a_person()
+    {
+        var agreement = Agreement("Fra den 1. marts 2026 gælder: Arbejdsgiveren indbetaler 8,5 pct. af lønnen. Medarbejderen betaler en tredjedel af arbejdsgiverens bidrag.");
+        var rule = new PensionRule("pension-2026", new Period(new(2026, 3, 1)), new("§ 8, stk. 1", "Arbejdsgiveren indbetaler 8,5 pct. af lønnen."), 8.5m, Shares.Of("third", 8.5m), 0);
+
+        Assert.Contains("share_not_exact", Grounding.Check(agreement, [(rule, [], null, "third")])[0].Problems.Select(problem => problem.Code));
     }
 
     private sealed class CutOff : IChatClient

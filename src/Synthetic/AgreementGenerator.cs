@@ -589,14 +589,17 @@ public static class AgreementGenerator
             protocols.Add(new("Protokollat 1", "Forhøjelse af pensionsbidrag",
             [
                 new("Protokollat 1, stk. 1", [Text($"Parterne er enige om at ændre {pension}, stk. 1. {raiseQuote}")]),
-                new("Protokollat 1, stk. 2", [Text("Medarbejderens bidrag og anciennitetskravet er uændrede.")]),
+                new("Protokollat 1, stk. 2", [Text(hard >= 3 && spec.Twists.HasFlag(Twists.Fraction)
+                    ? "Medarbejderens bidrag udgør fortsat halvdelen af arbejdsgiverens bidrag. Anciennitetskravet er uændret."
+                    : "Medarbejderens bidrag og anciennitetskravet er uændrede.")]),
             ]));
             rules.Add(new PensionRule(
                 Id("pension", steps[1]),
                 new(steps[1]),
                 new("Protokollat 1, stk. 1", raiseQuote),
                 raised,
-                employeePension,
+                // Half of the employer's share stays half when the employer's share is raised.
+                hard >= 3 && spec.Twists.HasFlag(Twists.Fraction) ? raised / 2 : employeePension,
                 qualifyingMonths));
         }
 

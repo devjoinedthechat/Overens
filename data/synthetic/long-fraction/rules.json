@@ -306,7 +306,7 @@
     {
       "kind": "pension",
       "employerPercent": 9.5,
-      "employeePercent": 4.5,
+      "employeePercent": 4.75,
       "qualifyingMonths": 6,
       "id": "pension-2027",
       "inForce": {

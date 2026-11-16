@@ -22,7 +22,14 @@ namespace Overens.Ingestion.Extraction;
 /// </summary>
 public static partial class Grounding
 {
-    public static IReadOnlyList<ProposedRule> Check(ReadAgreement agreement, IReadOnlyList<(Rule Rule, IReadOnlyList<string> AlsoFrom, decimal? Increase)> rules)
+    /// <param name="agreement">The agreement as read.</param>
+    /// <param name="rules">
+    /// Each rule with the other clauses it draws on and, where the model reported something
+    /// other than a final figure, what it reported: an increase on the period before, or the
+    /// employee's pension share as a part of the employer's. Code made the figure; what must
+    /// be printed is what the model reported.
+    /// </param>
+    public static IReadOnlyList<ProposedRule> Check(ReadAgreement agreement, IReadOnlyList<(Rule Rule, IReadOnlyList<string> AlsoFrom, decimal? Increase, string? Share)> rules)
     {
         ArgumentNullException.ThrowIfNull(agreement);
         ArgumentNullException.ThrowIfNull(rules);
@@ -32,7 +39,7 @@ public static partial class Grounding
         var asASet = RuleSetValidator.Validate(new("proposed", 0, [.. rules.Select(rule => rule.Rule)]));
 
         var proposed = new List<ProposedRule>();
-        foreach (var (rule, alsoFrom, increase) in rules)
+        foreach (var (rule, alsoFrom, increase, share) in rules)
         {
             var problems = new List<RuleProblem>();
             void Problem(string code, string message) => problems.Add(new(rule.Id, code, message));
@@ -74,7 +81,13 @@ public static partial class Grounding
 
             var citedText = string.Join(' ', cited);
             // A rate that was added up here is not printed anywhere. What must be printed is the increase.
-            var values = increase is { } added ? [($"The increase of {added}", Money(added))] : Values(rule);
+            var values = increase is { } added ? [($"The increase of {added}", Money(added))] : Values(rule, share);
+            if (share is not null && rule is PensionRule shared && decimal.Round(shared.EmployeePercent, 2) != shared.EmployeePercent)
+            {
+                // A third of 8,5 pct. is no percentage a payslip can be held to. A person has to say what the agreement means.
+                Problem("share_not_exact", $"The employee's share, {share} of {shared.EmployerPercent} percent, is not an exact percentage.");
+            }
+
             foreach (var (what, ways) in values)
             {
                 if (!ways.Any(way => way.All(form => Printed(citedText, form))))
@@ -169,7 +182,7 @@ public static partial class Grounding
     /// Each number in a rule, with the ways an agreement may print it. A way is a set of
     /// forms that must all be there: 7.4 hours is printed as "7,4" or as "7" and "24".
     /// </summary>
-    private static IEnumerable<(string What, string[][] Ways)> Values(Rule rule)
+    private static IEnumerable<(string What, string[][] Ways)> Values(Rule rule, string? share = null)
     {
         switch (rule)
         {
@@ -210,7 +223,10 @@ public static partial class Grounding
                 break;
             case PensionRule pension:
                 yield return ($"The employer's {pension.EmployerPercent} percent", Percent(pension.EmployerPercent));
-                yield return ($"The employee's {pension.EmployeePercent} percent", Percent(pension.EmployeePercent));
+                // A share the agreement gives as a part is printed as words, not as the percentage code made of it.
+                yield return share is null
+                    ? ($"The employee's {pension.EmployeePercent} percent", Percent(pension.EmployeePercent))
+                    : ($"The employee's share, {share} of the employer's", [.. Shares.Words(share).Select(words => new[] { words })]);
                 if (pension.QualifyingMonths > 0)
                 {
                     yield return ($"The qualifying period of {pension.QualifyingMonths} months", Months(pension.QualifyingMonths));
