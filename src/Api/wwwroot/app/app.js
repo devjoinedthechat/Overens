@@ -350,6 +350,15 @@ async function runView(runId) {
 
 // ------------------------------------------------------------------ pay checks
 
+const LINES = {
+  Overtime: "overtime supplement",
+  InconvenientHours: "supplement for inconvenient hours",
+  PensionEmployer: "the employer's pension contribution",
+  PensionEmployee: "the employee's pension contribution",
+  HolidayAllowance: "holiday allowance",
+  SpecialSavings: "special savings",
+};
+
 async function payView() {
   const result = el("div");
   const agreement = el("input", { type: "text", placeholder: "lager", "aria-label": "Agreement id" });
@@ -363,14 +372,18 @@ async function payView() {
     result.replaceChildren(el("p", { class: "muted" }, "Checking…"));
     try {
       const answer = await api("POST", `/agreements/${encodeURIComponent(agreement.value.trim())}/pay-checks`, JSON.parse(input.value));
+      const wrong = answer.findings.filter((finding) => finding.kind !== "NotCovered");
       result.replaceChildren(
         el(
           "section",
           {},
-          el("div", { class: "spread" }, el("h2", {}, "Result"), el("span", { class: `pill ${answer.findings.length ? "bad" : "good"}` }, answer.findings.length ? `${answer.findings.length} to correct` : "Nothing to correct")),
+          el("div", { class: "spread" }, el("h2", {}, "Result"), el("span", { class: `pill ${wrong.length ? "bad" : "good"}` }, wrong.length ? `${wrong.length} to correct` : "Nothing to correct")),
           el("p", { class: "muted" }, `Checked against version ${answer.version} of the rules for ${answer.agreementId}.`),
-          answer.findings.length === 0 && el("p", {}, "Every line on the payslip is what the agreement requires."),
-          answer.findings.map((finding) =>
+          // A line no approved rule covers was not checked. That is said apart from what is wrong, and before it.
+          answer.notChecked.length > 0 &&
+            el("div", { class: "notice" }, `Not checked, because no approved rule covers it in this period: ${answer.notChecked.map((line) => LINES[line] ?? line).join(", ")}.`),
+          wrong.length === 0 && el("p", {}, answer.notChecked.length ? "Every line that could be checked is what the agreement requires." : "Every line on the payslip is what the agreement requires."),
+          wrong.map((finding) =>
             el(
               "div",
               { class: "finding" },

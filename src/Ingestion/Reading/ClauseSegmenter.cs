@@ -30,7 +30,8 @@ public static partial class ClauseSegmenter
         var sections = new List<Section>();
         var spans = new Dictionary<string, PageSpan>();
 
-        (string Number, string Heading)? section = null;
+        (string Number, string Heading, string? Chapter)? section = null;
+        string? chapter = null;
         var clauses = new List<Clause>();
         string? clauseId = null;
         var blocks = new List<Block>();
@@ -49,16 +50,23 @@ public static partial class ClauseSegmenter
 
                 switch (item)
                 {
-                    case LayoutLine line when SectionHeading().Match(line.Text) is { Success: true } heading:
+                    case LayoutLine { Bold: true } line when ChapterHeading().IsMatch(line.Text):
+                        // A chapter's heading belongs to no clause: it ends the section before it, and is kept with the one after it.
+                        EndSection();
+                        chapter = line.Text;
+                        break;
+
+                    case LayoutLine line when SectionHeading().Match(line.Text) is { Success: true } heading && (heading.Groups["stop"].Success || line.Bold):
                         EndSection();
                         var number = heading.Groups["paragraph"].Success ? $"§ {heading.Groups["paragraph"].Value}" : heading.Groups["other"].Value;
-                        section = (number, heading.Groups["heading"].Value);
+                        section = (number, heading.Groups["heading"].Value, chapter);
                         break;
 
                     case LayoutLine line when section is not null && ClauseStart().Match(line.Text) is { Success: true } start:
                         EndClause();
                         clauseId = $"{section.Value.Number}, stk. {start.Groups["number"].Value}";
-                        paragraph = start.Groups["text"].Value;
+                        // A number that stands on a line of its own has its text on the lines under it.
+                        paragraph = start.Groups["text"].Success ? start.Groups["text"].Value : null;
                         spans[clauseId] = new(page.Number, page.Number);
                         last = (page.Number, line.Top, line.FontSize);
                         break;
@@ -148,7 +156,9 @@ public static partial class ClauseSegmenter
             // A heading with no clauses under it was an entry in the table of contents.
             if (section is { } ended && clauses.Count > 0)
             {
-                sections.Add(new(ended.Number, ended.Heading, [.. clauses]));
+                sections.Add(new(ended.Number, ended.Heading, [.. clauses], ended.Chapter));
+                // Kept until a section with clauses has taken it: the same heading in the table of contents has none.
+                chapter = null;
             }
 
             clauses.Clear();
@@ -176,11 +186,20 @@ public static partial class ClauseSegmenter
 
     private static (double, string) Key(LayoutLine line) => (Math.Round(line.Top), Digits().Replace(line.Text, "#"));
 
-    [GeneratedRegex(@"^(?:§ ?(?<paragraph>\d+)|(?<other>(?:Protokollat|Aftale) \d+))\. (?<heading>\S.*)$")]
+    /// <summary>
+    /// "§ 5. Overarbejde", "Protokollat 1. ...", "Bilag 2. ...", and the same without the full
+    /// stop. Without it a line of running text could look the same ("§ 5 gælder også ..."),
+    /// so that form counts only when the line is set in bold.
+    /// </summary>
+    [GeneratedRegex(@"^(?:§ ?(?<paragraph>\d+)|(?<other>(?:Protokollat|Aftale|Bilag) \d+))(?<stop>\.)? (?<heading>\S.*)$")]
     private static partial Regex SectionHeading();
 
-    [GeneratedRegex(@"^Stk\. (?<number>\d+)\. (?<text>.*)$")]
+    /// <summary>"Stk. 2. Text", or "Stk. 2" alone on its line.</summary>
+    [GeneratedRegex(@"^Stk\. (?<number>\d+)(?:\. (?<text>.*)|\.?)$")]
     private static partial Regex ClauseStart();
+
+    [GeneratedRegex(@"^Kapitel \d+\. \S")]
+    private static partial Regex ChapterHeading();
 
     [GeneratedRegex(@"\d+")]
     private static partial Regex Digits();

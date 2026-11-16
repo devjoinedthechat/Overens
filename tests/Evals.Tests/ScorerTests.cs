@@ -103,7 +103,9 @@ public sealed class ScorerTests
         Assert.Equal((3, 2, 2, 0), (contradicted.Proposed, contradicted.Correct, contradicted.Flagged, contradicted.WrongAndUnflagged));
         // And it checks no pay until someone has chosen.
         var pay = PayDataGenerator.Generate(Truth, seed: 7, new(2026, 3, 1), months: 1, employees: 4);
-        Assert.Equal(0, ExtractionEval.ScorePay(Proposed(Truth.Rules.Append(first with { Id = "other", Percent = 12.0m })), pay).Right);
+        var unsettled = ExtractionEval.ScorePay(Truth, Proposed(Truth.Rules.Append(first with { Id = "other", Percent = 12.0m })), pay);
+        // The second half of the month still has its own holiday rule, so the month is checked, and comes out wrong.
+        Assert.Equal(0, unsettled.Right);
     }
 
     [Fact]
@@ -112,29 +114,29 @@ public sealed class ScorerTests
         var pay = PayDataGenerator.Generate(Truth, seed: 7, new(2026, 3, 1), months: 4, employees: 12);
         var withErrors = pay.Errors.Count;
 
-        var right = ExtractionEval.ScorePay(Proposed(Truth.Rules), pay);
-        Assert.Equal((48, 48, 0, 0), (right.Cases, right.Right, right.MissedErrors, right.FalseAlarms));
+        var right = ExtractionEval.ScorePay(Truth, Proposed(Truth.Rules), pay);
+        Assert.Equal(new PayScore(48, 48, 0, 0, 0), right);
+        Assert.InRange(withErrors, 1, 48);
 
-        // Without the supplement rules every evening and night supplement looks unexpected,
-        // and payslips that left one out look fine.
-        var without = ExtractionEval.ScorePay(Proposed(Truth.Rules.Where(rule => rule is not InconvenientHoursRule)), pay);
-        Assert.True(without.FalseAlarms > 0);
-        Assert.True(without.MissedErrors > 0);
-        Assert.Equal(48, without.Right + without.MissedErrors + without.FalseAlarms);
-        Assert.InRange(without.MissedErrors, 1, withErrors);
+        // Without the supplement rules no supplement can be checked. Every payslip is counted as
+        // not checked: none is called right, and none is called wrong.
+        var without = ExtractionEval.ScorePay(Truth, Proposed(Truth.Rules.Where(rule => rule is not InconvenientHoursRule)), pay);
+        Assert.Equal(new PayScore(48, 0, 0, 0, 48), without);
 
-        // Two correct payslips and one that left the savings out, checked without the savings rule:
-        // the two correct ones are false alarms, and the wrong one looks fine, which is a missed error.
+        // Two correct payslips and one that left the savings out, checked with a savings rule that has the
+        // wrong percentage: the two correct ones are false alarms, and the wrong one is not reported as it should be.
         var large = PayDataGenerator.Generate(Truth, seed: 7, new(2026, 3, 1), months: 12, employees: 12);
         var leftOut = large.Errors.First(error => error.Mistake == "special_savings_left_out");
         PayCase CaseOf(string employee, DateOnly month) => large.Cases.Single(pay => pay.Timesheet.Employee.Id == employee && pay.Timesheet.PeriodStart == month);
         var correct = large.Cases.Where(pay => !large.Errors.Any(error => error.EmployeeId == pay.Timesheet.Employee.Id && error.PeriodStart == pay.Timesheet.PeriodStart)).Take(2);
         var three = new PayData([.. correct, CaseOf(leftOut.EmployeeId, leftOut.PeriodStart)], [leftOut]);
-        var noSavings = ExtractionEval.ScorePay(Proposed(Truth.Rules.Where(rule => rule is not SpecialSavingsRule)), three);
-        Assert.Equal((3, 0, 1, 2), (noSavings.Cases, noSavings.Right, noSavings.MissedErrors, noSavings.FalseAlarms));
+        var wrongSavings = ExtractionEval.ScorePay(Truth, Proposed(Truth.Rules.Select(rule => rule is SpecialSavingsRule savings ? savings with { Percent = savings.Percent + 1 } : rule)), three);
+        Assert.Equal(new PayScore(3, 0, 1, 2, 0), wrongSavings);
+        // With no savings rule at all, nothing about savings is decided for any of the three.
+        Assert.Equal(new PayScore(3, 0, 0, 0, 3), ExtractionEval.ScorePay(Truth, Proposed(Truth.Rules.Where(rule => rule is not SpecialSavingsRule)), three));
 
         // A flagged rule is not used: it is as if it had not been proposed.
-        var flagged = ExtractionEval.ScorePay(Proposed(Truth.Rules, flagged: ["inconvenient", "inconvenient-2"]), pay);
+        var flagged = ExtractionEval.ScorePay(Truth, Proposed(Truth.Rules, flagged: ["inconvenient", "inconvenient-2"]), pay);
         Assert.Equal(without, flagged);
     }
 }

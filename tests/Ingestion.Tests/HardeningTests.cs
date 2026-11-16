@@ -56,28 +56,19 @@ public sealed class HardeningTests
         var stopped = await Assert.ThrowsAsync<IncompleteAnswerException>(() => extractor.ExtractAsync(Agreement("Feriegodtgørelsen udgør 12,5 pct. af lønnen.")));
 
         Assert.Contains("cut off", stopped.Message, StringComparison.Ordinal);
-        // The first kind is asked alone; when it is cut off the other five are never asked.
-        Assert.Equal(1, cut.Asked);
+        Assert.Equal(ExtractionPrompt.Kinds.Count, cut.Asked);
     }
 
     [Fact]
-    public async Task The_agreement_is_marked_for_the_provider_to_keep_and_stands_before_the_task()
+    public async Task Every_kind_is_asked_with_the_same_agreement_and_a_schema_of_its_own()
     {
         using var model = new CutOff { Finish = ChatFinishReason.Stop, Answer = """{"rules": []}""" };
 
         await new RuleExtractor(model, "stand-in").ExtractAsync(Agreement("Feriegodtgørelsen udgør 12,5 pct. af lønnen."));
 
         Assert.Equal(ExtractionPrompt.Kinds.Count, model.Asked);
-        Assert.All(model.Users, user =>
-        {
-            Assert.Equal(2, user.Contents.Count);
-            Assert.StartsWith("<agreement>", ((TextContent)user.Contents[0]).Text, StringComparison.Ordinal);
-            Assert.Equal(Claude.Cacheable("x").AdditionalProperties!.Keys, user.Contents[0].AdditionalProperties!.Keys);
-            Assert.StartsWith("<task kind=", ((TextContent)user.Contents[1]).Text, StringComparison.Ordinal);
-            Assert.Null(user.Contents[1].AdditionalProperties);
-        });
-        // The agreement is byte for byte the same in every request, or nothing could be read from the cache.
-        Assert.Single(model.Users.Select(user => ((TextContent)user.Contents[0]).Text).Distinct());
+        Assert.Single(model.Users.Select(user => user.Text[..user.Text.IndexOf("<task", StringComparison.Ordinal)]).Distinct());
+        Assert.Equal(ExtractionPrompt.Kinds.Count, model.Users.Select(user => user.Text).Distinct().Count());
     }
 
     private sealed class CutOff : IChatClient

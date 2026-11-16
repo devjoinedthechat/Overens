@@ -20,6 +20,13 @@ public enum FindingKind
     MissingLine,
     UnexpectedLine,
     RateBelowMinimum,
+
+    /// <summary>
+    /// The payslip has a line that no approved rule covers in the period. It is not known
+    /// to be wrong: it was not checked. This is not the same as a line the rules say should
+    /// not be there.
+    /// </summary>
+    NotCovered,
 }
 
 /// <summary>
@@ -37,7 +44,13 @@ public sealed record Finding(
 }
 
 /// <summary>What the pay should have been, and where the payslip differs.</summary>
-public sealed record PayCheck(IReadOnlyList<Component> Expected, IReadOnlyList<Finding> Findings)
+/// <param name="Expected">What each line should be, part by part.</param>
+/// <param name="Findings">Where the payslip differs, and lines that could not be checked.</param>
+/// <param name="Unchecked">
+/// The lines no approved rule covers on any day of the period. Whether the payslip has such
+/// a line or leaves it out, nothing was checked: a missing rule is not a rule that says nothing is owed.
+/// </param>
+public sealed record PayCheck(IReadOnlyList<Component> Expected, IReadOnlyList<Finding> Findings, IReadOnlyList<PayLineKind> Unchecked)
 {
     public decimal ExpectedFor(PayLineKind line) => Expected.Where(part => part.Line == line).Sum(part => part.Amount);
 }

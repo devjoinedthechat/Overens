@@ -114,13 +114,13 @@ public sealed class AgreementGeneratorTests
             agreement.Document.Sections.SelectMany(section => section.Clauses).SelectMany(clause => clause.Blocks);
     }
 
-    public static TheoryData<string> ChallengeIds => [.. Corpus.Challenge.Concat(Corpus.Attacks).Select(spec => spec.Id)];
+    public static TheoryData<string> ChallengeIds => [.. Corpus.Challenge.Concat(Corpus.FullLength).Concat(Corpus.Attacks).Select(spec => spec.Id)];
 
     [Theory]
     [MemberData(nameof(ChallengeIds))]
     public void A_twisted_agreement_still_states_a_usable_rule_set_and_quotes_its_own_clauses(string id)
     {
-        var agreement = Corpus.Generate(Corpus.Challenge.Concat(Corpus.Attacks).Single(spec => spec.Id == id));
+        var agreement = Corpus.Generate(Corpus.All.Single(spec => spec.Id == id));
         var clauses = agreement.Document.Sections.Concat(agreement.Document.Protocols)
             .SelectMany(section => section.Clauses)
             .ToDictionary(clause => clause.Id, clause => AgreementText.Render(clause, 1));
@@ -143,6 +143,72 @@ public sealed class AgreementGeneratorTests
         Assert.Equal(RuleJson.Write(plain.Truth), RuleJson.Write(twisted.Truth));
         Assert.DoesNotContain(wording, AgreementText.Render(plain.Document), StringComparison.Ordinal);
         Assert.Contains(wording, AgreementText.Render(twisted.Document), StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData(Twists.FullLength, "Kontoen er ikke en del af fritvalgskontoen.")]
+    [InlineData(Twists.CrossReference, "det samme tillæg, som efter stk. 2 betales for overarbejde")]
+    [InlineData(Twists.MixedTable, "Satserne for ungarbejdere under 18 år og for lærlinge er ikke mindstebetaling efter anciennitet.")]
+    [InlineData(Twists.OwnLineNumbering, null)]
+    public void A_way_real_agreements_are_written_changes_the_text_and_not_the_rules(Twists twist, string? wording)
+    {
+        var plain = AgreementGenerator.Generate(new("a", 21, 3, 2026));
+        var twisted = AgreementGenerator.Generate(new("a", 21, 3, 2026, twist));
+
+        // The same values on the same days. Where the rules are cited from may move, because the text around them did.
+        static string Values(SyntheticAgreement agreement) => RuleJson.Write(agreement.Truth.Rules.Select(rule => rule with { Source = new("", "") }));
+        Assert.Equal(Values(plain), Values(twisted));
+        if (wording is not null)
+        {
+            Assert.DoesNotContain(wording, AgreementText.Render(plain.Document), StringComparison.Ordinal);
+            Assert.Contains(wording, AgreementText.Render(twisted.Document), StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
+    public void A_full_length_agreement_is_several_times_longer_and_mostly_not_about_pay()
+    {
+        var plain = AgreementGenerator.Generate(new("a", 21, 3, 2026));
+        var full = AgreementGenerator.Generate(new("a", 21, 3, 2026, Twists.FullLength));
+
+        Assert.True(full.Document.Sections.Count >= plain.Document.Sections.Count * 3);
+        Assert.True(AgreementText.Render(full.Document).Length >= AgreementText.Render(plain.Document).Length * 4);
+        Assert.Equal(8, full.Document.Sections.Count(section => section.Chapter is not null));
+        Assert.StartsWith("Kapitel 1. ", full.Document.Sections[0].Chapter, StringComparison.Ordinal);
+        // Figures of the same kinds as the rules', about other things: shift work, apprentices' pension, another account.
+        var text = AgreementText.Render(full.Document);
+        Assert.Contains("holddriftstillæg", text, StringComparison.Ordinal);
+        Assert.Contains("For lærlinge og elever, der er fyldt 20 år, udgør pensionsbidraget", text, StringComparison.Ordinal);
+        Assert.Contains("søgnehelligdagskonto", text, StringComparison.Ordinal);
+        Assert.Contains("ferietillæg på 1,0 pct.", text, StringComparison.Ordinal);
+        Assert.All(plain.Document.Sections, section => Assert.Null(section.Chapter));
+    }
+
+    [Fact]
+    public void Rates_in_an_appendix_are_cited_from_the_appendix_and_only_pointed_to_from_the_main_text()
+    {
+        var plain = AgreementGenerator.Generate(new("a", 21, 3, 2026));
+        var moved = AgreementGenerator.Generate(new("a", 21, 3, 2026, Twists.Appendix));
+
+        Assert.Equal(["Bilag 1", "Bilag 2"], moved.Document.Protocols.Where(section => section.Number.StartsWith("Bilag", StringComparison.Ordinal)).Select(section => section.Number));
+        Assert.All(moved.Truth.Rules.OfType<MinimumWageRule>(), wage => Assert.Equal("Bilag 1, stk. 1", wage.Source.ClauseId));
+        Assert.All(moved.Truth.Rules.OfType<InconvenientHoursRule>(), hours => Assert.Equal("Bilag 2, stk. 1", hours.Source.ClauseId));
+        // No rate is left in the main text's own clauses.
+        var wage = plain.Truth.Rules.OfType<MinimumWageRule>().First();
+        var main = string.Join('\n', moved.Document.Sections.SelectMany(section => section.Clauses).Select(clause => AgreementText.Render(clause, 1)));
+        Assert.DoesNotContain(Danish.Kroner(wage.Bands[0].HourlyRate), main, StringComparison.Ordinal);
+        Assert.Contains("fremgår af de satser, der er optrykt i Bilag 1", main, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void A_share_given_as_a_fraction_is_printed_nowhere_as_a_number()
+    {
+        var agreement = AgreementGenerator.Generate(new("a", 21, 3, 2026, Twists.Fraction));
+        var pension = agreement.Truth.Rules.OfType<PensionRule>().OrderBy(rule => rule.InForce.From).First();
+
+        Assert.Equal(pension.EmployerPercent / 2, pension.EmployeePercent);
+        Assert.Contains("halvdelen af arbejdsgiverens bidrag", AgreementText.Render(agreement.Document), StringComparison.Ordinal);
+        Assert.DoesNotContain($"medarbejderen {Danish.Percent(pension.EmployeePercent)}", AgreementText.Render(agreement.Document), StringComparison.Ordinal);
     }
 
     [Fact]

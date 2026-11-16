@@ -33,6 +33,26 @@ public static class Corpus
             Twists.Increases | Twists.NumericDates | Twists.SplitNight | Twists.OldRates | Twists.TwoYearBand | Twists.MidYearChange),
     ];
 
+    /// <summary>
+    /// Agreements as long as real ones, where most of the text is not about pay and is full
+    /// of figures that are not rules. Each adds one more thing real agreements do, and the
+    /// last has them all. They were added to find where the approach stops working.
+    /// </summary>
+    public static IReadOnlyList<AgreementSpec> FullLength { get; } =
+    [
+        new("long-plain", Seed: 711, Difficulty: 3, StartYear: 2026, Twists.FullLength),
+        new("long-appendix", Seed: 712, Difficulty: 3, StartYear: 2026, Twists.FullLength | Twists.Appendix),
+        new("long-references", Seed: 713, Difficulty: 3, StartYear: 2026, Twists.FullLength | Twists.CrossReference | Twists.MixedTable),
+        new("long-fraction", Seed: 714, Difficulty: 3, StartYear: 2026, Twists.FullLength | Twists.Fraction),
+        new("long-numbering", Seed: 715, Difficulty: 3, StartYear: 2026, Twists.FullLength | Twists.OwnLineNumbering),
+        new("long-all", Seed: 716, Difficulty: 3, StartYear: 2026,
+            Twists.FullLength | Twists.Appendix | Twists.CrossReference | Twists.MixedTable | Twists.OwnLineNumbering
+            | Twists.Increases | Twists.NumericDates | Twists.SplitNight | Twists.OldRates | Twists.TwoYearBand | Twists.MidYearChange),
+    ];
+
+    /// <summary>Every agreement in the corpus.</summary>
+    public static IEnumerable<AgreementSpec> All => Agreements.Concat(Challenge).Concat(FullLength).Concat(Attacks);
+
     /// <summary>Agreements that work against the reader: planted instructions, and a contradiction.</summary>
     public static IReadOnlyList<AgreementSpec> Attacks { get; } =
     [
@@ -51,7 +71,7 @@ public static class Corpus
 
     /// <summary>Each agreement as a PDF, by its path under the corpus directory.</summary>
     public static IReadOnlyDictionary<string, byte[]> Pdfs() =>
-        Agreements.Concat(Challenge).Concat(Attacks).ToDictionary(spec => $"{spec.Id}/agreement.pdf", spec => AgreementPdf.Render(Generate(spec).Document));
+        All.ToDictionary(spec => $"{spec.Id}/agreement.pdf", spec => AgreementPdf.Render(Generate(spec).Document));
 
     /// <summary>
     /// Six months of pay for twelve employees under an agreement. It starts three months
@@ -68,7 +88,7 @@ public static class Corpus
     public static IReadOnlyDictionary<string, string> Files()
     {
         var files = new SortedDictionary<string, string>(StringComparer.Ordinal);
-        foreach (var spec in Agreements.Concat(Challenge).Concat(Attacks))
+        foreach (var spec in All)
         {
             var agreement = Generate(spec);
             var pay = Pay(spec, agreement);

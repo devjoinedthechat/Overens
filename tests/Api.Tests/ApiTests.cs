@@ -650,4 +650,31 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
 
         Assert.Equal("Answered", answer.GetProperty("outcome").GetString());
     }
+
+    [Fact]
+    public async Task A_line_no_approved_rule_covers_is_said_not_to_be_checked_and_is_not_called_wrong()
+    {
+        // The model proposes no savings rule, so none is published.
+        site.Spoil = (kind, rules) =>
+        {
+            if (kind == "special_savings")
+            {
+                rules.Clear();
+            }
+        };
+        var tenant = NewTenant();
+        await Publish(site.Client(site.Token(tenant)));
+        site.Spoil = null;
+        var pay = Synthetic.Corpus.Pay(Synthetic.Corpus.Agreements[2], Site.Agreement);
+        var correct = pay.Cases.First(payCase =>
+            !pay.Errors.Any(error => error.EmployeeId == payCase.Timesheet.Employee.Id && error.PeriodStart == payCase.Timesheet.PeriodStart)
+            && payCase.Payslip.Lines.Any(line => line.Kind == PayLineKind.SpecialSavings));
+
+        var answer = await Json(await CheckPay(site.Client(site.Token(tenant, "eva", roles: [Caller.Employer])), correct));
+
+        Assert.Equal(["SpecialSavings"], answer.GetProperty("notChecked").EnumerateArray().Select(line => line.GetString()));
+        var finding = Assert.Single(answer.GetProperty("findings").EnumerateArray());
+        Assert.Equal(("NotCovered", "SpecialSavings", 0m), (finding.GetProperty("kind").GetString(), finding.GetProperty("line").GetString(), finding.GetProperty("difference").GetDecimal()));
+        Assert.Contains("ikke kontrolleret", finding.GetProperty("explanation").GetString(), StringComparison.Ordinal);
+    }
 }

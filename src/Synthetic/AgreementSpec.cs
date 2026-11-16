@@ -8,6 +8,7 @@ namespace Overens.Synthetic;
 /// 1: one set of rates, in plain sentences. 2: rates that step up each year, in tables, with
 /// numbers in words and clauses that refer to each other. 3: also a protocol amendment that
 /// overrides the main text, and rates for young workers and apprentices that are not the minimum wage.
+/// The twists from <see cref="Twists.FullLength"/> on apply at difficulty 3.
 /// </param>
 /// <param name="Twists">Ways of writing the same rules that the extraction prompt was not written against.</param>
 public sealed record AgreementSpec(string Id, int Seed, int Difficulty, int StartYear, Twists Twists = Twists.None);
@@ -48,6 +49,32 @@ public enum Twists
 
     /// <summary>A second clause, far from the first, gives a different holiday allowance. The agreement contradicts itself.</summary>
     Contradiction = 128,
+
+    /// <summary>
+    /// The agreement is as long as a real one is: chapters, and some thirty sections about
+    /// everything that is not a pay rate. Those sections are full of kroner and percentages
+    /// that belong to other things: shift work, on-call pay, apprentices' pension, a
+    /// public-holiday account. None of them is a rule the system reads.
+    /// </summary>
+    FullLength = 256,
+
+    /// <summary>The wage and supplement tables stand in appendices at the end. The clauses in the main text only point to them.</summary>
+    Appendix = 512,
+
+    /// <summary>The Sunday supplement is not printed where it is stated: the clause says "the same supplement as" another clause.</summary>
+    CrossReference = 1024,
+
+    /// <summary>Rates for young workers and apprentices stand in the same table as the minimum wage, with a note under it.</summary>
+    MixedTable = 2048,
+
+    /// <summary>
+    /// The employee's pension share is not printed: the agreement says the employee pays half
+    /// of the employer's contribution. The share is half the employer's printed percentage.
+    /// </summary>
+    Fraction = 4096,
+
+    /// <summary>The printed agreement numbers its clauses another way: "§ 5 Overarbejde" and "Stk. 2" on a line of its own.</summary>
+    OwnLineNumbering = 8192,
 }
 
 /// <summary>A generated agreement and the rules it states, which is the answer an extractor should reach.</summary>

@@ -365,8 +365,8 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
 
         Assert.Equal("failed", failed.Status);
         Assert.Contains("cut off", failed.Failure, StringComparison.Ordinal);
-        // Asked once and not again: the same request would be cut off the same way. It was paid for all the same.
-        Assert.Equal((1, 100_000L, 4_000L, 12_000L), (failed.ModelCalls, failed.InputTokens, failed.OutputTokens, failed.CostMicros));
+        // Asked once for each kind and not again: the same requests would be cut off the same way. They were paid for all the same.
+        Assert.Equal((6, 600_000L, 24_000L, 72_000L), (failed.ModelCalls, failed.InputTokens, failed.OutputTokens, failed.CostMicros));
         Assert.Equal(0, await stack.AsApi.RunAsync(tenant, db => db.ProposedRules.CountAsync()));
 
         // The failed attempt used up the company's day: the next agreement is refused before a model is called.

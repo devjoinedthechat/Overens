@@ -87,9 +87,9 @@ public sealed class GateTests
 
         var outcome = await Explanations.RunAsync(recorded, Gateway.Models.Haiku);
 
-        Assert.Equal(60, outcome.Findings);
-        Assert.InRange(outcome.Shown, 57, 60);
-        // What was refused was cut off for length. No wording carried a number of its own.
+        Assert.Equal(72, outcome.Findings);
+        Assert.InRange(outcome.Shown, 69, 72);
+        // No wording carried a number of its own.
         Assert.DoesNotContain(outcome.Replaced, replaced => replaced.StartsWith("[numbers not in the finding", StringComparison.Ordinal));
     }
 
@@ -98,6 +98,13 @@ public sealed class GateTests
     public async Task No_wrong_rule_gets_past_the_checks_and_the_default_model_finds_every_rule(string model)
     {
         var results = await Replay(model);
+
+        // The long agreements: no wrong rule passes, and no payslip is called wrong for want of a rule.
+        // One of them states the employee's pension share as "half". Neither model yields a pension
+        // rule that can be approved, and the pay check says of all 72 payslips that pension was not checked.
+        var longer = (results.Total("long"), results.Pay("long"));
+        Assert.Equal((0, 0, 0, 72), (longer.Item1.WrongAndUnflagged, longer.Item2.FalseAlarms, longer.Item2.MissedErrors, longer.Item2.NotChecked));
+        Assert.Equal(longer.Item2.Cases - 72, longer.Item2.Right);
 
         foreach (var set in new[] { "corpus", "challenge" })
         {

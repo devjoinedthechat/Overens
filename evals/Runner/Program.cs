@@ -63,7 +63,7 @@ if (args.Contains("--attacks"))
     foreach (var agreement in read.Agreements)
     {
         var total = agreement.Kinds.Aggregate(new KindScore("all", 0, 0, 0, 0, 0, 0), KindScore.Add);
-        Console.WriteLine($"\n{agreement.Agreement}: {total.Correct} of {total.Expected} rules found, {total.Proposed} proposed, {total.Flagged} flagged, {total.WrongAndUnflagged} wrong and unflagged. Payslips {agreement.Pay.Right} of {agreement.Pay.Cases} right.");
+        Console.WriteLine($"\n{agreement.Agreement}: {total.Correct} of {total.Expected} rules found, {total.Proposed} proposed, {total.Flagged} flagged, {total.WrongAndUnflagged} wrong and unflagged. Payslips {agreement.Pay.Right} of {agreement.Pay.Cases} right, {agreement.Pay.NotChecked} not checked.");
         foreach (var kind in agreement.Kinds.Where(kind => kind.Proposed != kind.Expected || kind.Flagged > 0 || kind.WrongAndUnflagged > 0))
         {
             Console.WriteLine($"  {kind.Kind,-20} expected {kind.Expected}  proposed {kind.Proposed}  correct {kind.Correct}  flagged {kind.Flagged}  wrong-unflagged {kind.WrongAndUnflagged}");
@@ -138,14 +138,14 @@ foreach (var agreement in results.Agreements)
         Console.WriteLine($"  ! {problem}");
     }
 
-    Console.WriteLine($"  payslips: {agreement.Pay.Right} of {agreement.Pay.Cases} right, {agreement.Pay.MissedErrors} with a missed error, {agreement.Pay.FalseAlarms} false alarms");
+    Console.WriteLine($"  payslips: {agreement.Pay.Right} of {agreement.Pay.Cases} right, {agreement.Pay.MissedErrors} with a missed error, {agreement.Pay.FalseAlarms} false alarms, {agreement.Pay.NotChecked} not checked");
 }
 
 Console.WriteLine($"\nModel {modelId}, prompt {ExtractionPrompt.Version}");
 foreach (var set in results.Agreements.Select(agreement => agreement.Set).Distinct())
 {
     var (rules, pay) = (results.Total(set), results.Pay(set));
-    Console.WriteLine($"{set,-10} rules: {rules.Correct} of {rules.Expected} found, {rules.Proposed} proposed, {rules.Flagged} flagged, {rules.WrongAndUnflagged} wrong and unflagged, {rules.RightButFlagged} right but flagged.  payslips: {pay.Right} of {pay.Cases} right.");
+    Console.WriteLine($"{set,-10} rules: {rules.Correct} of {rules.Expected} found, {rules.Proposed} proposed, {rules.Flagged} flagged, {rules.WrongAndUnflagged} wrong and unflagged, {rules.RightButFlagged} right but flagged.  payslips: {pay.Right} of {pay.Cases} right, {pay.NotChecked} not checked.");
 }
 
 Console.WriteLine(record ? $"Spent ${spend.Dollars:0.0000} in {spend.Calls} calls ({spend.InputTokens} tokens in, {spend.OutputTokens} out)." : "Replayed from recordings. Nothing spent.");

@@ -149,7 +149,8 @@ Each row is a property and the test that attacks it. Where a control was added, 
 | One company cannot spend without limit | A daily budget of five cents; the second agreement is refused at once, and a failed attempt counts too |
 | Calls at the same moment cannot pass the cap together | Two calls start together under a cap one of them fills; the second is refused |
 | A slow model is not waited for | A model that never answers; the other one does, inside the time limit |
-| Bad input is the caller's mistake, not a crash | Seven malformed payslips, overlapping shifts; each is a 400 with a reason |
+| Bad input is the caller's mistake, not a crash | Seven malformed payslips, overlapping shifts, work before the hiring date; each is a 400 with a reason |
+| A line with no approved rule is not called wrong | A correct payslip checked without the savings rule; the line is reported as not checked |
 | Every change is logged, and the log cannot be edited | Each role tries to write, change and empty it; the owner's edit breaks that company's hash chain; a rolled-back write does not |
 | An agent cannot run forever | A stand-in that only ever searches |
 
@@ -160,14 +161,18 @@ Every document is synthetic: an agreement is generated from a rule set, so the r
 | What | Claude Sonnet | Claude Haiku |
 | --- | --- | --- |
 | Rules read out of ten agreements | 121 of 121 | 121 of 121 |
+| Rules read out of six long agreements | 79 of 79, 2 flagged | 77 of 79 |
 | Wrong rules the model-free checks missed | 0 | 0 |
-| Payslips checked correctly with those rules | 720 of 720 | 720 of 720 |
+| Payslips checked correctly, ten agreements | 720 of 720 | 720 of 720 |
+| Payslips checked correctly, six long agreements | 360, and 72 not checked | 360, and 72 not checked |
 | Questions answered correctly, of 48 | 48 | 48 |
 | Wrong answers shown | 0 | 0 |
 | Rules changed by five planted instructions | 0 | 0 |
-| Cost to read one agreement | $0.08 | $0.005 |
+| Cost to read one agreement, short and long | $0.08 and $0.28 | $0.005 and $0.015 |
 
-Both models are at the ceiling, so these documents cannot tell them apart. The numbers are after fixes: on first contact with documents the prompt had not seen, a wage given as "raised by 5,00 kr." broke extraction, Sonnet silently chose between two contradicting clauses, and Haiku searched thirteen times for something the agreement does not cover.
+The long agreements run to about 24 pages and 60 sections, most of them not about pay and full of figures that are not rules. Length, appendices, cross-references and mixed tables changed nothing. One thing did: an agreement that says the employee pays "half of the employer's contribution" prints no figure to check. Haiku proposes no pension rule and the gap is reported. Sonnet works the figure out and the checks flag it. No pension rule is published, and the pay check says of those 72 payslips that pension was not checked.
+
+The numbers are after fixes. On first contact with documents the prompt had not seen, a wage given as "raised by 5,00 kr." broke extraction, Sonnet silently chose between two contradicting clauses, and Haiku searched thirteen times for something the agreement does not cover. The long set also exposed a mistake in the test data itself, which is in the report.
 
 The [eval report](docs/eval-report/README.md) has each failure, its fix, and what the numbers do not show. A test fails if the published results differ from what the recorded answers give.
 
@@ -214,7 +219,7 @@ With `ANTHROPIC_API_KEY` set, Claude is called: findings are worded by a model a
 ### Evals
 
 ```sh
-dotnet run --project evals/Runner                    # extraction on ten agreements
+dotnet run --project evals/Runner                    # extraction on sixteen agreements
 dotnet run --project evals/Runner -- --questions     # 48 questions with known answers
 dotnet run --project evals/Runner -- --attacks       # planted instructions and a contradiction
 dotnet run --project evals/Runner -- --explain       # how often a model's wording passes the guard
@@ -237,7 +242,7 @@ A payslip is then checked by arithmetic: the engine works out what the period sh
 
 | What | Where |
 | --- | --- |
-| Twelve agreements as PDF, text and structure, with the rules each states | `data/synthetic` |
+| Eighteen agreements as PDF, text and structure, with the rules each states. Six are about 24 pages long | `data/synthetic` |
 | Six months of timesheets and payslips for each, with nine kinds of seeded payroll mistake and the answers | `data/synthetic/*/pay.json` |
 | The generators | `src/Synthetic` |
 | Recorded model answers | `evals/recordings` |
@@ -282,6 +287,7 @@ See also the [threat model](docs/threat-model.md), [what was left out, and why](
 ## Scope
 
 - **Synthetic documents only.** A published agreement is its parties' copyrighted text. None is downloaded, read or sent to a model, so nothing here is evidence about real agreements.
+- **A value must be printed to be read.** A share stated as a fraction of another figure yields no rule that can be approved. The pay check then reports the line as not checked.
 - **Six kinds of rule.** Minimum wage, overtime, inconvenient hours, pension, holiday allowance and special savings. A real agreement says more about pay than that.
 - **One model provider.** Failover is between Claude models, which covers a model short of capacity and not the provider being down.
 - **One machine.** The system runs locally, with development settings: plain HTTP, fixed demo passwords and a default Keycloak admin.

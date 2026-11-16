@@ -22,6 +22,7 @@ Each agreement is a PDF generated from a rule set, so the right answer is known 
 | Wrong and unflagged | Wrong rules the checks let through. Only a reviewer stands between these and a published rule set |
 | Right but flagged | Correct rules the checks raised a problem on. Needless work for a reviewer |
 | Payslips right | Payslips whose findings, using the unflagged rules, are exactly the known answers |
+| Payslips not checked | Payslips with a line the true rules cover and the unflagged rules do not. The check says so and decides nothing about the line |
 
 Rules are compared by what they say, not how they are written: ids and quotes are ignored, `6.0` equals `6`, and time windows are compared by what they pay at each half hour of the week.
 
@@ -31,6 +32,7 @@ Rules are compared by what they say, not how they are written: ids and quotes ar
 | --- | --- | --- |
 | Corpus | 4 agreements, 44 rules, 288 payslips | Three levels of difficulty and a renewal. The prompt was written while looking at these |
 | Challenge | 6 agreements, 77 rules, 432 payslips | The same kinds of agreement written in six ways the prompt was not written against. Added after the prompt was fixed |
+| Long | 6 agreements, 79 rules, 432 payslips | Agreements of about 24 pages and 60 sections, most of them not about pay. Added last, to find where the approach stops |
 
 The six ways, each taken from how real agreements are written:
 
@@ -43,6 +45,19 @@ The six ways, each taken from how real agreements are written:
 | Mid-year change | A second protocol raises a rate from 1 September, between two yearly steps |
 | All | Every twist at once |
 
+The long agreements add what a real agreement has and the first two sets do not. Each has the first item, and one more:
+
+| Agreement | What it adds |
+| --- | --- |
+| Plain | Eight chapters and about 45 sections that are not about pay, holding figures of the same kinds as the rules about other things |
+| Appendix | The wage and supplement tables stand in appendices at the end. The clauses in the main text only point to them |
+| References | The Sunday supplement is "the same supplement as" another clause gives. Youth and apprentice rates share the minimum wage's table |
+| Fraction | The employee's pension share is not printed. The agreement says the employee pays half of the employer's contribution |
+| Numbering | "§ 5 Overarbejde" with no full stop, and each clause's "Stk. 2" on a line of its own |
+| All | Everything above except the fraction, with all six twists of the challenge set |
+
+The figures about other things are the ones most like a rule: shift-work supplements in a table shaped like the one for inconvenient hours, a pension rate for apprentices, a public-holiday account fed by a percentage of pay, and a holiday supplement of 1 pct.
+
 ## Results
 
 Current prompt, `2026-11-16.1`:
@@ -51,17 +66,51 @@ Current prompt, `2026-11-16.1`:
 | --- | --- | --- | --- |
 | Sonnet, corpus | 44 of 44 | 0 | 288 of 288 |
 | Sonnet, challenge | 77 of 77 | 0 | 432 of 432 |
+| Sonnet, long | 79 of 79, 2 flagged | 0 | 360 of 432, 72 not checked |
 | Haiku, corpus | 44 of 44 | 0 | 288 of 288 |
 | Haiku, challenge | 77 of 77 | 0 | 432 of 432 |
+| Haiku, long | 77 of 79 | 0 | 360 of 432, 72 not checked |
 
-Cost and size, for all ten agreements:
+Cost and size:
 
-| Model | Cost | Per agreement | Tokens in and out |
+| Model and set | Cost | Per agreement | Tokens in and out |
 | --- | --- | --- | --- |
-| Sonnet | $0.81 | $0.08 | 290,258 in, 22,597 out |
-| Haiku | $0.05 | $0.005 | 290,258 in, 49,381 out |
+| Sonnet, corpus and challenge | $0.81 | $0.08 | 290,258 in, 22,597 out |
+| Sonnet, long | $1.66 | $0.28 | 732,624 in, 19,499 out |
+| Haiku, corpus and challenge | $0.05 | $0.005 | 290,258 in, 49,381 out |
+| Haiku, long | $0.09 | $0.015 | 732,624 in, 34,266 out |
 
-The agreement is sent once per kind of rule, six times in all, which is most of the input. Prompt caching is not yet used.
+The agreement is sent once per kind of rule, six times in all, which is most of the input.
+
+**Prompt caching was tried and removed.** Marking the agreement for the provider to keep made every call pay the price of storing it and none read it back: 25 pct. more, not less. The provider reads a kept prompt only when everything before it is the same, and that includes the answer's schema, which differs for each kind of rule. One schema with a list for every kind was refused as too large to compile. The long set above is priced without the marking.
+
+## Where it stops: the long agreements
+
+Length, chapters, non-pay sections full of other figures, appendices, a cross-reference, a mixed table and another way of numbering changed nothing. Both models found every rule in five of the six agreements, proposed none from the shift-work, apprentice or public-holiday figures, and every payslip checked with their rules came out right.
+
+One thing did: **a value that is stated and not printed.** The agreement says the employer pays 9,0 pct. and the employee "half of the employer's contribution".
+
+| Model | What it did | What the checks did | What a reviewer gets |
+| --- | --- | --- | --- |
+| Haiku | Proposed no pension rule at all | Reported the kind as missing | A gap to act on, and no rule |
+| Sonnet | Worked out 4,5 pct. itself, against the prompt, and was right | Flagged both rules: 4,5 is printed nowhere | Two correct rules that cannot be approved |
+
+Either way no pension rule is published from that agreement, which is the safe outcome and not a useful one. The same thing was met before with a wage "raised by 5,00 kr." and was closed by having the model report the increase as printed and the code add it up. A share given as a fraction could be closed the same way. It is left open here as the known boundary: **the system reads what is printed and cannot be made to trust what a model derived.**
+
+**What happens to pay.** With no pension rule, the first run of this set called the pension lines on 52 correct payslips wrong. That was a fault in the pay check, not in the reading: a missing rule is not a rule that says nothing is owed.
+
+The check says since then that a line has no approved rule and was not checked, and calls it neither right nor wrong. Percentages taken of pay are treated the same way when a supplement rule is missing, since the pay they are taken of is then unknown. All 72 payslips of that agreement are counted as not checked.
+
+## A mistake in the test data
+
+Building the long set showed that the pay data was weaker than it looked. Every employee had been given a hiring date *after* the pay period began: a minus sign applied to the wrong part of an expression. Nobody had seniority, and almost nobody qualified for pension.
+
+| Measure | Before the fix | After |
+| --- | --- | --- |
+| Payslips with a pension contribution, hardest corpus agreement | 5 of 72 | 42 of 72 |
+| Findings to explain on that agreement | 60 | 72 |
+
+The payslip figures in this report were recomputed on the corrected data, and both models still score every payslip right on the corpus and the challenge set. The engine refuses a shift dated before the employee was hired, which would have exposed the mistake at once. The earlier figures under "What failed first" were measured on the old data and are kept as they were.
 
 ## What failed first
 
@@ -135,16 +184,16 @@ On the first run Sonnet chose the figure in the main clause and said nothing. It
 
 A finding is decided by arithmetic. A model may then word it in plain Danish, and its wording is shown only if every number in it is the finding's own and it does not say the opposite of what was found. Otherwise fixed wording is shown.
 
-On the 60 findings in the hardest corpus agreement's pay data (`dotnet run --project evals/Runner -- --explain --model claude-haiku-5-5`):
+On the 72 findings in the hardest corpus agreement's pay data (`dotnet run --project evals/Runner -- --explain --model claude-haiku-5-5`):
 
 | Model | Wording shown | Replaced by fixed wording | Cost |
 | --- | --- | --- | --- |
-| Haiku | 60 of 60 | 0 | $0.01 |
-| Sonnet | 60 of 60 | 0 | $0.19 |
+| Haiku | 72 of 72 | 0 | $0.01 |
+| Sonnet | 72 of 72 | 0 | $0.24 |
 
 Neither model put a number of its own into an explanation. Haiku is the default for this job: it costs a twentieth as much.
 
-**A limit that was too tight.** An earlier run showed 59 of 60 for Haiku and 52 of 60 for Sonnet. Every replaced wording had been cut off: the limit on the answer's length left room for three sentences and none for the model's reasoning, which counts against the same limit. The limit was raised, and the guard's own bound of 700 characters still holds the wording short.
+**A limit that was too tight.** An earlier run, on 60 findings, showed 59 for Haiku and 52 for Sonnet. Every replaced wording had been cut off: the limit on the answer's length left room for three sentences and none for the model's reasoning, which counts against the same limit. The limit was raised, and the guard's own bound of 700 characters still holds the wording short.
 
 The cut-off answers had looked like badly shaped ones. The reason a model stopped is read since then: a cut-off answer is told apart, is not asked for again, and its recording says how it ended.
 
@@ -190,7 +239,8 @@ No answer was withheld by either model.
 
 ## What these results do not show
 
-- **The documents are synthetic and both models are at the ceiling.** The sets cannot tell Sonnet from Haiku. No real agreement has been measured: a published agreement is someone's copyrighted text, and none is used here.
+- **The documents are synthetic.** No real agreement has been measured: a published agreement is someone's copyrighted text, and none is used here. The long set is closer to one in length and in what surrounds the rules, and is still written by a generator from fixed phrasings. About 24 pages is short for a real agreement.
+- **The sets barely tell the models apart.** They differ on one agreement, and there by which safe outcome they reach.
 - **What a real agreement would add is known only in outline.** The reader understood one way of numbering clauses until a second was added. A real agreement states pay in more ways than six kinds of rule, such as monthly salaries, half rates for the young and public holidays. Its tables are not always ruled.
 - **Each model answered once per prompt version.** There is no proper measure of how much an answer varies from run to run. The one time everything was run again, Haiku's answers differed enough to trip a check twice.
 - **Six kinds of rule.** Anything else an agreement says about pay, such as shift work, on-call pay or public holidays, is not extracted and not counted as missing.

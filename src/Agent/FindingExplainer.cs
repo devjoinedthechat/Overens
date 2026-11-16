@@ -56,7 +56,8 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
         ArgumentNullException.ThrowIfNull(finding);
         ArgumentNullException.ThrowIfNull(expected);
         var parts = expected.Where(part => part.Line == finding.Line).ToList();
-        if (model is null)
+        // A line that was not checked has nothing to explain beyond that it was not.
+        if (model is null || finding.Kind == FindingKind.NotCovered)
         {
             return new(Fixed(finding), false);
         }
@@ -116,6 +117,7 @@ public sealed partial class FindingExplainer(IChatClient? model, string modelId)
             FindingKind.MissingLine => $"{line} står ikke på lønsedlen. Efter overenskomsten skulle der være udbetalt {expected}{clauses}",
             FindingKind.UnexpectedLine => $"{line}: der er udbetalt {paid}, men overenskomsten giver ikke grundlag for denne linje i perioden.",
             FindingKind.RateBelowMinimum => $"Timelønnen på {paid} er under mindstebetalingen på {expected}{clauses}",
+            FindingKind.NotCovered => $"{line}: der er udbetalt {paid} Der er ikke godkendt nogen regel for denne linje i perioden, så beløbet er ikke kontrolleret.",
             _ => throw new NotSupportedException(),
         };
     }

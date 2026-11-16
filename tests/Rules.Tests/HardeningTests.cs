@@ -47,4 +47,43 @@ public sealed class HardeningTests
     {
         Assert.Throws<ArgumentException>(() => PayEngine.Expect(Sample.Agreement, Sample.March, (decimal)rate));
     }
+
+    [Fact]
+    public void A_line_no_rule_covers_is_reported_as_not_checked_and_not_as_wrong()
+    {
+        var rate = 150m;
+        var faithful = Sample.Faithful(Sample.Agreement, Sample.March, rate);
+        var noSupplements = new RuleSet("sample", 1, [.. Sample.Agreement.Rules.Where(rule => rule is not InconvenientHoursRule)]);
+
+        var check = PayEngine.Check(noSupplements, Sample.March, faithful);
+
+        // The payslip is right. Without the rule that cannot be known, and nothing says it is wrong:
+        // not the supplement, and not the percentages that are taken of pay with the supplement in it.
+        PayLineKind[] unknown = [PayLineKind.InconvenientHours, PayLineKind.PensionEmployer, PayLineKind.PensionEmployee, PayLineKind.HolidayAllowance, PayLineKind.SpecialSavings];
+        Assert.Equal(unknown, check.Unchecked);
+        Assert.All(check.Findings, finding => Assert.Equal((FindingKind.NotCovered, 0m), (finding.Kind, finding.Difference)));
+        Assert.Equal(unknown, check.Findings.Select(finding => finding.Line!.Value));
+
+        // A missing percentage rule leaves only its own line unchecked.
+        var noSavings = PayEngine.Check(new("sample", 1, [.. Sample.Agreement.Rules.Where(rule => rule is not SpecialSavingsRule)]), Sample.March, faithful);
+        Assert.Equal([PayLineKind.SpecialSavings], noSavings.Unchecked);
+        Assert.Equal([(FindingKind.NotCovered, (PayLineKind?)PayLineKind.SpecialSavings)], noSavings.Findings.Select(finding => (finding.Kind, finding.Line)));
+
+        // A payslip that leaves the line out raises nothing about it, and the line is still listed as not checked.
+        var leftOut = faithful with { Lines = [.. faithful.Lines.Where(line => line.Kind != PayLineKind.InconvenientHours)] };
+        var silent = PayEngine.Check(noSupplements, Sample.March, leftOut);
+        Assert.DoesNotContain(silent.Findings, finding => finding.Line == PayLineKind.InconvenientHours);
+        Assert.Equal(unknown, silent.Unchecked);
+
+        // With every rule in place nothing is unchecked, and a line the rules do not grant is still unexpected.
+        Assert.Empty(PayEngine.Check(Sample.Agreement, Sample.March, faithful).Unchecked);
+    }
+
+    [Fact]
+    public void Work_dated_before_the_employee_was_hired_is_refused()
+    {
+        var early = Sample.Sheet(new Employee("emp-1", new(2026, 3, 10)), new Shift(new(2026, 3, 2), new(8, 0), new(16, 0)));
+
+        Assert.Contains("before the employee was hired", Assert.Throws<ArgumentException>(() => PayEngine.Expect(Sample.Agreement, early, 150m)).Message, StringComparison.Ordinal);
+    }
 }

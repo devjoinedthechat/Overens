@@ -1,4 +1,4 @@
 {
   "Model": "claude-sonnet-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Timeløn\\\u0022 er for lav: der blev udbetalt 25.425,40 kr., men der skulle have været udbetalt 26.926,90 kr. Forskellen er 1.501,50 kr. Reglen står i § 4, stk. 1, som fastsætter mindstebetalingen pr. time.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen Timeløn er for lav: Der er udbetalt 25.425,40 kr., men der skulle have været udbetalt 26.926,90 kr., altså en forskel på 1.501,50 kr. Reglen står i § 4, stk. 1, som fastsætter mindstebetalingen pr. time. Beløbet på 26.926,90 kr. svarer til 182,00 timer til 147,95 kr. i timen.\u0022}"
 }

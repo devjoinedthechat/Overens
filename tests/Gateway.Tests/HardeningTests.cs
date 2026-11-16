@@ -26,7 +26,7 @@ public sealed class HardeningTests
 
         await client.GetResponseAsync(
         [
-            new(ChatRole.User, [Claude.Cacheable("Aftalen nævner 010190-1234.")]) { AuthorName = "anna" },
+            new(ChatRole.User, [new TextContent("Aftalen nævner 010190-1234.") { AdditionalProperties = new() { ["mark"] = "kept" } }]) { AuthorName = "anna" },
             new(ChatRole.Tool, [new FunctionResultContent("call-1", new { contact = "0101901234" })]),
         ], For(Models.Haiku));
 
@@ -34,8 +34,8 @@ public sealed class HardeningTests
         Assert.Equal("anna", sent[0].AuthorName);
         var text = Assert.IsType<TextContent>(sent[0].Contents[0]);
         Assert.Equal("Aftalen nævner [CPR-nummer fjernet].", text.Text);
-        // The mark that lets the provider keep the text is still on it.
-        Assert.Equal(Claude.Cacheable("x").AdditionalProperties!.Keys, text.AdditionalProperties!.Keys);
+        // What the caller attached to the text is still on it.
+        Assert.Equal("kept", text.AdditionalProperties!["mark"]);
         Assert.DoesNotContain("0101901234", Assert.IsType<FunctionResultContent>(sent[1].Contents[0]).Result?.ToString(), StringComparison.Ordinal);
     }
 

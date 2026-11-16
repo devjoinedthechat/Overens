@@ -23,7 +23,7 @@ public sealed record EvalResults(string Model, string PromptVersion, IReadOnlyLi
     public PayScore Pay(string set)
     {
         var pay = Agreements.Where(agreement => agreement.Set == set).Select(agreement => agreement.Pay).ToList();
-        return new(pay.Sum(score => score.Cases), pay.Sum(score => score.Right), pay.Sum(score => score.MissedErrors), pay.Sum(score => score.FalseAlarms));
+        return new(pay.Sum(score => score.Cases), pay.Sum(score => score.Right), pay.Sum(score => score.MissedErrors), pay.Sum(score => score.FalseAlarms), pay.Sum(score => score.NotChecked));
     }
 }
 
@@ -34,6 +34,7 @@ public static class Evals
     [
         .. Corpus.Agreements.Select(spec => ("corpus", spec)),
         .. Corpus.Challenge.Select(spec => ("challenge", spec)),
+        .. Corpus.FullLength.Select(spec => ("long", spec)),
     ];
 
     /// <summary>The agreements that work against the reader. Scored like the others, reported apart.</summary>
@@ -53,7 +54,7 @@ public static class Evals
                 spec.Id,
                 set,
                 ExtractionEval.Score(agreement.Truth, extraction),
-                ExtractionEval.ScorePay(extraction, Corpus.Pay(spec, agreement)),
+                ExtractionEval.ScorePay(agreement.Truth, extraction, Corpus.Pay(spec, agreement)),
                 [.. extraction.Rules.SelectMany(rule => rule.Problems).Concat(extraction.Unreadable).Select(problem => $"{problem.RuleId}: {problem.Code}: {problem.Message}")],
                 [.. extraction.Gaps.Select(gap => $"{gap.RuleId}: {gap.Message}")]));
         }

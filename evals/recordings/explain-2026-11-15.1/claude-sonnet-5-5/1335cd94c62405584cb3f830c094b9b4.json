@@ -1,4 +1,4 @@
 {
   "Model": "claude-sonnet-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen Feriegodtgørelse er for lav: der er udbetalt 3.192,73 kr., men der skulle have været udbetalt 3.318,89 kr., en forskel på 126,16 kr. Reglen står i § 8, stk. 2, hvor feriegodtgørelsen udgør 12,5 pct. af lønnen. Beløbet på 3.318,89 kr. er 12,5 pct. af 26.551,08 kr.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen Feriegodtgørelse er for lav. Der er udbetalt 3.192,73 kr., men der skulle have været udbetalt 3.318,89 kr., hvilket er en forskel på 126,16 kr. Reglen står i § 8, stk. 2, hvor feriegodtgørelsen er 12,5 pct. af lønnen, her 12,5 pct. af 26.551,08 kr.\u0022}"
 }

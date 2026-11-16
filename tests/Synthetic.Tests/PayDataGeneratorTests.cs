@@ -18,6 +18,21 @@ public sealed class PayDataGeneratorTests
     }
 
     [Fact]
+    public void Everyone_was_hired_before_the_data_begins_and_most_have_seniority_and_a_pension()
+    {
+        var start = new DateOnly(2026, 3, 1);
+
+        // Hired before the first month, some of them only just: seniority steps and qualifying periods fall inside the data.
+        var hired = Data.Cases.Select(pay => pay.Timesheet.Employee).Distinct().ToList();
+        Assert.All(hired, employee => Assert.True(employee.HiredOn < start));
+        Assert.Contains(hired, employee => employee.MonthsEmployedOn(start) < 3);
+        Assert.Contains(hired, employee => employee.MonthsEmployedOn(start) >= 36);
+        // Rules that depend on seniority are therefore exercised, not skipped: most payslips carry a pension contribution.
+        var withPension = Data.Cases.Count(pay => pay.Payslip.Lines.Any(line => line.Kind == PayLineKind.PensionEmployer));
+        Assert.InRange(withPension, Data.Cases.Count / 2, Data.Cases.Count);
+    }
+
+    [Fact]
     public void The_engine_finds_exactly_the_seeded_errors()
     {
         Assert.Equal(150, Data.Cases.Count);
@@ -41,7 +56,7 @@ public sealed class PayDataGeneratorTests
     [Fact]
     public void The_data_holds_every_kind_of_mistake_and_mostly_correct_payslips()
     {
-        var large = PayDataGenerator.Generate(Sample.Renewed, seed: 11, new(2026, 3, 1), months: 12, employees: 40);
+        var large = PayDataGenerator.Generate(Sample.Renewed, seed: 11, new(2026, 3, 1), months: 12, employees: 120);
 
         Assert.Equal(PayDataGenerator.Mistakes.Order(), large.Errors.Select(error => error.Mistake).Distinct().Order());
         Assert.InRange(large.Errors.Count, large.Cases.Count * 2 / 10, large.Cases.Count * 4 / 10);

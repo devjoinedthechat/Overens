@@ -1,4 +1,4 @@
 {
   "Model": "claude-sonnet-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen Fritvalgskonto er for lav: Der er udbetalt 801,60 kr., men der skulle have været udbetalt 828,85 kr., så forskellen er 27,25 kr. Beløbet er udregnet som 4,0 pct. af 20.721,36 kr. Reglen står i § 9, stk. 1.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen Fritvalgskonto er for lav: der er udbetalt 801,60 kr., men der skulle have været udbetalt 828,85 kr., altså en forskel på 27,25 kr. Beløbet er udregnet som 4,0 pct. af 20.721,36 kr. Reglen står i § 9, stk. 1.\u0022}"
 }

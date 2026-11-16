@@ -25,7 +25,17 @@ public static class PayEngine
         }
 
         var expectation = Expect(ruleSet, timesheet, payslip.HourlyRate);
-        return new PayCheck(expectation.Components, Compare(ruleSet, expectation, payslip));
+        // The period as days, the last one included.
+        var period = new Period(payslip.PeriodStart, payslip.PeriodEnd.AddDays(1));
+        PayLineKind[] uncovered = [.. Enum.GetValues<PayLineKind>().Where(line => !ruleSet.Rules.Any(rule => Covers(rule, line) && rule.InForce.Overlaps(period)))];
+        // Pension, holiday allowance and savings are percentages of pay, supplements included. With a
+        // supplement unknown the pay they are taken of is unknown, so they cannot be checked either.
+        if (uncovered.Any(line => line is PayLineKind.Overtime or PayLineKind.InconvenientHours))
+        {
+            uncovered = [.. uncovered.Union([PayLineKind.PensionEmployer, PayLineKind.PensionEmployee, PayLineKind.HolidayAllowance, PayLineKind.SpecialSavings]).Order()];
+        }
+
+        return new PayCheck(expectation.Components, Compare(ruleSet, expectation, payslip, uncovered), uncovered);
     }
 
     /// <summary>What the period should pay an employee whose own hourly wage is <paramref name="hourlyRate"/>.</summary>
@@ -48,6 +58,12 @@ public static class PayEngine
             if (shift.Date < timesheet.PeriodStart || shift.Date > timesheet.PeriodEnd || shift.Minutes == 0)
             {
                 throw new ArgumentException($"The shift on {shift.Date:yyyy-MM-dd} is outside the period or has no length.", nameof(timesheet));
+            }
+
+            // Seniority would count as none, and every rate that grows with it would be the lowest.
+            if (shift.Date < timesheet.Employee.HiredOn)
+            {
+                throw new ArgumentException($"The shift on {shift.Date:yyyy-MM-dd} is before the employee was hired.", nameof(timesheet));
             }
 
             // The same time worked twice would be paid twice, and a correct payslip would look too low.
@@ -169,7 +185,19 @@ public static class PayEngine
             shortfalls);
     }
 
-    private static List<Finding> Compare(RuleSet ruleSet, Expectation expectation, Payslip payslip)
+    /// <summary>Whether a rule is one that decides a line. Plain hours at the employee's own wage need no rule.</summary>
+    private static bool Covers(Rule rule, PayLineKind line) => line switch
+    {
+        PayLineKind.BasePay => true,
+        PayLineKind.Overtime => rule is OvertimeRule,
+        PayLineKind.InconvenientHours => rule is InconvenientHoursRule,
+        PayLineKind.PensionEmployer or PayLineKind.PensionEmployee => rule is PensionRule,
+        PayLineKind.HolidayAllowance => rule is HolidayAllowanceRule,
+        PayLineKind.SpecialSavings => rule is SpecialSavingsRule,
+        _ => false,
+    };
+
+    private static List<Finding> Compare(RuleSet ruleSet, Expectation expectation, Payslip payslip, PayLineKind[] uncovered)
     {
         var findings = new List<Finding>();
         foreach (var (rule, minimum) in expectation.Shortfalls.OrderBy(pair => pair.Key.InForce.From))
@@ -186,6 +214,13 @@ public static class PayEngine
             var paid = actual.Sum(paid => paid.Amount);
             if (expected == paid)
             {
+                continue;
+            }
+
+            if (uncovered.Contains(line))
+            {
+                // No rule to hold the line against. Saying so is not the same as saying it is wrong.
+                findings.Add(new(FindingKind.NotCovered, line, paid, paid, []));
                 continue;
             }
 

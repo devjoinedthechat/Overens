@@ -58,7 +58,12 @@ public sealed record AuditEntry(DateTimeOffset At, string Actor, string Event, s
 
 public sealed record RuleSetView(string AgreementId, int Version, string ApprovedBy, DateTimeOffset PublishedAt, JsonElement Rules);
 
-public sealed record PayCheckResult(string AgreementId, int Version, IReadOnlyList<Component> Expected, IReadOnlyList<FindingView> Findings);
+/// <param name="AgreementId">The agreement.</param>
+/// <param name="Version">The newest version of its rules the check used.</param>
+/// <param name="Expected">What each line should be, part by part.</param>
+/// <param name="Findings">Where the payslip differs, and lines that could not be checked (kind <c>NotCovered</c>).</param>
+/// <param name="NotChecked">The lines no approved rule covers in the period. Nothing about them was checked.</param>
+public sealed record PayCheckResult(string AgreementId, int Version, IReadOnlyList<Component> Expected, IReadOnlyList<FindingView> Findings, IReadOnlyList<string> NotChecked);
 
 public sealed record FindingView(
     string Kind,

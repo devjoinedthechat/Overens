@@ -23,9 +23,10 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
             var response = await model.GetResponseAsync(
                 [
                     new(ChatRole.System, ExtractionPrompt.System),
-                    // The agreement is the same for every kind and comes first, so the provider keeps it after
-                    // the first call and the others read it at a fraction of the price.
-                    new(ChatRole.User, [Claude.Cacheable($"{document}\n\n"), new TextContent($"<task kind=\"{kind.Name}\">\n{kind.Task.Trim()}\n</task>")]),
+                    // The agreement is not marked for the provider to keep between calls. A kept prompt is read
+                    // again only when everything before it is the same, the answer's schema included, and each
+                    // kind has its own schema: marked, every call paid to store the agreement and none read it.
+                    new(ChatRole.User, $"{document}\n\n<task kind=\"{kind.Name}\">\n{kind.Task.Trim()}\n</task>"),
                 ],
                 new ChatOptions
                 {
@@ -37,10 +38,8 @@ public sealed class RuleExtractor(IChatClient model, string modelId)
             return (kind, response.RequireComplete().Text);
         }
 
-        // The kinds do not depend on each other. One is asked first, which is when the agreement
-        // is kept; the rest are asked at the same time.
-        var first = await Ask(ExtractionPrompt.Kinds[0]);
-        var answers = (await Task.WhenAll(ExtractionPrompt.Kinds.Skip(1).Select(Ask))).Prepend(first);
+        // The kinds do not depend on each other, so they are asked for at the same time.
+        var answers = await Task.WhenAll(ExtractionPrompt.Kinds.Select(Ask));
 
         var rules = new List<(Rule Rule, IReadOnlyList<string> AlsoFrom, decimal? Increase)>();
         var unreadable = new List<RuleProblem>();

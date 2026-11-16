@@ -1,4 +1,4 @@
 {
   "Model": "claude-sonnet-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Arbejdsgiverens pensionsbidrag\\\u0022 er forkert, fordi den ikke skulle have stået på lønsedlen. Der blev betalt 2.701,95 kr., men der skulle have været betalt 0,00 kr., så forskellen er 2.701,95 kr. Der er ikke angivet nogen klausul for reglen i denne konstatering.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Arbejdsgiverens pensionsbidrag\\\u0022 er forkert: Der er betalt 2.701,95 kr., men der skulle have været betalt 0,00 kr. Forskellen er 2.701,95 kr. Der er ikke angivet nogen klausul for reglen i denne konstatering.\u0022}"
 }

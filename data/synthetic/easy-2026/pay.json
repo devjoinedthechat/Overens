@@ -3,7 +3,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-001",
-        "hiredOn": "2031-03-26"
+        "hiredOn": "2025-12-21"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -253,6 +253,14 @@
           "amount": 2080.65
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2189.48
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1231.58
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3421.07
         },
@@ -267,7 +275,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-002",
-        "hiredOn": "2033-11-12"
+        "hiredOn": "2019-12-20"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -541,6 +549,14 @@
           "amount": 1009.47
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2078.45
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1169.13
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3247.57
         },
@@ -555,7 +571,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-003",
-        "hiredOn": "2031-09-11"
+        "hiredOn": "2025-12-15"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -697,24 +713,20 @@
           "amount": 1718.15
         },
         {
-          "kind": "InconvenientHours",
-          "amount": 2930.30
-        },
-        {
           "kind": "PensionEmployer",
-          "amount": 2683.56
+          "amount": 2449.14
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1509.50
+          "amount": 1377.64
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4193.07
+          "amount": 3826.78
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2012.67
+          "amount": 1836.85
         }
       ]
     }
@@ -723,7 +735,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-004",
-        "hiredOn": "2026-12-03"
+        "hiredOn": "2026-11-29"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -1011,7 +1023,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-005",
-        "hiredOn": "2027-01-16"
+        "hiredOn": "2026-10-16"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -1183,7 +1195,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-006",
-        "hiredOn": "2027-01-17"
+        "hiredOn": "2026-10-15"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -1355,7 +1367,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-007",
-        "hiredOn": "2031-06-26"
+        "hiredOn": "2025-12-18"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -1513,6 +1525,14 @@
           "amount": 3195.90
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2977.74
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1674.98
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4652.73
         },
@@ -1527,7 +1547,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-008",
-        "hiredOn": "2031-01-07"
+        "hiredOn": "2025-12-24"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -1801,6 +1821,14 @@
           "amount": 1610.14
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2343.58
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1318.26
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3661.84
         },
@@ -1815,7 +1843,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-009",
-        "hiredOn": "2031-09-19"
+        "hiredOn": "2022-02-12"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -2101,6 +2129,14 @@
           "amount": 1872.54
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2716.82
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1528.21
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4010.96
         },
@@ -2115,7 +2151,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-010",
-        "hiredOn": "2029-07-10"
+        "hiredOn": "2024-04-23"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -2279,6 +2315,14 @@
           "amount": 3223.20
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2957.71
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1663.71
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4019.68
         },
@@ -2293,7 +2337,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-011",
-        "hiredOn": "2027-01-28"
+        "hiredOn": "2026-10-04"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -2447,7 +2491,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-012",
-        "hiredOn": "2027-01-25"
+        "hiredOn": "2026-10-07"
       },
       "periodStart": "2026-12-01",
       "periodEnd": "2026-12-31",
@@ -2747,7 +2791,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-001",
-        "hiredOn": "2031-03-26"
+        "hiredOn": "2025-12-21"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -2985,6 +3029,14 @@
           "amount": 1304.41
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 1954.53
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1099.42
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3053.96
         },
@@ -2999,7 +3051,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-002",
-        "hiredOn": "2033-11-12"
+        "hiredOn": "2019-12-20"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -3273,6 +3325,14 @@
           "amount": 1206.81
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2112.45
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1188.25
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3300.70
         },
@@ -3287,7 +3347,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-003",
-        "hiredOn": "2031-09-11"
+        "hiredOn": "2025-12-15"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -3435,6 +3495,14 @@
           "amount": 1718.15
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2553.27
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1436.21
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3989.48
         },
@@ -3449,7 +3517,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-004",
-        "hiredOn": "2026-12-03"
+        "hiredOn": "2026-11-29"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -3725,7 +3793,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-005",
-        "hiredOn": "2027-01-16"
+        "hiredOn": "2026-10-16"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -3871,12 +3939,20 @@
           "amount": 2909.20
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 988.51
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 556.04
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3410.31
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1636.95
+          "amount": 1636.94
         }
       ]
     }
@@ -3885,7 +3961,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-006",
-        "hiredOn": "2027-01-17"
+        "hiredOn": "2026-10-15"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -4033,8 +4109,16 @@
           "amount": 1418.88
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 1136.29
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 639.16
+        },
+        {
           "kind": "HolidayAllowance",
-          "amount": 3382.77
+          "amount": 3382.78
         },
         {
           "kind": "SpecialSavings",
@@ -4047,7 +4131,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-007",
-        "hiredOn": "2031-06-26"
+        "hiredOn": "2025-12-18"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -4195,24 +4279,20 @@
           "amount": 1798.26
         },
         {
-          "kind": "InconvenientHours",
-          "amount": 3063.10
-        },
-        {
           "kind": "PensionEmployer",
-          "amount": 2850.06
+          "amount": 2605.01
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1603.16
+          "amount": 1465.32
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4453.21
+          "amount": 4070.33
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2137.54
+          "amount": 1953.76
         }
       ]
     }
@@ -4221,7 +4301,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-008",
-        "hiredOn": "2031-01-07"
+        "hiredOn": "2025-12-24"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -4447,6 +4527,14 @@
           "amount": 1330.83
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 1907.19
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1072.80
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 2979.99
         },
@@ -4461,7 +4549,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-009",
-        "hiredOn": "2031-09-19"
+        "hiredOn": "2022-02-12"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -4735,6 +4823,14 @@
           "amount": 899.91
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2442.66
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1374.00
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3816.66
         },
@@ -4749,7 +4845,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-010",
-        "hiredOn": "2029-07-10"
+        "hiredOn": "2024-04-23"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -4883,6 +4979,14 @@
           "amount": 2517.00
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2311.43
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1300.18
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3611.61
         },
@@ -4897,7 +5001,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-011",
-        "hiredOn": "2027-01-28"
+        "hiredOn": "2026-10-04"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -5049,6 +5153,14 @@
           "amount": 7089.60
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2951.14
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1660.02
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4841.72
         },
@@ -5063,7 +5175,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-012",
-        "hiredOn": "2027-01-25"
+        "hiredOn": "2026-10-07"
       },
       "periodStart": "2027-01-01",
       "periodEnd": "2027-01-31",
@@ -5337,6 +5449,14 @@
           "amount": 762.52
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 1888.28
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1062.16
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3604.64
         },
@@ -5351,7 +5471,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-001",
-        "hiredOn": "2031-03-26"
+        "hiredOn": "2025-12-21"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -5589,6 +5709,14 @@
           "amount": 728.23
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 1857.22
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1044.69
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 2901.91
         },
@@ -5603,7 +5731,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-002",
-        "hiredOn": "2033-11-12"
+        "hiredOn": "2019-12-20"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -5858,7 +5986,7 @@
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1039.00
+          "amount": 1309
         },
         {
           "kind": "HolidayAllowance",
@@ -5875,7 +6003,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-003",
-        "hiredOn": "2031-09-11"
+        "hiredOn": "2025-12-15"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -5883,20 +6011,20 @@
         {
           "date": "2027-02-01",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
-        },
-        {
-          "date": "2027-02-02",
-          "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
         },
         {
-          "date": "2027-02-03",
+          "date": "2027-02-02",
           "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
+        },
+        {
+          "date": "2027-02-04",
+          "start": "14:00:00",
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-05",
@@ -5907,8 +6035,8 @@
         {
           "date": "2027-02-08",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-09",
@@ -5925,8 +6053,8 @@
         {
           "date": "2027-02-11",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-12",
@@ -5961,14 +6089,14 @@
         {
           "date": "2027-02-19",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-22",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-23",
@@ -6000,27 +6128,35 @@
       "employeeId": "emp-003",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 173.55,
+      "hourlyRate": 132.80,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 27507.68
+          "amount": 21115.20
         },
         {
           "kind": "Overtime",
-          "amount": 1666.09
+          "amount": 1314.72
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2797.50
+          "amount": 2818.60
+        },
+        {
+          "kind": "PensionEmployer",
+          "amount": 2019.88
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1136.18
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3996.41
+          "amount": 3156.07
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1918.28
+          "amount": 1514.91
         }
       ]
     }
@@ -6029,24 +6165,12 @@
     "timesheet": {
       "employee": {
         "id": "emp-004",
-        "hiredOn": "2026-12-03"
+        "hiredOn": "2026-11-29"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
       "shifts": [
         {
-          "date": "2027-02-01",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-01",
-          "start": "12:00:00",
-          "end": "18:00:00",
-          "minutes": 360
-        },
-        {
           "date": "2027-02-02",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -6067,8 +6191,8 @@
         {
           "date": "2027-02-03",
           "start": "12:00:00",
-          "end": "18:00:00",
-          "minutes": 360
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-02-04",
@@ -6090,71 +6214,83 @@
         },
         {
           "date": "2027-02-05",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-09",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-09",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-10",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-10",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-11",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-11",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-12",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-12",
           "start": "12:00:00",
           "end": "16:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-15",
+          "date": "2027-02-08",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-15",
+          "date": "2027-02-08",
           "start": "12:00:00",
           "end": "17:30:00",
           "minutes": 330
         },
         {
+          "date": "2027-02-11",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-11",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-12",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-12",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-15",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-15",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-16",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-17",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-17",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-02-18",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -6162,69 +6298,57 @@
         },
         {
           "date": "2027-02-18",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-19",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-22",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-22",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-23",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-23",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-24",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-24",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-25",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-25",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
+        },
+        {
+          "date": "2027-02-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-23",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-23",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-24",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-24",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-25",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-25",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-02-26",
@@ -6248,19 +6372,27 @@
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 23988.18
+          "amount": 21568.75
         },
         {
           "kind": "Overtime",
-          "amount": 1656.49
+          "amount": 767.85
+        },
+        {
+          "kind": "PensionEmployer",
+          "amount": 1786.93
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1005.15
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3194.33
+          "amount": 2792.08
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1533.28
+          "amount": 1340.20
         }
       ]
     }
@@ -6269,7 +6401,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-005",
-        "hiredOn": "2027-01-16"
+        "hiredOn": "2026-10-16"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -6283,14 +6415,14 @@
         {
           "date": "2027-02-02",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-03",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-04",
@@ -6307,11 +6439,17 @@
         {
           "date": "2027-02-09",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-10",
+          "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-02-11",
           "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
@@ -6329,28 +6467,28 @@
           "minutes": 480
         },
         {
-          "date": "2027-02-16",
-          "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
-        },
-        {
-          "date": "2027-02-17",
-          "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
-        },
-        {
           "date": "2027-02-18",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-19",
           "start": "14:00:00",
+          "end": "22:30:00",
+          "minutes": 510
+        },
+        {
+          "date": "2027-02-22",
+          "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
+        },
+        {
+          "date": "2027-02-23",
+          "start": "14:00:00",
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-24",
@@ -6376,27 +6514,35 @@
       "employeeId": "emp-005",
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
-      "hourlyRate": 161.80,
+      "hourlyRate": 130.80,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 21034.00
+          "amount": 18181.20
         },
         {
           "kind": "Overtime",
-          "amount": 970.80
+          "amount": 902.52
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2209.20
+          "amount": 2384.20
+        },
+        {
+          "kind": "PensionEmployer",
+          "amount": 1717.43
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 966.06
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3026.75
+          "amount": 2683.49
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1452.84
+          "amount": 1288.08
         }
       ]
     }
@@ -6405,7 +6551,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-006",
-        "hiredOn": "2027-01-17"
+        "hiredOn": "2026-10-15"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -6425,14 +6571,14 @@
         {
           "date": "2027-02-03",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-04",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-05",
@@ -6455,8 +6601,8 @@
         {
           "date": "2027-02-10",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-11",
@@ -6467,8 +6613,8 @@
         {
           "date": "2027-02-12",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-15",
@@ -6479,38 +6625,38 @@
         {
           "date": "2027-02-16",
           "start": "14:00:00",
+          "end": "22:00:00",
+          "minutes": 480
+        },
+        {
+          "date": "2027-02-17",
+          "start": "14:00:00",
           "end": "22:30:00",
           "minutes": 510
         },
         {
-          "date": "2027-02-17",
+          "date": "2027-02-18",
           "start": "14:00:00",
           "end": "22:00:00",
           "minutes": 480
         },
         {
-          "date": "2027-02-18",
-          "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
-        },
-        {
           "date": "2027-02-19",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-22",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-23",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-24",
@@ -6527,8 +6673,8 @@
         {
           "date": "2027-02-26",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         }
       ]
     },
@@ -6540,31 +6686,31 @@
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 24534.80
+          "amount": 24313.10
         },
         {
           "kind": "Overtime",
-          "amount": 1418.88
+          "amount": 1285.86
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2909.20
+          "amount": 2845.90
         },
         {
           "kind": "PensionEmployer",
-          "amount": 2309.03
+          "amount": 2275.59
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1298.83
+          "amount": 1280.02
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3607.86
+          "amount": 3555.61
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1731.77
+          "amount": 1706.69
         }
       ]
     }
@@ -6573,7 +6719,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-007",
-        "hiredOn": "2031-06-26"
+        "hiredOn": "2025-12-18"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -6581,14 +6727,14 @@
         {
           "date": "2027-02-01",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-02",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-03",
@@ -6599,8 +6745,8 @@
         {
           "date": "2027-02-04",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-05",
@@ -6611,8 +6757,8 @@
         {
           "date": "2027-02-08",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         },
         {
           "date": "2027-02-09",
@@ -6623,14 +6769,8 @@
         {
           "date": "2027-02-10",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
-        },
-        {
-          "date": "2027-02-11",
-          "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-12",
@@ -6665,8 +6805,8 @@
         {
           "date": "2027-02-19",
           "start": "14:00:00",
-          "end": "22:30:00",
-          "minutes": 510
+          "end": "22:00:00",
+          "minutes": 480
         },
         {
           "date": "2027-02-22",
@@ -6695,8 +6835,8 @@
         {
           "date": "2027-02-26",
           "start": "14:00:00",
-          "end": "22:00:00",
-          "minutes": 480
+          "end": "22:30:00",
+          "minutes": 510
         }
       ]
     },
@@ -6708,23 +6848,31 @@
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 29353.95
+          "amount": 28119.85
         },
         {
           "kind": "Overtime",
-          "amount": 1745.37
+          "amount": 1798.26
         },
         {
           "kind": "InconvenientHours",
-          "amount": 2930.30
+          "amount": 2839.70
+        },
+        {
+          "kind": "PensionEmployer",
+          "amount": 2620.62
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1474.10
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4253.70
+          "amount": 4094.73
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2041.78
+          "amount": 1965.47
         }
       ]
     }
@@ -6733,7 +6881,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-008",
-        "hiredOn": "2031-01-07"
+        "hiredOn": "2025-12-24"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -6775,18 +6923,6 @@
           "minutes": 180
         },
         {
-          "date": "2027-02-04",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-04",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
           "date": "2027-02-05",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -6830,81 +6966,81 @@
         },
         {
           "date": "2027-02-10",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-12",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-12",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-15",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-15",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-16",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-16",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-17",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-17",
           "start": "12:00:00",
           "end": "15:30:00",
           "minutes": 210
         },
         {
-          "date": "2027-02-18",
+          "date": "2027-02-11",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-18",
+          "date": "2027-02-11",
           "start": "12:00:00",
           "end": "18:00:00",
           "minutes": 360
         },
         {
-          "date": "2027-02-19",
+          "date": "2027-02-12",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-19",
+          "date": "2027-02-12",
           "start": "12:00:00",
           "end": "17:00:00",
           "minutes": 300
+        },
+        {
+          "date": "2027-02-15",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-15",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-16",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-16",
+          "start": "12:00:00",
+          "end": "16:00:00",
+          "minutes": 240
+        },
+        {
+          "date": "2027-02-17",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-17",
+          "start": "12:00:00",
+          "end": "15:30:00",
+          "minutes": 210
+        },
+        {
+          "date": "2027-02-18",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-18",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-02-22",
@@ -6927,29 +7063,29 @@
         {
           "date": "2027-02-23",
           "start": "12:00:00",
-          "end": "16:00:00",
-          "minutes": 240
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
-          "date": "2027-02-24",
+          "date": "2027-02-25",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-24",
+          "date": "2027-02-25",
           "start": "12:00:00",
-          "end": "15:30:00",
-          "minutes": 210
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
-          "date": "2027-02-25",
+          "date": "2027-02-26",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-25",
+          "date": "2027-02-26",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -6964,19 +7100,27 @@
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 23330.60
+          "amount": 22098.35
         },
         {
           "kind": "Overtime",
-          "amount": 994.02
+          "amount": 985.80
+        },
+        {
+          "kind": "PensionEmployer",
+          "amount": 1846.73
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1038.79
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3040.58
+          "amount": 2885.52
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1459.48
+          "amount": 1385.05
         }
       ]
     }
@@ -6985,7 +7129,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-009",
-        "hiredOn": "2031-09-19"
+        "hiredOn": "2022-02-12"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -6999,70 +7143,58 @@
         {
           "date": "2027-02-01",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-02",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-02",
-          "start": "12:00:00",
-          "end": "16:00:00",
-          "minutes": 240
-        },
-        {
-          "date": "2027-02-03",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-03",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-04",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-04",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-05",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-05",
-          "start": "12:00:00",
           "end": "16:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-08",
+          "date": "2027-02-02",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-08",
+          "date": "2027-02-02",
           "start": "12:00:00",
           "end": "16:00:00",
           "minutes": 240
         },
         {
+          "date": "2027-02-03",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-03",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-05",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-05",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-08",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-08",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-02-09",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -7075,13 +7207,13 @@
           "minutes": 180
         },
         {
-          "date": "2027-02-11",
+          "date": "2027-02-10",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-11",
+          "date": "2027-02-10",
           "start": "12:00:00",
           "end": "15:00:00",
           "minutes": 180
@@ -7123,54 +7255,66 @@
           "minutes": 180
         },
         {
-          "date": "2027-02-18",
+          "date": "2027-02-17",
           "start": "07:00:00",
           "end": "11:30:00",
           "minutes": 270
         },
         {
-          "date": "2027-02-18",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-19",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-19",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-22",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-22",
-          "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
-        },
-        {
-          "date": "2027-02-23",
-          "start": "07:00:00",
-          "end": "11:30:00",
-          "minutes": 270
-        },
-        {
-          "date": "2027-02-23",
+          "date": "2027-02-17",
           "start": "12:00:00",
           "end": "17:30:00",
           "minutes": 330
         },
         {
+          "date": "2027-02-18",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-18",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-19",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-19",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-22",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-22",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
+          "date": "2027-02-23",
+          "start": "07:00:00",
+          "end": "11:30:00",
+          "minutes": 270
+        },
+        {
+          "date": "2027-02-23",
+          "start": "12:00:00",
+          "end": "15:00:00",
+          "minutes": 180
+        },
+        {
           "date": "2027-02-24",
           "start": "07:00:00",
           "end": "11:30:00",
@@ -7191,8 +7335,8 @@
         {
           "date": "2027-02-25",
           "start": "12:00:00",
-          "end": "15:00:00",
-          "minutes": 180
+          "end": "15:30:00",
+          "minutes": 210
         },
         {
           "date": "2027-02-26",
@@ -7216,19 +7360,27 @@
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 25633.80
+          "amount": 25542.90
         },
         {
           "kind": "Overtime",
-          "amount": 927.18
+          "amount": 872.64
+        },
+        {
+          "kind": "PensionEmployer",
+          "amount": 2113.24
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1188.70
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3204.23
+          "amount": 3301.94
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1593.66
+          "amount": 1584.93
         }
       ]
     }
@@ -7237,7 +7389,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-010",
-        "hiredOn": "2029-07-10"
+        "hiredOn": "2024-04-23"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -7371,6 +7523,14 @@
           "amount": 2538.10
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2324.07
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1307.29
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3631.36
         },
@@ -7385,7 +7545,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-011",
-        "hiredOn": "2027-01-28"
+        "hiredOn": "2026-10-04"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -7519,6 +7679,14 @@
           "amount": 6076.80
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2656.03
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1494.02
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4150.05
         },
@@ -7533,7 +7701,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-012",
-        "hiredOn": "2027-01-25"
+        "hiredOn": "2026-10-07"
       },
       "periodStart": "2027-02-01",
       "periodEnd": "2027-02-28",
@@ -7761,6 +7929,10 @@
         {
           "kind": "HolidayAllowance",
           "amount": 3109.65
+        },
+        {
+          "kind": "SpecialSavings",
+          "amount": 1492.63
         }
       ]
     }
@@ -7769,7 +7941,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-001",
-        "hiredOn": "2031-03-26"
+        "hiredOn": "2025-12-21"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -8055,6 +8227,14 @@
           "amount": 712.22
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2227.26
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1252.83
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3480.09
         },
@@ -8069,7 +8249,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-002",
-        "hiredOn": "2033-11-12"
+        "hiredOn": "2019-12-20"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -8331,6 +8511,14 @@
           "amount": 554.07
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 1920.57
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1080.32
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3000.90
         },
@@ -8345,7 +8533,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-003",
-        "hiredOn": "2031-09-11"
+        "hiredOn": "2025-12-15"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -8503,6 +8691,14 @@
           "amount": 3259.20
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2962.56
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1666.44
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4629.00
         },
@@ -8517,7 +8713,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-004",
-        "hiredOn": "2026-12-03"
+        "hiredOn": "2026-11-29"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -8748,7 +8944,7 @@
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 24674.66
+          "amount": 24674.65
         },
         {
           "kind": "Overtime",
@@ -8756,11 +8952,11 @@
         },
         {
           "kind": "PensionEmployer",
-          "amount": 1967.76
+          "amount": 2071.98
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1106.87
+          "amount": 1165.49
         },
         {
           "kind": "HolidayAllowance",
@@ -8777,7 +8973,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-005",
-        "hiredOn": "2027-01-16"
+        "hiredOn": "2026-10-16"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -8923,6 +9119,14 @@
           "amount": 2845.90
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2469.57
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1389.13
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3858.71
         },
@@ -8937,7 +9141,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-006",
-        "hiredOn": "2027-01-17"
+        "hiredOn": "2026-10-15"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -9083,6 +9287,14 @@
           "amount": 2888.10
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2297.88
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1292.56
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3590.44
         },
@@ -9097,7 +9309,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-007",
-        "hiredOn": "2031-06-26"
+        "hiredOn": "2025-12-18"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -9255,6 +9467,14 @@
           "amount": 3069.30
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2899.92
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1631.20
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4531.12
         },
@@ -9269,7 +9489,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-008",
-        "hiredOn": "2031-01-07"
+        "hiredOn": "2025-12-24"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -9543,6 +9763,14 @@
           "amount": 1117.24
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2264.71
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1273.90
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3398.96
         },
@@ -9557,7 +9785,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-009",
-        "hiredOn": "2031-09-19"
+        "hiredOn": "2022-02-12"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -9795,6 +10023,14 @@
           "amount": 399.96
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2024.52
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1138.80
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3163.32
         },
@@ -9809,7 +10045,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-010",
-        "hiredOn": "2029-07-10"
+        "hiredOn": "2024-04-23"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -9955,6 +10191,14 @@
           "amount": 2867.00
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2610.38
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1468.34
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4078.71
         },
@@ -9969,7 +10213,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-011",
-        "hiredOn": "2027-01-28"
+        "hiredOn": "2026-10-04"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -10127,6 +10371,14 @@
           "amount": 7427.20
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 3246.26
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1826.02
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 5072.28
         },
@@ -10141,7 +10393,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-012",
-        "hiredOn": "2027-01-25"
+        "hiredOn": "2026-10-07"
       },
       "periodStart": "2027-03-01",
       "periodEnd": "2027-03-31",
@@ -10415,6 +10667,14 @@
           "amount": 658.54
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2312.52
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1300.79
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3613.31
         },
@@ -10429,7 +10689,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-001",
-        "hiredOn": "2031-03-26"
+        "hiredOn": "2025-12-21"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -10668,31 +10928,31 @@
       "employeeId": "emp-001",
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
-      "hourlyRate": 160.05,
+      "hourlyRate": 133.80,
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 24007.50
+          "amount": 20070.00
         },
         {
           "kind": "Overtime",
-          "amount": 1136.36
+          "amount": 949.98
         },
         {
           "kind": "PensionEmployer",
-          "amount": 2011.51
+          "amount": 1681.60
         },
         {
           "kind": "PensionEmployee",
-          "amount": 1131.47
+          "amount": 945.90
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3142.98
+          "amount": 2627.50
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1508.63
+          "amount": 1261.20
         }
       ]
     }
@@ -10701,7 +10961,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-002",
-        "hiredOn": "2033-11-12"
+        "hiredOn": "2019-12-20"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -10787,8 +11047,8 @@
         {
           "date": "2027-04-09",
           "start": "12:00:00",
-          "end": "17:30:00",
-          "minutes": 330
+          "end": "15:00:00",
+          "minutes": 180
         },
         {
           "date": "2027-04-12",
@@ -10980,15 +11240,23 @@
       "lines": [
         {
           "kind": "BasePay",
-          "amount": 26185.50
+          "amount": 25806.00
         },
         {
           "kind": "Overtime",
-          "amount": 1032.24
+          "amount": 721.05
+        },
+        {
+          "kind": "PensionEmployer",
+          "amount": 2122.16
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1193.72
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3402.22
+          "amount": 3315.88
         }
       ]
     }
@@ -10997,7 +11265,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-003",
-        "hiredOn": "2031-09-11"
+        "hiredOn": "2025-12-15"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -11149,6 +11417,14 @@
           "amount": 2978.70
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2758.24
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1551.51
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4309.76
         },
@@ -11163,7 +11439,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-004",
-        "hiredOn": "2026-12-03"
+        "hiredOn": "2026-11-29"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -11435,7 +11711,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-005",
-        "hiredOn": "2027-01-16"
+        "hiredOn": "2026-10-16"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -11595,7 +11871,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-006",
-        "hiredOn": "2027-01-17"
+        "hiredOn": "2026-10-15"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -11730,15 +12006,15 @@
         },
         {
           "kind": "PensionEmployer",
-          "amount": 936.99
+          "amount": 2058.06
         },
         {
           "kind": "PensionEmployee",
-          "amount": 527.06
+          "amount": 1157.66
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 3215.73
+          "amount": 3215.72
         },
         {
           "kind": "SpecialSavings",
@@ -11751,7 +12027,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-007",
-        "hiredOn": "2031-06-26"
+        "hiredOn": "2025-12-18"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -11909,6 +12185,14 @@
           "amount": 3132.60
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2938.83
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1653.09
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4591.92
         },
@@ -11923,7 +12207,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-008",
-        "hiredOn": "2031-01-07"
+        "hiredOn": "2025-12-24"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -12197,6 +12481,14 @@
           "amount": 583.27
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2182.56
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1227.69
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3410.25
         },
@@ -12211,7 +12503,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-009",
-        "hiredOn": "2031-09-19"
+        "hiredOn": "2022-02-12"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -12485,6 +12777,14 @@
           "amount": 1681.65
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2570.65
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1445.99
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4016.64
         },
@@ -12499,7 +12799,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-010",
-        "hiredOn": "2029-07-10"
+        "hiredOn": "2024-04-23"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -12645,6 +12945,14 @@
           "amount": 2867.00
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2610.38
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1468.34
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 4078.71
         },
@@ -12659,7 +12967,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-011",
-        "hiredOn": "2027-01-28"
+        "hiredOn": "2026-10-04"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -12798,7 +13106,7 @@
         },
         {
           "kind": "Overtime",
-          "amount": 1089.31
+          "amount": 1089.30
         },
         {
           "kind": "InconvenientHours",
@@ -12806,19 +13114,19 @@
         },
         {
           "kind": "PensionEmployer",
-          "amount": 442.67
+          "amount": 2951.14
         },
         {
           "kind": "PensionEmployee",
-          "amount": 249.00
+          "amount": 1660.02
         },
         {
           "kind": "HolidayAllowance",
-          "amount": 4611.17
+          "amount": 4611.16
         },
         {
           "kind": "SpecialSavings",
-          "amount": 2213.35
+          "amount": 2213.36
         }
       ]
     }
@@ -12827,7 +13135,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-012",
-        "hiredOn": "2027-01-25"
+        "hiredOn": "2026-10-07"
       },
       "periodStart": "2027-04-01",
       "periodEnd": "2027-04-30",
@@ -13078,11 +13386,11 @@
         },
         {
           "kind": "PensionEmployer",
-          "amount": 418.69
+          "amount": 2087.23
         },
         {
           "kind": "PensionEmployee",
-          "amount": 235.51
+          "amount": 1174.06
         },
         {
           "kind": "HolidayAllowance",
@@ -13099,7 +13407,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-001",
-        "hiredOn": "2031-03-26"
+        "hiredOn": "2025-12-21"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -13337,6 +13645,14 @@
           "amount": 1008.32
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 1905.24
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1071.70
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 2976.93
         },
@@ -13351,7 +13667,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-002",
-        "hiredOn": "2033-11-12"
+        "hiredOn": "2019-12-20"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -13625,6 +13941,14 @@
           "amount": 713.46
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2030.48
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1142.14
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3172.62
         },
@@ -13639,7 +13963,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-003",
-        "hiredOn": "2031-09-11"
+        "hiredOn": "2025-12-15"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -13779,6 +14103,14 @@
           "amount": 2776.40
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2536.58
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1426.82
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3963.40
         },
@@ -13793,7 +14125,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-004",
-        "hiredOn": "2026-12-03"
+        "hiredOn": "2026-11-29"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -14065,7 +14397,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-005",
-        "hiredOn": "2027-01-16"
+        "hiredOn": "2026-10-16"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -14233,7 +14565,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-006",
-        "hiredOn": "2027-01-17"
+        "hiredOn": "2026-10-15"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -14401,7 +14733,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-007",
-        "hiredOn": "2031-06-26"
+        "hiredOn": "2025-12-18"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -14529,6 +14861,14 @@
           "amount": 2447.50
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2287.42
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1286.68
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3096.27
         },
@@ -14543,7 +14883,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-008",
-        "hiredOn": "2031-01-07"
+        "hiredOn": "2025-12-24"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -14781,6 +15121,14 @@
           "amount": 616.13
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 1876.31
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1055.42
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 2931.73
         },
@@ -14795,7 +15143,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-009",
-        "hiredOn": "2031-09-19"
+        "hiredOn": "2022-02-12"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -15057,12 +15405,20 @@
           "amount": 463.59
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2255.05
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1268.46
+        },
+        {
           "kind": "HolidayAllowance",
-          "amount": 3523.51
+          "amount": 3532.51
         },
         {
           "kind": "SpecialSavings",
-          "amount": 1619.29
+          "amount": 1691.29
         }
       ]
     }
@@ -15071,7 +15427,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-010",
-        "hiredOn": "2029-07-10"
+        "hiredOn": "2024-04-23"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -15199,6 +15555,14 @@
           "amount": 2426.40
         },
         {
+          "kind": "PensionEmployer",
+          "amount": 2212.50
+        },
+        {
+          "kind": "PensionEmployee",
+          "amount": 1244.53
+        },
+        {
           "kind": "HolidayAllowance",
           "amount": 3457.04
         },
@@ -15213,7 +15577,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-011",
-        "hiredOn": "2027-01-28"
+        "hiredOn": "2026-10-04"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",
@@ -15381,7 +15745,7 @@
     "timesheet": {
       "employee": {
         "id": "emp-012",
-        "hiredOn": "2027-01-25"
+        "hiredOn": "2026-10-07"
       },
       "periodStart": "2027-05-01",
       "periodEnd": "2027-05-31",

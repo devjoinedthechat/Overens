@@ -29,12 +29,6 @@ public static class Claude
         return new RedactingChatClient(failover ? new FailoverChatClient(timed, FailoverChatClient.Claude) : timed);
     }
 
-    /// <summary>
-    /// Text the provider may keep for a few minutes and read again at a tenth of the price:
-    /// the long part of a prompt that several calls share, placed before what differs.
-    /// </summary>
-    public static TextContent Cacheable(string text) => new TextContent(text).WithCacheControl(Anthropic.Models.Messages.Ttl.Ttl5m);
-
     public static IChatClient Create(string apiKey, TimeSpan limit, bool failover = true)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(apiKey);

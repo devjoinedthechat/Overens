@@ -1,4 +1,4 @@
 {
   "Model": "claude-haiku-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Tillæg for forskudt tid\\\u0022 er udbetalt med 6.914,00 kr., mens den skulle have været 6.194,00 kr., hvilket er en forskel på 720,00 kr. for meget. Reglen findes i § 6, stk. 1, som fastsætter tillæg pr. time for arbejde på forskudt tid. Beregningen er 152,00 timer til 40,75 kr. pr. time, hvilket giver 6.194,00 kr.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022Linjen \\\u0022Tillæg for forskudt tid\\\u0022 er udbetalt med 6.914,00 kr., men skulle have været 6.194,00 kr., så der er udbetalt 720,00 kr. for meget. Reglen findes i § 6, stk. 1, som fastsætter tillæg pr. time for arbejde på forskudt tid. Beregningen er 152,00 timer à 40,75 kr., hvilket giver 6.194,00 kr.\u0022}"
 }

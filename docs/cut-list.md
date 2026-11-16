@@ -14,7 +14,7 @@ Things a production system of this kind would have, that this one does not. Each
 | Stored pay data and findings | Personal data not held cannot leak | A retention policy first |
 | A second model provider | One prompt and one eval to keep honest. Failover is between one provider's models | Evals passed on the second provider's models |
 | Vector search | An agreement is a few dozen clauses; keyword ranking finds them. Anthropic has no embedding model | A measured gap in retrieval |
-| Prompt caching | The agreement is sent six times per extraction. Caching would cut most of that cost | A cache breakpoint after the agreement, and a re-recording of the evals |
+| Prompt caching | Tried and removed. A kept prompt is read only when the answer schema is the same, and each kind of rule has its own | Schemas small enough to share, or one call for all kinds measured against six |
 | Four-eyes approval | One specialist approves. Many payroll teams would want a second | A second approval row and a rule that it is another person |
 
 ## Built, with limits worth knowing

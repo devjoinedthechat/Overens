@@ -79,18 +79,13 @@
   {
     "employeeId": "emp-012",
     "periodStart": "2026-12-01",
-    "mistake": "pension_without_qualifying_period",
+    "mistake": "special_savings_left_out",
     "rateBelowMinimum": false,
     "lines": [
       {
-        "line": "PensionEmployer",
-        "expected": 0,
-        "actual": 2931.13
-      },
-      {
-        "line": "PensionEmployee",
-        "expected": 0,
-        "actual": 1302.72
+        "line": "SpecialSavings",
+        "expected": 1302.72,
+        "actual": 0
       }
     ]
   },
@@ -122,6 +117,16 @@
         "line": "Overtime",
         "expected": 137.23,
         "actual": 132.72
+      },
+      {
+        "line": "PensionEmployer",
+        "expected": 1864.92,
+        "actual": 1803.60
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 828.85,
+        "actual": 801.60
       },
       {
         "line": "HolidayAllowance",
@@ -186,6 +191,16 @@
         "actual": 374.54
       },
       {
+        "line": "PensionEmployer",
+        "expected": 2052.91,
+        "actual": 2047.98
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 912.40,
+        "actual": 910.21
+      },
+      {
         "line": "HolidayAllowance",
         "expected": 2851.26,
         "actual": 2844.41
@@ -222,6 +237,16 @@
         "actual": 0
       },
       {
+        "line": "PensionEmployer",
+        "expected": 3032.85,
+        "actual": 2802.11
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 1347.93,
+        "actual": 1245.38
+      },
+      {
         "line": "HolidayAllowance",
         "expected": 4212.29,
         "actual": 3891.82
@@ -253,9 +278,9 @@
     "rateBelowMinimum": false,
     "lines": [
       {
-        "line": "Overtime",
-        "expected": 804.15,
-        "actual": 840.15
+        "line": "PensionEmployer",
+        "expected": 2460.70,
+        "actual": 2640.7
       }
     ]
   },
@@ -343,6 +368,16 @@
         "actual": 0
       },
       {
+        "line": "PensionEmployer",
+        "expected": 2895.75,
+        "actual": 2655.99
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 1219.26,
+        "actual": 1118.31
+      },
+      {
         "line": "HolidayAllowance",
         "expected": 3810.20,
         "actual": 3494.73
@@ -364,6 +399,16 @@
         "line": "InconvenientHours",
         "expected": 7304.00,
         "actual": 0
+      },
+      {
+        "line": "PensionEmployer",
+        "expected": 4110.37,
+        "actual": 3416.49
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 1730.68,
+        "actual": 1438.52
       },
       {
         "line": "HolidayAllowance",
@@ -398,22 +443,32 @@
     "lines": [
       {
         "line": "BasePay",
-        "expected": 22932.25,
+        "expected": 24056.00,
         "actual": 21692.25
       },
       {
         "line": "Overtime",
-        "expected": 599.20,
+        "expected": 628.56,
         "actual": 566.80
       },
       {
+        "line": "PensionEmployer",
+        "expected": 2345.03,
+        "actual": 2114.61
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 987.38,
+        "actual": 890.36
+      },
+      {
         "line": "HolidayAllowance",
-        "expected": 2941.43,
+        "expected": 3085.57,
         "actual": 2782.38
       },
       {
         "line": "SpecialSavings",
-        "expected": 1176.57,
+        "expected": 1234.23,
         "actual": 1112.95
       }
     ]
@@ -425,9 +480,9 @@
     "rateBelowMinimum": false,
     "lines": [
       {
-        "line": "HolidayAllowance",
-        "expected": 4916.71,
-        "actual": 4916.17
+        "line": "PensionEmployee",
+        "expected": 1573.35,
+        "actual": 1573.53
       }
     ]
   },
@@ -439,13 +494,23 @@
     "lines": [
       {
         "line": "BasePay",
-        "expected": 31069.50,
-        "actual": 28759.50
+        "expected": 31069.51,
+        "actual": 28759.51
       },
       {
         "line": "Overtime",
-        "expected": 5429.77,
-        "actual": 5026.07
+        "expected": 5429.76,
+        "actual": 5026.06
+      },
+      {
+        "line": "PensionEmployer",
+        "expected": 1559.51,
+        "actual": 1443.88
+      },
+      {
+        "line": "PensionEmployee",
+        "expected": 656.64,
+        "actual": 607.95
       },
       {
         "line": "HolidayAllowance",
@@ -455,38 +520,25 @@
       {
         "line": "SpecialSavings",
         "expected": 1829.49,
-        "actual": 1693.80
+        "actual": 1693.81
       }
     ]
   },
   {
     "employeeId": "emp-011",
     "periodStart": "2027-05-01",
-    "mistake": "line_mistyped",
-    "rateBelowMinimum": false,
-    "lines": [
-      {
-        "line": "SpecialSavings",
-        "expected": 1833.89,
-        "actual": 1833.98
-      }
-    ]
-  },
-  {
-    "employeeId": "emp-012",
-    "periodStart": "2027-05-01",
-    "mistake": "pension_without_qualifying_period",
+    "mistake": "pension_qualifying_period_too_long",
     "rateBelowMinimum": false,
     "lines": [
       {
         "line": "PensionEmployer",
-        "expected": 0,
-        "actual": 2652.58
+        "expected": 3484.38,
+        "actual": 0
       },
       {
         "line": "PensionEmployee",
-        "expected": 0,
-        "actual": 1116.88
+        "expected": 1467.11,
+        "actual": 0
       }
     ]
   }

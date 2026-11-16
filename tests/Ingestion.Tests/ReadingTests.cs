@@ -40,13 +40,13 @@ public sealed class ReadingTests
         Assert.Equal(RuleJson.Write(document.Sections.Concat(document.Protocols)), RuleJson.Write(read.Sections));
     }
 
-    public static TheoryData<string> CorpusIds => [.. Corpus.Agreements.Concat(Corpus.Challenge).Concat(Corpus.Attacks).Select(spec => spec.Id)];
+    public static TheoryData<string> CorpusIds => [.. Corpus.All.Select(spec => spec.Id)];
 
     [Theory]
     [MemberData(nameof(CorpusIds))]
     public async Task Every_agreement_in_the_corpus_reads_back_exactly(string id)
     {
-        var document = Corpus.Generate(Corpus.Agreements.Concat(Corpus.Challenge).Concat(Corpus.Attacks).Single(spec => spec.Id == id)).Document;
+        var document = Corpus.Generate(Corpus.All.Single(spec => spec.Id == id)).Document;
 
         var read = await Read(document);
 

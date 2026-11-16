@@ -65,7 +65,8 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []
@@ -133,7 +134,8 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []
@@ -201,7 +203,8 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []
@@ -269,7 +272,8 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []
@@ -337,7 +341,8 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []
@@ -405,7 +410,8 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []
@@ -473,7 +479,8 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []
@@ -541,7 +548,8 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []
@@ -609,7 +617,8 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []
@@ -677,7 +686,425 @@
         "cases": 72,
         "right": 72,
         "missedErrors": 0,
-        "falseAlarms": 0
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "problems": [],
+      "gaps": []
+    },
+    {
+      "agreement": "long-plain",
+      "set": "long",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "overtime",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "problems": [],
+      "gaps": []
+    },
+    {
+      "agreement": "long-appendix",
+      "set": "long",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "overtime",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "problems": [],
+      "gaps": []
+    },
+    {
+      "agreement": "long-references",
+      "set": "long",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "overtime",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "problems": [],
+      "gaps": []
+    },
+    {
+      "agreement": "long-fraction",
+      "set": "long",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "overtime",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 2,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 2
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 72
+      },
+      "problems": [
+        "pension-2026: value_not_in_cited_clauses: The employee\u0027s 4.5 percent is not printed in the clauses the rule cites.",
+        "pension-2027: value_not_in_cited_clauses: The employee\u0027s 4.5 percent is not printed in the clauses the rule cites."
+      ],
+      "gaps": []
+    },
+    {
+      "agreement": "long-numbering",
+      "set": "long",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "overtime",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "problems": [],
+      "gaps": []
+    },
+    {
+      "agreement": "long-all",
+      "set": "long",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "overtime",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 4,
+          "proposed": 4,
+          "correct": 4,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
       },
       "problems": [],
       "gaps": []

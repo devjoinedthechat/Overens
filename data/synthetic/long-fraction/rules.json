@@ -1,0 +1,322 @@
+{
+  "agreementId": "long-fraction",
+  "version": 1,
+  "rules": [
+    {
+      "kind": "minimum_wage",
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 136.35
+        },
+        {
+          "fromMonths": 12,
+          "hourlyRate": 144.85
+        }
+      ],
+      "id": "minimum_wage-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 1",
+        "quote": "Der betales mindst følgende timeløn:"
+      }
+    },
+    {
+      "kind": "minimum_wage",
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 141.35
+        },
+        {
+          "fromMonths": 12,
+          "hourlyRate": 149.85
+        }
+      ],
+      "id": "minimum_wage-2027",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": "2028-03-01"
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 1",
+        "quote": "Der betales mindst følgende timeløn:"
+      }
+    },
+    {
+      "kind": "minimum_wage",
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 146.10
+        },
+        {
+          "fromMonths": 12,
+          "hourlyRate": 154.60
+        }
+      ],
+      "id": "minimum_wage-2028",
+      "inForce": {
+        "from": "2028-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 1",
+        "quote": "Der betales mindst følgende timeløn:"
+      }
+    },
+    {
+      "kind": "overtime",
+      "dailyNormHours": 7.4,
+      "tiers": [
+        {
+          "hours": 2,
+          "percent": 50.0
+        },
+        {
+          "hours": null,
+          "percent": 100.0
+        }
+      ],
+      "sundayPercent": 100.0,
+      "id": "overtime-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 18, stk. 2",
+        "quote": "For de første to timers overarbejde pr. dag betales et tillæg på 50,0 pct. af timelønnen."
+      }
+    },
+    {
+      "kind": "inconvenient_hours",
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "22:00:00",
+          "amountPerHour": 33.15
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 51.15
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "22:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 45.65
+        }
+      ],
+      "id": "inconvenient_hours-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 19, stk. 1",
+        "quote": "Tillæg for arbejde på forskudt tid udgør pr. time:"
+      }
+    },
+    {
+      "kind": "inconvenient_hours",
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "22:00:00",
+          "amountPerHour": 34.65
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 52.65
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "22:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 47.15
+        }
+      ],
+      "id": "inconvenient_hours-2027",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": "2028-03-01"
+      },
+      "source": {
+        "clauseId": "§ 19, stk. 1",
+        "quote": "Tillæg for arbejde på forskudt tid udgør pr. time:"
+      }
+    },
+    {
+      "kind": "inconvenient_hours",
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "22:00:00",
+          "amountPerHour": 36.15
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 54.15
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "22:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 48.65
+        }
+      ],
+      "id": "inconvenient_hours-2028",
+      "inForce": {
+        "from": "2028-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 19, stk. 1",
+        "quote": "Tillæg for arbejde på forskudt tid udgør pr. time:"
+      }
+    },
+    {
+      "kind": "pension",
+      "employerPercent": 9.0,
+      "employeePercent": 4.5,
+      "qualifyingMonths": 6,
+      "id": "pension-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 20, stk. 1",
+        "quote": "Arbejdsgiveren indbetaler 9,0 pct. af lønnen til pensionsordningen."
+      }
+    },
+    {
+      "kind": "holiday_allowance",
+      "percent": 12.5,
+      "id": "holiday_allowance-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 21, stk. 2",
+        "quote": "Feriegodtgørelsen udgør 12,5 pct. af lønnen."
+      }
+    },
+    {
+      "kind": "special_savings",
+      "percent": 5,
+      "id": "special_savings-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 22, stk. 1",
+        "quote": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 5,0 pct. fra 1. marts 2026, 6,0 pct. fra 1. marts 2027 og 6,5 pct. fra 1. marts 2028."
+      }
+    },
+    {
+      "kind": "special_savings",
+      "percent": 6.0,
+      "id": "special_savings-2027",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": "2028-03-01"
+      },
+      "source": {
+        "clauseId": "§ 22, stk. 1",
+        "quote": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 5,0 pct. fra 1. marts 2026, 6,0 pct. fra 1. marts 2027 og 6,5 pct. fra 1. marts 2028."
+      }
+    },
+    {
+      "kind": "special_savings",
+      "percent": 6.5,
+      "id": "special_savings-2028",
+      "inForce": {
+        "from": "2028-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 22, stk. 1",
+        "quote": "Til medarbejderens fritvalgskonto indbetaler arbejdsgiveren 5,0 pct. fra 1. marts 2026, 6,0 pct. fra 1. marts 2027 og 6,5 pct. fra 1. marts 2028."
+      }
+    },
+    {
+      "kind": "pension",
+      "employerPercent": 9.5,
+      "employeePercent": 4.5,
+      "qualifyingMonths": 6,
+      "id": "pension-2027",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Protokollat 1, stk. 1",
+        "quote": "Med virkning fra den 1. marts 2027 forhøjes arbejdsgiverens pensionsbidrag til 9,5 pct. af lønnen."
+      }
+    }
+  ]
+}

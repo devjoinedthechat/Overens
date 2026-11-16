@@ -76,26 +76,58 @@ public static class AgreementPdf
             contents.Format.PageBreakBefore = true;
             contents.Format.Font.Size = 15;
             contents.Format.Font.Bold = true;
+            var ownLine = document.Numbering == AgreementDocument.OwnLine;
+            string Heading(Documents.Section section) => ownLine ? $"{section.Number} {section.Heading}" : $"{section.Number}. {section.Heading}";
             foreach (var section in document.Sections.Concat(document.Protocols))
             {
-                var entry = page.AddParagraph($"{section.Number}. {section.Heading}");
+                if (section.Chapter is { } chapter)
+                {
+                    var part = page.AddParagraph(chapter);
+                    part.Format.Font.Bold = true;
+                    part.Format.SpaceBefore = Unit.FromPoint(6);
+                    part.Format.SpaceAfter = Unit.FromPoint(2);
+                }
+
+                var entry = page.AddParagraph(Heading(section));
                 entry.Format.SpaceAfter = Unit.FromPoint(2);
             }
 
             var first = true;
             foreach (var section in document.Sections.Concat(document.Protocols))
             {
-                var heading = page.AddParagraph($"{section.Number}. {section.Heading}");
+                if (section.Chapter is { } chapter)
+                {
+                    // A chapter starts on a page of its own, under a heading larger than a section's.
+                    var part = page.AddParagraph(chapter);
+                    part.Format.Font.Size = 17;
+                    part.Format.Font.Bold = true;
+                    part.Format.Alignment = ParagraphAlignment.Center;
+                    part.Format.SpaceAfter = Unit.FromPoint(10);
+                    part.Format.KeepWithNext = true;
+                    part.Format.PageBreakBefore = true;
+                }
+
+                var heading = page.AddParagraph(Heading(section));
                 heading.Format.Font.Size = 13;
                 heading.Format.Font.Bold = true;
                 heading.Format.SpaceBefore = Unit.FromPoint(14);
                 heading.Format.KeepWithNext = true;
-                heading.Format.PageBreakBefore = first;
+                heading.Format.PageBreakBefore = first && section.Chapter is null;
                 first = false;
 
                 foreach (var (clause, index) in section.Clauses.Select((clause, index) => (clause, index)))
                 {
                     var opening = true;
+                    if (ownLine)
+                    {
+                        // The clause's number stands alone, and its text begins on the line under it.
+                        var number = page.AddParagraph();
+                        number.AddFormattedText($"Stk. {index + 1}", TextFormat.Italic);
+                        number.Format.SpaceAfter = Unit.FromPoint(1);
+                        number.Format.KeepWithNext = true;
+                        opening = false;
+                    }
+
                     foreach (var block in clause.Blocks)
                     {
                         switch (block)

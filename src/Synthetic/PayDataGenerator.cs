@@ -80,12 +80,16 @@ public static class PayDataGenerator
     {
         // Some are hired just before the data starts, so qualifying periods and seniority
         // steps fall inside it.
-        var hired = firstMonth.AddDays(-random.Next(0, 3) switch
+        // The minus stands outside the brackets on purpose. Without them it applied to the number
+        // being switched on, every case but the first fell through to the last, and the days
+        // were added: everyone was hired after the data began, with no seniority and no pension.
+        var daysBefore = random.Next(0, 3) switch
         {
             0 => random.Next(1, 75),
             1 => random.Next(300, 400),
             _ => random.Next(400, 3000),
-        });
+        };
+        var hired = firstMonth.AddDays(-daysBefore);
         var employee = new Employee($"emp-{number:000}", hired);
 
         // A wage at or above the highest minimum the data will ever require of this employee,

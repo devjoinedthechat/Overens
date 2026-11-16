@@ -41,7 +41,11 @@ public sealed record KindScore(string Kind, int Expected, int Proposed, int Corr
 /// <param name="Right">Payslips whose findings were exactly right.</param>
 /// <param name="MissedErrors">Payslips with a seeded error that was not reported in full.</param>
 /// <param name="FalseAlarms">Correct payslips that were reported as wrong.</param>
-public sealed record PayScore(int Cases, int Right, int MissedErrors, int FalseAlarms);
+/// <param name="NotChecked">
+/// Payslips with a line the true rules cover and the unflagged rules do not. The check says
+/// so and decides nothing about that line, so the payslip is neither right nor wrong.
+/// </param>
+public sealed record PayScore(int Cases, int Right, int MissedErrors, int FalseAlarms, int NotChecked);
 
 public static partial class ExtractionEval
 {
@@ -75,22 +79,30 @@ public static partial class ExtractionEval
     /// Checks every pay case with the rules that passed the checks, as if a reviewer had
     /// approved exactly those, and compares the findings with the known answers.
     /// </summary>
-    public static PayScore ScorePay(ExtractionResult extraction, PayData pay)
+    public static PayScore ScorePay(RuleSet truth, ExtractionResult extraction, PayData pay)
     {
+        ArgumentNullException.ThrowIfNull(truth);
         ArgumentNullException.ThrowIfNull(extraction);
         ArgumentNullException.ThrowIfNull(pay);
         // A rule in conflict with another is not approved until a person has chosen, so it checks no pay.
         var sound = extraction.Sound.ToList();
         var rules = new RuleSet("extracted", 1, [.. sound.Where(rule =>
             !sound.Any(other => !ReferenceEquals(other, rule) && other.GetType() == rule.GetType() && other.InForce.Overlaps(rule.InForce)))]);
-        var (right, missed, falseAlarms) = (0, 0, 0);
+        var (right, missed, falseAlarms, notChecked) = (0, 0, 0, 0);
         foreach (var (timesheet, payslip) in pay.Cases)
         {
             var answer = pay.Errors.SingleOrDefault(error => error.EmployeeId == timesheet.Employee.Id && error.PeriodStart == timesheet.PeriodStart);
             var expected = (answer?.Lines ?? []).Select(line => (line.Line, line.Expected, line.Actual)).ToHashSet();
             var expectedRate = answer?.RateBelowMinimum ?? false;
 
-            var findings = PayEngine.Check(rules, timesheet, payslip).Findings;
+            var check = PayEngine.Check(rules, timesheet, payslip);
+            if (check.Unchecked.Except(PayEngine.Check(truth, timesheet, payslip).Unchecked).Any())
+            {
+                notChecked++;
+                continue;
+            }
+
+            var findings = check.Findings;
             var found = findings.Where(finding => finding.Line is not null).Select(finding => (finding.Line!.Value, finding.Expected, finding.Actual)).ToHashSet();
             var foundRate = findings.Any(finding => finding.Kind == FindingKind.RateBelowMinimum);
 
@@ -108,7 +120,7 @@ public static partial class ExtractionEval
             }
         }
 
-        return new(pay.Cases.Count, right, missed, falseAlarms);
+        return new(pay.Cases.Count, right, missed, falseAlarms, notChecked);
     }
 
     public static string KindOf(Rule rule) => rule switch

@@ -1,4 +1,4 @@
 {
   "Model": "claude-haiku-5-5",
-  "Text": "{\u0022text\u0022:\u0022Linjen Fritvalgskonto er udbetalt med 1.021,67 kr., men skulle have været 1.062,04 kr. ifølge § 9, stk. 1, som fastsætter arbejdsgiverens bidrag til medarbejderens fritvalgskonto som en andel af lønnen. Differencen er 40,37 kr. for lavt udbetalt.\u0022}"
+  "Text": "{\u0022text\u0022:\u0022På linjen Fritvalgskonto er der udbetalt 1.021,67 kr., mens der skulle være udbetalt 1.062,04 kr., så der mangler 40,37 kr. Reglen står i § 9, stk. 1, som fastsætter arbejdsgiverens bidrag til medarbejderens fritvalgskonto som en andel af lønnen.\u0022}"
 }
