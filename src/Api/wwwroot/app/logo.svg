@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" width="112" height="112" fill="none" role="img" aria-label="overens">
   <title>overens</title>
-  <!-- the payslip: a sheet with its corner folded -->
-  <path d="M34 14 H66 L88 36 V86 A12 12 0 0 1 76 98 H34 A12 12 0 0 1 22 86 V26 A12 12 0 0 1 34 14 Z" stroke="#e6edf3" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M66 14 V36 H88" stroke="#e6edf3" stroke-width="6" stroke-linejoin="round"/>
-  <!-- in agreement: what was paid equals what was due -->
-  <path d="M39 57 H71 M39 73 H71" stroke="#4ade80" stroke-width="7" stroke-linecap="round"/>
+  <!-- an O cut by an equals sign: what was paid equals what was due -->
+  <clipPath id="c"><circle cx="56" cy="56" r="44"/></clipPath>
+  <g clip-path="url(#c)"><rect width="112" height="38" fill="#e6edf3"/><rect y="47" width="112" height="18" fill="#4ade80"/><rect y="74" width="112" height="38" fill="#e6edf3"/></g>
 </svg>
