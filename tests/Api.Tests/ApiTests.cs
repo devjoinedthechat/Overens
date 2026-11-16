@@ -677,4 +677,36 @@ public sealed class ApiTests(Site site) : IClassFixture<Site>
         Assert.Equal(("NotCovered", "SpecialSavings", 0m), (finding.GetProperty("kind").GetString(), finding.GetProperty("line").GetString(), finding.GetProperty("difference").GetDecimal()));
         Assert.Contains("ikke kontrolleret", finding.GetProperty("explanation").GetString(), StringComparison.Ordinal);
     }
+
+    [Fact]
+    public async Task With_a_directory_per_company_a_token_is_taken_only_from_its_own_companys_issuer()
+    {
+        // As Microsoft Entra ID does it: the company is the "tid" claim, and each company's tokens come from an issuer of its own.
+        await using var entra = site.Create(
+            uploadsPerHour: 1000,
+            ("Auth:TenantClaim", "tid"),
+            ("Auth:IssuerPerTenant", "https://identity.test/{tenant}/v2.0"),
+            ("Auth:AllowedTenants:0", "contoso"),
+            ("Auth:AllowedTenants:1", "fabrikam"));
+        async Task<HttpStatusCode> Get(string token, string path = "/runs") => (await site.Client(token, entra).GetAsync(path)).StatusCode;
+        string From(string directory, string tid, string? tenant = null) =>
+            site.Token(tenant ?? "", issuer: $"https://identity.test/{directory}/v2.0", claimed: [("tid", tid)]);
+
+        Assert.Equal(HttpStatusCode.OK, await Get(From("contoso", "contoso")));
+        // Issued by one company's directory and naming another company: not taken.
+        Assert.Equal(HttpStatusCode.Unauthorized, await Get(From("fabrikam", "contoso")));
+        // A company the deployment does not serve, and a token with no company in it.
+        Assert.Equal(HttpStatusCode.Unauthorized, await Get(From("northwind", "northwind")));
+        Assert.Equal(HttpStatusCode.Unauthorized, await Get(site.Token("", issuer: "https://identity.test/contoso/v2.0")));
+
+        // A claim called "tenant" in the token is not what decides: the directory's own id is.
+        var contoso = site.Client(From("contoso", "contoso", tenant: "fabrikam"), entra);
+        var run = (await Json(await contoso.PostAsync("/agreements/lager/runs", PdfBody()))).GetProperty("id").GetString()!;
+        Assert.Equal(HttpStatusCode.OK, await Get(From("contoso", "contoso"), $"/runs/{run}"));
+        Assert.Equal(HttpStatusCode.NotFound, await Get(From("fabrikam", "fabrikam"), $"/runs/{run}"));
+
+        // The console is told what to ask the provider for and which claim names the company.
+        var config = await Json(await site.Client(null, entra).GetAsync("/app/config.json"));
+        Assert.Equal(("openid", "tid"), (config.GetProperty("scope").GetString(), config.GetProperty("tenantClaim").GetString()));
+    }
 }

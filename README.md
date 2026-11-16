@@ -81,7 +81,7 @@ The system running on one machine with Claude as the model. Every picture is the
 | Rules | Typed records and an engine on `decimal` | Every sum, with no model |
 | Durable work | Durable Task Scheduler | One orchestration per upload; waits days for a reviewer; survives a dead worker |
 | Data | PostgreSQL, plain-SQL schema, EF Core for access | Row-level security per company, three roles, immutable tables |
-| Identity | OpenID Connect; Keycloak locally | Roles and company from the token |
+| Identity | OpenID Connect; Keycloak locally, Microsoft Entra ID when deployed | Roles and company from the token |
 | PDF | PdfPig to read, MigraDoc to generate | Clauses from layout; tables from their ruled borders |
 | Telemetry | OpenTelemetry | Spans whose attributes come from a fixed list |
 | Local | .NET Aspire | The whole system from one command |
@@ -124,6 +124,7 @@ Each row is a property and the test that attacks it. Where a control was added, 
 | --- | --- |
 | One company cannot see another's data | Another company's token on every route; another tenant's scope on every table |
 | A token is checked, not trusted | Wrong key, expired, wrong audience, no role, no company |
+| A company's token comes from its own directory | With an issuer per company, a token from one directory that names another company |
 | An employer cannot do a specialist's work | Upload and rule sets with an employer's token |
 | A CPR number never reaches a model | In a question and in a tool result; removed at the layer next to the provider |
 | Pay data is not kept | Thirty payslips checked; the audit log holds counts and no employee id |
@@ -186,6 +187,13 @@ git clone https://github.com/devjoinedthechat/Overens && cd Overens
 scripts/check.sh      # secrets scan, build, format check, every test
 scripts/smoke.sh      # the whole system from nothing, one agreement from upload to checked payslips
 git config core.hooksPath .githooks   # once per clone: the secrets scan runs before every commit
+```
+
+The same smoke test runs against the container images the system is deployed as:
+
+```sh
+scripts/containers.sh build
+STACK=containers scripts/smoke.sh
 ```
 
 No model key is needed for either. Tests use stand-in models, and the system replays the answers recorded for the corpus agreements.
@@ -267,6 +275,7 @@ The corpus is generated, never edited by hand: `dotnet run --project tools/Corpu
 | `evals` | The eval runner and the recorded answers |
 | `tests` | One project per source project |
 | `tools` | Corpus writer, migrator and admin commands, the browser check and walkthrough recorder |
+| `infra` | The Azure infrastructure file, the same system as containers with local stand-ins, the demo sign-in realm |
 | `docs` | Decision records, eval report, threat model, cut list, a note on the EU AI Act |
 
 ## Design decisions
@@ -283,7 +292,7 @@ The corpus is generated, never edited by hand: `dotnet run --project tools/Corpu
 10. [The audit log is written by the database, and telemetry carries no content](docs/adr/0010-logged-by-the-database.md)
 11. [One model provider, and no real agreements](docs/adr/0011-one-provider.md)
 
-See also the [threat model](docs/threat-model.md), [what was left out, and why](docs/cut-list.md), and [the EU AI Act and this system](docs/ai-act.md). To report a vulnerability, see [SECURITY.md](SECURITY.md); to change something, [CONTRIBUTING.md](CONTRIBUTING.md).
+See also [Running on Azure](docs/azure.md), the [threat model](docs/threat-model.md), [what was left out, and why](docs/cut-list.md), and [the EU AI Act and this system](docs/ai-act.md). To report a vulnerability, see [SECURITY.md](SECURITY.md); to change something, [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Scope
 
@@ -291,7 +300,7 @@ See also the [threat model](docs/threat-model.md), [what was left out, and why](
 - **A value must be printed, or be one of two things code can work out.** An increase on an earlier rate and a share stated as a part of another figure are reported by the model as printed and worked out by code. Anything else a model derived is flagged.
 - **Six kinds of rule.** Minimum wage, overtime, inconvenient hours, pension, holiday allowance and special savings. A real agreement says more about pay than that.
 - **One model provider.** Failover is between Claude models, which covers a model short of capacity and not the provider being down.
-- **One machine.** The system runs locally, with development settings: plain HTTP, fixed demo passwords and a default Keycloak admin.
+- **Not yet run on Azure.** The deployment is defined and checked without an account: the infrastructure file compiles, the images build, and the system passes its smoke test from those images. See [Running on Azure](docs/azure.md). On one machine it runs with development settings: plain HTTP, fixed demo passwords and a default Keycloak admin.
 - **A reviewer approves or rejects.** Editing a proposed rule is not built.
 - **A small console.** One page, in English, written without a framework or a build step. Agreements, findings and answers are in Danish, and the agreement's own words are set apart from the interface as print.
 

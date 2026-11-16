@@ -9,7 +9,9 @@ using Overens.Worker;
 // whether it is alive (/alive) and whether it can reach its database (/health).
 var builder = WebApplication.CreateSlimBuilder(args);
 builder.AddServiceDefaults();
-if (string.IsNullOrEmpty(builder.Configuration["urls"]))
+// On a developer's machine it listens on a port of its own. In a container the image says where to listen, and that is left alone.
+bool Unset(string name) => string.IsNullOrEmpty(builder.Configuration[name]);
+if (Unset("urls") && Unset("HTTP_PORTS") && Unset("ASPNETCORE_HTTP_PORTS"))
 {
     builder.WebHost.UseUrls("http://localhost:8089");
 }

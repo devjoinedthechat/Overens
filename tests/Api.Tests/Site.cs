@@ -121,7 +121,7 @@ public sealed class Site : IAsyncLifetime
     }
 
     /// <summary>A token as the identity provider would issue it.</summary>
-    public string Token(string tenant, string name = "anna", string[]? roles = null, RsaSecurityKey? signedWith = null, TimeSpan? validFor = null, string audience = Audience)
+    public string Token(string tenant, string name = "anna", string[]? roles = null, RsaSecurityKey? signedWith = null, TimeSpan? validFor = null, string audience = Audience, string issuer = Issuer, params (string Name, string Value)[] claimed)
     {
         var claims = new List<Claim> { new("sub", $"id-{name}"), new("preferred_username", name) };
         if (tenant.Length > 0)
@@ -129,11 +129,13 @@ public sealed class Site : IAsyncLifetime
             claims.Add(new("tenant", tenant));
         }
 
+        claims.AddRange(claimed.Select(claim => new Claim(claim.Name, claim.Value)));
+
         claims.AddRange((roles ?? [Caller.Specialist]).Select(role => new Claim("roles", role)));
         var lifetime = validFor ?? TimeSpan.FromMinutes(5);
         return new JsonWebTokenHandler().CreateToken(new SecurityTokenDescriptor
         {
-            Issuer = Issuer,
+            Issuer = issuer,
             Audience = audience,
             Subject = new(claims),
             NotBefore = DateTime.UtcNow.Add(lifetime < TimeSpan.Zero ? lifetime * 2 : TimeSpan.FromMinutes(-1)),

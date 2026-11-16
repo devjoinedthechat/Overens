@@ -28,11 +28,47 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 builder.Services.AddOptions<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme).Configure<IOptions<AuthSettings>, IHostEnvironment>((options, auth, environment) =>
 {
     options.Authority = auth.Value.Authority;
+    if (auth.Value.MetadataAddress is { Length: > 0 } metadata)
+    {
+        options.MetadataAddress = metadata;
+    }
+
     options.Audience = auth.Value.Audience;
     options.RequireHttpsMetadata = !environment.IsDevelopment();
     options.MapInboundClaims = false;
     options.TokenValidationParameters.NameClaimType = "preferred_username";
     options.TokenValidationParameters.RoleClaimType = "roles";
+    if (auth.Value.IssuerPerTenant is { Length: > 0 })
+    {
+        // Each company has an issuer of its own. The token's issuer must be its own company's.
+        options.TokenValidationParameters.IssuerValidator = (issuer, token, _) => TenantRules.ValidateIssuer(auth.Value, issuer, token);
+    }
+
+    options.Events = new()
+    {
+        OnTokenValidated = accepted =>
+        {
+            // The company is read under one name from here on, whatever the provider calls the claim.
+            var identity = (System.Security.Claims.ClaimsIdentity)accepted.Principal!.Identity!;
+            var tenant = identity.FindFirst(auth.Value.TenantClaim)?.Value;
+            if (!TenantRules.Allowed(auth.Value, tenant))
+            {
+                accepted.Fail("The company is not one that may sign in here.");
+            }
+            else if (auth.Value.TenantClaim != Caller.TenantClaim && tenant is not null)
+            {
+                foreach (var claimed in identity.FindAll(Caller.TenantClaim).ToList())
+                {
+                    // A claim already named "tenant" in such a token is not the provider's word on the company.
+                    identity.RemoveClaim(claimed);
+                }
+
+                identity.AddClaim(new(Caller.TenantClaim, tenant));
+            }
+
+            return Task.CompletedTask;
+        },
+    };
 });
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy(Caller.Specialist, policy => policy.RequireRole(Caller.Specialist))
@@ -53,7 +89,7 @@ builder.Services.AddRateLimiter(limiter =>
         await Results.Problem("The company has asked for this too often in the last hour.", statusCode: StatusCodes.Status429TooManyRequests).ExecuteAsync(rejected.HttpContext);
     };
     void PerTenant(string name, Func<LimitSettings, int> perHour) => limiter.AddPolicy(name, http => RateLimitPartition.GetFixedWindowLimiter(
-        http.User.FindFirst("tenant")?.Value ?? "",
+        http.User.FindFirst(Caller.TenantClaim)?.Value ?? "",
         _ => new() { PermitLimit = perHour(http.RequestServices.GetRequiredService<IOptions<LimitSettings>>().Value), Window = TimeSpan.FromHours(1) }));
     PerTenant(Endpoints.UploadLimit, limits => limits.UploadsPerHour);
     PerTenant(QuestionEndpoints.Limit, limits => limits.QuestionsPerHour);
@@ -113,7 +149,7 @@ app.Use(async (http, next) =>
 });
 app.UseDefaultFiles();
 app.UseStaticFiles();
-app.MapGet("/app/config.json", () => Results.Ok(new ConsoleConfig(authority.ToString().TrimEnd('/'), auth.WebClient))).ExcludeFromDescription();
+app.MapGet("/app/config.json", () => Results.Ok(new ConsoleConfig(authority.ToString().TrimEnd('/'), auth.WebClient, auth.Scope, auth.TenantClaim))).ExcludeFromDescription();
 
 app.UseAuthentication();
 app.UseAuthorization();

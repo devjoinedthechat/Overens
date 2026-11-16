@@ -1,0 +1,85 @@
+# The system as containers, the way it runs when deployed, with stand-ins for what Azure
+# would provide: Postgres for the managed database, the Durable Task Scheduler's emulator
+# for the scheduler, and Keycloak for the identity provider.
+#
+#   scripts/containers.sh build     build the three images
+#   STACK=containers scripts/smoke.sh   run the smoke test against them
+#
+# The passwords here are for one machine. Nothing in this file is used in a deployment.
+name: overens
+
+services:
+  postgres:
+    image: postgres:18.3
+    environment:
+      POSTGRES_PASSWORD: local-owner-password
+      POSTGRES_DB: overens
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d overens"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  scheduler:
+    # Pinned by digest: the image's version tags are not in order, and "latest" moves.
+    image: mcr.microsoft.com/dts/dts-emulator@sha256:82ceb7df2fdfc2e22b0013c7b87b7a8e443bcd220d4fb37c32ced8ee23438719
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.8.2
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      # People reach it on the host's port. The API reaches it by its name on this network, and gets its keys there.
+      KC_HOSTNAME: http://localhost:8081
+      KC_HOSTNAME_BACKCHANNEL_DYNAMIC: "true"
+    volumes:
+      - ../keycloak:/opt/keycloak/data/import:ro
+    ports:
+      - "8081:8080"
+
+  migrate:
+    image: overens-migrate
+    environment:
+      ConnectionStrings__overens: Host=postgres;Database=overens;Username=postgres;Password=local-owner-password;GSS Encryption Mode=Disable
+      API_DB_PASSWORD: local-api-password
+      WORKER_DB_PASSWORD: local-worker-password
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  worker:
+    image: overens-worker
+    environment:
+      ConnectionStrings__worker: Host=postgres;Database=overens;Username=overens_worker;Password=local-worker-password;GSS Encryption Mode=Disable
+      ConnectionStrings__scheduler: Endpoint=http://scheduler:8080;TaskHub=default;Authentication=None
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      # With no model key the worker replays the answers recorded for the corpus.
+      RECORDINGS_DIR: /recordings
+    volumes:
+      - ../../evals/recordings:/recordings:ro
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      scheduler:
+        condition: service_started
+
+  api:
+    image: overens-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__api: Host=postgres;Database=overens;Username=overens_api;Password=local-api-password;GSS Encryption Mode=Disable
+      ConnectionStrings__scheduler: Endpoint=http://scheduler:8080;TaskHub=default;Authentication=None
+      Auth__Authority: http://localhost:8081/realms/overens
+      Auth__MetadataAddress: http://keycloak:8080/realms/overens/.well-known/openid-configuration
+      Auth__Audience: overens-api
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    ports:
+      - "5058:8080"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      scheduler:
+        condition: service_started
+      keycloak:
+        condition: service_started

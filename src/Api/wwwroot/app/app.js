@@ -22,6 +22,17 @@ function el(tag, attributes = {}, ...children) {
 
 const config = await (await fetch("config.json")).json();
 const redirect = `${location.origin}/app/`;
+// Where to sign in, fetch a token and sign out is read from the identity provider's own
+// description of itself, so the console works with any provider that speaks OpenID Connect.
+let provider = null;
+async function endpoints() {
+  if (!provider) {
+    const response = await fetch(`${config.authority}/.well-known/openid-configuration`);
+    if (!response.ok) throw new Error("The identity provider cannot be reached.");
+    provider = await response.json();
+  }
+  return provider;
+}
 let token = null;
 let claims = null;
 
@@ -38,12 +49,12 @@ async function signIn() {
     client_id: config.clientId,
     redirect_uri: redirect,
     response_type: "code",
-    scope: "openid",
+    scope: config.scope,
     state,
     code_challenge: challenge,
     code_challenge_method: "S256",
   });
-  location.assign(`${config.authority}/protocol/openid-connect/auth?${query}`);
+  location.assign(`${(await endpoints()).authorization_endpoint}?${query}`);
 }
 
 async function finishSignIn() {
@@ -54,7 +65,7 @@ async function finishSignIn() {
   sessionStorage.removeItem("pkce");
   history.replaceState(null, "", redirect);
   if (!saved || saved.state !== query.get("state")) throw new Error("The sign-in did not start here. Try again.");
-  const response = await fetch(`${config.authority}/protocol/openid-connect/token`, {
+  const response = await fetch((await endpoints()).token_endpoint, {
     method: "POST",
     body: new URLSearchParams({
       grant_type: "authorization_code",
@@ -69,9 +80,11 @@ async function finishSignIn() {
   claims = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(token.split(".")[1].replaceAll("-", "+").replaceAll("_", "/")), (c) => c.charCodeAt(0))));
 }
 
-function signOut() {
+async function signOut() {
   token = null;
-  location.assign(`${config.authority}/protocol/openid-connect/logout?${new URLSearchParams({ client_id: config.clientId, post_logout_redirect_uri: redirect })}`);
+  const end = (await endpoints()).end_session_endpoint;
+  // A provider with no sign-out address of its own: forgetting the token here is the sign-out.
+  location.assign(end ? `${end}?${new URLSearchParams({ client_id: config.clientId, post_logout_redirect_uri: redirect })}` : redirect);
 }
 
 async function api(method, path, body, type = "application/json") {
@@ -509,7 +522,7 @@ try {
     );
   } else {
     const roles = claims.roles ?? [];
-    sessionBox.replaceChildren(el("strong", {}, claims.preferred_username), el("span", {}, claims.tenant ?? "no company"), el("button", { onclick: signOut }, "Sign out"));
+    sessionBox.replaceChildren(el("strong", {}, claims.preferred_username), el("span", {}, claims[config.tenantClaim] ?? "no company"), el("button", { onclick: signOut }, "Sign out"));
     if (roles.includes("specialist")) tabs([["Agreements", agreementsView], ["Check a payslip", payView], ["Ask", askView]]);
     else if (roles.includes("employer")) tabs([["Check a payslip", payView], ["Ask", askView]]);
     else app.replaceChildren(el("section", {}, el("h1", {}, "No access"), el("p", {}, "Your account has no role in Overens. Ask an administrator.")));

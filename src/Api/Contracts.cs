@@ -83,4 +83,4 @@ public sealed record CitationView(string ClauseId, string Quote);
 
 public sealed record ServiceInfo(string Service);
 
-public sealed record ConsoleConfig(string Authority, string ClientId);
+public sealed record ConsoleConfig(string Authority, string ClientId, string Scope, string TenantClaim);

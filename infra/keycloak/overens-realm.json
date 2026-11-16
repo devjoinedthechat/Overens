@@ -1,7 +1,7 @@
 {
   "realm": "overens",
   "enabled": true,
-  "sslRequired": "external",
+  "sslRequired": "none",
   "accessTokenLifespan": 300,
   "roles": {
     "realm": [

@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
+  <PropertyGroup>
+    <!-- `dotnet publish -t:PublishContainer` builds this image, with no Dockerfile. It runs as a user without root. -->
+    <ContainerRepository>overens-worker</ContainerRepository>
+  </PropertyGroup>
+
   <!-- Runs the ingestion pipeline as a durable orchestration. -->
 
   <ItemGroup>

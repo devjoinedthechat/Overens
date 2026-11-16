@@ -11,6 +11,12 @@ public sealed record Caller(string TenantId, string Name)
     /// <summary>Checks pay against published rule sets. Cannot upload, review or approve.</summary>
     public const string Employer = "employer";
 
+    /// <summary>
+    /// The claim the rest of the API reads a person's company from. Whatever the identity
+    /// provider calls it, it is copied to this name when the token is accepted.
+    /// </summary>
+    public const string TenantClaim = "tenant";
+
     /// <summary>The policy for checking pay: a specialist or an employer.</summary>
     public const string ChecksPay = "checks-pay";
 
@@ -18,7 +24,7 @@ public sealed record Caller(string TenantId, string Name)
     public static Caller? From(ClaimsPrincipal user)
     {
         ArgumentNullException.ThrowIfNull(user);
-        var tenant = user.FindFirstValue("tenant");
+        var tenant = user.FindFirstValue(TenantClaim);
         var name = user.FindFirstValue("preferred_username") ?? user.FindFirstValue("sub");
         return string.IsNullOrWhiteSpace(tenant) || string.IsNullOrWhiteSpace(name) ? null : new(tenant, name);
     }

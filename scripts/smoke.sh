@@ -9,6 +9,8 @@
 #   WITH_MODEL=1              use ANTHROPIC_API_KEY: findings are worded and one question is
 #                             answered by Claude Haiku. Costs about a cent.
 #   SHOTS=dir                 save screenshots of the console there
+#   STACK=containers          run the system from its container images, as it is deployed, and
+#                             not from source. Build them first: scripts/containers.sh build
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -22,7 +24,10 @@ check() { if [ "$2" = "$3" ]; then ok "$1"; else bad "$1 (expected $3, got $2)";
 json() { python3 -c "import json,sys; d=json.load(sys.stdin); print($1)"; }
 
 # The system listens on fixed ports. One that is taken fails the start in a way that is hard to read, so it is said here.
-for port in 5058 8081 8089 8090 8092; do
+stack=${STACK:-source}
+ports="5058 8081 8089 8090 8092"
+if [ "$stack" = containers ]; then ports="5058 8081"; fi
+for port in $ports; do
   if (exec 3<>"/dev/tcp/127.0.0.1/$port") 2>/dev/null; then
     echo "Port $port is in use. Stop what is listening there (an earlier run left with KEEP=1?) and try again."
     exit 1
@@ -31,19 +36,32 @@ done
 
 # Without WITH_MODEL the key is withheld even if one is set, so the test never spends.
 if [ -z "${WITH_MODEL:-}" ]; then export ANTHROPIC_API_KEY=; fi
-dotnet run --project src/AppHost >"$log" 2>&1 &
-host=$!
+if [ "$stack" = containers ]; then
+  scripts/containers.sh up >"$log" 2>&1
+  host=
+else
+  dotnet run --project src/AppHost >"$log" 2>&1 &
+  host=$!
+fi
+running() { if [ -n "$host" ]; then kill -0 "$host" 2>/dev/null; else [ -n "$(docker compose -f infra/compose/compose.yml ps -q api)" ]; fi; }
 stop() {
   # A command that fails under "set -e" ends the script without passing through bad(): count that as a failure too.
   if [ "$?" -ne 0 ]; then failed=1; fi
-  if [ -z "${KEEP:-}" ] || [ "$failed" -ne 0 ]; then
-    kill "$host" 2>/dev/null || true
-    wait "$host" 2>/dev/null || true
-  else
-    echo "Left running. Dashboard: http://localhost:15034  API: $api  Stop it with: kill $host"
-  fi
   if [ "$failed" -ne 0 ]; then
-    echo; echo "The host's log:"; tail -n 60 "$log"
+    echo; echo "The system's log:"
+    if [ -n "$host" ]; then tail -n 60 "$log"; else docker compose -f infra/compose/compose.yml logs --tail 40 api worker migrate 2>&1; fi
+  fi
+  if [ -z "${KEEP:-}" ] || [ "$failed" -ne 0 ]; then
+    if [ -n "$host" ]; then
+      kill "$host" 2>/dev/null || true
+      wait "$host" 2>/dev/null || true
+    else
+      scripts/containers.sh down >/dev/null 2>&1 || true
+    fi
+  elif [ -n "$host" ]; then
+    echo "Left running. Dashboard: http://localhost:15034  API: $api  Stop it with: kill $host"
+  else
+    echo "Left running. API: $api  Stop it with: scripts/containers.sh down"
   fi
   rm -f "$log"
 }
@@ -52,7 +70,7 @@ trap stop EXIT
 echo "Starting the system"
 for _ in $(seq 1 150); do
   if curl -sf "$api/health" >/dev/null 2>&1 && curl -sf "$keycloak/.well-known/openid-configuration" >/dev/null 2>&1; then break; fi
-  if ! kill -0 "$host" 2>/dev/null; then bad "the host stopped"; exit 1; fi
+  if ! running; then bad "the system stopped"; exit 1; fi
   sleep 2
 done
 check "the API is up" "$(curl -s -o /dev/null -w '%{http_code}' "$api/health")" 200
