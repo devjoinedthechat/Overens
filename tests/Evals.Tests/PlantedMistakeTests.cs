@@ -39,6 +39,29 @@ public sealed class PlantedMistakeTests
         Assert.Equal(published, JsonSerializer.Serialize(await Study.Value, EvalResults.Json) + "\n");
     }
 
+    [Fact]
+    public async Task The_figures_in_the_report_and_the_readme_are_the_studys_own()
+    {
+        var study = await Study.Value;
+        var all = study.Total();
+        var misplaced = study.Total(PlantedMistakes.Misplaced);
+        var leftOut = study.Total(PlantedMistakes.LeftOut);
+        string[] figures =
+        [
+            $"| All | {all.Stopped:N0} of {all.Planted:N0} | {all.Reported} | {all.Silent} |",
+            $"| The agreement's own figure in the wrong place | {misplaced.Stopped} of {misplaced.Planted} | 0 | {misplaced.Silent} |",
+            $"| Something left out | {leftOut.Stopped} of {leftOut.Planted} | {leftOut.Reported} | {leftOut.Silent} |",
+            $"{study.Totals.Count} kinds of mistake",
+        ];
+        var report = await File.ReadAllTextAsync(Path.Combine(Root(), "docs", "eval-report", "README.md"));
+        var readme = await File.ReadAllTextAsync(Path.Combine(Root(), "README.md"));
+
+        Assert.All(figures, figure => Assert.Contains(figure, report, StringComparison.Ordinal));
+        Assert.Contains($"{all.Planted:N0} mistakes of {study.Totals.Count} kinds", readme, StringComparison.Ordinal);
+        Assert.Contains($"| The agreement's own figure in the wrong place | {misplaced.Stopped} of {misplaced.Planted} | 0 | {misplaced.Silent} |", readme, StringComparison.Ordinal);
+        Assert.Contains($"which stop {all.Stopped:N0} since the fixes", readme, StringComparison.Ordinal);
+    }
+
     [Theory]
     [InlineData(PlantedMistakes.NotPrinted)]
     [InlineData(PlantedMistakes.NearMiss)]
