@@ -20,6 +20,14 @@ updates:
       # From 6.5 the library is AGPL and refuses to run without a licence. 6.2 is MIT.
       - dependency-name: PDFsharp-MigraDoc
         versions: [">=6.5.0"]
+      # These follow the .NET version the code is built for. A new major arrives with the move to that .NET,
+      # not on its own: version 11 beside the .NET 10 web framework runs the logging generator twice.
+      - dependency-name: "Microsoft.*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "System.*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "Npgsql*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
