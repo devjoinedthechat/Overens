@@ -197,7 +197,7 @@ public sealed class ExtractionTests
             switch (kind)
             {
                 case "pension":
-                    // The total, read as the employer's share.
+                    // A share the clause does not print.
                     rules[0]!["employer_percent"] = rules[0]!["employer_percent"]!.GetValue<decimal>() + 0.3m;
                     break;
                 case "minimum_wage":
@@ -223,6 +223,71 @@ public sealed class ExtractionTests
             ["minimum_wage-2027", "overtime-2026", "pension-2026"],
             extraction.Rules.Where(rule => rule.Problems.Any(problem => problem.Code == "value_not_in_cited_clauses")).Select(rule => rule.Rule.Id).Order());
         Assert.Equal(extraction.Rules.Count - 3, extraction.Sound.Count());
+    }
+
+    [Fact]
+    public async Task A_figure_from_another_years_column_keeps_the_rule_out()
+    {
+        var (_, extraction, _) = await Extract(4, 2, (kind, rules) =>
+        {
+            // Every figure is printed in the cited clause: under next year's date.
+            if (kind == "minimum_wage")
+            {
+                rules[0]!["bands"] = rules[1]!["bands"]!.DeepClone();
+            }
+            else if (kind == "inconvenient_hours")
+            {
+                rules[1]!["windows"] = rules[2]!["windows"]!.DeepClone();
+            }
+        });
+
+        Assert.Equal(
+            ["inconvenient_hours-2027", "minimum_wage-2026"],
+            extraction.Rules.Where(rule => rule.Problems.Count > 0).Select(rule => rule.Rule.Id).Order());
+        Assert.All(extraction.Rules.SelectMany(rule => rule.Problems), problem => Assert.Equal("value_under_another_date", problem.Code));
+    }
+
+    [Fact]
+    public async Task A_rate_from_another_bands_row_and_a_supplement_from_another_windows_row_keep_the_rule_out()
+    {
+        var (_, extraction, _) = await Extract(6, 3, (kind, rules) =>
+        {
+            if (kind == "minimum_wage")
+            {
+                var bands = rules[0]!["bands"]!.AsArray();
+                var (lowest, highest) = (bands[0]!["hourly_rate"]!.GetValue<decimal>(), bands[^1]!["hourly_rate"]!.GetValue<decimal>());
+                (bands[0]!["hourly_rate"], bands[^1]!["hourly_rate"]) = (highest, lowest);
+            }
+            else if (kind == "inconvenient_hours")
+            {
+                var windows = rules[0]!["windows"]!.AsArray();
+                var (first, second) = (windows[0]!["amount_per_hour"]!.GetValue<decimal>(), windows[1]!["amount_per_hour"]!.GetValue<decimal>());
+                (windows[0]!["amount_per_hour"], windows[1]!["amount_per_hour"]) = (second, first);
+            }
+        });
+
+        Assert.Equal(
+            ["inconvenient_hours-2026", "minimum_wage-2026"],
+            extraction.Rules.Where(rule => rule.Problems.Count > 0).Select(rule => rule.Rule.Id).Order());
+        Assert.All(extraction.Rules.SelectMany(rule => rule.Problems), problem => Assert.Equal("value_in_another_row", problem.Code));
+    }
+
+    [Fact]
+    public async Task A_window_given_back_to_front_keeps_the_rule_out()
+    {
+        var (_, extraction, _) = await Extract(4, 2, (kind, rules) =>
+        {
+            if (kind == "inconvenient_hours")
+            {
+                // 22.00 to 18.00, where the row prints 18.00-22.00. Both times are printed.
+                var window = rules[0]!["windows"]![0]!;
+                (window["from"], window["to"]) = (window["to"]!.GetValue<string>(), window["from"]!.GetValue<string>());
+            }
+        });
+
+        var flagged = Assert.Single(extraction.Rules, rule => rule.Problems.Count > 0);
+        Assert.Equal("inconvenient_hours-2026", flagged.Rule.Id);
+        Assert.Equal(["window_back_to_front"], flagged.Problems.Select(problem => problem.Code));
     }
 
     [Fact]

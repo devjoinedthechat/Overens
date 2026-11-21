@@ -14,6 +14,9 @@ namespace Overens.Ingestion.Extraction;
 /// - every number in the rule is printed in the section its quote is in or in another clause
 ///   it cites (for a rate given as an
 ///   increase, the increase is, and the sum is made by code);
+/// - a figure that stands in a table stands under the rule's date and in the rule's row
+///   (see the other half of this class);
+/// - a rate built on an earlier rule's rate is flagged when that rule is;
 /// - every date in the rule is printed in the agreement;
 /// - the rules together are a usable rule set.
 ///
@@ -35,19 +38,23 @@ public static partial class Grounding
         ArgumentNullException.ThrowIfNull(rules);
         var clauses = agreement.Sections.SelectMany(section => section.Clauses)
             .ToDictionary(clause => clause.Id, clause => Flatten(ExtractionPrompt.Text(clause)));
+        var byId = agreement.Sections.SelectMany(section => section.Clauses).ToDictionary(clause => clause.Id);
         var everything = string.Join(' ', clauses.Values);
         var asASet = RuleSetValidator.Validate(new("proposed", 0, [.. rules.Select(rule => rule.Rule)]));
 
         var proposed = new List<ProposedRule>();
+        ProposedRule? earlierWage = null;
         foreach (var (rule, alsoFrom, increase, share) in rules)
         {
             var problems = new List<RuleProblem>();
             void Problem(string code, string message) => problems.Add(new(rule.Id, code, message));
 
             var cited = new List<string>();
+            var citedClauses = new List<Clause>();
             if (clauses.TryGetValue(rule.Source.ClauseId, out var clause))
             {
                 cited.Add(clause);
+                citedClauses.Add(byId[rule.Source.ClauseId]);
                 var quote = Flatten(rule.Source.Quote);
                 if (quote.Length < 12 || !clause.Contains(quote, StringComparison.Ordinal))
                 {
@@ -64,6 +71,7 @@ public static partial class Grounding
                 if (clauses.TryGetValue(other, out var text))
                 {
                     cited.Add(text);
+                    citedClauses.Add(byId[other]);
                 }
                 else
                 {
@@ -77,9 +85,11 @@ public static partial class Grounding
             if (agreement.Sections.FirstOrDefault(section => section.Clauses.Any(inSection => inSection.Id == rule.Source.ClauseId)) is { } home)
             {
                 cited.AddRange(home.Clauses.Select(inSection => clauses[inSection.Id]));
+                citedClauses.AddRange(home.Clauses);
             }
 
-            var citedText = string.Join(' ', cited);
+            // "§ 3" and "1. marts 2027" are not figures: a tier of three hours is not printed by a reference to § 3.
+            var citedText = NotFigures().Replace(string.Join(' ', cited), " ");
             // A rate that was added up here is not printed anywhere. What must be printed is the increase.
             var values = increase is { } added ? [($"The increase of {added}", Money(added))] : Values(rule, share);
             if (share is not null && rule is PensionRule shared && decimal.Round(shared.EmployeePercent, 2) != shared.EmployeePercent)
@@ -96,6 +106,14 @@ public static partial class Grounding
                 }
             }
 
+            CheckTables(rule, [.. citedClauses.Distinct()], increase, Problem);
+
+            // A rate added up from the period before is only as good as that period's rate.
+            if (increase is not null && earlierWage is { Problems.Count: > 0 })
+            {
+                Problem("built_on_flagged_rule", $"The rate is the rate of {earlierWage.Rule.Id} with an increase, and {earlierWage.Rule.Id} has a problem.");
+            }
+
             foreach (var day in new[] { rule.InForce.From, rule.InForce.Until }.OfType<DateOnly>())
             {
                 if (!PrintedDate(everything, Danish.Date(day)))
@@ -108,6 +126,10 @@ public static partial class Grounding
             // conflict for a person to settle, and are reported with the gaps.
             problems.AddRange(asASet.Where(problem => problem.RuleId == rule.Id && problem.Code != "overlapping_period"));
             proposed.Add(new(rule, alsoFrom, problems));
+            if (rule is MinimumWageRule)
+            {
+                earlierWage = proposed[^1];
+            }
         }
 
         return proposed;
@@ -284,4 +306,8 @@ public static partial class Grounding
 
     [GeneratedRegex(@"\s+")]
     private static partial Regex WhiteSpace();
+
+    /// <summary>Numbers that name a clause or a day: "§ 3", "stk. 2", "Bilag 1", "1. marts 2027", "01.03.2027".</summary>
+    [GeneratedRegex(@"(?:§|\bstk\.|\bbilag|\bkapitel)\s*\d+|\b\d{1,2}\.\s*(?:januar|februar|marts|april|maj|juni|juli|august|september|oktober|november|december)(?:\s+\d{4})?|\b\d{2}\.\d{2}\.\d{4}\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private static partial Regex NotFigures();
 }

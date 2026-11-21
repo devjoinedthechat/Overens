@@ -27,6 +27,8 @@ Things a production system of this kind would have, that this one does not. Each
 | The reader knows two numbering conventions | Sections with "Stk." clauses, and bold numbered headings. A third would read as no clauses and fail the run |
 | A split word's hyphen is guessed | A line ending in a hyphen is joined by a rule of thumb. It can be wrong |
 | Questions use the newest version's text | The rules are joined across versions; the clauses searched are the newest upload's |
+| The rule checks are about where a figure is printed | Figures exchanged within one sentence, and a part of a rule left out, pass. Measured: 264 of 2,363 planted mistakes |
+| "One" is barely checked | A count of one is accepted as "en", "et" or "første", and those words are everywhere |
 | The answer check is about provenance | It shows where each figure came from, not whether the answer addresses the question |
 | Failover does not cover a provider outage | Both models are the same provider's |
 | The audit log holds staff user names | And is kept when a company is erased |

@@ -147,20 +147,95 @@ No wrong rule went unflagged in any of the four.
 
 This fix was made after seeing the failure, so the "Increases" result above is no longer a result on unseen documents. The other five twists were never fitted to.
 
-## What the checks caught, in tests
+## The checks, measured on wrong answers
 
-The models made no error the checks had to catch on these documents, so the checks are shown by tests that spoil a correct answer one way at a time (`tests/Ingestion.Tests/ExtractionTests.cs`):
+The models made almost no mistake on these documents, so "0 wrong rules got past the checks" says little about the checks. This study gives them wrong answers. Each of Sonnet's recorded answers is spoiled one way at a time, in a way a model gets a rule wrong, and the whole of extraction runs on it as if the model had answered so.
 
-| Spoiled answer | Caught as |
-| --- | --- |
-| A reworded quote | `quote_not_in_clause` |
-| The pension total read as the employer's share | `value_not_in_cited_clauses` |
-| A rate off by one krone | `value_not_in_cited_clauses` |
-| A daily norm from a clause the rule does not cite | `value_not_in_cited_clauses` |
-| A clause that does not exist | `unknown_clause` |
-| A start date printed nowhere | `date_not_in_agreement` |
-| The same rule twice | `overlapping_period` |
-| An increase the agreement does not print | `value_not_in_cited_clauses` |
+```sh
+dotnet run --project evals/Runner -- --planted
+```
+
+It replays recordings, spends nothing, and takes under a minute. A test fails if [`results/planted`](results/planted) differs from what it gives.
+
+**What was planted.** 48 kinds of mistake in six groups, each in every rule it fits across the sixteen agreements: 2,363 wrong answers.
+
+| Group | Example | Planted |
+| --- | --- | --- |
+| A figure the agreement prints nowhere | A rate 37 øre too high; a sum the model made itself | 352 |
+| A figure one step off | A krone, half a point, an hour or a year away | 345 |
+| The agreement's own figure in the wrong place | Next year's rate; two bands' rates exchanged; employer's and employee's share exchanged | 365 |
+| Something left out | The top seniority band, a weekday, the waiting period, or the whole rule | 375 |
+| The wrong days | Starts a month late; never ends; starts when the next period does | 464 |
+| Spoiled evidence | A word added to the quote; a clause that does not exist | 462 |
+
+**What became of each.** There are three outcomes, by what a reviewer is told:
+
+- **Stopped.** The rule is flagged or in conflict. It cannot be published until a person acts.
+- **Reported.** The rule looks sound, and the run says that days or a kind of rule are missing.
+- **Silent.** Nothing tells the reviewer anything.
+
+| Group | Stopped | Reported | Silent |
+| --- | --- | --- | --- |
+| A figure the agreement prints nowhere | 352 of 352 | 0 | 0 |
+| A figure one step off | 345 of 345 | 0 | 0 |
+| The agreement's own figure in the wrong place | 276 of 365 | 0 | 89 |
+| Something left out | 0 of 375 | 200 | 175 |
+| The wrong days | 464 of 464 | 0 | 0 |
+| Spoiled evidence | 462 of 462 | 0 | 0 |
+| All | 1,899 of 2,363 | 200 | 264 |
+
+Of the 264 silent mistakes, 198 made the pay check judge at least one payslip wrongly. The other 66 changed a rule in a way the pay data did not exercise.
+
+### What the first run found, and what was changed
+
+The study was first run on the checks as they stood. They stopped 1,601 of the 2,363 and let 562 through in silence. Three things in that result were faults in the checks, and were fixed.
+
+| Found | Why it got through | Change |
+| --- | --- | --- |
+| A wrong first-year rate was flagged, and the later years built on it were not | A rate given as an increase was checked for the increase alone | A rate added to a flagged rate is flagged: `built_on_flagged_rule` |
+| A tier of three hours passed where the agreement says two | A "3" was printed nearby, in "§ 3" | Numbers that name a clause or a day are not figures |
+| Next year's rate passed as this year's | Both stand in the same clause | A figure in a table must stand under the rule's date and in the rule's row |
+
+The table checks raise `value_under_another_date`, `value_in_another_row` and `window_back_to_front`. In running text, a figure may not be given "fra" another day than the rule's.
+
+The same 2,363 mistakes before and after:
+
+| Group | Stopped before | Stopped after |
+| --- | --- | --- |
+| A figure the agreement prints nowhere | 343 of 352 | 352 |
+| A figure one step off | 301 of 345 | 345 |
+| The agreement's own figure in the wrong place | 31 of 365 | 276 |
+| Everything else | 926 of 1,301 | 926 |
+
+Neither model's recorded answers changed score. No correct rule is flagged by the added checks, on the recordings or on the 21 generated agreements the tests read.
+
+### What still gets through
+
+Every one of these is a rule whose every figure is printed where the rule says it is. The table says how many passed, and how many payslips of 72 the wrong rule then misjudged on average.
+
+| Mistake | Silent | Payslips misjudged |
+| --- | --- | --- |
+| Overtime percentages exchanged, or Sunday given the weekday percentage | 32 of 32 | 42 |
+| Employer's and employee's pension share exchanged | 25 of 25 | 39 |
+| The pension total taken as the employer's share | 9 of 25 | 37 |
+| A pension or savings percentage from another period, where a protocol states it | 13 of 70 | 29 |
+| Two seniority bands' rates exchanged, in a table of two bands or in a sentence | 8 of 40 | 2 |
+| A window, a weekday, a tier, a band or the waiting period left out | 175 of 175 | 13 |
+
+What these have in common:
+
+- **Figures that stand in one sentence.** "50,0 pct. … herefter 100,0 pct." prints both percentages with nothing a check can hold each to. The same goes for the two pension shares. A table has rows and headings to check against; a sentence has only its meaning.
+- **A part that is missing.** A rule with two of the table's three windows is made only of printed figures. Requiring every row of a cited table to be used would flag correct rules wherever a table also holds rates that are not rules, as the mixed table does.
+- **A whole rule left out is reported, never stopped.** All 200 show as days or a kind with no rule. Whether a reviewer acts on that list is not measured.
+
+A reviewer who sees the rule beside its clause is the guard for all of these.
+
+### Limits of the study
+
+- **The mistakes are planted, not made.** They are the ways a rule can be wrong that could be listed, one at a time. A model's real mistakes may come in other shapes or in pairs.
+- **The rates depend on the mix.** "1,899 of 2,363" is the share of this list, weighted by how many rules each mistake fits. It is not the chance that a model's next mistake is stopped.
+- **One model's answers.** The mistakes are planted in Sonnet's recorded answers. Haiku's give the same picture, with a few fewer rules to plant in: `--planted --model claude-haiku-5-5`.
+- **The same synthetic agreements.** The table checks were written after seeing this study's result on these documents. They rest on what a table prints, a date in a heading and a label in a row, and have met no real agreement.
 
 ## Hostile agreements
 
@@ -255,5 +330,5 @@ No answer was withheld by either model.
 - **Each model answered once per prompt version.** There is no proper measure of how much an answer varies from run to run. The one time everything was run again, Haiku's answers differed enough to trip a check twice.
 - **Six kinds of rule.** Anything else an agreement says about pay, such as shift work, on-call pay or public holidays, is not extracted and not counted as missing.
 - **Text PDFs with ruled tables in one column.** A scanned agreement is not read at all.
-- **What the checks cannot catch** is a value that is printed in the cited clause but belongs to something else: the apprentice rate taken as the minimum wage, a supplement attached to the wrong weekday, a right value for the wrong period. No model did this here. A reviewer is the only guard against it.
+- **What the checks cannot catch** is measured above: a figure printed in the cited clause that belongs to something else, where no table says what it belongs to, and a part of a rule left out. No model did this here. A reviewer is the only guard against it.
 - **A missing rule is reported, not prevented.** Since Haiku's first run, an extraction says which kinds of rule have no rule, or days with none, and the reviewer sees that list. Both models report no gaps on the current prompt. Whether a reviewer acts on the list is not measured.

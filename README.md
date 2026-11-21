@@ -21,8 +21,8 @@
 
 <p align="center">
   <a href="#walkthrough">Walkthrough</a> ·
-  <a href="#what-it-proves">What it proves</a> ·
   <a href="#results-on-real-models">Results</a> ·
+  <a href="#what-it-proves">What it proves</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="#how-an-agreement-becomes-rules">How it works</a> ·
   <a href="#design-decisions">Design decisions</a>
@@ -87,75 +87,6 @@ The system running on one machine with Claude as the model. Every picture is the
 | Local | .NET Aspire | The whole system from one command |
 | Tests | xUnit, Testcontainers, CsCheck, Playwright | Real Postgres and scheduler; property tests; a real browser |
 
-## What it proves
-
-Each row is a property and the test that attacks it. Where a control was added, a bug was planted to confirm the test fails without it.
-
-### The model does not decide
-
-| Property | How the test tries to break it |
-| --- | --- |
-| The model never calculates | A stand-in model adds up an increase itself; the sums are printed nowhere and are refused. Reported as an increase, code adds it |
-| Money is never a float | Reflection over the rules assembly for any `float` or `double` |
-| Every rule quotes its clause | A reworded quote, a clause that does not exist |
-| Every number is the agreement's | The pension total read as the employer's share; a rate off by one krone; a start date printed nowhere |
-| A missing rule is reported | A stand-in returns only the first year; nothing is flagged on any rule, and the gap is reported |
-| A contradiction is put to a person | Two clauses give different figures; both are proposed, the conflict names both clauses, and approving both is refused |
-| An explanation uses only the finding's numbers | A percentage the model worked out; a deadline it invented; "too much" said of a shortfall |
-| An answer rests on the agreement | A sum the model made; a reworded quote; a number from a clause it did not cite; a number written as a word |
-| Money in an answer is money a person approved | A planted clause, quoted word for word, that states a wage; its figure is not repeated |
-| Half an answer is not an answer | A model that runs out of room; the run fails at once, is not asked again, and says why |
-| What the agreement does not say is not answered | Twelve unanswerable questions per model; the fixed sentence is the only correct outcome |
-
-### A person publishes
-
-| Property | How the test tries to break it |
-| --- | --- |
-| Nothing is published without a person's approval | The worker calls publish with no approval; tries to write an approval, a decision and a rule set directly |
-| The API cannot publish | The API's database role calls the publish function |
-| A flagged rule cannot be approved | Through the API, and directly in the database |
-| What was approved is what is published | A decision changed after the approval and before publication |
-| A published rule set cannot change | Update, delete and truncate, as each role and as the database's owner |
-| A payslip is checked against the rules of its own date | A renewal from 2029; payslips on both sides of it |
-
-### Isolation and privacy
-
-| Property | How the test tries to break it |
-| --- | --- |
-| One company cannot see another's data | Another company's token on every route; another tenant's scope on every table |
-| A token is checked, not trusted | Wrong key, expired, wrong audience, no role, no company |
-| A company's token comes from its own directory | With an issuer per company, a token from one directory that names another company |
-| An employer cannot do a specialist's work | Upload and rule sets with an employer's token |
-| A CPR number never reaches a model | In a question and in a tool result; removed at the layer next to the provider |
-| Pay data is not kept | Thirty payslips checked; the audit log holds counts and no employee id |
-| Telemetry carries no content | Every attribute of every span of a run searched for the agreement's words |
-| A company can be erased, by the owner only | Each service role tries; the owner tries another company's rows |
-
-### Hostile input
-
-| Property | How the test tries to break it |
-| --- | --- |
-| Text in a document cannot give orders | Five passages addressed to AI systems, one inside the wage clause, one dressed as a protocol; both real models |
-| A damaged file does not reach the model | A PDF cut short, scrambled, or only a header |
-| Markup is shown as text | Typed into the console; any script or console error fails the browser check |
-| The console loads only its own code | The content policy is read back and may not contain `unsafe` |
-
-### Operations
-
-| Property | How the test tries to break it |
-| --- | --- |
-| A run survives its worker dying | The worker is stopped while a run waits; the review is done with nothing running; a second worker finishes without reading again |
-| An upload is never lost | The scheduler is unreachable at upload; the worker finds the run and starts it once |
-| A model that is down is replaced | The asked-for model fails; the other answers, and the run records which |
-| One company cannot spend without limit | A daily budget of five cents; the second agreement is refused at once, and a failed attempt counts too |
-| Calls at the same moment cannot pass the cap together | Two calls start together under a cap one of them fills; the second is refused |
-| A slow model is not waited for | A model that never answers; the other one does, inside the time limit |
-| Bad input is the caller's mistake, not a crash | Seven malformed payslips, overlapping shifts, work before the hiring date; each is a 400 with a reason |
-| A line with no approved rule is not called wrong | A correct payslip checked without the savings rule; the line is reported as not checked |
-| A run whose pipeline is gone does not stay open | A run handed to a pipeline the scheduler never had is ended as failed; one waiting for review is left alone |
-| Every change is logged, and the log cannot be edited | Each role tries to write, change and empty it; the owner's edit breaks that company's hash chain; a rolled-back write does not |
-| An agent cannot run forever | A stand-in that only ever searches |
-
 ## Results on real models
 
 Every document is synthetic: an agreement is generated from a rule set, so the right answer is known before any model reads it. No real agreement has been measured.
@@ -176,7 +107,90 @@ The long agreements run to about 24 pages and 60 sections, most of them not abou
 
 The numbers are after fixes. On first contact with documents the prompt had not seen, a wage given as "raised by 5,00 kr." broke extraction, Sonnet silently chose between two contradicting clauses, and Haiku searched thirteen times for something the agreement does not cover. The long set added two more: a pension share stated as "half of the employer's contribution", which printed no figure to check, and a mistake in the test data itself. Both are in the report.
 
+### The checks, on wrong answers
+
+Models that make no mistakes say little about the checks that are there to catch them. So 2,363 mistakes of 48 kinds were planted in the recorded answers, one at a time, and extraction was run on each.
+
+| Planted mistake | Stopped | Reported | Silent |
+| --- | --- | --- | --- |
+| A figure the agreement does not print, or one step off | 697 of 697 | 0 | 0 |
+| The wrong days, or a spoiled quote or clause | 926 of 926 | 0 | 0 |
+| The agreement's own figure in the wrong place | 276 of 365 | 0 | 89 |
+| A part of a rule, or a whole rule, left out | 0 of 375 | 200 | 175 |
+
+A stopped rule cannot be published until a person acts. What passes in silence is a rule made only of figures printed where it says: two percentages in one sentence exchanged, or a weekday left out. The first run of this study stopped 1,601; it found three faults in the checks, which stop 1,899 since the fixes. The [study](docs/eval-report/README.md#the-checks-measured-on-wrong-answers) has every kind of mistake and what still gets through.
+
 The [eval report](docs/eval-report/README.md) has each failure, its fix, and what the numbers do not show. A test fails if the published results differ from what the recorded answers give.
+
+## What it proves
+
+Each row is a property, the attack on it, and the file the test is in. Where a control was added, a bug was planted to confirm the test fails without it.
+
+### The model does not decide
+
+| Property | How the test tries to break it | Test |
+| --- | --- | --- |
+| The model never calculates | A stand-in model adds up an increase itself; the sums are printed nowhere and are refused. Reported as an increase, code adds it | [ExtractionTests](tests/Ingestion.Tests/ExtractionTests.cs) |
+| Money is never a float | Reflection over the rules assembly for any `float` or `double` | [NoFloatingPointTests](tests/Rules.Tests/NoFloatingPointTests.cs) |
+| Every rule quotes its clause | A reworded quote, a clause that does not exist | [ExtractionTests](tests/Ingestion.Tests/ExtractionTests.cs) |
+| Every number is the agreement's | The pension total read as the employer's share; a rate off by one krone; a start date printed nowhere | [ExtractionTests](tests/Ingestion.Tests/ExtractionTests.cs) |
+| A figure stands where the agreement puts it | Next year's rate, another band's rate, a window back to front; every figure printed in the cited clause | [ExtractionTests](tests/Ingestion.Tests/ExtractionTests.cs) |
+| A missing rule is reported | A stand-in returns only the first year; nothing is flagged on any rule, and the gap is reported | [ExtractionTests](tests/Ingestion.Tests/ExtractionTests.cs) |
+| A contradiction is put to a person | Two clauses give different figures; both are proposed, the conflict names both clauses, and approving both is refused | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+| An explanation uses only the finding's numbers | A percentage the model worked out; a deadline it invented; "too much" said of a shortfall | [FindingExplainerTests](tests/Agent.Tests/FindingExplainerTests.cs) |
+| An answer rests on the agreement | A sum the model made; a reworded quote; a number from a clause it did not cite; a number written as a word | [QuestionAgentTests](tests/Agent.Tests/QuestionAgentTests.cs) |
+| Money in an answer is money a person approved | A planted clause, quoted word for word, that states a wage; its figure is not repeated | [HardeningTests](tests/Agent.Tests/HardeningTests.cs) |
+| Half an answer is not an answer | A model that runs out of room; the run fails at once, is not asked again, and says why | [HardeningTests](tests/Ingestion.Tests/HardeningTests.cs) |
+| What the agreement does not say is not answered | Twelve unanswerable questions per model; the fixed sentence is the only correct outcome | [GateTests](tests/Evals.Tests/GateTests.cs) |
+
+### A person publishes
+
+| Property | How the test tries to break it | Test |
+| --- | --- | --- |
+| Nothing is published without a person's approval | The worker calls publish with no approval; tries to write an approval, a decision and a rule set directly | [SchemaTests](tests/Data.Tests/SchemaTests.cs) |
+| The API cannot publish | The API's database role calls the publish function | [SchemaTests](tests/Data.Tests/SchemaTests.cs) |
+| A flagged rule cannot be approved | Through the API, and directly in the database | [SchemaTests](tests/Data.Tests/SchemaTests.cs) |
+| What was approved is what is published | A decision changed after the approval and before publication | [SchemaTests](tests/Data.Tests/SchemaTests.cs) |
+| A published rule set cannot change | Update, delete and truncate, as each role and as the database's owner | [SchemaTests](tests/Data.Tests/SchemaTests.cs) |
+| A payslip is checked against the rules of its own date | A renewal from 2029; payslips on both sides of it | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+
+### Isolation and privacy
+
+| Property | How the test tries to break it | Test |
+| --- | --- | --- |
+| One company cannot see another's data | Another company's token on every route; another tenant's scope on every table | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+| A token is checked, not trusted | Wrong key, expired, wrong audience, no role, no company | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+| A company's token comes from its own directory | With an issuer per company, a token from one directory that names another company | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+| An employer cannot do a specialist's work | Upload and rule sets with an employer's token | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+| A CPR number never reaches a model | In a question and in a tool result; removed at the layer next to the provider | [GatewayTests](tests/Gateway.Tests/GatewayTests.cs) |
+| Pay data is not kept | Thirty payslips checked; the audit log holds counts and no employee id | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+| Telemetry carries no content | Every attribute of every span of a run searched for the agreement's words | [PipelineTests](tests/Worker.Tests/PipelineTests.cs) |
+| A company can be erased, by the owner only | Each service role tries; the owner tries another company's rows | [AuditTests](tests/Data.Tests/AuditTests.cs) |
+
+### Hostile input
+
+| Property | How the test tries to break it | Test |
+| --- | --- | --- |
+| Text in a document cannot give orders | Five passages addressed to AI systems, one inside the wage clause, one dressed as a protocol; both real models | [GateTests](tests/Evals.Tests/GateTests.cs) |
+| A damaged file does not reach the model | A PDF cut short, scrambled, or only a header | [PipelineTests](tests/Worker.Tests/PipelineTests.cs) |
+| Markup is shown as text | Typed into the console; any script or console error fails the browser check | [UiCheck](tools/UiCheck/Program.cs) |
+| The console loads only its own code | The content policy is read back and may not contain `unsafe` | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+
+### Operations
+
+| Property | How the test tries to break it | Test |
+| --- | --- | --- |
+| A run survives its worker dying | The worker is stopped while a run waits; the review is done with nothing running; a second worker finishes without reading again | [PipelineTests](tests/Worker.Tests/PipelineTests.cs) |
+| An upload is never lost | The scheduler is unreachable at upload; the worker finds the run and starts it once | [PipelineTests](tests/Worker.Tests/PipelineTests.cs) |
+| A model that is down is replaced | The asked-for model fails; the other answers, and the run records which | [GatewayTests](tests/Gateway.Tests/GatewayTests.cs) |
+| One company cannot spend without limit | A daily budget of five cents; the second agreement is refused at once, and a failed attempt counts too | [PipelineTests](tests/Worker.Tests/PipelineTests.cs) |
+| Calls at the same moment cannot pass the cap together | Two calls start together under a cap one of them fills; the second is refused | [HardeningTests](tests/Gateway.Tests/HardeningTests.cs) |
+| A slow model is not waited for | A model that never answers; the other one does, inside the time limit | [HardeningTests](tests/Gateway.Tests/HardeningTests.cs) |
+| Bad input is the caller's mistake, not a crash | Seven malformed payslips, overlapping shifts, work before the hiring date; each is a 400 with a reason | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+| A line with no approved rule is not called wrong | A correct payslip checked without the savings rule; the line is reported as not checked | [ApiTests](tests/Api.Tests/ApiTests.cs) |
+| A run whose pipeline is gone does not stay open | A run handed to a pipeline the scheduler never had is ended as failed; one waiting for review is left alone | [PipelineTests](tests/Worker.Tests/PipelineTests.cs) |
+| Every change is logged, and the log cannot be edited | Each role tries to write, change and empty it; the owner's edit breaks that company's hash chain; a rolled-back write does not | [AuditTests](tests/Data.Tests/AuditTests.cs) |
+| An agent cannot run forever | A stand-in that only ever searches | [QuestionAgentTests](tests/Agent.Tests/QuestionAgentTests.cs) |
 
 ## Quick start
 
@@ -232,6 +246,7 @@ dotnet run --project evals/Runner                    # extraction on sixteen agr
 dotnet run --project evals/Runner -- --questions     # 48 questions with known answers
 dotnet run --project evals/Runner -- --attacks       # planted instructions and a contradiction
 dotnet run --project evals/Runner -- --explain       # how often a model's wording passes the guard
+dotnet run --project evals/Runner -- --planted       # 2,363 mistakes planted in correct answers, and what the checks do
 ```
 
 Each replays recorded answers and spends nothing. Add `--model claude-haiku-5-5` for the other model, and `--record --cap 2` with a key to call the model for anything not yet recorded.
@@ -241,7 +256,7 @@ Each replays recorded answers and spends nothing. Add `--model claude-haiku-5-5`
 1. **Stored.** The PDF is kept under the hash of its bytes and never changed, so the words a rule quotes can always be produced.
 2. **Read, with no model.** Text from the letters and their positions; tables from their ruled borders. Front page, table of contents, running titles and page numbers are dropped. Clauses split by a page break are joined. Every clause gets an id such as `§ 5, stk. 2`.
 3. **Extracted.** One request per kind of rule, each with a strict schema. The agreement is passed as data. The model returns typed rules, each naming its clause and quoting a sentence from it.
-4. **Checked, with no model.** The clause exists; the quote stands in it word for word; every number and date is printed where the rule says; values are in range. Missing kinds, uncovered days and conflicting rules are reported for the run.
+4. **Checked, with no model.** The clause exists; the quote stands in it word for word; every number and date is printed where the rule says; a figure in a table stands under the rule's date and in its row; values are in range. Missing kinds, uncovered days and conflicting rules are reported for the run.
 5. **Reviewed.** A specialist sees each rule beside its clause with the quote marked, and what publishing would change against the rules already published. They approve or reject each rule, then the run.
 6. **Published.** The database publishes the approved rules as the agreement's next version, and only if an approval is on record. A version is never edited; a later one takes over from the day it starts.
 
