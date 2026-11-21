@@ -85,7 +85,7 @@ The system running on one machine with Claude as the model. Every picture is the
 | PDF | PdfPig to read, MigraDoc to generate | Clauses from layout; tables from their ruled borders |
 | Telemetry | OpenTelemetry | Spans whose attributes come from a fixed list |
 | Local | .NET Aspire | The whole system from one command |
-| Tests | xUnit, Testcontainers, CsCheck, Playwright | Real Postgres and scheduler; property tests; a real browser |
+| Tests | xUnit, Testcontainers, CsCheck, Playwright, Stryker | Real Postgres and scheduler; property tests; a real browser; mutation testing of the arithmetic |
 
 ## Results on real models
 
@@ -125,6 +125,15 @@ The [eval report](docs/eval-report/README.md) has each failure, its fix, and wha
 ## What it proves
 
 Each row is a property, the attack on it, and the file the test is in. Where a control was added, a bug was planted to confirm the test fails without it.
+
+Two figures say how much the tests would notice, and CI holds a floor under each:
+
+| Measure | Figure | CI fails below |
+| --- | --- | --- |
+| Lines of the production code that a test runs | 95.5 pct. | 94 |
+| Changes to the rule engine's arithmetic that a test notices | 96.4 pct. of 386 | 93 |
+
+The second is mutation testing: a `<` is made a `<=`, a `+` a `-`, one change at a time, and the tests are run against each. Its first run scored 79.7 pct. What it found missing were the edges: the last minute of a time window, a wage exactly at the minimum, a line that pays too much.
 
 ### The model does not decide
 
@@ -200,6 +209,8 @@ It needs the .NET 10 SDK and Docker. The browser part of the smoke test also nee
 git clone https://github.com/devjoinedthechat/Overens && cd Overens
 scripts/check.sh      # secrets scan, build, format check, every test
 scripts/smoke.sh      # the whole system from nothing, one agreement from upload to checked payslips
+scripts/coverage.sh   # the tests again, counting the lines they run
+scripts/mutation.sh   # the rule engine changed one small way at a time, against its tests
 git config core.hooksPath .githooks   # once per clone: the secrets scan runs before every commit
 ```
 

@@ -11,6 +11,15 @@ scripts/smoke.sh    # the whole system, from nothing
 
 Both need Docker. The smoke test also needs Google Chrome, or `SKIP_BROWSER=1`.
 
+CI also holds two floors. Run these when a change touches the tests or the rule engine:
+
+```sh
+COVERAGE=1 scripts/check.sh   # the same checks, and line coverage of at least 94 pct.
+scripts/mutation.sh           # src/Rules changed one small way at a time: 93 pct. must be noticed
+```
+
+A floor is raised when the figure rises. It is not lowered to let a change through.
+
 Turn on the commit hooks once per clone, so the secrets scan runs before every commit:
 
 ```sh

@@ -1,0 +1,8 @@
+{
+  "stryker-config": {
+    "project": "Overens.Rules.csproj",
+    "reporters": ["cleartext", "json", "markdown"],
+    "ignore-methods": ["ArgumentNullException.ThrowIfNull"],
+    "thresholds": { "high": 97, "low": 95, "break": 93 }
+  }
+}
