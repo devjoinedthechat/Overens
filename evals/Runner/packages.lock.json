@@ -145,7 +145,7 @@
       "overens.gateway": {
         "type": "Project",
         "dependencies": {
-          "Anthropic": "[13.8.0, )",
+          "Anthropic": "[13.12.0, )",
           "Microsoft.Extensions.AI": "[10.11.1, )"
         }
       },
@@ -173,9 +173,9 @@
       },
       "Anthropic": {
         "type": "CentralTransitive",
-        "requested": "[13.8.0, )",
-        "resolved": "13.8.0",
-        "contentHash": "N1+grCB2HdfsFsuRVVjBgN0evlxtdvSBw26P7rvaVGHrqgnr00Llw8sPuOP8w8akKzcN5tOd+3I75iEeERJbEQ==",
+        "requested": "[13.12.0, )",
+        "resolved": "13.12.0",
+        "contentHash": "pIguTtfKb8lfsLRdnsmbzhzmPfwhoVjr2v1M7BVdxYZOR4/2nDiuKcHJBSzS2zsEKyW2is0trrqPKOIuyL1gDg==",
         "dependencies": {
           "Microsoft.Extensions.AI.Abstractions": "10.5.1"
         }
