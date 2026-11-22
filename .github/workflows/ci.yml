@@ -18,7 +18,8 @@ jobs:
   check:
     name: Secrets, build, format, tests
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # The eval tests replay every recorded study, which takes most of the time.
+    timeout-minutes: 30
     env:
       DOTNET_NOLOGO: 1
       DOTNET_CLI_TELEMETRY_OPTOUT: 1

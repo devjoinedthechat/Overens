@@ -53,7 +53,7 @@ public static class SecondReaderEval
         foreach (var (set, id, load, recordings) in documents)
         {
             var (document, truth, pay) = load();
-            var read = ClauseSegmenter.Segment(await new PdfLayoutReader().ReadAsync(AgreementPdf.Render(document)));
+            var read = await ReadOnce.Agreement(document);
             var alone = await Extract(recordings(first), first, read);
             var other = await Extract(recordings(second), second, read);
             var together = SecondReading.Apply(alone, other);
@@ -75,20 +75,35 @@ public static class SecondReaderEval
             foreach (var (_, spec) in Evals.Agreements)
             {
                 var generated = Corpus.Generate(spec);
-                generatedAgreements.Add((generated, ClauseSegmenter.Segment(await new PdfLayoutReader().ReadAsync(AgreementPdf.Render(generated.Document)))));
+                generatedAgreements.Add((generated, await ReadOnce.Agreement(generated.Document)));
             }
         }
 
+        // Each pass of each model is extracted once, and then paired with every pass of the other.
+        async Task<List<ExtractionResult>> Pass(string model, int pass)
+        {
+            var extracted = new List<ExtractionResult>();
+            foreach (var (_, read) in generatedAgreements)
+            {
+                extracted.Add(await Extract(Path.Combine(root, Variance.Recordings(model, pass)), model, read));
+            }
+
+            return extracted;
+        }
+
+        var firsts = await Task.WhenAll(Enumerable.Range(1, firstPasses).Select(pass => Task.Run(() => Pass(first, pass))));
+        var seconds = await Task.WhenAll(Enumerable.Range(1, secondPasses).Select(pass => Task.Run(() => Pass(second, pass))));
         for (var firstPass = 1; firstPass <= firstPasses; firstPass++)
         {
             for (var secondPass = 1; secondPass <= secondPasses; secondPass++)
             {
                 var (rules, needless) = (0, 0);
-                foreach (var (generated, read) in generatedAgreements)
+                for (var at = 0; at < generatedAgreements.Count; at++)
                 {
-                    var alone = await Extract(Path.Combine(root, Variance.Recordings(first, firstPass)), first, read);
-                    var together = SecondReading.Apply(alone, await Extract(Path.Combine(root, Variance.Recordings(second, secondPass)), second, read));
-                    var (before, after) = (Sum(ExtractionEval.Score(generated.Truth, alone)), Sum(ExtractionEval.Score(generated.Truth, together)));
+                    var truth = generatedAgreements[at].Generated.Truth;
+                    var alone = firsts[firstPass - 1][at];
+                    var together = SecondReading.Apply(alone, seconds[secondPass - 1][at]);
+                    var (before, after) = (Sum(ExtractionEval.Score(truth, alone)), Sum(ExtractionEval.Score(truth, together)));
                     rules += after.Proposed;
                     needless += after.RightButFlagged - before.RightButFlagged;
                 }

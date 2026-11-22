@@ -34,12 +34,6 @@ public static class Danish
     /// <summary>kl. 18.00</summary>
     public static string Clock(TimeOnly time) => time == TimeOnly.MinValue ? "kl. 24.00" : $"kl. {time:HH}.{time:mm}";
 
-    private static readonly string[] Ordinals =
-        ["første", "anden", "tredje", "fjerde", "femte", "sjette", "syvende", "ottende", "niende", "tiende"];
-
-    /// <summary>"første", "anden", up to "tiende", or null beyond.</summary>
-    public static string? Ordinal(int number) => number >= 1 && number <= Ordinals.Length ? Ordinals[number - 1] : null;
-
     /// <summary>A small whole number as a word: "to".</summary>
     public static string Word(int number) => number < Words.Length ? Words[number] : number.ToString(CultureInfo.InvariantCulture);
 }

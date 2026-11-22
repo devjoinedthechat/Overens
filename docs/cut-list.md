@@ -24,6 +24,7 @@ Things a production system of this kind would have, that this one does not. Each
 | Both models are at the ceiling | The synthetic documents cannot tell them apart, and say little about real agreements |
 | A few passes per model | Extraction repeated three times for Sonnet, five for Haiku, through Claude Code and not the API. Only Haiku varied |
 | Some ways of stating a figure have no field | A percentage of another rate, the rest of a total, a sum of two parts, a factor, a rise for some bands only |
+| The reviewer is not measured | A study is built for people to take, 36 cards with 12 wrong rules that pass every check; nobody has taken it |
 | A sum handed to code can be the wrong sum | A step, a share or a change in points is checked as printed, not whether it went in the right sum |
 | The prompt met four of the documents | The extraction prompt was written while looking at the first four agreements. Six more were added after it was fixed |
 | The reader knows two numbering conventions | Sections with "Stk." clauses, and bold numbered headings. A third would read as no clauses and fail the run |

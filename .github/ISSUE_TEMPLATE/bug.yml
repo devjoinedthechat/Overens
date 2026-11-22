@@ -1,0 +1,22 @@
+name: Something else is broken
+description: The API, the worker, the console, the evals or the scripts do not do what the docs say.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to make it happen
+      description: Commands from a fresh clone are best. `scripts/check.sh` and `scripts/smoke.sh` say a lot.
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit
+      placeholder: git rev-parse --short HEAD

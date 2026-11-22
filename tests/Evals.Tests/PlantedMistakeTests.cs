@@ -14,11 +14,7 @@ namespace Overens.Evals.Tests;
 /// </summary>
 public sealed class PlantedMistakeTests
 {
-    private static readonly Lazy<Task<PlantedResults>> Study = new(async () =>
-    {
-        using var recorded = new ReplayChatClient(null, Path.Combine(Root(), "evals", "recordings", ExtractionPrompt.Version, Models.Sonnet));
-        return await PlantedMistakes.RunAsync(recorded, Models.Sonnet);
-    });
+    private static readonly Lazy<Task<PlantedResults>> Study = new(async () => (await PlantedRun.Sonnet.Value).Results);
 
     private static string Root()
     {

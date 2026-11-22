@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Text.RegularExpressions;
 using Overens.Documents;
 using Overens.Rules;
@@ -23,28 +22,31 @@ public static partial class Grounding
     [GeneratedRegex(@"\b(?:måned|år|anciennitet)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
     private static partial Regex SeniorityWords();
 
-    [GeneratedRegex(@"\b\d{1,2}[.:]\d{2}\b", RegexOptions.CultureInvariant)]
-    private static partial Regex ClockTime();
+    /// <summary>What may stand between a figure and the day it is given from: "5,0 pct. fra 1. marts", "38,40 kr. pr. 1.3.2027".</summary>
+    [GeneratedRegex(@"^\s*(?:pct\.|procent|%|kr\.)?\s*(?:fra|pr\.)\s*(?:den\s*)?", RegexOptions.CultureInvariant)]
+    private static partial Regex GivenFrom();
 
     private sealed record Cell(TableBlock Table, IReadOnlyList<string> Row, int Column);
 
     private static void CheckTables(Rule rule, IReadOnlyList<Clause> cited, Reported reported, Action<string, string> problem)
     {
         var tables = cited.SelectMany(clause => clause.Blocks).OfType<TableBlock>().Distinct().ToList();
-        var sentences = Flatten(string.Join(' ', cited.SelectMany(clause => clause.Blocks).OfType<Paragraph>().Select(paragraph => paragraph.Text)));
-        var prose = NotFigures().Replace(sentences, " ");
+        var prose = Scan.Of(Flatten(string.Join(' ', cited.SelectMany(clause => clause.Blocks).OfType<Paragraph>().Select(paragraph => paragraph.Text))));
         var starts = rule.InForce.From;
-        string[] dates = [.. DateForms(starts)];
         foreach (var (what, ways, _) in InTables(rule, reported))
         {
             // "5,0 pct. fra 1. marts 2026, 5,5 pct. fra 1. marts 2027": each figure is given its day in so many words.
-            var given = ways.Where(way => way.Length == 1)
-                .SelectMany(way => Regex.Matches(sentences, $@"(?<![\d.,]){Regex.Escape(way[0])}\s*(?:pct\.|procent|%|kr\.)?\s*(?:fra|pr\.)\s*(?:den\s*)?(?<day>\d{{1,2}}\.\s*\p{{L}}+\s+\d{{4}}|første\s+\p{{L}}+\s+\d{{4}}|\d{{1,2}}\.\d{{1,2}}\.\d{{4}})", RegexOptions.CultureInvariant))
-                .Select(match => Flatten(match.Groups["day"].Value))
-                .ToList();
-            if (given.Count > 0 && !given.Any(day => dates.Contains(day, StringComparer.OrdinalIgnoreCase)))
+            var given = (
+                from need in ways.Where(way => way is [{ Kind: FigureKind.Number }]).Select(way => way[0])
+                from figure in prose.Figures.Where(figure => figure.Kind == FigureKind.Number && figure.Value == need.Value)
+                let between = GivenFrom().Match(prose.Raw[figure.End..])
+                where between.Success
+                let date = prose.Figures.FirstOrDefault(other => other.Kind == FigureKind.Date && other.Start == figure.End + between.Length)
+                where date?.Day is not null
+                select date).ToList();
+            if (given.Count > 0 && !given.Any(date => date.Day == starts))
             {
-                problem("value_under_another_date", $"{what} is given from {given[0]}, and the rule starts on {dates[0]}.");
+                problem("value_under_another_date", $"{what} is given from {prose.Raw[given[0].Start..given[0].End]}, and the rule starts on {Danish.Date(starts)}.");
             }
         }
 
@@ -53,22 +55,19 @@ public static partial class Grounding
             return;
         }
 
-        bool Dated(TableBlock table, int column) => column < table.Header.Count && dates.Any(date => PrintedDate(table.Header[column], date));
+        bool Dated(TableBlock table, int column) => column < table.Header.Count && Scan.Of(table.Header[column]).PrintsDay(starts);
         var anyDated = tables.Any(table => Enumerable.Range(0, table.Header.Count).Any(column => Dated(table, column)));
-
-        bool Labels(string row, string[][] ways) => ways.Any(way => way.All(form => Printed(row, form)));
 
         foreach (var (what, ways, label) in InTables(rule, reported))
         {
-            bool Prints(string text) => ways.Any(way => way.All(form => Printed(text, form)));
-            if (Prints(prose))
+            if (prose.Prints(ways))
             {
                 continue;
             }
 
             var found = tables
                 .SelectMany(table => table.Rows.SelectMany(row => row.Select((text, column) => (Cell: new Cell(table, row, column), Text: text))))
-                .Where(cell => Prints(NotFigures().Replace(cell.Text, " ")))
+                .Where(cell => Scan.Of(cell.Text).Prints(ways))
                 .Select(cell => cell.Cell)
                 .ToList();
             if (found.Count == 0)
@@ -81,14 +80,14 @@ public static partial class Grounding
                 found = [.. found.Where(cell => Dated(cell.Table, cell.Column))];
                 if (found.Count == 0)
                 {
-                    problem("value_under_another_date", $"{what} stands in a table, and not under {dates[0]}, the day the rule starts.");
+                    problem("value_under_another_date", $"{what} stands in a table, and not under {Danish.Date(starts)}, the day the rule starts.");
                     continue;
                 }
             }
 
             // What a row is about is printed in the cells before the figure: "Mandag-fredag | kl. 15.00-23.00 | 19,60 kr.".
-            // A grade's number, "Løntrin 2", is not a seniority.
-            static string Label(IReadOnlyList<string> row, int column) => NotFigures().Replace(string.Join(" ", row.Take(column)), " ");
+            // A grade's number, "Løntrin 2", is a reference, not a seniority.
+            static Scan Label(IReadOnlyList<string> row, int column) => Scan.Of(string.Join(" ", row.Take(column)));
             var rows = found.Where(cell => cell.Column > 0).Select(cell => Label(cell.Row, cell.Column)).ToList();
             if (label is null || rows.Count == 0)
             {
@@ -97,8 +96,8 @@ public static partial class Grounding
 
             // A table whose rows are not told apart by seniority, or by time of day, says nothing about which row a
             // figure is in: "Løntrin 2" is a grade, and what it takes to reach it is stated elsewhere.
-            var labelled = found.Where(cell => cell.Column > 0).Any(cell => cell.Table.Rows.Any(row =>
-                (label.Value.To is null ? SeniorityWords() : ClockTime()).IsMatch(Label(row, cell.Column))));
+            var labelled = found.Where(cell => cell.Column > 0).Any(cell => cell.Table.Rows.Any(row => Label(row, cell.Column) is var each
+                && (label.Value.To is null ? SeniorityWords().IsMatch(each.Raw) : each.Figures.Any(figure => figure.Kind == FigureKind.Clock))));
             if (!labelled)
             {
                 continue;
@@ -106,7 +105,7 @@ public static partial class Grounding
 
             if (label.Value.To is not { } until)
             {
-                if (!rows.Any(row => Labels(row, label.Value.From)))
+                if (!rows.Any(row => row.Prints(label.Value.From)))
                 {
                     problem("value_in_another_row", $"{what} stands in a table row that is not the row for {label.Value.Name}.");
                 }
@@ -114,14 +113,13 @@ public static partial class Grounding
                 continue;
             }
 
-            int? At(string row, string[][] times) => times.SelectMany(way => way).Where(form => Printed(row, form)).Select(form => (int?)row.IndexOf(form, StringComparison.Ordinal)).Min();
             // A row may hold two windows, "lørdag kl. 14.00-24.00 og søndag kl. 05.00-24.00": the end is looked for after the start.
-            int? Last(string row, string[][] times) => times.SelectMany(way => way).Where(form => Printed(row, form)).Select(form => (int?)row.LastIndexOf(form, StringComparison.Ordinal)).Max();
-            if (!rows.Any(row => At(row, label.Value.From) is not null) || !rows.Any(row => At(row, until) is not null))
+            if (!rows.Any(row => row.Where(label.Value.From).First is not null) || !rows.Any(row => row.Where(until).First is not null))
             {
                 problem("value_in_another_row", $"{what} stands in a table row that is not the row for {label.Value.Name}.");
             }
-            else if (rows.Where(row => At(row, label.Value.From) is not null && At(row, until) is not null) is var both && both.Any() && both.All(row => At(row, label.Value.From) > Last(row, until)))
+            else if (rows.Where(row => row.Where(label.Value.From).First is not null && row.Where(until).First is not null) is var both && both.Any()
+                && both.All(row => row.Where(label.Value.From).First > row.Where(until).Last))
             {
                 problem("window_back_to_front", $"The row for {what} prints the times the other way round from {label.Value.Name}.");
             }
@@ -132,7 +130,7 @@ public static partial class Grounding
     /// The figures of a rule that a table can place, each with what its row should say:
     /// a seniority, or a window's two times.
     /// </summary>
-    private static IEnumerable<(string What, string[][] Ways, (string Name, string[][] From, string[][]? To)? Label)> InTables(Rule rule, Reported reported)
+    private static IEnumerable<(string What, Need[][] Ways, (string Name, Need[][] From, Need[][]? To)? Label)> InTables(Rule rule, Reported reported)
     {
         if (reported.Increase is { } added)
         {

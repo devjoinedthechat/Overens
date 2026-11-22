@@ -48,7 +48,7 @@ public static class Evals
         foreach (var (set, spec) in (attacks ? Attacks : Agreements).Where(agreement => only?.Invoke(agreement.Spec) ?? true))
         {
             var agreement = Corpus.Generate(spec);
-            var read = ClauseSegmenter.Segment(await new PdfLayoutReader().ReadAsync(AgreementPdf.Render(agreement.Document)));
+            var read = await ReadOnce.Agreement(agreement.Document);
             var extraction = await extractor.ExtractAsync(read);
             results.Add(new(
                 spec.Id,

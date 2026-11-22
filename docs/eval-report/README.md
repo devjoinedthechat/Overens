@@ -380,6 +380,24 @@ A mistake both readers make passes both, and so do the 36 payslips judged on the
 
 **Limits.** These are the same recordings the results above come from, not a fresh measurement. Two models from one provider may share more habits than two from different ones.
 
+## The reviewer
+
+Every section above ends with a person: a rule made only of printed figures, put together wrongly and read the same way by both models, reaches a reviewer looking sound. How often a reviewer would catch it is not measured. Taking that on trust is the largest assumption left in this report.
+
+The measurement is built for people to take:
+
+```sh
+dotnet run --project evals/Runner -- --review-study                         # writes TestResults/review-study/review.html and key.json
+dotnet run --project evals/Runner -- --review-score TestResults/review-study answers.json
+```
+
+- **The cards.** 36 rules, each beside the clauses it rests on with the quoted sentence marked, as the console shows them. 24 are right.
+- **The wrong ones.** Three are the models' own mistakes on the unseen agreements that the checks and the second reading both let through. Nine are planted, one of each kind of mistake that passes the checks in silence; in use a second reading would stop most of them, so they stand for mistakes both models make.
+- **Kept apart.** The page says nothing of which are wrong. The key is a separate file, and a test checks that the page gives nothing away.
+- **The score.** How many wrong rules were rejected, with an interval, how many right ones were rejected, and which wrong ones got through.
+
+No one has taken it. A reviewer who knows the agreement's trade, given the time they would have at work, is the person it is for.
+
 ## The same question, asked again
 
 Every other result is one answer per request. Here each model was asked for all sixteen generator agreements several times over. The first pass is the ordinary recording; each pass after it is recorded in a directory of its own. These went through Claude Code's print mode too.

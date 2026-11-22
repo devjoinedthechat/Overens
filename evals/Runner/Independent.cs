@@ -61,7 +61,7 @@ public static class Independent
             foreach (var id in Ids(set, root))
             {
                 var (document, truth) = Load(set, id, root);
-                var read = ClauseSegmenter.Segment(await new PdfLayoutReader().ReadAsync(AgreementPdf.Render(document)));
+                var read = await ReadOnce.Agreement(document);
                 var extraction = await extractor.ExtractAsync(read);
                 results.Add(new(
                     id,

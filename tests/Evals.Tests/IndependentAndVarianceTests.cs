@@ -24,11 +24,14 @@ public sealed class IndependentAndVarianceTests
         return directory?.FullName ?? throw new InvalidOperationException("The repository root was not found.");
     }
 
-    private static async Task<EvalResults> Independently(string model)
+    private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, Lazy<Task<EvalResults>>> Readings = new();
+
+    /// <summary>One replay per model, for every test that reads it.</summary>
+    private static Task<EvalResults> Independently(string model) => Readings.GetOrAdd(model, _ => new(async () =>
     {
         using var recorded = new ReplayChatClient(null, Path.Combine(Root(), Independent.Recordings(model)));
         return await Independent.RunAsync(recorded, model, Root());
-    }
+    })).Value;
 
     [Fact]
     public void The_hand_written_agreements_state_usable_rule_sets_and_quote_their_own_clauses()

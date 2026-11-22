@@ -23,6 +23,8 @@ Each rule names its clause and quotes a sentence from it. Code checks that:
 - a number that stands in a table stands under the rule's date and in the rule's row;
 - every date is printed in the agreement, and the rule's values are in range.
 
+The text is read once into typed figures (`Overens.Documents.Figures`): numbers, number words, ordinals, dates, clock times and references such as "§ 3". A check asks whether a figure of the right kind and value is there. "§ 3" is not a 3, "1. marts 2027" is not a 1, "2. år" is the second year, and a count must be printed as a whole number. Before 2026-11-22 each check built the strings a value might be printed as, and every batch of agreements broke one of them in a place not seen before.
+
 A rule with a problem cannot be approved. Kinds of rule with none proposed, days no rule covers, and rules that cover the same days are reported for the run.
 
 ## Why

@@ -20,6 +20,7 @@ using Overens.Ingestion.Extraction;
 //   --attacks        the hostile agreements                                   Commands/AttacksCommand.cs
 //   --questions      48 questions with known answers                          Commands/QuestionsCommand.cs
 //   --explain        how often a model's wording of a finding passes the guard Commands/ExplainCommand.cs
+//   --review-study   a page of rule cards for a person to review, and its key Commands/ReviewStudyCommand.cs
 //
 // With --record, answers not yet recorded go to the model: through the API with ANTHROPIC_API_KEY set,
 // up to the cap in dollars, or with --via claude-code through Claude Code's print mode, with no key.
@@ -56,6 +57,7 @@ var run = new Run(args, modelId, only, record, live, spend, recordings);
 return true switch
 {
     _ when args.Contains("--variance") => await VarianceCommand.RunAsync(run),
+    _ when args.Contains("--review-study") || args.Contains("--review-score") => await ReviewStudyCommand.RunAsync(run),
     _ when args.Contains("--explain") => await ExplainCommand.RunAsync(run),
     _ when args.Contains("--second-reader") => await SecondReaderCommand.RunAsync(run),
     _ when args.Contains("--independent") => await IndependentCommand.RunAsync(run),

@@ -25,11 +25,14 @@ public sealed class GateTests
         return directory?.FullName ?? throw new InvalidOperationException("The repository root was not found.");
     }
 
-    private static async Task<EvalResults> Replay(string model)
+    private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, Lazy<Task<EvalResults>>> Replays = new();
+
+    /// <summary>One replay per model, for every test that reads it.</summary>
+    private static Task<EvalResults> Replay(string model) => Replays.GetOrAdd(model, _ => new(async () =>
     {
         using var recorded = new ReplayChatClient(null, Path.Combine(Root(), "evals", "recordings", ExtractionPrompt.Version, model));
         return await Evals.RunAsync(recorded, model);
-    }
+    })).Value;
 
     [Theory]
     [MemberData(nameof(Models))]

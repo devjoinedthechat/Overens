@@ -1,0 +1,43 @@
+name: A rule read wrong
+description: Extraction proposed a rule the agreement does not state, missed one, or a check flagged a correct rule.
+labels: ["extraction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use only synthetic or hand-written test agreements from this repository, or text you wrote yourself. Do not paste a published collective agreement: it is its parties' copyrighted text.
+  - type: input
+    id: agreement
+    attributes:
+      label: Agreement
+      description: Its id, such as `uns-b` or `hard-2026`, or "my own text" with the clause below.
+    validations:
+      required: true
+  - type: dropdown
+    id: what
+    attributes:
+      label: What went wrong
+      options:
+        - A wrong rule passed the checks
+        - A correct rule was flagged
+        - A rule the agreement states was not proposed
+        - A payslip was judged wrongly
+    validations:
+      required: true
+  - type: textarea
+    id: clause
+    attributes:
+      label: The clause, and what it says
+      description: The clause id and its text, and the rule it states as you read it.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: What was proposed
+      description: The rule as proposed, and any problem codes it got, from the console or `dotnet run --project evals/Runner -- --independent`.
+  - type: input
+    id: version
+    attributes:
+      label: Prompt version and model
+      placeholder: 2026-11-22.1, claude-sonnet-5-5
