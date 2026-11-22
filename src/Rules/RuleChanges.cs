@@ -60,6 +60,5 @@ public static class RuleChanges
     }
 
     /// <summary>What a rule says, apart from when it applies, what it is called and where it is quoted from.</summary>
-    private static string Says(Rule? rule) =>
-        rule is null ? "" : RuleJson.Write(rule with { Id = "", InForce = default, Source = new("", "") });
+    private static string Says(Rule? rule) => rule is null ? "" : RuleMeaning.Pays(rule);
 }

@@ -1,0 +1,355 @@
+{
+  "agreementId": "uns-a",
+  "version": 1,
+  "rules": [
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 6, stk. 3",
+        "quote": "Den laveste timeløn, som en chauffør kan aflønnes med, er grundlønnen efter Bilag 1 med tillæg af det anciennitetstillæg, chaufføren har ret til efter stk. 2."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 168.35
+        },
+        {
+          "fromMonths": 9,
+          "hourlyRate": 172.15
+        },
+        {
+          "fromMonths": 36,
+          "hourlyRate": 175.5
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2027",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": "2028-03-01"
+      },
+      "source": {
+        "clauseId": "§ 6, stk. 3",
+        "quote": "Den laveste timeløn, som en chauffør kan aflønnes med, er grundlønnen efter Bilag 1 med tillæg af det anciennitetstillæg, chaufføren har ret til efter stk. 2."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 173.6
+        },
+        {
+          "fromMonths": 9,
+          "hourlyRate": 177.4
+        },
+        {
+          "fromMonths": 36,
+          "hourlyRate": 180.75
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2028",
+      "inForce": {
+        "from": "2028-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 6, stk. 3",
+        "quote": "Den laveste timeløn, som en chauffør kan aflønnes med, er grundlønnen efter Bilag 1 med tillæg af det anciennitetstillæg, chaufføren har ret til efter stk. 2."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 178.95
+        },
+        {
+          "fromMonths": 9,
+          "hourlyRate": 182.75
+        },
+        {
+          "fromMonths": 36,
+          "hourlyRate": 186.1
+        }
+      ]
+    },
+    {
+      "kind": "overtime",
+      "id": "ot-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2028-01-01"
+      },
+      "source": {
+        "clauseId": "§ 9, stk. 2",
+        "quote": "For de første tre overarbejdstimer på en dag betales et tillæg på 50 pct. af chaufførens timeløn."
+      },
+      "dailyNormHours": 7.4,
+      "tiers": [
+        {
+          "hours": 3.0,
+          "percent": 50.0
+        },
+        {
+          "hours": null,
+          "percent": 100.0
+        }
+      ],
+      "sundayPercent": 100.0
+    },
+    {
+      "kind": "overtime",
+      "id": "ot-2028",
+      "inForce": {
+        "from": "2028-01-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Protokollat 2, stk. 1",
+        "quote": "Med virkning fra 1. januar 2028 betales tillægget på 50 pct. kun for de første to overarbejdstimer på en dag, og for overarbejde ud over to timer på samme dag betales et tillæg på 100 pct. af timelønnen."
+      },
+      "dailyNormHours": 7.4,
+      "tiers": [
+        {
+          "hours": 2.0,
+          "percent": 50.0
+        },
+        {
+          "hours": null,
+          "percent": 100.0
+        }
+      ],
+      "sundayPercent": 100.0
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "ih-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 10, stk. 1",
+        "quote": "For arbejde i de tidsrum, der fremgår af tabellen, betales et tillæg pr. time ud over timelønnen."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 24.0
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "00:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 31.2
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 28.8
+        }
+      ]
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "ih-2027",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": "2028-03-01"
+      },
+      "source": {
+        "clauseId": "§ 10, stk. 4",
+        "quote": "Pr. 1. marts 2027 forhøjes samtlige tillæg i stk. 1 med 2,5 pct."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 24.6
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "00:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 31.98
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 29.52
+        }
+      ]
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "ih-2028",
+      "inForce": {
+        "from": "2028-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 10, stk. 4",
+        "quote": "Pr. 1. marts 2028 forhøjes de tillæg, der gælder fra 1. marts 2027, med 0,75 kr. pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 25.35
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "00:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 32.73
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 30.27
+        }
+      ]
+    },
+    {
+      "kind": "pension",
+      "id": "pen-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-07-01"
+      },
+      "source": {
+        "clauseId": "§ 14, stk. 2",
+        "quote": "Arbejdsgiveren betaler to tredjedele af bidraget og chaufføren en tredjedel."
+      },
+      "employerPercent": 8.0,
+      "employeePercent": 4.0,
+      "qualifyingMonths": 2
+    },
+    {
+      "kind": "pension",
+      "id": "pen-2027",
+      "inForce": {
+        "from": "2027-07-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Protokollat 3, stk. 1",
+        "quote": "Med virkning fra 1. juli 2027 forhøjes arbejdsgiverens pensionsbidrag efter § 14, stk. 2, med 0,6 procentpoint."
+      },
+      "employerPercent": 8.6,
+      "employeePercent": 4.0,
+      "qualifyingMonths": 2
+    },
+    {
+      "kind": "holiday_allowance",
+      "id": "hol",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 16, stk. 2",
+        "quote": "Virksomheden betaler herudover et supplerende ferietillæg på 0,95 pct. af samme løn."
+      },
+      "percent": 1.95
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2026",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 1",
+        "quote": "Bidraget udgør 5 pct. af den ferieberettigede løn fra 1. marts 2026."
+      },
+      "percent": 5.0
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2027",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": "2028-03-01"
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 2",
+        "quote": "Bidraget forhøjes med halvandet procentpoint pr. 1. marts 2027 og med yderligere ét procentpoint pr. 1. marts 2028."
+      },
+      "percent": 6.5
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2028",
+      "inForce": {
+        "from": "2028-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 2",
+        "quote": "Bidraget forhøjes med halvandet procentpoint pr. 1. marts 2027 og med yderligere ét procentpoint pr. 1. marts 2028."
+      },
+      "percent": 7.5
+    }
+  ]
+}

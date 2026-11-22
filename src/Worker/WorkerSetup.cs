@@ -21,8 +21,9 @@ public static class WorkerSetup
     /// <param name="model">The model to extract with.</param>
     /// <param name="modelId">The model's id.</param>
     /// <param name="dailyBudgetDollars">What one company's agreements may cost to read in a day.</param>
+    /// <param name="secondModel">A second model to read every agreement again, and its id, or null for one reading.</param>
     /// <returns>The same services.</returns>
-    public static IServiceCollection AddIngestionWorker(this IServiceCollection services, string workerDatabase, string scheduler, IChatClient model, string modelId, decimal dailyBudgetDollars = 20m)
+    public static IServiceCollection AddIngestionWorker(this IServiceCollection services, string workerDatabase, string scheduler, IChatClient model, string modelId, decimal dailyBudgetDollars = 20m, (IChatClient Model, string Id)? secondModel = null)
     {
         services.AddOptions<RunStarterOptions>();
         services.AddSingleton(_ => NpgsqlDataSource.Create(workerDatabase));
@@ -35,7 +36,8 @@ public static class WorkerSetup
             new RuleExtractor(model, modelId),
             modelId,
             provider.GetRequiredService<TimeProvider>(),
-            dailyBudgetDollars));
+            dailyBudgetDollars,
+            secondModel is { } second ? new RuleExtractor(second.Model, second.Id) : null));
         // Runs whose start never reached the scheduler are started from here.
         services.AddDurableTaskClient(client => client.UseDurableTaskScheduler(scheduler));
         services.AddHostedService<RunStarter>();
@@ -60,8 +62,12 @@ public static class WorkerSetup
     /// it answers is kept outside the database. Without one, only the answers recorded for
     /// the evals can be given, which is enough to ingest the agreements in the corpus.
     /// </summary>
-    public static IChatClient Model(string? apiKey, string recordings, decimal capDollars) =>
+    /// <param name="failover">
+    /// Whether another model may answer when this one cannot. Never for a second reader,
+    /// whose reading must be another model's.
+    /// </param>
+    public static IChatClient Model(string? apiKey, string recordings, decimal capDollars, bool failover = true) =>
         string.IsNullOrWhiteSpace(apiKey)
             ? new ReplayChatClient(null, recordings)
-            : new MeteredChatClient(Claude.Create(apiKey, Claude.Background), new Spend(), capDollars);
+            : new MeteredChatClient(Claude.Create(apiKey, Claude.Background, failover: failover), new Spend(), capDollars);
 }

@@ -47,7 +47,7 @@ public sealed record KindScore(string Kind, int Expected, int Proposed, int Corr
 /// </param>
 public sealed record PayScore(int Cases, int Right, int MissedErrors, int FalseAlarms, int NotChecked);
 
-public static partial class ExtractionEval
+public static class ExtractionEval
 {
     public static IReadOnlyList<KindScore> Score(RuleSet truth, ExtractionResult extraction)
     {
@@ -134,26 +134,6 @@ public static partial class ExtractionEval
         _ => throw new NotSupportedException(),
     };
 
-    /// <summary>
-    /// What a rule says, without its id or its quote: two rules that pay the same on the same
-    /// days are the same rule, whichever sentence was quoted and however it was written down.
-    /// Time windows are compared by what they pay at each half hour of the week, so that
-    /// 22-06 and 22-24 with 00-06 are equal.
-    /// </summary>
-    public static string Meaning(Rule rule)
-    {
-        ArgumentNullException.ThrowIfNull(rule);
-        if (rule is InconvenientHoursRule hours)
-        {
-            var monday = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Unspecified);
-            var week = Enumerable.Range(0, 7 * 48).Select(slot => hours.AmountAt(monday.AddMinutes(slot * 30)).ToString("0.####", CultureInfo.InvariantCulture));
-            return $"inconvenient_hours {hours.InForce} {string.Join(' ', week)}";
-        }
-
-        // 6.0 and 6 are the same number: trailing zeros are dropped before comparing.
-        return TrailingZeros().Replace(RuleJson.Write(rule with { Id = "", Source = new("", "") }), "$1$2");
-    }
-
-    [GeneratedRegex(@"(\d)\.0+(?=\D)|(\.\d*?[1-9])0+(?=\D)")]
-    private static partial Regex TrailingZeros();
+    /// <summary>What a rule says and the days it says it on, without its id or its quote. See <see cref="RuleMeaning"/>.</summary>
+    public static string Meaning(Rule rule) => RuleMeaning.Of(rule);
 }

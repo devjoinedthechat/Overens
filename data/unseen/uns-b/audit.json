@@ -1,0 +1,345 @@
+{
+  "agreementId": "uns-b",
+  "version": 1,
+  "rules": [
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2025",
+      "inForce": {
+        "from": "2025-10-01",
+        "until": "2026-10-01"
+      },
+      "source": {
+        "clauseId": "§ 7, stk. 3",
+        "quote": "Når vagtfunktionæren har opnået seks måneders anciennitet, forhøjes mindstelønnen med 4,75 kr. pr. time."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 161.2
+        },
+        {
+          "fromMonths": 6,
+          "hourlyRate": 165.95
+        },
+        {
+          "fromMonths": 18,
+          "hourlyRate": 169.05
+        },
+        {
+          "fromMonths": 48,
+          "hourlyRate": 174.45
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2026",
+      "inForce": {
+        "from": "2026-10-01",
+        "until": "2027-04-01"
+      },
+      "source": {
+        "clauseId": "§ 7, stk. 4",
+        "quote": "Pr. 1. oktober 2026 forhøjes begyndelseslønnen efter stk. 2 med 4,35 kr. pr. time."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 165.55
+        },
+        {
+          "fromMonths": 6,
+          "hourlyRate": 170.3
+        },
+        {
+          "fromMonths": 18,
+          "hourlyRate": 173.4
+        },
+        {
+          "fromMonths": 48,
+          "hourlyRate": 178.8
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2027",
+      "inForce": {
+        "from": "2027-04-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Protokollat 1, stk. 1",
+        "quote": "Med virkning fra den første april 2027 forhøjes mindstelønnen for vagtfunktionærer med fire års anciennitet med yderligere 2,00 kr. pr. time."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 165.55
+        },
+        {
+          "fromMonths": 6,
+          "hourlyRate": 170.3
+        },
+        {
+          "fromMonths": 18,
+          "hourlyRate": 173.4
+        },
+        {
+          "fromMonths": 48,
+          "hourlyRate": 180.8
+        }
+      ]
+    },
+    {
+      "kind": "overtime",
+      "id": "ot-2025",
+      "inForce": {
+        "from": "2025-10-01",
+        "until": "2026-10-01"
+      },
+      "source": {
+        "clauseId": "§ 10, stk. 2",
+        "quote": "Overarbejdstillægget udgør 25 pct. af timelønnen for den første overarbejdstime, 50 pct. for anden og tredje overarbejdstime og 100 pct. for fjerde og følgende overarbejdstimer samme dag."
+      },
+      "dailyNormHours": 8.0,
+      "tiers": [
+        {
+          "hours": 1.0,
+          "percent": 25.0
+        },
+        {
+          "hours": 2.0,
+          "percent": 50.0
+        },
+        {
+          "hours": null,
+          "percent": 100.0
+        }
+      ],
+      "sundayPercent": 70.0
+    },
+    {
+      "kind": "overtime",
+      "id": "ot-2026",
+      "inForce": {
+        "from": "2026-10-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 10, stk. 4",
+        "quote": "Søndagstillægget forhøjes pr. 1. oktober 2026 med 5 procentpoint."
+      },
+      "dailyNormHours": 8.0,
+      "tiers": [
+        {
+          "hours": 1.0,
+          "percent": 25.0
+        },
+        {
+          "hours": 2.0,
+          "percent": 50.0
+        },
+        {
+          "hours": null,
+          "percent": 100.0
+        }
+      ],
+      "sundayPercent": 75.0
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "ih-2025",
+      "inForce": {
+        "from": "2025-10-01",
+        "until": "2026-10-01"
+      },
+      "source": {
+        "clauseId": "§ 11, stk. 1",
+        "quote": "For arbejde mandag til fredag i tidsrummet kl. 17.00-23.00 betales et aftentillæg på 15,85 kr. pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "17:00:00",
+          "to": "23:00:00",
+          "amountPerHour": 15.85
+        },
+        {
+          "days": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "23:00:00",
+          "to": "07:00:00",
+          "amountPerHour": 25.36
+        },
+        {
+          "days": [
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "07:00:00",
+          "to": "23:00:00",
+          "amountPerHour": 19.0
+        }
+      ]
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "ih-2026",
+      "inForce": {
+        "from": "2026-10-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 11, stk. 4",
+        "quote": "Pr. 1. oktober 2026 forhøjes aftentillægget til 16,40 kr. pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "17:00:00",
+          "to": "23:00:00",
+          "amountPerHour": 16.4
+        },
+        {
+          "days": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "23:00:00",
+          "to": "07:00:00",
+          "amountPerHour": 26.24
+        },
+        {
+          "days": [
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "07:00:00",
+          "to": "23:00:00",
+          "amountPerHour": 19.55
+        }
+      ]
+    },
+    {
+      "kind": "pension",
+      "id": "pen-2025",
+      "inForce": {
+        "from": "2025-10-01",
+        "until": "2026-10-01"
+      },
+      "source": {
+        "clauseId": "§ 15, stk. 2",
+        "quote": "Vagtfunktionærens eget bidrag udgør 4,2 pct., og virksomheden betaler resten af det samlede bidrag."
+      },
+      "employerPercent": 8.4,
+      "employeePercent": 4.2,
+      "qualifyingMonths": 3
+    },
+    {
+      "kind": "pension",
+      "id": "pen-2026",
+      "inForce": {
+        "from": "2026-10-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 15, stk. 3",
+        "quote": "Pr. 1. oktober 2026 forhøjes det samlede bidrag til 13,1 pct."
+      },
+      "employerPercent": 8.9,
+      "employeePercent": 4.2,
+      "qualifyingMonths": 3
+    },
+    {
+      "kind": "holiday_allowance",
+      "id": "hol-2025",
+      "inForce": {
+        "from": "2025-10-01",
+        "until": "2026-10-01"
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 2",
+        "quote": "Ferietillægget udgør 1,5 pct. af den ferieberettigede løn indtil 30. september 2026."
+      },
+      "percent": 1.5
+    },
+    {
+      "kind": "holiday_allowance",
+      "id": "hol-2026",
+      "inForce": {
+        "from": "2026-10-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 2",
+        "quote": "Fra 1. oktober 2026 udgør ferietillægget 2 pct. af den ferieberettigede løn."
+      },
+      "percent": 2.0
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2025",
+      "inForce": {
+        "from": "2025-10-01",
+        "until": "2026-10-01"
+      },
+      "source": {
+        "clauseId": "§ 18, stk. 1",
+        "quote": "Den særlige opsparing udgør 4 pct. af den ferieberettigede løn."
+      },
+      "percent": 4.0
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2026",
+      "inForce": {
+        "from": "2026-10-01",
+        "until": "2027-04-01"
+      },
+      "source": {
+        "clauseId": "§ 18, stk. 2",
+        "quote": "Pr. 1. oktober 2026 forhøjes den særlige opsparing med 1 procentpoint."
+      },
+      "percent": 5.0
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2027",
+      "inForce": {
+        "from": "2027-04-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Protokollat 2, stk. 1",
+        "quote": "Med virkning fra den første april 2027 forhøjes den særlige opsparing efter § 18 med yderligere et halvt procentpoint."
+      },
+      "percent": 5.5
+    }
+  ]
+}

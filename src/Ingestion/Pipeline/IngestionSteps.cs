@@ -31,7 +31,12 @@ public static class PipelineContract
 /// its own earlier work and does not do it twice. They run as the worker's database role,
 /// which can store what was read and proposed but cannot approve anything.
 /// </summary>
-public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, RuleExtractor extractor, string modelId, TimeProvider clock, decimal dailyBudgetDollars = 20m)
+/// <param name="secondReader">
+/// Another model's extractor, or null. When given, it reads every agreement too, and each
+/// rule it differs on is flagged for the reviewer (see <see cref="SecondReading"/>). It must
+/// not fail over to the first model, or the second reading would be the first one again.
+/// </param>
+public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, RuleExtractor extractor, string modelId, TimeProvider clock, decimal dailyBudgetDollars = 20m, RuleExtractor? secondReader = null)
 {
     public const int MaxPages = 500;
 
@@ -129,6 +134,11 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
                 // Part of an answer is not a set of rules. A reviewer must never see a rule set with a kind silently missing.
                 throw new InvalidOperationException($"The model's answer for {string.Join(", ", extraction.Unreadable.Select(problem => problem.RuleId))} could not be read.");
             }
+
+            if (secondReader is not null)
+            {
+                extraction = await ReadAgainAsync(extraction, agreement, cancellationToken);
+            }
         }
         catch (Exception) when (usage.Calls > 0)
         {
@@ -225,6 +235,30 @@ public sealed class IngestionSteps(TenantScope database, ILayoutReader reader, R
     }
 
     /// <summary>What a piece of work cost is added to what the run has cost so far: a run can be tried more than once.</summary>
+    /// <summary>
+    /// The second reading. A rule it differs on is flagged. If it cannot be had, the run goes
+    /// on without it and says so: a missing second reading is a gap for the reviewer, not a
+    /// reason to stop.
+    /// </summary>
+    private async Task<ExtractionResult> ReadAgainAsync(ExtractionResult first, ReadAgreement agreement, CancellationToken cancellationToken)
+    {
+        RuleProblem Missing(string why) => new("second_reading", "second_reading_missing", $"The agreement was read by one model only: {why}");
+        try
+        {
+            var second = await secondReader!.ExtractAsync(agreement, cancellationToken);
+            if (second.Unreadable.Count > 0)
+            {
+                return first with { Gaps = [.. first.Gaps, Missing("the second model's answer could not be read.")] };
+            }
+
+            return SecondReading.Apply(first, second);
+        }
+        catch (Exception error) when (error is not OperationCanceledException and not BudgetReachedException)
+        {
+            return first with { Gaps = [.. first.Gaps, Missing($"the second model failed ({error.GetType().Name}).")] };
+        }
+    }
+
     private static void Charge(IngestionRunRow row, Usage usage) =>
         (row.ModelCalls, row.InputTokens, row.OutputTokens, row.CostMicros) =
             ((row.ModelCalls ?? 0) + usage.Calls, (row.InputTokens ?? 0) + usage.InputTokens, (row.OutputTokens ?? 0) + usage.OutputTokens, (row.CostMicros ?? 0) + usage.CostMicros);

@@ -11,7 +11,7 @@ A model can misread a table, round a number, paraphrase a clause or invent one. 
 | Option | For | Against |
 | --- | --- | --- |
 | Trust the model's output | Nothing to build | Invented and misread values reach the reviewer looking sound |
-| Ask a second model to verify | Catches some errors | Two models can agree on a wrong reading; costs twice; not reproducible |
+| Ask a second model to verify | Catches some errors | Two models can agree on a wrong reading; costs twice; not reproducible. Revisited with measurements in [decision 12](0012-a-second-reading.md) |
 | Check mechanically: clause exists, quote word for word, numbers and dates printed where cited | Deterministic; cheap; says exactly what failed | Cannot tell a right rule from a wrong one built of real words and numbers |
 
 ## Decision

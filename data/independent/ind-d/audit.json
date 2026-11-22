@@ -1,0 +1,311 @@
+{
+  "agreementId": "ind-d",
+  "version": 1,
+  "rules": [
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2025",
+      "inForce": {
+        "from": "2025-04-01",
+        "until": "2026-04-01"
+      },
+      "source": {
+        "clauseId": "§ 9, stk. 1",
+        "quote": "I tiden fra 1. april 2025 til og med 31. marts 2026 er mindstelønnen 136,90 kr. i timen for nyansatte, 139,40 kr. efter tre måneders ansættelse, 143,15 kr. efter et års ansættelse og 147,00 kr. efter fem års ansættelse."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 136.9
+        },
+        {
+          "fromMonths": 3,
+          "hourlyRate": 139.4
+        },
+        {
+          "fromMonths": 12,
+          "hourlyRate": 143.15
+        },
+        {
+          "fromMonths": 60,
+          "hourlyRate": 147.0
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2026",
+      "inForce": {
+        "from": "2026-04-01",
+        "until": "2027-04-01"
+      },
+      "source": {
+        "clauseId": "§ 9, stk. 2",
+        "quote": "I tiden fra 1. april 2026 til og med 31. marts 2027 er de tilsvarende satser 140,30 kr., 142,80 kr., 146,55 kr. og 150,40 kr. i timen."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 140.3
+        },
+        {
+          "fromMonths": 3,
+          "hourlyRate": 142.8
+        },
+        {
+          "fromMonths": 12,
+          "hourlyRate": 146.55
+        },
+        {
+          "fromMonths": 60,
+          "hourlyRate": 150.4
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2027",
+      "inForce": {
+        "from": "2027-04-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 9, stk. 3",
+        "quote": "Fra 1. april 2027 er satserne 143,80 kr., 146,30 kr., 150,05 kr. og 153,90 kr. i timen."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 143.8
+        },
+        {
+          "fromMonths": 3,
+          "hourlyRate": 146.3
+        },
+        {
+          "fromMonths": 12,
+          "hourlyRate": 150.05
+        },
+        {
+          "fromMonths": 60,
+          "hourlyRate": 153.9
+        }
+      ]
+    },
+    {
+      "kind": "overtime",
+      "id": "ot",
+      "inForce": {
+        "from": "2025-04-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 7, stk. 2",
+        "quote": "Tillægget er 50 pct. af timelønnen for den første overarbejdstime, 75 pct. for den anden og den tredje overarbejdstime og 100 pct. for alle senere overarbejdstimer samme dag."
+      },
+      "dailyNormHours": 7.4,
+      "tiers": [
+        {
+          "hours": 1.0,
+          "percent": 50.0
+        },
+        {
+          "hours": 2.0,
+          "percent": 75.0
+        },
+        {
+          "hours": null,
+          "percent": 100.0
+        }
+      ],
+      "sundayPercent": 65.0
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "ih-2025",
+      "inForce": {
+        "from": "2025-04-01",
+        "until": "2026-10-01"
+      },
+      "source": {
+        "clauseId": "§ 6, stk. 1",
+        "quote": "Arbejde på de tider af døgnet, som skemaet viser, giver ret til et genetillæg i kroner pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "00:00:00",
+          "to": "04:00:00",
+          "amountPerHour": 38.6
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "04:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 24.15
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 21.5
+        },
+        {
+          "days": [
+            "Sunday"
+          ],
+          "from": "00:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 45.0
+        }
+      ]
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "ih-2026",
+      "inForce": {
+        "from": "2026-10-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 6, stk. 1",
+        "quote": "Arbejde på de tider af døgnet, som skemaet viser, giver ret til et genetillæg i kroner pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "00:00:00",
+          "to": "04:00:00",
+          "amountPerHour": 39.75
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "04:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 24.9
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 22.15
+        },
+        {
+          "days": [
+            "Sunday"
+          ],
+          "from": "00:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 46.35
+        }
+      ]
+    },
+    {
+      "kind": "pension",
+      "id": "pen",
+      "inForce": {
+        "from": "2025-04-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 14, stk. 2",
+        "quote": "Virksomheden betaler et pensionsbidrag på 10,0 pct. af lønnen, og medarbejderen betaler selv 2,0 pct., som virksomheden trækker i lønnen og indbetaler sammen med sit eget bidrag."
+      },
+      "employerPercent": 10.0,
+      "employeePercent": 2.0,
+      "qualifyingMonths": 3
+    },
+    {
+      "kind": "holiday_allowance",
+      "id": "hol",
+      "inForce": {
+        "from": "2025-04-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 2",
+        "quote": "Feriegodtgørelsen efter denne overenskomst er 13,0 pct. af den løn, der er optjent i ferieåret."
+      },
+      "percent": 13.0
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2025",
+      "inForce": {
+        "from": "2025-04-01",
+        "until": "2026-04-01"
+      },
+      "source": {
+        "clauseId": "§ 15, stk. 1",
+        "quote": "Til fritvalgskontoen afsætter virksomheden 7,2 pct. af medarbejderens løn."
+      },
+      "percent": 7.2
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2026",
+      "inForce": {
+        "from": "2026-04-01",
+        "until": "2027-04-01"
+      },
+      "source": {
+        "clauseId": "§ 15, stk. 1",
+        "quote": "Procenten er 8,2 fra 1. april 2026 og 9,0 fra 1. april 2027."
+      },
+      "percent": 8.2
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2027",
+      "inForce": {
+        "from": "2027-04-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 15, stk. 1",
+        "quote": "Procenten er 8,2 fra 1. april 2026 og 9,0 fra 1. april 2027."
+      },
+      "percent": 9.0
+    }
+  ]
+}

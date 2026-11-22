@@ -102,7 +102,7 @@ Every document is synthetic, so the right answer is known before any model reads
 | Wrong answers shown | 0 | 0 |
 | Rules changed by five planted instructions | 0 | 0 |
 | Cost to read one agreement, short and long | $0.08 and $0.28 | $0.005 and $0.015 |
-| **Rules read out of four agreements nobody here had seen** | **40 of 51** | **30 of 51** |
+| **Rules read out of four agreements nobody here had seen** | **40 of 51 (65–88 pct.)** | **30 of 51 (45–71 pct.)** |
 | **Wrong rules the checks missed, on those four** | **7** | **2** |
 | **Payslips judged wrongly, on those four** | **36 of 288** | **36 of 288** |
 
@@ -133,7 +133,9 @@ Eight agreements were written by hand, in two batches, by writers shown nothing 
 - **The second batch broke it again.** It was written while the fix was made, and read once to measure it. Its figures were stated in other ways: a supplement as 160 pct. of another, a share as what is left of a total, a holiday allowance as the sum of two parts.
 - **Wrong rules passed, and payslips were judged on them.** Sonnet reported a seniority supplement as "added to the band before" where the agreement adds it to the base: every figure printed, the sum wrong. Both models took one part of a two-part holiday allowance as the whole, and 36 payslips were judged on it.
 
-The fields that let the model hand a sum to the code also let it hand over the wrong sum, and the checks cannot see that. Recorded through Claude Code's print mode; [in the report](docs/eval-report/README.md#agreements-the-generator-did-not-write) with the first-read figures, and not fixed.
+The fields that let the model hand a sum to the code also let it hand over the wrong sum, and the checks cannot see that. So every agreement is read a second time, by the other model, and a rule the two readings differ on goes to a person. With Sonnet reading and Haiku second, four of Sonnet's seven wrong rules are caught, and no correct rule of the 200 generated ones is flagged. The three that pass are mistakes both models make ([decision 12](docs/adr/0012-a-second-reading.md)).
+
+The answer keys of all eight were checked by a third reader that saw only the agreements: it read the same 99 rules. Ranges are 95 pct. intervals. Recorded through Claude Code's print mode; [in the report](docs/eval-report/README.md#agreements-the-generator-did-not-write) with the first-read figures.
 
 The [eval report](docs/eval-report/README.md) has each failure, its fix, and what the numbers do not show. A test fails if the published results differ from what the recorded answers give.
 
@@ -285,8 +287,9 @@ Each replays recorded answers and spends nothing. Add `--model claude-haiku-5-5`
 2. **Read, with no model.** Text from the letters and their positions; tables from their ruled borders. Front page, table of contents, running titles and page numbers are dropped. Clauses split by a page break are joined. Every clause gets an id such as `§ 5, stk. 2`.
 3. **Extracted.** One request per kind of rule, each with a strict schema. The agreement is passed as data. The model returns typed rules, each naming its clause and quoting a sentence from it.
 4. **Checked, with no model.** The clause exists; the quote stands in it word for word; every number and date is printed where the rule says; a figure in a table stands under the rule's date and in its row; values are in range. Missing kinds, uncovered days and conflicting rules are reported for the run.
-5. **Reviewed.** A specialist sees each rule beside its clause with the quote marked, and what publishing would change against the rules already published. They approve or reject each rule, then the run.
-6. **Published.** The database publishes the approved rules as the agreement's next version, and only if an approval is on record. A version is never edited; a later one takes over from the day it starts.
+5. **Read again, by the other model.** A rule the second reading states differently on any day it applies is flagged.
+6. **Reviewed.** A specialist sees each rule beside its clause with the quote marked, and what publishing would change against the rules already published. They approve or reject each rule, then the run.
+7. **Published.** The database publishes the approved rules as the agreement's next version, and only if an approval is on record. A version is never edited; a later one takes over from the day it starts.
 
 A payslip is then checked by arithmetic: the engine works out what the period should have paid, minute by minute, and reports every line that differs with the rule and clause behind it.
 
@@ -335,6 +338,7 @@ The corpus is generated, never edited by hand: `dotnet run --project tools/Corpu
 9. [Pay data is checked and not kept](docs/adr/0009-pay-data-is-not-kept.md)
 10. [The audit log is written by the database, and telemetry carries no content](docs/adr/0010-logged-by-the-database.md)
 11. [One model provider, and no real agreements](docs/adr/0011-one-provider.md)
+12. [Every agreement is read twice, by two models](docs/adr/0012-a-second-reading.md)
 
 See also [Running on Azure](docs/azure.md), the [threat model](docs/threat-model.md), [what was left out, and why](docs/cut-list.md), and [the EU AI Act and this system](docs/ai-act.md). To report a vulnerability, see [SECURITY.md](SECURITY.md); to change something, [CONTRIBUTING.md](CONTRIBUTING.md).
 

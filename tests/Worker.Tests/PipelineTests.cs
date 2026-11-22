@@ -197,6 +197,49 @@ public sealed class PipelineTests(Services stack) : IClassFixture<Services>
     }
 
     [Fact]
+    public async Task A_rule_a_second_reading_differs_on_is_put_to_the_reviewer()
+    {
+        // The overtime percentages exchanged: both are printed in the clause, so no check on the text can see it.
+        static void Exchanged(string kind, System.Text.Json.Nodes.JsonArray rules)
+        {
+            if (kind == "overtime")
+            {
+                var tiers = rules[0]!["tiers"]!.AsArray();
+                (tiers[0]!["percent"], tiers[^1]!["percent"]) = (tiers[^1]!["percent"]!.DeepClone(), tiers[0]!["percent"]!.DeepClone());
+            }
+        }
+
+        using var alone = await stack.StartWorker(Model(Exchanged));
+        var once = await Upload(Pdf);
+        await Until(once, row => row.Status == "awaiting_review");
+        Assert.Equal("[]", await ProblemsOf(once, "overtime"));
+        await alone.StopAsync();
+
+        using var twice = await stack.StartWorker(Model(Exchanged), secondModel: Model());
+        var run = await Upload(Pdf);
+        var row = await Until(run, row => row.Status == "awaiting_review");
+
+        Assert.Contains(Ingestion.Extraction.SecondReading.Code, await ProblemsOf(run, "overtime"), StringComparison.Ordinal);
+        Assert.Equal("[]", await ProblemsOf(run, "holiday_allowance"));
+        Assert.DoesNotContain("second_reading_missing", row.Gaps, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task When_the_second_reading_fails_the_run_goes_on_and_the_reviewer_is_told()
+    {
+        using var worker = await stack.StartWorker(Model(), secondModel: new FailsFirst(Model(), failures: 1000));
+        var run = await Upload(Pdf);
+
+        var row = await Until(run, row => row.Status == "awaiting_review");
+
+        Assert.Contains("second_reading_missing", row.Gaps, StringComparison.Ordinal);
+        Assert.Equal("[]", await ProblemsOf(run, "overtime"));
+    }
+
+    private Task<string> ProblemsOf(RunRef run, string kind) =>
+        stack.AsApi.RunAsync(run.TenantId, db => db.ProposedRules.Where(rule => rule.RunId == run.RunId && rule.RuleId.StartsWith(kind)).Select(rule => rule.Problems).FirstAsync());
+
+    [Fact]
     public async Task A_rejected_run_publishes_nothing()
     {
         using var worker = await stack.StartWorker(Model());

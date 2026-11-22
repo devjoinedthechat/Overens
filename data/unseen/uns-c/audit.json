@@ -1,0 +1,336 @@
+{
+  "agreementId": "uns-c",
+  "version": 1,
+  "rules": [
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2026",
+      "inForce": {
+        "from": "2026-05-01",
+        "until": "2027-05-01"
+      },
+      "source": {
+        "clauseId": "Bilag 1, stk. 1",
+        "quote": "Mindstelønnen pr. time på de enkelte løntrin udgør de beløb, der fremgår af tabellen."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 164.85
+        },
+        {
+          "fromMonths": 12,
+          "hourlyRate": 171.35
+        },
+        {
+          "fromMonths": 48,
+          "hourlyRate": 176.05
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2027",
+      "inForce": {
+        "from": "2027-05-01",
+        "until": "2028-05-01"
+      },
+      "source": {
+        "clauseId": "Bilag 1, stk. 1",
+        "quote": "Mindstelønnen pr. time på de enkelte løntrin udgør de beløb, der fremgår af tabellen."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 170.0
+        },
+        {
+          "fromMonths": 12,
+          "hourlyRate": 176.5
+        },
+        {
+          "fromMonths": 48,
+          "hourlyRate": 181.2
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "mw-2028",
+      "inForce": {
+        "from": "2028-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Bilag 1, stk. 2",
+        "quote": "Pr. 1. maj 2028 forhøjes satserne for løntrin 1 og løntrin 2 med 2 pct. af de satser, der gælder fra 1. maj 2027."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 173.4
+        },
+        {
+          "fromMonths": 12,
+          "hourlyRate": 180.03
+        },
+        {
+          "fromMonths": 48,
+          "hourlyRate": 184.73
+        }
+      ]
+    },
+    {
+      "kind": "overtime",
+      "id": "ot-2026",
+      "inForce": {
+        "from": "2026-05-01",
+        "until": "2027-11-01"
+      },
+      "source": {
+        "clauseId": "§ 11, stk. 3",
+        "quote": "For overarbejde betales et tillæg på 50 pct. af timelønnen for de første to timer og 100 pct. af timelønnen for de følgende timer samme dag."
+      },
+      "dailyNormHours": 7.4,
+      "tiers": [
+        {
+          "hours": 2.0,
+          "percent": 50.0
+        },
+        {
+          "hours": null,
+          "percent": 100.0
+        }
+      ],
+      "sundayPercent": 50.0
+    },
+    {
+      "kind": "overtime",
+      "id": "ot-2027",
+      "inForce": {
+        "from": "2027-11-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Protokollat 2, stk. 1",
+        "quote": "Fra den 1. november 2027 udgør søndagstillægget efter § 11, stk. 4, halvanden gang den procentsats, der gjaldt indtil denne dato."
+      },
+      "dailyNormHours": 7.4,
+      "tiers": [
+        {
+          "hours": 2.0,
+          "percent": 50.0
+        },
+        {
+          "hours": null,
+          "percent": 100.0
+        }
+      ],
+      "sundayPercent": 75.0
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "ih-2026",
+      "inForce": {
+        "from": "2026-05-01",
+        "until": "2027-05-01"
+      },
+      "source": {
+        "clauseId": "§ 12, stk. 1",
+        "quote": "For arbejde mandag til lørdag i tidsrummet kl. 17.00-23.00 betales et aftentillæg på 22,30 kr. pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "17:00:00",
+          "to": "23:00:00",
+          "amountPerHour": 22.3
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "00:00:00",
+          "to": "07:00:00",
+          "amountPerHour": 33.45
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "23:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 33.45
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "07:00:00",
+          "to": "17:00:00",
+          "amountPerHour": 18.2
+        }
+      ]
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "ih-2027",
+      "inForce": {
+        "from": "2027-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 12, stk. 5",
+        "quote": "Pr. 1. maj 2027 forhøjes aftentillægget til 23,10 kr. pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "17:00:00",
+          "to": "23:00:00",
+          "amountPerHour": 23.1
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "00:00:00",
+          "to": "07:00:00",
+          "amountPerHour": 34.65
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "from": "23:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 34.65
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "07:00:00",
+          "to": "17:00:00",
+          "amountPerHour": 18.2
+        }
+      ]
+    },
+    {
+      "kind": "pension",
+      "id": "pen-2026",
+      "inForce": {
+        "from": "2026-05-01",
+        "until": "2028-05-01"
+      },
+      "source": {
+        "clauseId": "§ 15, stk. 2",
+        "quote": "Medarbejderens eget bidrag udgør 4,1 pct., og arbejdsgiveren betaler den resterende del."
+      },
+      "employerPercent": 9.75,
+      "employeePercent": 4.1,
+      "qualifyingMonths": 6
+    },
+    {
+      "kind": "pension",
+      "id": "pen-2028",
+      "inForce": {
+        "from": "2028-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Protokollat 3, stk. 1",
+        "quote": "Fra den 1. maj 2028 omfattes medarbejdere af pensionsordningen, når de har været ansat hos arbejdsgiveren i tre måneder."
+      },
+      "employerPercent": 9.75,
+      "employeePercent": 4.1,
+      "qualifyingMonths": 3
+    },
+    {
+      "kind": "holiday_allowance",
+      "id": "hol",
+      "inForce": {
+        "from": "2026-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 2",
+        "quote": "Ferietillægget udgør 1,5 pct. af den ferieberettigede løn."
+      },
+      "percent": 1.5
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2026",
+      "inForce": {
+        "from": "2026-05-01",
+        "until": "2027-11-01"
+      },
+      "source": {
+        "clauseId": "Bilag 2, stk. 1",
+        "quote": "Den særlige opsparing efter § 18 udgør følgende procentsatser af den ferieberettigede løn:"
+      },
+      "percent": 6.75
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2027",
+      "inForce": {
+        "from": "2027-11-01",
+        "until": "2028-05-01"
+      },
+      "source": {
+        "clauseId": "Bilag 2, stk. 1",
+        "quote": "Den særlige opsparing efter § 18 udgør følgende procentsatser af den ferieberettigede løn:"
+      },
+      "percent": 7.5
+    },
+    {
+      "kind": "special_savings",
+      "id": "sav-2028",
+      "inForce": {
+        "from": "2028-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Bilag 2, stk. 1",
+        "quote": "Den særlige opsparing efter § 18 udgør følgende procentsatser af den ferieberettigede løn:"
+      },
+      "percent": 8.25
+    }
+  ]
+}

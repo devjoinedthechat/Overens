@@ -22,14 +22,21 @@ decimal Dollars(string name, string fallback) =>
         ? dollars
         : throw new InvalidOperationException($"The setting {name} must be an amount in dollars.");
 var modelId = builder.Configuration["MODEL"] ?? Models.Sonnet;
-var recordings = Path.Combine(builder.Configuration["RECORDINGS_DIR"] ?? Path.Combine("evals", "recordings"), ExtractionPrompt.Version, modelId);
+string Recordings(string model) => Path.Combine(builder.Configuration["RECORDINGS_DIR"] ?? Path.Combine("evals", "recordings"), ExtractionPrompt.Version, model);
+// Every agreement is read a second time by the other model, and a rule the two differ on is put to the reviewer.
+// SECOND_MODEL=none reads once. See docs/adr/0012-a-second-reading.md.
+var secondId = builder.Configuration["SECOND_MODEL"] is { Length: > 0 } named ? named : modelId == Models.Sonnet ? Models.Haiku : Models.Sonnet;
+(Microsoft.Extensions.AI.IChatClient, string)? secondModel = secondId == "none" || secondId == modelId
+    ? null
+    : (WorkerSetup.Model(builder.Configuration["ANTHROPIC_API_KEY"], Recordings(secondId), Dollars("MODEL_CAP_DOLLARS", "20"), failover: false), secondId);
 
 builder.Services.AddIngestionWorker(
     Setting("ConnectionStrings:worker"),
     Setting("ConnectionStrings:scheduler"),
-    WorkerSetup.Model(builder.Configuration["ANTHROPIC_API_KEY"], recordings, Dollars("MODEL_CAP_DOLLARS", "20")),
+    WorkerSetup.Model(builder.Configuration["ANTHROPIC_API_KEY"], Recordings(modelId), Dollars("MODEL_CAP_DOLLARS", "20")),
     modelId,
-    Dollars("TENANT_DAILY_BUDGET_DOLLARS", "20"));
+    Dollars("TENANT_DAILY_BUDGET_DOLLARS", "20"),
+    secondModel);
 builder.Services.AddReadinessCheck("database", async (services, cancellationToken) =>
 {
     await using var ping = services.GetRequiredService<NpgsqlDataSource>().CreateCommand("select 1");

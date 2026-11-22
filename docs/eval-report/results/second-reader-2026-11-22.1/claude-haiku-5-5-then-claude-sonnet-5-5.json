@@ -1,0 +1,963 @@
+{
+  "first": "claude-haiku-5-5",
+  "second": "claude-sonnet-5-5",
+  "promptVersion": "2026-11-22.1",
+  "agreements": [
+    {
+      "agreement": "easy-2026",
+      "set": "corpus",
+      "alone": {
+        "kind": "all",
+        "expected": 6,
+        "proposed": 6,
+        "correct": 6,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 6,
+        "proposed": 6,
+        "correct": 6,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "medium-2026",
+      "set": "corpus",
+      "alone": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "hard-2026",
+      "set": "corpus",
+      "alone": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "hard-2029",
+      "set": "corpus",
+      "alone": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "twist-increases",
+      "set": "challenge",
+      "alone": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "twist-dates",
+      "set": "challenge",
+      "alone": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "twist-night",
+      "set": "challenge",
+      "alone": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "twist-old-rates",
+      "set": "challenge",
+      "alone": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "twist-mid-year",
+      "set": "challenge",
+      "alone": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 14,
+        "correct": 14,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 14,
+        "correct": 14,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "twist-all",
+      "set": "challenge",
+      "alone": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 14,
+        "correct": 14,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 14,
+        "correct": 14,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "long-plain",
+      "set": "long",
+      "alone": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "long-appendix",
+      "set": "long",
+      "alone": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "long-references",
+      "set": "long",
+      "alone": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "long-fraction",
+      "set": "long",
+      "alone": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "long-numbering",
+      "set": "long",
+      "alone": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 13,
+        "correct": 13,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "long-all",
+      "set": "long",
+      "alone": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 14,
+        "correct": 14,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 14,
+        "correct": 14,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "ind-a",
+      "set": "independent",
+      "alone": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 12,
+        "proposed": 12,
+        "correct": 12,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "ind-b",
+      "set": "independent",
+      "alone": {
+        "kind": "all",
+        "expected": 10,
+        "proposed": 10,
+        "correct": 10,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 10,
+        "proposed": 10,
+        "correct": 10,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "ind-c",
+      "set": "independent",
+      "alone": {
+        "kind": "all",
+        "expected": 15,
+        "proposed": 15,
+        "correct": 15,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 15,
+        "proposed": 15,
+        "correct": 15,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "ind-d",
+      "set": "independent",
+      "alone": {
+        "kind": "all",
+        "expected": 11,
+        "proposed": 11,
+        "correct": 11,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 11,
+        "proposed": 11,
+        "correct": 11,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      }
+    },
+    {
+      "agreement": "uns-a",
+      "set": "unseen",
+      "alone": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 8,
+        "correct": 7,
+        "flagged": 2,
+        "wrongAndUnflagged": 1,
+        "rightButFlagged": 2
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 8,
+        "correct": 7,
+        "flagged": 2,
+        "wrongAndUnflagged": 1,
+        "rightButFlagged": 2
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 10,
+        "falseAlarms": 26,
+        "notChecked": 36
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 10,
+        "falseAlarms": 26,
+        "notChecked": 36
+      }
+    },
+    {
+      "agreement": "uns-b",
+      "set": "unseen",
+      "alone": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 13,
+        "correct": 6,
+        "flagged": 7,
+        "wrongAndUnflagged": 1,
+        "rightButFlagged": 1
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 14,
+        "proposed": 13,
+        "correct": 6,
+        "flagged": 7,
+        "wrongAndUnflagged": 1,
+        "rightButFlagged": 1
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 72
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 72
+      }
+    },
+    {
+      "agreement": "uns-c",
+      "set": "unseen",
+      "alone": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 11,
+        "correct": 8,
+        "flagged": 5,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 2
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 13,
+        "proposed": 11,
+        "correct": 8,
+        "flagged": 5,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 2
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 72
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 72
+      }
+    },
+    {
+      "agreement": "uns-d",
+      "set": "unseen",
+      "alone": {
+        "kind": "all",
+        "expected": 10,
+        "proposed": 9,
+        "correct": 9,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "withSecond": {
+        "kind": "all",
+        "expected": 10,
+        "proposed": 9,
+        "correct": 9,
+        "flagged": 0,
+        "wrongAndUnflagged": 0,
+        "rightButFlagged": 0
+      },
+      "payAlone": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 72
+      },
+      "payWithSecond": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 72
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "firstPass": 1,
+      "secondPass": 1,
+      "rules": 200,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 1,
+      "secondPass": 2,
+      "rules": 200,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 1,
+      "secondPass": 3,
+      "rules": 200,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 2,
+      "secondPass": 1,
+      "rules": 203,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 2,
+      "secondPass": 2,
+      "rules": 203,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 2,
+      "secondPass": 3,
+      "rules": 203,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 3,
+      "secondPass": 1,
+      "rules": 204,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 3,
+      "secondPass": 2,
+      "rules": 204,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 3,
+      "secondPass": 3,
+      "rules": 204,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 4,
+      "secondPass": 1,
+      "rules": 200,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 4,
+      "secondPass": 2,
+      "rules": 200,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 4,
+      "secondPass": 3,
+      "rules": 200,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 5,
+      "secondPass": 1,
+      "rules": 200,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 5,
+      "secondPass": 2,
+      "rules": 200,
+      "rightButFlagged": 0
+    },
+    {
+      "firstPass": 5,
+      "secondPass": 3,
+      "rules": 200,
+      "rightButFlagged": 0
+    }
+  ]
+}

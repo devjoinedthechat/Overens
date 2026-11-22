@@ -283,7 +283,7 @@ Three checks were also wrong: a date written in words or as "1.3.2026", a daily 
 
 | Read for the first time | Sonnet | Haiku |
 | --- | --- | --- |
-| Rules found | 40 of 51 | 30 of 51 |
+| Rules found | 40 of 51 (65–88 pct.) | 30 of 51 (45–71 pct.) |
 | Flagged | 24 | 21 |
 | Wrong and unflagged | 4 | 1 |
 | Payslips judged | none: every one had a line not checked | none |
@@ -315,7 +315,7 @@ These were found by reading the unseen batch, so the figures after them are not 
 
 | After the check fixes | Sonnet | Haiku |
 | --- | --- | --- |
-| Rules found | 40 of 51 | 30 of 51 |
+| Rules found | 40 of 51 (65–88 pct.) | 30 of 51 (45–71 pct.) |
 | Flagged | 13 | 14 |
 | Wrong and unflagged | 7 | 2 |
 | Payslips misjudged | 36 of 288 | 36 of 288 |
@@ -324,12 +324,61 @@ These were found by reading the unseen batch, so the figures after them are not 
 
 **The first misjudged payslips.** On the transport agreement both models took the statutory 1 pct. as the whole holiday allowance and missed the 0,95 pct. on top. While other rules there were flagged, the pay check decided nothing. Once they were not, it judged 36 of that agreement's 72 payslips on the wrong allowance: 10 errors missed and 26 correct payslips called wrong. Every one of those findings would have cited a rule a person had approved.
 
+The ranges are 95 pct. Wilson intervals: on 51 rules, a share is only known to within about a fifth. The two models' ranges barely overlap, so Sonnet reading more of these agreements is likely and not settled.
+
 ### What this says
 
 - **On documents its author did not shape, the system misses a fifth to two fifths of the rules, and some of what it gets wrong passes.** The generator-based results above say nothing about that.
 - **Each further way of stating a figure needs its own field, and each field is one more way to be wrong.** The checks hold printed figures to the text. They cannot tell whether a printed figure was put in the right sum.
 - **A reviewer is the guard for all of it.** The console shows each rule beside its clause with the quote marked; whether a reviewer would catch "7,15 added to the band before" is not measured.
 - **Nothing here is a real agreement.** These were written by a model from what it knows of how agreements read. A real one is further still from the generator.
+
+## The answer keys, checked
+
+The hand-written agreements' keys were written by the agreements' own authors, so every "wrong rule" above could have been the key's mistake. Each key was therefore checked by a third reader in a session of its own. It saw the agreement and what each kind of rule means, and not the key, and it wrote down the rules the agreement states. Its rules and its notes stand beside each key, as `audit.json` and `audit-notes.md`.
+
+| Agreements | Rules in the keys | The same on every day, in the second reader's rules |
+| --- | --- | --- |
+| The first four | 48 | 48 |
+| The unseen four | 51 | 51 |
+
+A test holds each key to its audit. The figures above rest on keys a second reader agrees with, and the models' wrong rules are the models' own.
+
+The reader also wrote down where it hesitated. Four places matter for the results:
+
+- **What a holiday allowance is.** The engine holds one percentage. Danish practice has two: feriegodtgørelse, 12,5 pct. of pay, and ferietillæg, from 1 pct., for employees paid during holidays. The first four agreements state feriegodtgørelse; the unseen four state only ferietillæg. The kind of rule does not say which it means, and a real agreement can state both.
+- **"Efter tre års ansættelse udgør anciennitetstillægget 7,15 kr."** Both the key and the reader take 7,15 as the whole supplement, which § 6, stk. 3 supports. Sonnet's reading, 7,15 on top of 3,80, is weaker but can be named.
+- **"160 pct. af aftentillægget".** 1,6 times the evening rate, not 2,6 times.
+- **The night rate after a rise of the evening rate it is defined by.** It follows the rise, since only the Saturday rate is said to stay.
+
+## A second reading
+
+The checks hold figures to the text. They cannot see printed figures put together wrongly, and that is what passed on the unseen agreements. So each agreement is read by the other model too, and a rule it states differently on any day is put to a person. The worker does this since [decision 12](../adr/0012-a-second-reading.md).
+
+```sh
+dotnet run --project evals/Runner -- --second-reader                             # Sonnet first, Haiku second
+dotnet run --project evals/Runner -- --second-reader --model claude-haiku-5-5    # the other way round
+```
+
+| Sonnet reads, Haiku second | Without | With |
+| --- | --- | --- |
+| Wrong rules that pass, unseen agreements | 7 | 3 |
+| Correct rules flagged, unseen agreements | 13 | 14 |
+| Payslips misjudged, unseen agreements | 36 | 36 |
+| Correct rules flagged, generated agreements, every pairing of repeat passes | 0 | 0 |
+
+**What it caught.** Four of Sonnet's seven wrong rules: the seniority supplement added to the band before, the two later years built on it, and the 2 pct. read as kroner. The repeat passes give 15 pairings of a Sonnet pass with a Haiku pass over 200 rules; in none did the second reading flag a correct rule.
+
+**What it did not.** Three mistakes both models made:
+- the holiday allowance taken as 1 pct.;
+- the Sunday supplement given as the "5" of "raised by 5 percentage points";
+- a rise for the top band alone given as an increase on every band.
+
+A mistake both readers make passes both, and so do the 36 payslips judged on the first one. With Haiku reading first, the second reading changed nothing, since Sonnet made Haiku's two mistakes as well.
+
+**Why they agree when wrong.** Both models are given the same prompt and the same fields. The last two mistakes are ones the fields invite: there is a field for an increase on every band and none for a rise on one band, and none for a change in points on overtime. A mistake the prompt invites is one both readers are likely to make.
+
+**Limits.** These are the same recordings the results above come from, not a fresh measurement. Two models from one provider may share more habits than two from different ones.
 
 ## The same question, asked again
 
