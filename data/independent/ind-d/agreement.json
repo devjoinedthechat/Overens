@@ -1,0 +1,941 @@
+{
+  "id": "ind-d",
+  "title": "Overenskomst for bagerier og konditorier 2025–2028",
+  "parties": "Erhvervsforeningen Tværhavn og Fagforeningen Elmekær",
+  "sections": [
+    {
+      "number": "§ 1",
+      "heading": "Gyldighedsområde",
+      "clauses": [
+        {
+          "id": "§ 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten dækker arbejde med fremstilling af brød, kager og konditorvarer i håndværksbagerier, konditorier og brødfabrikker, der er optaget som medlemmer af Erhvervsforeningen Tværhavn."
+            }
+          ]
+        },
+        {
+          "id": "§ 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den dækker bagere, konditorer, bageriarbejdere, pakkere og ovnpassere. Butikspersonale og chauffører er omfattet af andre overenskomster."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 2",
+      "heading": "Antagelse",
+      "clauses": [
+        {
+          "id": "§ 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved antagelsen får medarbejderen et ansættelsesbrev med oplysning om arbejdssted, mødetid, løn og opsigelsesvarsel. Brevet skal være udleveret, før den første lønperiode er omme."
+            }
+          ]
+        },
+        {
+          "id": "§ 2, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ancienniteten tæller fra den dag, medarbejderen første gang møder på arbejde, og opgøres i fulde måneder. Læretid i virksomheden tæller med."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 3",
+      "heading": "Arbejdstidens længde",
+      "clauses": [
+        {
+          "id": "§ 3, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den ugentlige arbejdstid er 37 timer. Den daglige arbejdstid er 7,4 timer, hvad der svarer til 7 timer og 24 minutter."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsugen er på fem dage. Lørdag kan indgå i arbejdsugen, når medarbejderen får en anden hverdag fri."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "I ugerne op til jul og påske kan arbejdsugen efter lokal aftale sættes op til 42 timer, når den sættes tilsvarende ned i andre uger inden for samme kvartal. Den daglige arbejdstid ved opgørelse af overarbejde ændres ikke af en sådan aftale."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 4",
+      "heading": "Arbejdstidens placering",
+      "clauses": [
+        {
+          "id": "§ 4, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden fastsætter mødetiderne og slår dem op mindst otte dage i forvejen."
+            }
+          ]
+        },
+        {
+          "id": "§ 4, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den normale arbejdstid kan begynde tidligst kl. 00.00. For arbejde om natten, tidligt om morgenen og om aftenen betales genetillæg efter § 6."
+            }
+          ]
+        },
+        {
+          "id": "§ 4, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Flyttes mødetiden med mindre end otte dages varsel, betales 70,00 kr. for hver af de første tre dage med ændret mødetid."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 5",
+      "heading": "Spise- og hvilepauser",
+      "clauses": [
+        {
+          "id": "§ 5, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Der holdes en daglig spisepause på en halv time, som medarbejderen ikke får løn for."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For hver tre timers arbejde ved ovn har medarbejderen ret til ti minutters betalt pause væk fra ovnen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 6",
+      "heading": "Genetillæg",
+      "clauses": [
+        {
+          "id": "§ 6, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejde på de tider af døgnet, som skemaet viser, giver ret til et genetillæg i kroner pr. time."
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Tid",
+                "Fra 1. april 2025",
+                "Fra 1. oktober 2026"
+              ],
+              "rows": [
+                [
+                  "Mandag til lørdag, kl. 00.00 til kl. 04.00",
+                  "38,60 kr.",
+                  "39,75 kr."
+                ],
+                [
+                  "Mandag til lørdag, kl. 04.00 til kl. 06.00",
+                  "24,15 kr.",
+                  "24,90 kr."
+                ],
+                [
+                  "Mandag til fredag, kl. 18.00 til kl. 24.00",
+                  "21,50 kr.",
+                  "22,15 kr."
+                ],
+                [
+                  "Søndag, kl. 00.00 til kl. 06.00",
+                  "45,00 kr.",
+                  "46,35 kr."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "§ 6, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Genetillægget er uafhængigt af timelønnens størrelse. Det betales ved siden af overarbejdstillæg og søndagstillæg efter § 7 og regnes ikke med, når disse tillæg beregnes."
+            }
+          ]
+        },
+        {
+          "id": "§ 6, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lærlinge får genetillæg med 60 pct. af satserne i stk. 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 7",
+      "heading": "Overarbejde",
+      "clauses": [
+        {
+          "id": "§ 7, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejde ud over den daglige arbejdstid på 7,4 timer er overarbejde og betales med timelønnen og et overarbejdstillæg."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillægget er 50 pct. af timelønnen for den første overarbejdstime, 75 pct. for den anden og den tredje overarbejdstime og 100 pct. for alle senere overarbejdstimer samme dag."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Søndagsarbejde betales med timelønnen og et søndagstillæg på 65 pct. af timelønnen. Tillægget gælder alle timer, der arbejdes på en søndag, og på søndage betales der ikke overarbejdstillæg."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overarbejde ud over to timer skal varsles dagen før. Sker det ikke, får medarbejderen betalt et måltid mad eller 85,00 kr."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 5",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ingen medarbejder må have mere end 36 overarbejdstimer i løbet af fire uger."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 8",
+      "heading": "Rådighedsvagt",
+      "clauses": [
+        {
+          "id": "§ 8, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ovnpassere og reparatører, der efter aftale står til rådighed uden for arbejdstiden, får 23,00 kr. for hver time, de står til rådighed."
+            }
+          ]
+        },
+        {
+          "id": "§ 8, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Bliver medarbejderen kaldt ind, betales for mindst to timer, og vagtbetalingen bortfalder for de timer, der arbejdes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 9",
+      "heading": "Mindsteløn",
+      "clauses": [
+        {
+          "id": "§ 9, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "I tiden fra 1. april 2025 til og med 31. marts 2026 er mindstelønnen 136,90 kr. i timen for nyansatte, 139,40 kr. efter tre måneders ansættelse, 143,15 kr. efter et års ansættelse og 147,00 kr. efter fem års ansættelse."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "I tiden fra 1. april 2026 til og med 31. marts 2027 er de tilsvarende satser 140,30 kr., 142,80 kr., 146,55 kr. og 150,40 kr. i timen."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Fra 1. april 2027 er satserne 143,80 kr., 146,30 kr., 150,05 kr. og 153,90 kr. i timen."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Satserne gælder medarbejdere, der er fyldt 18 år. For yngre medarbejdere er mindstelønnen 60 pct. af satsen for nyansatte, når medarbejderen er 16 år, og 70 pct., når medarbejderen er 17 år."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 10",
+      "heading": "Fagtillæg og andre tillæg",
+      "clauses": [
+        {
+          "id": "§ 10, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Udlærte bagere og konditorer får et fagtillæg på 14,25 kr. i timen. Fagtillægget lægges oven i den løn, medarbejderen ellers har, og er ikke en del af mindstelønnen i § 9."
+            }
+          ]
+        },
+        {
+          "id": "§ 10, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den, der har ansvaret for dejlavning eller ovn på et hold med mindst fire medarbejdere, får et ansvarstillæg på 7,50 kr. i timen."
+            }
+          ]
+        },
+        {
+          "id": "§ 10, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For rengøring af siloer og ovne indvendigt betales et smudstillæg på 55,00 kr. pr. gang."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 11",
+      "heading": "Lærlinge",
+      "clauses": [
+        {
+          "id": "§ 11, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lærlinge får denne ugeløn:"
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Læretid",
+                "Fra 1. april 2025",
+                "Fra 1. april 2026",
+                "Fra 1. april 2027"
+              ],
+              "rows": [
+                [
+                  "Første år",
+                  "3.050,00 kr.",
+                  "3.155,00 kr.",
+                  "3.265,00 kr."
+                ],
+                [
+                  "Andet år",
+                  "3.640,00 kr.",
+                  "3.765,00 kr.",
+                  "3.895,00 kr."
+                ],
+                [
+                  "Tredje år",
+                  "4.380,00 kr.",
+                  "4.535,00 kr.",
+                  "4.695,00 kr."
+                ],
+                [
+                  "Fjerde år",
+                  "5.120,00 kr.",
+                  "5.300,00 kr.",
+                  "5.485,00 kr."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lærlinge under 18 år må ikke arbejde mellem kl. 20.00 og kl. 04.00."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden betaler lærlingens udgifter til transport til og fra skoleophold, når den samlede vej er over 20 km."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 12",
+      "heading": "Udbetaling af løn",
+      "clauses": [
+        {
+          "id": "§ 12, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lønnen udbetales hver anden fredag for de to forudgående uger. Falder fredagen på en helligdag, udbetales lønnen dagen før."
+            }
+          ]
+        },
+        {
+          "id": "§ 12, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lønsedlen skal vise antallet af timer med hvert tillæg for sig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 13",
+      "heading": "Brød til eget brug",
+      "clauses": [
+        {
+          "id": "§ 13, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen kan hver arbejdsdag uden betaling tage brød til husstandens eget forbrug efter de retningslinjer, virksomheden har fastsat."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 14",
+      "heading": "Pension",
+      "clauses": [
+        {
+          "id": "§ 14, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pensionsordningen omfatter medarbejdere, der har været ansat i tre måneder."
+            }
+          ]
+        },
+        {
+          "id": "§ 14, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden betaler et pensionsbidrag på 10,0 pct. af lønnen, og medarbejderen betaler selv 2,0 pct., som virksomheden trækker i lønnen og indbetaler sammen med sit eget bidrag."
+            }
+          ]
+        },
+        {
+          "id": "§ 14, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lærlinge omfattes af pensionsordningen, når de fylder 20 år. Indtil da betaler virksomheden for en forsikring, der dækker ved invaliditet og død."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 15",
+      "heading": "Fritvalgskonto",
+      "clauses": [
+        {
+          "id": "§ 15, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Til fritvalgskontoen afsætter virksomheden 7,2 pct. af medarbejderens løn. Procenten er 8,2 fra 1. april 2026 og 9,0 fra 1. april 2027."
+            }
+          ]
+        },
+        {
+          "id": "§ 15, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen bestemmer selv, om pengene skal bruges til frihed, pension eller udbetaling. Udbetaling sker ved udgangen af juni og ved udgangen af december."
+            }
+          ]
+        },
+        {
+          "id": "§ 15, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Bidraget til søgnehelligdagskontoen efter § 16 er ikke en del af fritvalgskontoen og kommer oven i."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 16",
+      "heading": "Søgnehelligdage",
+      "clauses": [
+        {
+          "id": "§ 16, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden afsætter 3,5 pct. af medarbejderens løn på en søgnehelligdagskonto. Fra kontoen udbetales et forskud på 1.100,00 kr. for hver søgnehelligdag, der falder på en af medarbejderens normale arbejdsdage."
+            }
+          ]
+        },
+        {
+          "id": "§ 16, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Kontoen gøres op ved kalenderårets udgang. Et overskud udbetales, og et underskud bortfalder."
+            }
+          ]
+        },
+        {
+          "id": "§ 16, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde på en søgnehelligdag betales et tillæg på 80 pct. af timelønnen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 17",
+      "heading": "Ferie",
+      "clauses": [
+        {
+          "id": "§ 17, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Der optjenes 2,08 feriedage for hver måneds ansættelse, og ferien holdes efter reglerne i ferieloven."
+            }
+          ]
+        },
+        {
+          "id": "§ 17, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Feriegodtgørelsen efter denne overenskomst er 13,0 pct. af den løn, der er optjent i ferieåret."
+            }
+          ]
+        },
+        {
+          "id": "§ 17, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden kan holde lukket i indtil tre uger om sommeren og varsler i så fald lukningen inden 1. marts."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 18",
+      "heading": "Feriefridage",
+      "clauses": [
+        {
+          "id": "§ 18, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Der gives fem feriefridage om året til medarbejdere, som har været ansat i ni måneder. Dagene betales med den sædvanlige løn fra fritvalgskontoen."
+            }
+          ]
+        },
+        {
+          "id": "§ 18, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Feriefridage kan ikke lægges i en opsigelsesperiode, medmindre medarbejderen er enig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 19",
+      "heading": "Sygdom og ulykke",
+      "clauses": [
+        {
+          "id": "§ 19, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Efter seks måneders ansættelse betaler virksomheden fuld løn under sygdom i indtil ni uger. Genetillæg, som medarbejderen ville have haft efter mødeplanen, regnes med."
+            }
+          ]
+        },
+        {
+          "id": "§ 19, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Kommer medarbejderen til skade under arbejdet, betales fuld løn fra første dag uanset anciennitet."
+            }
+          ]
+        },
+        {
+          "id": "§ 19, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "To sygeperioder regnes som én, når der er gået mindre end 14 kalenderdage mellem dem."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 20",
+      "heading": "Børn",
+      "clauses": [
+        {
+          "id": "§ 20, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Forældre til børn under 14 år kan få fri med løn, når barnet bliver sygt, indtil der er skaffet anden pasning, dog ikke længere end barnets første sygedag."
+            }
+          ]
+        },
+        {
+          "id": "§ 20, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med hjemmeboende børn under 14 år har ret til to børneomsorgsdage om året. Dagene betales fra fritvalgskontoen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 21",
+      "heading": "Barsel",
+      "clauses": [
+        {
+          "id": "§ 21, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Kvinder, der har været ansat i ni måneder, får fuld løn fra fire uger før den ventede fødsel til 14 uger efter den."
+            }
+          ]
+        },
+        {
+          "id": "§ 21, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den anden forælder har ret til to ugers fravær med fuld løn inden for de første 14 uger efter fødslen."
+            }
+          ]
+        },
+        {
+          "id": "§ 21, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Derefter betaler virksomheden fuld løn i 18 ugers forældreorlov: syv uger til hver af forældrene og fire uger, som de selv fordeler."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 22",
+      "heading": "Opsigelse",
+      "clauses": [
+        {
+          "id": "§ 22, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "De første fire uger kan ansættelsen ophæves uden varsel."
+            }
+          ]
+        },
+        {
+          "id": "§ 22, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Derefter skal virksomheden give en uges varsel. Varslet er tre uger efter et års ansættelse, seks uger efter tre års ansættelse og ti uger efter syv års ansættelse."
+            }
+          ]
+        },
+        {
+          "id": "§ 22, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen skal give en uges varsel og efter tre års ansættelse to ugers varsel."
+            }
+          ]
+        },
+        {
+          "id": "§ 22, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Fylder en medarbejder 50 år og har været ansat i tolv år, forlænges virksomhedens varsel til tolv uger."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 23",
+      "heading": "Efteruddannelse",
+      "clauses": [
+        {
+          "id": "§ 23, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden betaler 45 øre pr. arbejdstime til bagerfagets uddannelsesfond."
+            }
+          ]
+        },
+        {
+          "id": "§ 23, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen har ret til 14 dages uddannelse om året. I den ene uge vælger virksomheden kurset, i den anden vælger medarbejderen selv."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 24",
+      "heading": "Tillidsmand",
+      "clauses": [
+        {
+          "id": "§ 24, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejder der fem eller flere under overenskomsten i virksomheden, vælger de en tillidsmand blandt de kolleger, som har været der i mindst et år."
+            }
+          ]
+        },
+        {
+          "id": "§ 24, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillidsmanden kan forlade sit arbejde for at varetage hvervet, når det er aftalt med arbejdslederen, og får sin sædvanlige løn imens."
+            }
+          ]
+        },
+        {
+          "id": "§ 24, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vil virksomheden afskedige tillidsmanden, er varslet fem måneder. Har tillidsmanden haft hvervet i mindst fem år i træk, er varslet seks måneder."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 25",
+      "heading": "Sikkerhed og sundhed",
+      "clauses": [
+        {
+          "id": "§ 25, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere, der arbejder med mel, tilbydes en lungefunktionsundersøgelse hvert andet år på virksomhedens regning."
+            }
+          ]
+        },
+        {
+          "id": "§ 25, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden sørger for arbejdstøj, hovedbeklædning og skridsikkert fodtøj og betaler vask af tøjet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 26",
+      "heading": "Uenighed og fagretlig behandling",
+      "clauses": [
+        {
+          "id": "§ 26, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Uenighed om løn- og arbejdsforhold skal først forsøges bilagt i virksomheden ved forhandling mellem ledelsen og tillidsmanden."
+            }
+          ]
+        },
+        {
+          "id": "§ 26, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lykkes det ikke, afholder organisationerne mæglingsmøde i virksomheden senest syv hverdage efter, at den ene organisation har bedt om det."
+            }
+          ]
+        },
+        {
+          "id": "§ 26, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "En sag, der ikke kan forliges, afgøres af en faglig voldgift. Arbejdet må ikke standses, mens sagen behandles."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 27",
+      "heading": "Gyldighedstid",
+      "clauses": [
+        {
+          "id": "§ 27, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten gælder fra 1. april 2025 og indtil den bliver sagt op med tre måneders varsel til en 1. april, første gang 1. april 2028."
+            }
+          ]
+        },
+        {
+          "id": "§ 27, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Indtil en ny overenskomst er trådt i kraft, er parterne forpligtet til at følge denne overenskomst med de satser, der gjaldt ved udløbet."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "protocols": [
+    {
+      "number": "Protokollat 1",
+      "heading": "Natarbejde",
+      "clauses": [
+        {
+          "id": "Protokollat 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Parterne er enige om, at natarbejde er en nødvendig del af bagerfaget, og at det skal tilrettelægges med hensyn til medarbejdernes sundhed."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere, som i mindst ti år overvejende har arbejdet før kl. 04.00, kan anmode om at overgå til dagarbejde. Virksomheden skal imødekomme anmodningen inden seks måneder, hvis den har passende dagarbejde."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "Protokollat 2",
+      "heading": "Ekstra fridage for seniorer",
+      "clauses": [
+        {
+          "id": "Protokollat 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere, der har højst fem år til folkepensionsalderen, kan bruge fritvalgskontoen til seniorfridage og kan desuden omlægge op til 4,0 procentpoint af virksomhedens pensionsbidrag til samme formål."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 2, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Omlægningen aftales skriftligt for et kalenderår ad gangen og ændrer ikke på den pensionsprocent, der er fastsat i § 14."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

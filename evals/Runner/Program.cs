@@ -23,7 +23,13 @@ var recordings = Path.Combine("evals", "recordings", ExtractionPrompt.Version, m
 
 var spend = new Spend();
 IChatClient? live = null;
-if (record)
+var viaClaudeCode = Option("--via", "api") == "claude-code";
+if (record && viaClaudeCode)
+{
+    // Through Claude Code's print mode, with no key. Nothing is priced, so there is no cap to hold.
+    live = new ClaudeCodeChatClient();
+}
+else if (record)
 {
     var key = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY");
     if (string.IsNullOrWhiteSpace(key))
@@ -49,6 +55,66 @@ if (args.Contains("--explain"))
     }
 
     Console.WriteLine(record ? $"Spent ${spend.Dollars:0.0000} in {spend.Calls} calls." : "Replayed from recordings. Nothing spent.");
+    return 0;
+}
+
+if (int.TryParse(Option("--variance", ""), CultureInfo.InvariantCulture, out var passes))
+{
+    // The same extraction asked several times, to see how much the answers differ from one time to the next.
+    var variance = await Variance.RunAsync(live, modelId, passes, only: spec => only.Length == 0 || spec.Id == only);
+    Console.WriteLine($"Model {modelId}, extraction prompt {ExtractionPrompt.Version}, {passes} passes\n");
+    foreach (var pass in variance.Passes)
+    {
+        Console.WriteLine($"pass {pass.Pass}: " + string.Join("  ", pass.Rules.Select(set => $"{set.Key} {set.Value.Correct} of {set.Value.Expected} found, {set.Value.Proposed} proposed, {set.Value.Flagged} flagged, {set.Value.WrongAndUnflagged} wrong and unflagged, payslips {pass.Pay[set.Key].Right} of {pass.Pay[set.Key].Cases};")));
+    }
+
+    Console.WriteLine();
+    foreach (var agreement in variance.Agreements.Where(agreement => !agreement.SameEveryPass))
+    {
+        Console.WriteLine($"{agreement.Agreement,-18} found {string.Join('/', agreement.Found)} of {agreement.Expected}  proposed {string.Join('/', agreement.Proposed)}  flagged {string.Join('/', agreement.Flagged)}  wrong-unflagged {string.Join('/', agreement.WrongAndUnflagged)}  payslips right {string.Join('/', agreement.PayslipsRight)} of {agreement.Payslips}");
+    }
+
+    Console.WriteLine($"\n{variance.Agreements.Count(agreement => agreement.SameEveryPass)} of {variance.Agreements.Count} agreements came out the same in every pass.");
+    if (args.Contains("--save") && only.Length == 0)
+    {
+        var file = Path.Combine("docs", "eval-report", "results", "variance", $"{modelId}.json");
+        Directory.CreateDirectory(Path.GetDirectoryName(file)!);
+        await File.WriteAllTextAsync(file, JsonSerializer.Serialize(variance, EvalResults.Json) + "\n");
+        Console.WriteLine($"Saved {file}");
+    }
+
+    return 0;
+}
+
+if (args.Contains("--independent"))
+{
+    // Four agreements written by hand, by a writer who saw nothing of the generator, the prompt or the checks.
+    using var reading = new ReplayChatClient(live, Independent.Recordings(modelId));
+    var independent = await Independent.RunAsync(reading, modelId);
+    Console.WriteLine($"Model {modelId}, extraction prompt {ExtractionPrompt.Version}");
+    foreach (var agreement in independent.Agreements)
+    {
+        var total = agreement.Kinds.Aggregate(new KindScore("all", 0, 0, 0, 0, 0, 0), KindScore.Add);
+        Console.WriteLine($"\n{agreement.Agreement}: {total.Correct} of {total.Expected} rules found, {total.Proposed} proposed, {total.Flagged} flagged, {total.WrongAndUnflagged} wrong and unflagged, {total.RightButFlagged} right but flagged. Payslips {agreement.Pay.Right} of {agreement.Pay.Cases} right, {agreement.Pay.MissedErrors} missed, {agreement.Pay.FalseAlarms} false alarms, {agreement.Pay.NotChecked} not checked.");
+        foreach (var kind in agreement.Kinds.Where(kind => kind.Correct != kind.Expected || kind.Proposed != kind.Expected || kind.Flagged > 0))
+        {
+            Console.WriteLine($"  {kind.Kind,-20} expected {kind.Expected}  proposed {kind.Proposed}  correct {kind.Correct}  flagged {kind.Flagged}  wrong-unflagged {kind.WrongAndUnflagged}  right-flagged {kind.RightButFlagged}");
+        }
+
+        foreach (var problem in agreement.Problems.Concat(agreement.Gaps.Select(gap => $"gap in {gap}")))
+        {
+            Console.WriteLine($"  ! {problem}");
+        }
+    }
+
+    if (args.Contains("--save"))
+    {
+        var file = Path.Combine("docs", "eval-report", "results", "independent", $"{modelId}.json");
+        Directory.CreateDirectory(Path.GetDirectoryName(file)!);
+        await File.WriteAllTextAsync(file, JsonSerializer.Serialize(independent, EvalResults.Json) + "\n");
+        Console.WriteLine($"\nSaved {file}");
+    }
+
     return 0;
 }
 

@@ -1,0 +1,272 @@
+{
+  "agreementId": "ind-b",
+  "version": 1,
+  "rules": [
+    {
+      "kind": "minimum_wage",
+      "id": "mindstebetaling-1",
+      "inForce": {
+        "from": "2025-05-01",
+        "until": "2026-05-01"
+      },
+      "source": {
+        "clauseId": "Bilag 1, stk. 1",
+        "quote": "Mindstebetalingen pr. time, før anciennitetstillæg, er fastsat i tabellen nedenfor."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 134.2
+        },
+        {
+          "fromMonths": 6,
+          "hourlyRate": 137.45
+        },
+        {
+          "fromMonths": 24,
+          "hourlyRate": 139.95
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "mindstebetaling-2",
+      "inForce": {
+        "from": "2026-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Bilag 1, stk. 1",
+        "quote": "Mindstebetalingen pr. time, før anciennitetstillæg, er fastsat i tabellen nedenfor."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 138.0
+        },
+        {
+          "fromMonths": 6,
+          "hourlyRate": 141.25
+        },
+        {
+          "fromMonths": 24,
+          "hourlyRate": 143.75
+        }
+      ]
+    },
+    {
+      "kind": "overtime",
+      "id": "overarbejde-1",
+      "inForce": {
+        "from": "2025-05-01",
+        "until": "2026-01-01"
+      },
+      "source": {
+        "clauseId": "§ 8, stk. 2",
+        "quote": "Overarbejde betales med timelønnen med tillæg af 50 pct. for de første tre timer ud over den daglige arbejdstid på 7 timer og 24 minutter og med tillæg af 100 pct. for timerne derefter."
+      },
+      "dailyNormHours": 7.4,
+      "tiers": [
+        {
+          "hours": 3,
+          "percent": 50
+        },
+        {
+          "hours": null,
+          "percent": 100
+        }
+      ],
+      "sundayPercent": 75
+    },
+    {
+      "kind": "overtime",
+      "id": "overarbejde-2",
+      "inForce": {
+        "from": "2026-01-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Protokollat 1, stk. 1",
+        "quote": "Parterne er enige om, at tillægget for søndagsarbejde efter overenskomstens § 8, stk. 3, med virkning fra den første januar 2026 udgør 85 pct. af timelønnen."
+      },
+      "dailyNormHours": 7.4,
+      "tiers": [
+        {
+          "hours": 3,
+          "percent": 50
+        },
+        {
+          "hours": null,
+          "percent": 100
+        }
+      ],
+      "sundayPercent": 85
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "forskudt-1",
+      "inForce": {
+        "from": "2025-05-01",
+        "until": "2026-05-01"
+      },
+      "source": {
+        "clauseId": "Bilag 1, stk. 2",
+        "quote": "For arbejde i de tidsrum, der er nævnt i tabellen, betales nedenstående tillæg pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 19.85
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "00:00:00",
+          "to": "05:00:00",
+          "amountPerHour": 26.3
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 31.1
+        },
+        {
+          "days": [
+            "Sunday"
+          ],
+          "from": "05:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 31.1
+        }
+      ]
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "forskudt-2",
+      "inForce": {
+        "from": "2026-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "Bilag 1, stk. 2",
+        "quote": "For arbejde i de tidsrum, der er nævnt i tabellen, betales nedenstående tillæg pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 20.45
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "00:00:00",
+          "to": "05:00:00",
+          "amountPerHour": 27.1
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 32.05
+        },
+        {
+          "days": [
+            "Sunday"
+          ],
+          "from": "05:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 32.05
+        }
+      ]
+    },
+    {
+      "kind": "pension",
+      "id": "pension",
+      "inForce": {
+        "from": "2025-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 14, stk. 2",
+        "quote": "Det samlede pensionsbidrag udgør 13,2 pct. af den ferieberettigede løn."
+      },
+      "employerPercent": 8.8,
+      "employeePercent": 4.4,
+      "qualifyingMonths": 6
+    },
+    {
+      "kind": "holiday_allowance",
+      "id": "feriegodtgoerelse",
+      "inForce": {
+        "from": "2025-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 2",
+        "quote": "Feriegodtgørelsen udgør 12,5 pct. af den ferieberettigede løn og afregnes efter ferielovens regler."
+      },
+      "percent": 12.5
+    },
+    {
+      "kind": "special_savings",
+      "id": "fritvalg-1",
+      "inForce": {
+        "from": "2025-05-01",
+        "until": "2026-05-01"
+      },
+      "source": {
+        "clauseId": "§ 15, stk. 1",
+        "quote": "Arbejdsgiveren indbetaler hver lønperiode 6,4 pct. af den ferieberettigede løn på medarbejderens fritvalgskonto."
+      },
+      "percent": 6.4
+    },
+    {
+      "kind": "special_savings",
+      "id": "fritvalg-2",
+      "inForce": {
+        "from": "2026-05-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 15, stk. 1",
+        "quote": "Fra første maj 2026 forhøjes bidraget med 1,0 procentpoint."
+      },
+      "percent": 7.4
+    }
+  ]
+}

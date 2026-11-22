@@ -69,4 +69,20 @@ public sealed class GroundingTests
         Assert.Equal(["value_under_another_date"], Problems(agreement, Savings(First, 5.5m)));
         Assert.Equal(["value_under_another_date"], Problems(agreement, Savings(Second, 5.0m)));
     }
+
+    [Fact]
+    public void A_table_row_that_holds_two_windows_is_read_for_each_of_them()
+    {
+        var table = new TableBlock(["Tidsrum", "Fra 1. marts 2026"], [["Lørdag kl. 14.00-24.00 og søndag kl. 05.00-24.00", "31,10 kr."]]);
+        var agreement = new ReadAgreement(
+            "Test",
+            [new Section("§ 6", "", [new Clause("§ 6, stk. 1", [new Paragraph("For arbejde i de nævnte tidsrum betales nedenstående tillæg pr. time."), table])])],
+            new Dictionary<string, PageSpan>());
+        InconvenientHoursRule Rule(TimeOnly from, TimeOnly to) => new(
+            "hours", new(First), new("§ 6, stk. 1", "For arbejde i de nævnte tidsrum betales nedenstående tillæg pr. time."),
+            [new([DayOfWeek.Saturday], new(14, 0), new(0, 0), 31.10m), new([DayOfWeek.Sunday], from, to, 31.10m)]);
+
+        // Sunday 05.00 to 24.00: the row prints a "24.00" before the "05.00", which belongs to Saturday.
+        Assert.Empty(Problems(agreement, Rule(new(5, 0), new(0, 0))));
+    }
 }

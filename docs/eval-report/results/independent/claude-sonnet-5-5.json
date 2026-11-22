@@ -1,0 +1,301 @@
+{
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "2026-11-16.2",
+  "agreements": [
+    {
+      "agreement": "ind-a",
+      "set": "independent",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "overtime",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "problems": [],
+      "gaps": []
+    },
+    {
+      "agreement": "ind-b",
+      "set": "independent",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 2,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 2
+        },
+        {
+          "kind": "overtime",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 2,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 2
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 1,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 1
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 1,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 1
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 72
+      },
+      "problems": [
+        "minimum_wage-2025: value_not_in_cited_clauses: The rate 137.45 is not printed in the clauses the rule cites.",
+        "minimum_wage-2025: value_not_in_cited_clauses: The rate 139.95 is not printed in the clauses the rule cites.",
+        "minimum_wage-2026: value_not_in_cited_clauses: The rate 141.25 is not printed in the clauses the rule cites.",
+        "minimum_wage-2026: value_not_in_cited_clauses: The rate 143.75 is not printed in the clauses the rule cites.",
+        "overtime-2025: date_not_in_agreement: The date 2026-01-01 is not printed in the agreement.",
+        "overtime-2026: date_not_in_agreement: The date 2026-01-01 is not printed in the agreement.",
+        "pension-2025: value_not_in_cited_clauses: The employer\u0027s 8.8 percent is not printed in the clauses the rule cites.",
+        "pension-2025: value_not_in_cited_clauses: The employee\u0027s 4.4 percent is not printed in the clauses the rule cites.",
+        "special_savings-2026: value_not_in_cited_clauses: The 7.4 percent is not printed in the clauses the rule cites."
+      ],
+      "gaps": []
+    },
+    {
+      "agreement": "ind-c",
+      "set": "independent",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "overtime",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 2,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 2
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 1,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 1
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 0,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 72
+      },
+      "problems": [
+        "overtime-2025: value_not_in_cited_clauses: The daily norm of 480 minutes is not printed in the clauses the rule cites.",
+        "overtime-2025: value_not_in_cited_clauses: The tier of 2 hours is not printed in the clauses the rule cites.",
+        "overtime-2025: value_not_in_cited_clauses: The tier of 2 hours is not printed in the clauses the rule cites.",
+        "overtime-2027: value_not_in_cited_clauses: The daily norm of 480 minutes is not printed in the clauses the rule cites.",
+        "overtime-2027: value_not_in_cited_clauses: The tier of 2 hours is not printed in the clauses the rule cites.",
+        "overtime-2027: value_not_in_cited_clauses: The tier of 2 hours is not printed in the clauses the rule cites.",
+        "pension-2026: value_not_in_cited_clauses: The employer\u0027s 9 percent is not printed in the clauses the rule cites.",
+        "pension-2026: value_not_in_cited_clauses: The employee\u0027s 3 percent is not printed in the clauses the rule cites."
+      ],
+      "gaps": []
+    },
+    {
+      "agreement": "ind-d",
+      "set": "independent",
+      "kinds": [
+        {
+          "kind": "minimum_wage",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "overtime",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "inconvenient_hours",
+          "expected": 2,
+          "proposed": 2,
+          "correct": 2,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "pension",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "holiday_allowance",
+          "expected": 1,
+          "proposed": 1,
+          "correct": 1,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        {
+          "kind": "special_savings",
+          "expected": 3,
+          "proposed": 3,
+          "correct": 3,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      ],
+      "pay": {
+        "cases": 72,
+        "right": 72,
+        "missedErrors": 0,
+        "falseAlarms": 0,
+        "notChecked": 0
+      },
+      "problems": [],
+      "gaps": []
+    }
+  ]
+}

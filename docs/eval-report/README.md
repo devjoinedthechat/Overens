@@ -237,6 +237,81 @@ A reviewer who sees the rule beside its clause is the guard for all of these.
 - **One model's answers.** The mistakes are planted in Sonnet's recorded answers. Haiku's give the same picture, with a few fewer rules to plant in: `--planted --model claude-haiku-5-5`.
 - **The same synthetic agreements.** The table checks were written after seeing this study's result on these documents. They rest on what a table prints, a date in a heading and a label in a row, and have met no real agreement.
 
+## Agreements the generator did not write
+
+Every document above comes from one generator, and the prompt and the checks grew up beside its phrasings. Four agreements were therefore written by hand, by a writer kept away from all of that.
+
+- **Who wrote them.** A language model in a session of its own. It was shown the shape of a document and what each kind of rule means, and told to write as real agreements are written.
+- **What it was not shown.** The generator, the extraction prompt, the checks, the other documents and this report.
+- **What it delivered.** Four agreements of about 30 sections for four trades, and the rules each states: 48 in all. They are in [`data/independent`](../../data/independent) and are never regenerated.
+- **How they were run.** Through Claude Code's print mode and not the API (`--via claude-code`), so these recordings are kept apart from the others. The prompt, the schema and the scoring are the same.
+
+```sh
+dotnet run --project evals/Runner -- --independent                           # Claude Sonnet
+dotnet run --project evals/Runner -- --independent --model claude-haiku-5-5
+```
+
+| Measure | Sonnet | Haiku |
+| --- | --- | --- |
+| Rules found | 48 of 48 | 44 of 48 |
+| Right but flagged | 9 | 5 |
+| Wrong and unflagged | 0 | 2 |
+| Payslips right, two plainer agreements | 144 of 144 | 144 of 144 |
+| Payslips not checked, two harder agreements | 144 of 144 | 144 of 144 |
+
+Two of the four came through whole for both models. The other two did not, and no payslip under them was checked at all: with a rule flagged or missing, the pay check says so and decides nothing. That is safe. It is not the tool doing its job.
+
+### What broke
+
+Each of these is a way of writing a rule that the generator never used.
+
+| The agreement says | Sonnet | Haiku |
+| --- | --- | --- |
+| A base wage in a table, "raised by 3,25 kr." after six months and "a further 2,50 kr." after two years | Added them up: right, and flagged, since the sums are printed nowhere | Proposed the base wage alone. Every figure is printed, so **nothing was flagged** |
+| A pension of "13,2 pct. in all", of which the employer pays two thirds | Worked out 8,8 and 4,4: right, and flagged | Proposed no pension rule; reported as missing |
+| A share "raised by 1,0 percentage point" from a date | Worked it out: right, and flagged | Savings: the same. Pension: gave the first period only; the gap was reported |
+| A date in words, "den første januar 2026" | Right, and flagged: the check reads dates in digits | The same |
+| Overtime for "the first and second hour", with the daily norm in a clause the rule did not cite | Right, and flagged | The same |
+
+**The one that matters.** Haiku's minimum wage for the cleaning agreement had one band where the agreement has three. The checks passed it, because a rule with a part missing is made only of printed figures. A reviewer who approved it would have held employees with seniority to too low a minimum. It is the first wrong rule in this report that the checks let through, and it is the kind the planted-mistake study predicted: [a part left out](#what-still-gets-through).
+
+**What the rest have in common.** The prompt tells the model never to calculate, and gives it two ways out: an increase on the period before, and a share of the employer's contribution. These agreements needed three more: a step added per seniority band, a share of a total, and a change in percentage points. Where there was no way out, Sonnet calculated and was flagged, and Haiku left the rule out or cut it short.
+
+**A fault in a check.** One table row holds two windows, "lørdag kl. 14.00–24.00 og søndag kl. 05.00–24.00". The check for a window given back to front, a day old, read the first "24.00" as the end of the second window and flagged two correct rules. It looks for the end after the start since then, and the figures above are after that fix.
+
+### What this result is, and is not
+
+- **It is the first measurement on documents the system's author did not shape,** and it is worse than every other table here. That is the point of it.
+- **It is not real agreements.** A model wrote these from what it knows of how agreements read. They are short, about five pages, and their writer also wrote the answers, though a test checks those are a usable rule set quoted from the text.
+- **Nothing was fixed to pass it,** apart from the fault in the check. The three missing ways of stating a figure are prompt and schema work that needs recording through the API, and they are listed in the [cut list](../cut-list.md).
+- **One answer per request.** These were asked once.
+
+## The same question, asked again
+
+Every result above the hand-written set is one answer per request. Here each model was asked for all sixteen generator agreements several times over, each pass recorded in a directory of its own. These passes also went through Claude Code's print mode and not the API.
+
+```sh
+dotnet run --project evals/Runner -- --variance 3                             # Claude Sonnet
+dotnet run --project evals/Runner -- --variance 5 --model claude-haiku-5-5
+```
+
+| Measure | Sonnet, 3 passes | Haiku, 5 passes |
+| --- | --- | --- |
+| Passes in which every one of the 200 rules was found | 3 of 3 | 5 of 5 |
+| Wrong rules the checks let through, any pass | 0 | 0 |
+| Agreements that came out the same in every pass | 16 of 16 | 12 of 16 |
+| Payslips right, lowest and highest pass | 1,152 of 1,152 in each | 1,044 and 1,152 |
+
+**Sonnet did not vary.** Three passes gave the same 200 rules with nothing flagged.
+
+**Haiku varied in one way, on the long agreements only.** It never missed a rule. In every pass it proposed three rules more than one of the long agreements states, and not the same agreement each time: three of the six took a turn. Each extra rule covered the same days as a true one, so the pair was put to a person as a conflict. Until someone chooses, those lines of pay are not checked. In four of the five passes that left 72 or 108 payslips unchecked, and none called wrong.
+
+One more thing moved once. In one pass a correct rule was flagged, and 36 payslips of that agreement went unchecked.
+
+**What this adds to the single API run.** That run showed Haiku taking the apprentices' pension for a second pension rule on one long agreement. Asked again, the same kind of thing shows up on three of the six, one at a time. It is a habit of the model on long documents, not an accident of one run, and the conflict check is what holds it.
+
+**Limits.** Three and five passes say whether answers move, not how often to expect each outcome. And these went another road to the model than the API runs, so the two are not to be added together.
+
 ## Hostile agreements
 
 Two agreements are written to work against the reader (`dotnet run --project evals/Runner -- --attacks`).
@@ -325,9 +400,10 @@ No answer was withheld by either model.
 ## What these results do not show
 
 - **The documents are synthetic.** No real agreement has been measured: a published agreement is someone's copyrighted text, and none is used here. The long set is closer to one in length and in what surrounds the rules, and is still written by a generator from fixed phrasings. About 24 pages is short for a real agreement.
+- **Off the generator's phrasings, the results drop.** Four agreements written without sight of the generator are the only ones here that broke anything on the current prompt, and one wrong rule passed the checks. A real agreement is further from the generator than they are.
 - **The sets barely tell the models apart.** They differ on one long agreement, where Haiku proposed one rule too many and the conflict check caught it.
 - **What a real agreement would add is known only in outline.** The reader understood one way of numbering clauses until a second was added. A real agreement states pay in more ways than six kinds of rule, such as monthly salaries, half rates for the young and public holidays. Its tables are not always ruled.
-- **Each model answered once per prompt version.** There is no proper measure of how much an answer varies from run to run. The one time everything was run again, Haiku's answers differed enough to trip a check twice.
+- **A few passes, not a distribution.** Extraction was asked again three times of Sonnet and five of Haiku, and that is all. The questions, the explanations and the hand-written agreements were each asked once.
 - **Six kinds of rule.** Anything else an agreement says about pay, such as shift work, on-call pay or public holidays, is not extracted and not counted as missing.
 - **Text PDFs with ruled tables in one column.** A scanned agreement is not read at all.
 - **What the checks cannot catch** is measured above: a figure printed in the cited clause that belongs to something else, where no table says what it belongs to, and a part of a rule left out. No model did this here. A reviewer is the only guard against it.

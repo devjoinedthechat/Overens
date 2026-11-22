@@ -1,0 +1,379 @@
+{
+  "agreementId": "ind-c",
+  "version": 1,
+  "rules": [
+    {
+      "kind": "minimum_wage",
+      "id": "c1-loen",
+      "inForce": {
+        "from": "2025-03-01",
+        "until": "2026-03-01"
+      },
+      "source": {
+        "clauseId": "§ 11, stk. 1",
+        "quote": "Mindstelønnen for voksne medarbejdere er fra 1. marts 2025 131,75 kr. pr. time."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 131.75
+        },
+        {
+          "fromMonths": 9,
+          "hourlyRate": 135.4
+        },
+        {
+          "fromMonths": 36,
+          "hourlyRate": 139.1
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "c2-loen",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 11, stk. 2",
+        "quote": "De tre satser i stk. 1 forhøjes den 1. marts 2026 med 3,60 kr. pr. time og den 1. marts 2027 med yderligere 3,40 kr. pr. time."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 135.35
+        },
+        {
+          "fromMonths": 9,
+          "hourlyRate": 139.0
+        },
+        {
+          "fromMonths": 36,
+          "hourlyRate": 142.7
+        }
+      ]
+    },
+    {
+      "kind": "minimum_wage",
+      "id": "c3-loen",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 11, stk. 2",
+        "quote": "De tre satser i stk. 1 forhøjes den 1. marts 2026 med 3,60 kr. pr. time og den 1. marts 2027 med yderligere 3,40 kr. pr. time."
+      },
+      "bands": [
+        {
+          "fromMonths": 0,
+          "hourlyRate": 138.75
+        },
+        {
+          "fromMonths": 9,
+          "hourlyRate": 142.4
+        },
+        {
+          "fromMonths": 36,
+          "hourlyRate": 146.1
+        }
+      ]
+    },
+    {
+      "kind": "overtime",
+      "id": "c1-overarbejde",
+      "inForce": {
+        "from": "2025-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 8, stk. 2",
+        "quote": "Overarbejde betales med et tillæg til timelønnen på 50 pct. for første og anden overarbejdstime, 75 pct. for tredje og fjerde overarbejdstime og 100 pct. for overarbejde derudover."
+      },
+      "dailyNormHours": 8,
+      "tiers": [
+        {
+          "hours": 2,
+          "percent": 50
+        },
+        {
+          "hours": 2,
+          "percent": 75
+        },
+        {
+          "hours": null,
+          "percent": 100
+        }
+      ],
+      "sundayPercent": 25
+    },
+    {
+      "kind": "overtime",
+      "id": "c2-overarbejde",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 10, stk. 1",
+        "quote": "Søndagstillægget forhøjes til 30 pct. af timelønnen fra 1. marts 2027."
+      },
+      "dailyNormHours": 8,
+      "tiers": [
+        {
+          "hours": 2,
+          "percent": 50
+        },
+        {
+          "hours": 2,
+          "percent": 75
+        },
+        {
+          "hours": null,
+          "percent": 100
+        }
+      ],
+      "sundayPercent": 30
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "c1-tillaeg",
+      "inForce": {
+        "from": "2025-03-01",
+        "until": "2026-03-01"
+      },
+      "source": {
+        "clauseId": "§ 9, stk. 1",
+        "quote": "For arbejde på de tidspunkter, der fremgår af skemaet, får medarbejderen et tillæg pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 15.2
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 17.05
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "00:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 23.9
+        }
+      ]
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "c2-tillaeg",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 9, stk. 1",
+        "quote": "For arbejde på de tidspunkter, der fremgår af skemaet, får medarbejderen et tillæg pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 15.7
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 17.6
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "00:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 24.65
+        }
+      ]
+    },
+    {
+      "kind": "inconvenient_hours",
+      "id": "c3-tillaeg",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 9, stk. 1",
+        "quote": "For arbejde på de tidspunkter, der fremgår af skemaet, får medarbejderen et tillæg pr. time."
+      },
+      "windows": [
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "from": "18:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 16.2
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "from": "14:00:00",
+          "to": "00:00:00",
+          "amountPerHour": 18.15
+        },
+        {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "from": "00:00:00",
+          "to": "06:00:00",
+          "amountPerHour": 25.45
+        }
+      ]
+    },
+    {
+      "kind": "pension",
+      "id": "c1-pension",
+      "inForce": {
+        "from": "2025-03-01",
+        "until": "2026-03-01"
+      },
+      "source": {
+        "clauseId": "§ 16, stk. 2",
+        "quote": "Pensionsbidraget er i alt 12,0 pct. af lønnen, hvoraf virksomheden betaler 8,0 pct. og medarbejderen 4,0 pct."
+      },
+      "employerPercent": 8.0,
+      "employeePercent": 4.0,
+      "qualifyingMonths": 12
+    },
+    {
+      "kind": "pension",
+      "id": "c2-pension",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 16, stk. 2",
+        "quote": "Den 1. marts 2026 ændres fordelingen, så virksomhedens bidrag forhøjes med 1,0 procentpoint, og medarbejderens bidrag nedsættes med 1,0 procentpoint."
+      },
+      "employerPercent": 9.0,
+      "employeePercent": 3.0,
+      "qualifyingMonths": 12
+    },
+    {
+      "kind": "holiday_allowance",
+      "id": "c1-ferie",
+      "inForce": {
+        "from": "2025-03-01",
+        "until": "2026-09-01"
+      },
+      "source": {
+        "clauseId": "§ 18, stk. 2",
+        "quote": "Feriegodtgørelsen er 12,5 pct. af lønnen."
+      },
+      "percent": 12.5
+    },
+    {
+      "kind": "holiday_allowance",
+      "id": "c2-ferie",
+      "inForce": {
+        "from": "2026-09-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 18, stk. 2",
+        "quote": "For løn, der optjenes fra og med 1. september 2026, er feriegodtgørelsen 12,75 pct."
+      },
+      "percent": 12.75
+    },
+    {
+      "kind": "special_savings",
+      "id": "c1-opsparing",
+      "inForce": {
+        "from": "2025-03-01",
+        "until": "2026-03-01"
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 1",
+        "quote": "Virksomheden hensætter 5,5 pct. af medarbejderens løn til særlig opsparing."
+      },
+      "percent": 5.5
+    },
+    {
+      "kind": "special_savings",
+      "id": "c2-opsparing",
+      "inForce": {
+        "from": "2026-03-01",
+        "until": "2027-03-01"
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 1",
+        "quote": "Satsen stiger til 6,5 pct. den 1. marts 2026 og til 7,5 pct. den 1. marts 2027."
+      },
+      "percent": 6.5
+    },
+    {
+      "kind": "special_savings",
+      "id": "c3-opsparing",
+      "inForce": {
+        "from": "2027-03-01",
+        "until": null
+      },
+      "source": {
+        "clauseId": "§ 17, stk. 1",
+        "quote": "Satsen stiger til 6,5 pct. den 1. marts 2026 og til 7,5 pct. den 1. marts 2027."
+      },
+      "percent": 7.5
+    }
+  ]
+}

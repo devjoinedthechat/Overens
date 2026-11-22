@@ -22,7 +22,9 @@ Things a production system of this kind would have, that this one does not. Each
 | Limit | Detail |
 | --- | --- |
 | Both models are at the ceiling | The synthetic documents cannot tell them apart, and say little about real agreements |
-| Each model answered once per prompt | No measure of run-to-run variance. One rerun changed Haiku's citations enough to trip a check |
+| A few passes per model | Extraction repeated three times for Sonnet, five for Haiku, through Claude Code and not the API. Only Haiku varied |
+| Three ways of stating a figure have no answer | A step added per seniority band, a share of a total, a change in percentage points. Sonnet calculates and is flagged; Haiku drops the rule or cuts it short |
+| Dates and lengths in words | "den første januar 2026" and "første og anden time" are right and flagged |
 | The prompt met four of the documents | The extraction prompt was written while looking at the first four agreements. Six more were added after it was fixed |
 | The reader knows two numbering conventions | Sections with "Stk." clauses, and bold numbered headings. A third would read as no clauses and fail the run |
 | A split word's hyphen is guessed | A line ending in a hyphen is joined by a rule of thumb. It can be wrong |

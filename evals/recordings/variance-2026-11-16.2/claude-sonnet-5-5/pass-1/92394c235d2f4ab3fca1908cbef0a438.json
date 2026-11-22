@@ -1,0 +1,4 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "{\u0022rules\u0022:[{\u0022from\u0022:\u00222026-03-01\u0022,\u0022until\u0022:null,\u0022clause_id\u0022:\u0022§ 4, stk. 1\u0022,\u0022quote\u0022:\u0022Mindstebetalingen pr. time udgør 139,05 kr. Efter 12 måneders anciennitet udgør mindstebetalingen 145,55 kr. pr. time.\u0022,\u0022also_from\u0022:[],\u0022increase\u0022:null,\u0022bands\u0022:[{\u0022from_months\u0022:0,\u0022hourly_rate\u0022:139.05},{\u0022from_months\u0022:12,\u0022hourly_rate\u0022:145.55}]}]}"
+}

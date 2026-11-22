@@ -89,7 +89,7 @@ The system running on one machine with Claude as the model. Every picture is the
 
 ## Results on real models
 
-Every document is synthetic: an agreement is generated from a rule set, so the right answer is known before any model reads it. No real agreement has been measured.
+Every document is synthetic, so the right answer is known before any model reads it. All but four are generated from a rule set. No real agreement has been measured.
 
 | What | Claude Sonnet | Claude Haiku |
 | --- | --- | --- |
@@ -102,6 +102,9 @@ Every document is synthetic: an agreement is generated from a rule set, so the r
 | Wrong answers shown | 0 | 0 |
 | Rules changed by five planted instructions | 0 | 0 |
 | Cost to read one agreement, short and long | $0.08 and $0.28 | $0.005 and $0.015 |
+| Asked again: passes in which all 200 rules were found | 3 of 3 | 5 of 5 |
+| Rules read out of four agreements the generator did not write | 48 of 48, 9 flagged though right | 44 of 48 |
+| Wrong rules the checks missed, on those four | 0 | 2 |
 
 The long agreements run to about 24 pages and 60 sections, most of them not about pay and full of figures that are not rules. Length, appendices, cross-references and mixed tables changed nothing for Sonnet. On one of them Haiku took the apprentices' pension for a second pension rule. The two were reported as in conflict, so nothing wrong passed, and until a person rejects one the pay check says of those 72 payslips that pension was not checked.
 
@@ -119,6 +122,16 @@ Models that make no mistakes say little about the checks that are there to catch
 | A part of a rule, or a whole rule, left out | 0 of 375 | 200 | 175 |
 
 A stopped rule cannot be published until a person acts. What passes in silence is a rule made only of figures printed where it says: two percentages in one sentence exchanged, or a weekday left out. The first run of this study stopped 1,601; it found three faults in the checks, which stop 1,899 since the fixes. The [study](docs/eval-report/README.md#the-checks-measured-on-wrong-answers) has every kind of mistake and what still gets through.
+
+### Off the generator's phrasings
+
+The last two rows above are the ones to read. Four agreements were written by hand, by a writer shown nothing of the generator, the prompt or the checks. They are the only documents that broke anything on the current prompt:
+
+- **A wrong rule passed.** Haiku gave a minimum wage with one seniority band where the agreement has three. Every figure in it is printed, so no check flagged it.
+- **Right rules were flagged.** The agreements state figures in three ways the prompt has no answer for: a step added per seniority band, a share of a total, a change in percentage points. Sonnet worked them out itself, correctly, and was flagged for it.
+- **Half the payslips were not checked.** Under two of the four agreements a rule was flagged or missing, so the pay check decided nothing. No payslip was called wrong.
+
+These two results were recorded through Claude Code's print mode and not the API, and are kept apart from the rest. They are [in the report](docs/eval-report/README.md#agreements-the-generator-did-not-write), unfixed.
 
 The [eval report](docs/eval-report/README.md) has each failure, its fix, and what the numbers do not show. A test fails if the published results differ from what the recorded answers give.
 
@@ -258,9 +271,11 @@ dotnet run --project evals/Runner -- --questions     # 48 questions with known a
 dotnet run --project evals/Runner -- --attacks       # planted instructions and a contradiction
 dotnet run --project evals/Runner -- --explain       # how often a model's wording passes the guard
 dotnet run --project evals/Runner -- --planted       # 2,363 mistakes planted in correct answers, and what the checks do
+dotnet run --project evals/Runner -- --independent   # four agreements the generator did not write
+dotnet run --project evals/Runner -- --variance 3    # the same extraction, asked three times
 ```
 
-Each replays recorded answers and spends nothing. Add `--model claude-haiku-5-5` for the other model, and `--record --cap 2` with a key to call the model for anything not yet recorded.
+Each replays recorded answers and spends nothing. Add `--model claude-haiku-5-5` for the other model, and `--record --cap 2` with a key to call the model for anything not yet recorded. The last two can also be recorded with no key, through Claude Code: `--record --via claude-code`.
 
 ## How an agreement becomes rules
 
@@ -279,6 +294,7 @@ A payslip is then checked by arithmetic: the engine works out what the period sh
 | --- | --- |
 | Eighteen agreements as PDF, text and structure, with the rules each states. Six are about 24 pages long | `data/synthetic` |
 | Six months of timesheets and payslips for each, with nine kinds of seeded payroll mistake and the answers | `data/synthetic/*/pay.json` |
+| Four agreements written by hand without sight of the generator, with the rules each states | `data/independent` |
 | The generators | `src/Synthetic` |
 | Recorded model answers | `evals/recordings` |
 

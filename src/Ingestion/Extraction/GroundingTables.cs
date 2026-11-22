@@ -96,11 +96,13 @@ public static partial class Grounding
             }
 
             int? At(string row, string[][] times) => times.SelectMany(way => way).Where(form => Printed(row, form)).Select(form => (int?)row.IndexOf(form, StringComparison.Ordinal)).Min();
+            // A row may hold two windows, "lørdag kl. 14.00-24.00 og søndag kl. 05.00-24.00": the end is looked for after the start.
+            int? Last(string row, string[][] times) => times.SelectMany(way => way).Where(form => Printed(row, form)).Select(form => (int?)row.LastIndexOf(form, StringComparison.Ordinal)).Max();
             if (!rows.Any(row => At(row, label.Value.From) is not null) || !rows.Any(row => At(row, until) is not null))
             {
                 problem("value_in_another_row", $"{what} stands in a table row that is not the row for {label.Value.Name}.");
             }
-            else if (rows.Where(row => At(row, label.Value.From) is not null && At(row, until) is not null) is var both && both.Any() && both.All(row => At(row, label.Value.From) > At(row, until)))
+            else if (rows.Where(row => At(row, label.Value.From) is not null && At(row, until) is not null) is var both && both.Any() && both.All(row => At(row, label.Value.From) > Last(row, until)))
             {
                 problem("window_back_to_front", $"The row for {what} prints the times the other way round from {label.Value.Name}.");
             }
