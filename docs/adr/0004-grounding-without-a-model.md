@@ -33,7 +33,7 @@ A rule with a problem cannot be approved. Kinds of rule with none proposed, days
 ## Cost
 
 - The check is on form. A value printed in the cited clause that belongs to something else can pass: two percentages in one sentence exchanged, an apprentice rate taken as the minimum wage, a figure planted in the clause. The reviewer is the only guard there.
-- How much gets through is measured. Of 2,363 mistakes planted in correct answers, 1,899 are stopped, 200 are reported and 264 pass in silence. The [eval report](../eval-report/README.md#the-checks-measured-on-wrong-answers) lists which.
+- How much gets through is measured. Of 2,366 mistakes planted in correct answers, 1,904 are stopped, 200 are reported and 262 pass in silence. The [eval report](../eval-report/README.md#the-checks-measured-on-wrong-answers) lists which.
 - It flagged correct rules twice when a model left a clause out of its citations. The check was widened to the quote's whole section.
 
 ## When this breaks

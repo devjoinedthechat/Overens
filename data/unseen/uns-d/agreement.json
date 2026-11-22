@@ -1,0 +1,814 @@
+{
+  "id": "uns-d",
+  "title": "Overenskomst for industrivaskerier 2026-2028",
+  "parties": "Erhvervsforeningen Tværhavn og Fagforeningen Elmekær",
+  "sections": [
+    {
+      "number": "§ 1",
+      "heading": "Område",
+      "clauses": [
+        {
+          "id": "§ 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten gælder for medarbejdere, der beskæftiges med vask, rulning, sortering, reparation, pakning og udbringning af tekstiler i industrivaskerier, som er medlem af Erhvervsforeningen Tværhavn."
+            }
+          ]
+        },
+        {
+          "id": "§ 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Chauffører, der alene udfører udbringning, og funktionærer er ikke omfattet af overenskomsten."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 2",
+      "heading": "Organisationsforhold",
+      "clauses": [
+        {
+          "id": "§ 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Parterne anerkender hinandens ret til at organisere sig. Ingen medarbejder må forskelsbehandles på grund af medlemskab af en faglig organisation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 3",
+      "heading": "Ansættelse og prøvetid",
+      "clauses": [
+        {
+          "id": "§ 3, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen modtager ved ansættelsen et skriftligt ansættelsesbevis, som angiver arbejdstid, arbejdssted og løn."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "De første fire uger af ansættelsen er prøvetid. I prøvetiden kan begge parter opsige ansættelsen uden varsel."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 4",
+      "heading": "Anciennitet",
+      "clauses": [
+        {
+          "id": "§ 4, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Anciennitet opgøres i hele måneder fra ansættelsens første dag i virksomheden."
+            }
+          ]
+        },
+        {
+          "id": "§ 4, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Orlov, sygdom og ferie afbryder ikke ancienniteten."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 5",
+      "heading": "Arbejdstid",
+      "clauses": [
+        {
+          "id": "§ 5, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den ugentlige arbejdstid er 37 timer, normalt fordelt med 7,4 timer på hver af ugens fem første dage."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdet kan organiseres som dagarbejde, toholdsskift eller treholdsskift efter aftale med tillidsrepræsentanten."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Skifteholdsplaner varsles med mindst 14 dage. Ændres en medarbejders hold med kortere varsel, betales en godtgørelse på 210 kr."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 6",
+      "heading": "Mindsteløn",
+      "clauses": [
+        {
+          "id": "§ 6, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Mindstelønnen pr. time for vaskeriarbejdere fastsættes efter anciennitet i virksomheden som angivet i tabellen."
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Anciennitet",
+                "Fra 1. september 2026",
+                "Fra 1. september 2027"
+              ],
+              "rows": [
+                [
+                  "Under 3 måneder",
+                  "152,40 kr.",
+                  "156,90 kr."
+                ],
+                [
+                  "3 måneder til under 12 måneder",
+                  "155,85 kr.",
+                  "160,35 kr."
+                ],
+                [
+                  "12 måneder og derover",
+                  "159,10 kr.",
+                  "163,60 kr."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "§ 6, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Satserne i stk. 1 er mindstesatser. Der kan lokalt aftales højere løn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 7",
+      "heading": "Ungarbejdere og elever",
+      "clauses": [
+        {
+          "id": "§ 7, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ungarbejdere under 18 år aflønnes med 101,60 kr. pr. time fra 1. september 2026 og 104,50 kr. pr. time fra 1. september 2027."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Elever på erhvervsuddannelsen til tekstilrengører aflønnes efter den til enhver tid gældende elevaftale mellem parterne."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tabellen i § 6, stk. 1, gælder ikke for ungarbejdere og elever."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 8",
+      "heading": "Produktionstillæg og instruktørtillæg",
+      "clauses": [
+        {
+          "id": "§ 8, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Der kan lokalt aftales produktionstillæg, som udbetales ud over mindstelønnen."
+            }
+          ]
+        },
+        {
+          "id": "§ 8, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "En medarbejder, der efter aftale oplærer nyansatte, får et instruktørtillæg på 4,50 kr. pr. time i oplæringsperioden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 9",
+      "heading": "Overarbejde",
+      "clauses": [
+        {
+          "id": "§ 9, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejde ud over 7,4 timer på en dag er overarbejde. Arbejdet henregnes til den dag, hvor det påbegyndes."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overarbejdstillægget betales efter følgende tabel:"
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Overarbejdstime samme dag",
+                "Tillæg i pct. af timelønnen"
+              ],
+              "rows": [
+                [
+                  "1. og 2. time",
+                  "50 pct."
+                ],
+                [
+                  "3. time",
+                  "75 pct."
+                ],
+                [
+                  "4. time og følgende",
+                  "100 pct."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde på søndage betales et tillæg på 100 pct. af timelønnen for alle timer i stedet for overarbejdstillæg. Søndagstimer medregnes ikke ved opgørelsen af overarbejde efter stk. 1."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overarbejde skal så vidt muligt varsles senest dagen før. Ved overarbejde på mere end 2 timer, der ikke er varslet dagen før, ydes en spisegodtgørelse på 75 kr."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 10",
+      "heading": "Tillæg for arbejde uden for dagtid",
+      "clauses": [
+        {
+          "id": "§ 10, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde uden for dagtid betales et tillæg pr. time efter tabellen."
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Dage",
+                "Tidsrum",
+                "Fra 1. september 2026",
+                "Fra 1. september 2027"
+              ],
+              "rows": [
+                [
+                  "Mandag-fredag",
+                  "kl. 15.00-23.00",
+                  "19,60 kr.",
+                  "20,25 kr."
+                ],
+                [
+                  "Mandag-fredag",
+                  "kl. 23.00-24.00",
+                  "29,10 kr.",
+                  "30,05 kr."
+                ],
+                [
+                  "Tirsdag-lørdag",
+                  "kl. 00.00-06.00",
+                  "29,10 kr.",
+                  "30,05 kr."
+                ],
+                [
+                  "Lørdag",
+                  "kl. 06.00-24.00",
+                  "24,30 kr.",
+                  "25,10 kr."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "§ 10, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillægget fastsættes efter den ugedag og det klokkeslæt, hvor arbejdet udføres. Der betales ikke tillæg efter denne paragraf for arbejde på søndage og for arbejde mandag før kl. 06.00."
+            }
+          ]
+        },
+        {
+          "id": "§ 10, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillægget betales også for overarbejdstimer."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 11",
+      "heading": "Pauser",
+      "clauses": [
+        {
+          "id": "§ 11, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderne har en betalt pause på 30 minutter pr. arbejdsdag."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved arbejde i rum med en temperatur over 28 grader holdes yderligere en betalt pause på 10 minutter for hver anden times arbejde."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 12",
+      "heading": "Lønudbetaling",
+      "clauses": [
+        {
+          "id": "§ 12, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lønnen udbetales hver fjortende dag. Tillæg udbetales for den lønperiode, hvor de er optjent."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 13",
+      "heading": "Pension",
+      "clauses": [
+        {
+          "id": "§ 13, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere, der har været ansat i virksomheden i to måneder, optages i pensionsordningen."
+            }
+          ]
+        },
+        {
+          "id": "§ 13, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pensionsbidraget udgør som hidtil 12 pct. af den samlede løn, herunder tillæg og overarbejdsbetaling, hvoraf arbejdsgiveren betaler 8 pct."
+            }
+          ]
+        },
+        {
+          "id": "§ 13, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pensionsbidraget er uændret i overenskomstperioden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 14",
+      "heading": "Sygdom og tilskadekomst",
+      "clauses": [
+        {
+          "id": "§ 14, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med mindst seks måneders anciennitet får løn under sygdom i op til seks uger."
+            }
+          ]
+        },
+        {
+          "id": "§ 14, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved tilskadekomst på arbejdet betales løn fra første fraværsdag uanset anciennitet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 15",
+      "heading": "Ferie og ferietillæg",
+      "clauses": [
+        {
+          "id": "§ 15, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ferie holdes efter ferieloven."
+            }
+          ]
+        },
+        {
+          "id": "§ 15, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ferietillægget udgør 2 pct. af den ferieberettigede løn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 16",
+      "heading": "Fritvalgslønkonto og søgnehelligdagsbetaling",
+      "clauses": [
+        {
+          "id": "§ 16, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden indbetaler til en fritvalgslønkonto for den enkelte medarbejder. Bidraget udgør 7 pct. af den ferieberettigede løn pr. 1. september 2026 og 8 pct. pr. 1. september 2027."
+            }
+          ]
+        },
+        {
+          "id": "§ 16, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Herudover indbetales der til en særskilt søgnehelligdagskonto 2,5 pct. af den ferieberettigede løn til betaling for søgnehelligdage. Søgnehelligdagsbetalingen er ikke en del af fritvalgslønkontoen."
+            }
+          ]
+        },
+        {
+          "id": "§ 16, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Beløbet på fritvalgslønkontoen udbetales ved ferie, ved fratræden eller efter medarbejderens valg ved hver lønudbetaling."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 17",
+      "heading": "Barsel",
+      "clauses": [
+        {
+          "id": "§ 17, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med mindst ni måneders anciennitet får fuld løn under fravær fra 4 uger før forventet fødsel og indtil 14 uger efter fødslen."
+            }
+          ]
+        },
+        {
+          "id": "§ 17, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Herudover betales løn i 11 ugers forældreorlov, som forældrene kan dele."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 18",
+      "heading": "Barns første sygedag",
+      "clauses": [
+        {
+          "id": "§ 18, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "En medarbejder har ret til frihed med løn på et sygt barns første og anden sygedag, når barnet er under 14 år."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 19",
+      "heading": "Opsigelse",
+      "clauses": [
+        {
+          "id": "§ 19, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Efter prøvetiden gælder følgende varsler for opsigelse fra virksomhedens side:"
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Anciennitet",
+                "Varsel"
+              ],
+              "rows": [
+                [
+                  "Under 6 måneder",
+                  "7 dage"
+                ],
+                [
+                  "6 måneder",
+                  "14 dage"
+                ],
+                [
+                  "2 år",
+                  "1 måned"
+                ],
+                [
+                  "5 år",
+                  "2 måneder"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "§ 19, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen kan opsige ansættelsen med 7 dages varsel."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 20",
+      "heading": "Tillidsrepræsentanter",
+      "clauses": [
+        {
+          "id": "§ 20, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "I virksomheder med mindst fem medarbejdere vælges en tillidsrepræsentant blandt de medarbejdere, der har mindst seks måneders anciennitet."
+            }
+          ]
+        },
+        {
+          "id": "§ 20, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillidsrepræsentanten kan kun afskediges, hvis tvingende årsager foreligger, og med et varsel på mindst tre måneder."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 21",
+      "heading": "Arbejdsmiljø",
+      "clauses": [
+        {
+          "id": "§ 21, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden sørger for, at medarbejderne er instrueret i sikker brug af vaskemidler og kemikalier, og stiller nødvendige værnemidler til rådighed."
+            }
+          ]
+        },
+        {
+          "id": "§ 21, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved arbejde med urent linned fra sundhedssektoren skal medarbejderne tilbydes relevante vaccinationer for virksomhedens regning."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 22",
+      "heading": "Uddannelse",
+      "clauses": [
+        {
+          "id": "§ 22, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med mindst ni måneders anciennitet har ret til to ugers selvvalgt uddannelse om året med løn."
+            }
+          ]
+        },
+        {
+          "id": "§ 22, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden indbetaler 0,45 kr. pr. arbejdstime til en uddannelsesfond, der administreres af parterne."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 23",
+      "heading": "Lokale aftaler",
+      "clauses": [
+        {
+          "id": "§ 23, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden og tillidsrepræsentanten kan indgå lokale aftaler om arbejdstid, skifteholdsordninger og lønsystemer."
+            }
+          ]
+        },
+        {
+          "id": "§ 23, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lokale aftaler kan opsiges med tre måneders varsel."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 24",
+      "heading": "Faglig strid",
+      "clauses": [
+        {
+          "id": "§ 24, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Faglig strid behandles efter de almindelige regler for behandling af faglig strid, med forhandling på virksomheden, organisationsmøde og faglig voldgift."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 25",
+      "heading": "Varighed",
+      "clauses": [
+        {
+          "id": "§ 25, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten gælder fra den 1. september 2026."
+            }
+          ]
+        },
+        {
+          "id": "§ 25, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten kan opsiges med tre måneders varsel til ophør den 1. september, dog tidligst den 1. september 2028."
+            }
+          ]
+        },
+        {
+          "id": "§ 25, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Indtil en ny overenskomst er indgået, gælder satserne fra 1. september 2027."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "protocols": [
+    {
+      "number": "Protokollat 1",
+      "heading": "Overarbejde fra 1. marts 2027",
+      "clauses": [
+        {
+          "id": "Protokollat 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Fra den 1. marts 2027 ændres § 9, stk. 2, således at der for 3. overarbejdstime betales samme tillæg som for 4. og følgende overarbejdstime."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillægget for 1. og 2. overarbejdstime og søndagstillægget efter § 9, stk. 3, er uændrede."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "Protokollat 2",
+      "heading": "Vikarer",
+      "clauses": [
+        {
+          "id": "Protokollat 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vikarer, der udfører arbejde omfattet af overenskomsten, aflønnes efter overenskomstens bestemmelser fra første arbejdsdag."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "Bilag 1",
+      "heading": "Retningslinjer for varme arbejdspladser",
+      "clauses": [
+        {
+          "id": "Bilag 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved arbejde ved rullemaskiner og tørretumblere skal virksomheden sikre ventilation og adgang til drikkevand."
+            }
+          ]
+        },
+        {
+          "id": "Bilag 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsmiljøorganisationen gennemgår mindst én gang om året temperaturforholdene på de varme arbejdspladser."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

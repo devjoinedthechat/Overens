@@ -34,7 +34,7 @@ public sealed class PlantedMistakeTests
     [Fact]
     public async Task The_published_results_are_what_the_recorded_answers_give()
     {
-        var published = await File.ReadAllTextAsync(Path.Combine(Root(), "docs", "eval-report", "results", "planted", $"{Models.Sonnet}.json"));
+        var published = await File.ReadAllTextAsync(Path.Combine(Root(), "docs", "eval-report", "results", $"planted-{ExtractionPrompt.Version}", $"{Models.Sonnet}.json"));
 
         Assert.Equal(published, JsonSerializer.Serialize(await Study.Value, EvalResults.Json) + "\n");
     }

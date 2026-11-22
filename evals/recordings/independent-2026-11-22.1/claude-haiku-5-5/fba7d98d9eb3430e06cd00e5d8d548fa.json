@@ -1,0 +1,4 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "{\u0022rules\u0022:[{\u0022from\u0022:\u00222025-03-01\u0022,\u0022until\u0022:\u00222026-09-01\u0022,\u0022clause_id\u0022:\u0022§ 18, stk. 2\u0022,\u0022quote\u0022:\u0022Feriegodtgørelsen er 12,5 pct. af lønnen.\u0022,\u0022also_from\u0022:[],\u0022percent\u0022:12.5,\u0022points_added\u0022:null},{\u0022from\u0022:\u00222026-09-01\u0022,\u0022until\u0022:null,\u0022clause_id\u0022:\u0022§ 18, stk. 2\u0022,\u0022quote\u0022:\u0022For løn, der optjenes fra og med 1. september 2026, er feriegodtgørelsen 12,75 pct.\u0022,\u0022also_from\u0022:[],\u0022percent\u0022:12.75,\u0022points_added\u0022:null}]}"
+}

@@ -1,0 +1,766 @@
+{
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "2026-11-22.1",
+  "via": "claude-code",
+  "passes": [
+    {
+      "pass": 1,
+      "rules": {
+        "corpus": {
+          "kind": "all",
+          "expected": 44,
+          "proposed": 44,
+          "correct": 44,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        "challenge": {
+          "kind": "all",
+          "expected": 77,
+          "proposed": 77,
+          "correct": 77,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        "long": {
+          "kind": "all",
+          "expected": 79,
+          "proposed": 79,
+          "correct": 79,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      },
+      "pay": {
+        "corpus": {
+          "cases": 288,
+          "right": 288,
+          "missedErrors": 0,
+          "falseAlarms": 0,
+          "notChecked": 0
+        },
+        "challenge": {
+          "cases": 432,
+          "right": 432,
+          "missedErrors": 0,
+          "falseAlarms": 0,
+          "notChecked": 0
+        },
+        "long": {
+          "cases": 432,
+          "right": 432,
+          "missedErrors": 0,
+          "falseAlarms": 0,
+          "notChecked": 0
+        }
+      }
+    },
+    {
+      "pass": 2,
+      "rules": {
+        "corpus": {
+          "kind": "all",
+          "expected": 44,
+          "proposed": 44,
+          "correct": 44,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        "challenge": {
+          "kind": "all",
+          "expected": 77,
+          "proposed": 77,
+          "correct": 77,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        "long": {
+          "kind": "all",
+          "expected": 79,
+          "proposed": 79,
+          "correct": 79,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      },
+      "pay": {
+        "corpus": {
+          "cases": 288,
+          "right": 288,
+          "missedErrors": 0,
+          "falseAlarms": 0,
+          "notChecked": 0
+        },
+        "challenge": {
+          "cases": 432,
+          "right": 432,
+          "missedErrors": 0,
+          "falseAlarms": 0,
+          "notChecked": 0
+        },
+        "long": {
+          "cases": 432,
+          "right": 432,
+          "missedErrors": 0,
+          "falseAlarms": 0,
+          "notChecked": 0
+        }
+      }
+    },
+    {
+      "pass": 3,
+      "rules": {
+        "corpus": {
+          "kind": "all",
+          "expected": 44,
+          "proposed": 44,
+          "correct": 44,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        "challenge": {
+          "kind": "all",
+          "expected": 77,
+          "proposed": 77,
+          "correct": 77,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        },
+        "long": {
+          "kind": "all",
+          "expected": 79,
+          "proposed": 79,
+          "correct": 79,
+          "flagged": 0,
+          "wrongAndUnflagged": 0,
+          "rightButFlagged": 0
+        }
+      },
+      "pay": {
+        "corpus": {
+          "cases": 288,
+          "right": 288,
+          "missedErrors": 0,
+          "falseAlarms": 0,
+          "notChecked": 0
+        },
+        "challenge": {
+          "cases": 432,
+          "right": 432,
+          "missedErrors": 0,
+          "falseAlarms": 0,
+          "notChecked": 0
+        },
+        "long": {
+          "cases": 432,
+          "right": 432,
+          "missedErrors": 0,
+          "falseAlarms": 0,
+          "notChecked": 0
+        }
+      }
+    }
+  ],
+  "agreements": [
+    {
+      "agreement": "easy-2026",
+      "set": "corpus",
+      "expected": 6,
+      "found": [
+        6,
+        6,
+        6
+      ],
+      "proposed": [
+        6,
+        6,
+        6
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "medium-2026",
+      "set": "corpus",
+      "expected": 12,
+      "found": [
+        12,
+        12,
+        12
+      ],
+      "proposed": [
+        12,
+        12,
+        12
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "hard-2026",
+      "set": "corpus",
+      "expected": 13,
+      "found": [
+        13,
+        13,
+        13
+      ],
+      "proposed": [
+        13,
+        13,
+        13
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "hard-2029",
+      "set": "corpus",
+      "expected": 13,
+      "found": [
+        13,
+        13,
+        13
+      ],
+      "proposed": [
+        13,
+        13,
+        13
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "twist-increases",
+      "set": "challenge",
+      "expected": 12,
+      "found": [
+        12,
+        12,
+        12
+      ],
+      "proposed": [
+        12,
+        12,
+        12
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "twist-dates",
+      "set": "challenge",
+      "expected": 12,
+      "found": [
+        12,
+        12,
+        12
+      ],
+      "proposed": [
+        12,
+        12,
+        12
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "twist-night",
+      "set": "challenge",
+      "expected": 12,
+      "found": [
+        12,
+        12,
+        12
+      ],
+      "proposed": [
+        12,
+        12,
+        12
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "twist-old-rates",
+      "set": "challenge",
+      "expected": 13,
+      "found": [
+        13,
+        13,
+        13
+      ],
+      "proposed": [
+        13,
+        13,
+        13
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "twist-mid-year",
+      "set": "challenge",
+      "expected": 14,
+      "found": [
+        14,
+        14,
+        14
+      ],
+      "proposed": [
+        14,
+        14,
+        14
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "twist-all",
+      "set": "challenge",
+      "expected": 14,
+      "found": [
+        14,
+        14,
+        14
+      ],
+      "proposed": [
+        14,
+        14,
+        14
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "long-plain",
+      "set": "long",
+      "expected": 13,
+      "found": [
+        13,
+        13,
+        13
+      ],
+      "proposed": [
+        13,
+        13,
+        13
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "long-appendix",
+      "set": "long",
+      "expected": 13,
+      "found": [
+        13,
+        13,
+        13
+      ],
+      "proposed": [
+        13,
+        13,
+        13
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "long-references",
+      "set": "long",
+      "expected": 13,
+      "found": [
+        13,
+        13,
+        13
+      ],
+      "proposed": [
+        13,
+        13,
+        13
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "long-fraction",
+      "set": "long",
+      "expected": 13,
+      "found": [
+        13,
+        13,
+        13
+      ],
+      "proposed": [
+        13,
+        13,
+        13
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "long-numbering",
+      "set": "long",
+      "expected": 13,
+      "found": [
+        13,
+        13,
+        13
+      ],
+      "proposed": [
+        13,
+        13,
+        13
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    },
+    {
+      "agreement": "long-all",
+      "set": "long",
+      "expected": 14,
+      "found": [
+        14,
+        14,
+        14
+      ],
+      "proposed": [
+        14,
+        14,
+        14
+      ],
+      "flagged": [
+        0,
+        0,
+        0
+      ],
+      "wrongAndUnflagged": [
+        0,
+        0,
+        0
+      ],
+      "payslips": 72,
+      "payslipsRight": [
+        72,
+        72,
+        72
+      ],
+      "payslipsNotChecked": [
+        0,
+        0,
+        0
+      ],
+      "sameEveryPass": true
+    }
+  ]
+}

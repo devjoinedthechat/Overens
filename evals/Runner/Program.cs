@@ -77,7 +77,7 @@ if (int.TryParse(Option("--variance", ""), CultureInfo.InvariantCulture, out var
     Console.WriteLine($"\n{variance.Agreements.Count(agreement => agreement.SameEveryPass)} of {variance.Agreements.Count} agreements came out the same in every pass.");
     if (args.Contains("--save") && only.Length == 0)
     {
-        var file = Path.Combine("docs", "eval-report", "results", "variance", $"{modelId}.json");
+        var file = Path.Combine("docs", "eval-report", "results", $"variance-{ExtractionPrompt.Version}", $"{modelId}.json");
         Directory.CreateDirectory(Path.GetDirectoryName(file)!);
         await File.WriteAllTextAsync(file, JsonSerializer.Serialize(variance, EvalResults.Json) + "\n");
         Console.WriteLine($"Saved {file}");
@@ -88,7 +88,7 @@ if (int.TryParse(Option("--variance", ""), CultureInfo.InvariantCulture, out var
 
 if (args.Contains("--independent"))
 {
-    // Four agreements written by hand, by a writer who saw nothing of the generator, the prompt or the checks.
+    // Agreements written by hand, by writers who saw nothing of the generator, the prompt or the checks.
     using var reading = new ReplayChatClient(live, Independent.Recordings(modelId));
     var independent = await Independent.RunAsync(reading, modelId);
     Console.WriteLine($"Model {modelId}, extraction prompt {ExtractionPrompt.Version}");
@@ -109,7 +109,7 @@ if (args.Contains("--independent"))
 
     if (args.Contains("--save"))
     {
-        var file = Path.Combine("docs", "eval-report", "results", "independent", $"{modelId}.json");
+        var file = Path.Combine("docs", "eval-report", "results", $"independent-{ExtractionPrompt.Version}", $"{modelId}.json");
         Directory.CreateDirectory(Path.GetDirectoryName(file)!);
         await File.WriteAllTextAsync(file, JsonSerializer.Serialize(independent, EvalResults.Json) + "\n");
         Console.WriteLine($"\nSaved {file}");
@@ -142,7 +142,7 @@ if (args.Contains("--planted"))
     Console.WriteLine("Replayed from recordings. Nothing spent.");
     if (args.Contains("--save") && only.Length == 0)
     {
-        var file = Path.Combine("docs", "eval-report", "results", "planted", $"{modelId}.json");
+        var file = Path.Combine("docs", "eval-report", "results", $"planted-{ExtractionPrompt.Version}", $"{modelId}.json");
         Directory.CreateDirectory(Path.GetDirectoryName(file)!);
         await File.WriteAllTextAsync(file, JsonSerializer.Serialize(planted, EvalResults.Json) + "\n");
         Console.WriteLine($"Saved {file}");
@@ -183,7 +183,7 @@ if (args.Contains("--attacks"))
     Console.WriteLine(record ? $"\nSpent ${spend.Dollars:0.0000} in {spend.Calls} calls." : "\nReplayed from recordings. Nothing spent.");
     if (args.Contains("--save"))
     {
-        var file = Path.Combine("docs", "eval-report", "results", "attacks", $"{modelId}.json");
+        var file = Path.Combine("docs", "eval-report", "results", $"attacks-{ExtractionPrompt.Version}", $"{modelId}.json");
         Directory.CreateDirectory(Path.GetDirectoryName(file)!);
         await File.WriteAllTextAsync(file, JsonSerializer.Serialize(new { extraction = read, questions = answered }, EvalResults.Json) + "\n");
     }

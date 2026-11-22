@@ -12,7 +12,8 @@ public static class Danish
     ];
 
     private static readonly string[] Words =
-        ["nul", "en", "to", "tre", "fire", "fem", "seks", "syv", "otte", "ni", "ti", "elleve", "tolv"];
+        ["nul", "en", "to", "tre", "fire", "fem", "seks", "syv", "otte", "ni", "ti", "elleve", "tolv",
+         "tretten", "fjorten", "femten", "seksten", "sytten", "atten", "nitten", "tyve"];
 
     /// <summary>142,50</summary>
     public static string Amount(decimal value) => value.ToString("0.00", CultureInfo.InvariantCulture).Replace('.', ',');
@@ -32,6 +33,12 @@ public static class Danish
 
     /// <summary>kl. 18.00</summary>
     public static string Clock(TimeOnly time) => time == TimeOnly.MinValue ? "kl. 24.00" : $"kl. {time:HH}.{time:mm}";
+
+    private static readonly string[] Ordinals =
+        ["første", "anden", "tredje", "fjerde", "femte", "sjette", "syvende", "ottende", "niende", "tiende"];
+
+    /// <summary>"første", "anden", up to "tiende", or null beyond.</summary>
+    public static string? Ordinal(int number) => number >= 1 && number <= Ordinals.Length ? Ordinals[number - 1] : null;
 
     /// <summary>A small whole number as a word: "to".</summary>
     public static string Word(int number) => number < Words.Length ? Words[number] : number.ToString(CultureInfo.InvariantCulture);

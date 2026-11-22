@@ -95,31 +95,17 @@ public sealed class GateTests
 
     [Theory]
     [MemberData(nameof(Models))]
-    public async Task No_wrong_rule_gets_past_the_checks_and_the_default_model_finds_every_rule(string model)
+    public async Task Every_rule_of_the_generated_agreements_is_found_and_every_payslip_judged_right(string model)
     {
         var results = await Replay(model);
 
-        // The long agreements: no wrong rule passes the checks, and no payslip is called wrong.
-        // Sonnet reads every rule. Haiku takes the apprentices' pension for a second pension rule in
-        // one agreement; the two are reported as in conflict, and until a person has chosen, the pay
-        // check says of that agreement's 72 payslips that pension was not checked.
-        var longer = (results.Total("long"), results.Pay("long"));
-        Assert.Equal((79, 79), (longer.Item1.Expected, longer.Item1.Correct));
-        Assert.Equal((0, 0, 0), (longer.Item1.WrongAndUnflagged, longer.Item2.FalseAlarms, longer.Item2.MissedErrors));
-        Assert.Equal(model == Gateway.Models.Sonnet ? 0 : 72, longer.Item2.NotChecked);
-        Assert.Equal(longer.Item2.Cases - longer.Item2.NotChecked, longer.Item2.Right);
-
-        foreach (var set in new[] { "corpus", "challenge" })
+        foreach (var set in new[] { "corpus", "challenge", "long" })
         {
-            var rules = results.Total(set);
+            var (rules, pay) = (results.Total(set), results.Pay(set));
             // The bar that matters most: a wrong rule the checks did not flag reaches a reviewer looking sound.
             Assert.Equal(0, rules.WrongAndUnflagged);
-            Assert.Equal(0, results.Pay(set).FalseAlarms);
-            if (model == Gateway.Models.Sonnet)
-            {
-                Assert.Equal(rules.Expected, rules.Correct);
-                Assert.Equal(results.Pay(set).Cases, results.Pay(set).Right);
-            }
+            Assert.Equal((rules.Expected, rules.Expected, 0), (rules.Correct, rules.Proposed, rules.Flagged));
+            Assert.Equal((pay.Cases, 0, 0, 0), (pay.Right, pay.MissedErrors, pay.FalseAlarms, pay.NotChecked));
         }
     }
 }

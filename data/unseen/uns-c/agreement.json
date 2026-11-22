@@ -1,0 +1,991 @@
+{
+  "id": "uns-c",
+  "title": "Overenskomst for medarbejdere i hjemmepleje og praktisk hjælp 2026-2029",
+  "parties": "Erhvervsforeningen Tværhavn og Fagforeningen Elmekær",
+  "sections": [
+    {
+      "number": "§ 1",
+      "heading": "Overenskomstens dækningsområde",
+      "clauses": [
+        {
+          "id": "§ 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten omfatter medarbejdere, der udfører personlig pleje, praktisk hjælp eller aflastning i borgernes eget hjem, og som er ansat hos private leverandører, der er medlem af Erhvervsforeningen Tværhavn."
+            }
+          ]
+        },
+        {
+          "id": "§ 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten omfatter ikke sygeplejersker, terapeuter og ledere."
+            }
+          ]
+        },
+        {
+          "id": "§ 1, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Elever på social- og sundhedsuddannelserne er omfattet af en særskilt elevaftale og er kun omfattet af denne overenskomst, hvor det udtrykkeligt er nævnt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 2",
+      "heading": "Definitioner",
+      "clauses": [
+        {
+          "id": "§ 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved fuldtidsansat forstås en medarbejder med en gennemsnitlig ugentlig arbejdstid som fastsat i § 9, stk. 1."
+            }
+          ]
+        },
+        {
+          "id": "§ 2, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved anciennitet forstås den uafbrudte ansættelse hos arbejdsgiveren opgjort i hele måneder."
+            }
+          ]
+        },
+        {
+          "id": "§ 2, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved vagt forstås en sammenhængende arbejdsperiode, herunder transport mellem borgerne."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 3",
+      "heading": "Ansættelse",
+      "clauses": [
+        {
+          "id": "§ 3, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ansættelse sker ved skriftlig kontrakt, der angiver den ugentlige arbejdstid, arbejdsområdet og det løntrin, medarbejderen indplaceres på."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Prøvetiden er tre måneder."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Deltidsansatte ansættes med mindst 20 timer om ugen, medmindre medarbejderen selv ønsker et lavere timetal."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 4",
+      "heading": "Straffeattest og tavshedspligt",
+      "clauses": [
+        {
+          "id": "§ 4, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsgiveren kan forud for ansættelsen kræve straffeattest og børneattest."
+            }
+          ]
+        },
+        {
+          "id": "§ 4, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen har tavshedspligt om forhold vedrørende borgerne, som medarbejderen får kendskab til i arbejdet. Tavshedspligten gælder også efter fratræden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 5",
+      "heading": "Arbejdstøj og værnemidler",
+      "clauses": [
+        {
+          "id": "§ 5, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsgiveren stiller arbejdstøj og nødvendige værnemidler til rådighed og sørger for vask af arbejdstøjet."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere, der efter aftale vasker arbejdstøjet hjemme, får en godtgørelse på 9,50 kr. pr. vagt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 6",
+      "heading": "Kørsel mellem borgere",
+      "clauses": [
+        {
+          "id": "§ 6, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Transport mellem borgerne i løbet af vagten er arbejdstid."
+            }
+          ]
+        },
+        {
+          "id": "§ 6, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Anvender medarbejderen efter aftale egen bil, betales kørselsgodtgørelse med 3,81 kr. pr. km. Anvendes egen cykel, betales 22,00 kr. pr. vagt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 7",
+      "heading": "Løn",
+      "clauses": [
+        {
+          "id": "§ 7, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderne indplaceres på et af tre løntrin efter deres anciennitet: løntrin 1 indtil ét års ansættelse, løntrin 2 fra ét års ansættelse og løntrin 3 fra fire års ansættelse."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Mindstelønnen pr. time på løntrinnene fremgår af Bilag 1. Medarbejderen kan ikke aflønnes med en lavere timeløn end mindstelønnen på det løntrin, medarbejderen er indplaceret på."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med afsluttet social- og sundhedsuddannelse får et uddannelsestillæg på 7,20 kr. pr. time. Uddannelsestillægget er et tillæg ud over mindstelønnen og indgår ikke i satserne i Bilag 1."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere under 18 år aflønnes med 112,30 kr. pr. time og indplaceres ikke på løntrinnene."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 8",
+      "heading": "Lønudbetaling og lønseddel",
+      "clauses": [
+        {
+          "id": "§ 8, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lønnen udbetales månedsvis bagud senest den sidste bankdag i måneden."
+            }
+          ]
+        },
+        {
+          "id": "§ 8, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillæg efter §§ 10-13 opgøres for den foregående måned og udbetales med lønnen. Lønsedlen angiver hvert tillæg for sig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 9",
+      "heading": "Arbejdstid",
+      "clauses": [
+        {
+          "id": "§ 9, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den ugentlige arbejdstid for fuldtidsansatte er 37 timer i gennemsnit over en periode på fire uger."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdstiden fastlægges i en arbejdsplan, der skal foreligge mindst fire uger før planperiodens begyndelse."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen har mindst hver anden weekend fri, medmindre andet aftales med medarbejderen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 10",
+      "heading": "Delt tjeneste og ændringer i arbejdsplanen",
+      "clauses": [
+        {
+          "id": "§ 10, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Delt tjeneste kan kun anvendes efter aftale med medarbejderen. For hver dag med delt tjeneste betales et tillæg på 45,00 kr."
+            }
+          ]
+        },
+        {
+          "id": "§ 10, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ændres en vagt med mindre end 48 timers varsel, betales en ulempegodtgørelse på 160,00 kr. pr. ændret vagt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 11",
+      "heading": "Overarbejde og søndagsarbejde",
+      "clauses": [
+        {
+          "id": "§ 11, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den daglige normtid er en femtedel af den ugentlige arbejdstid for fuldtidsansatte efter § 9, stk. 1. Arbejde ud over den daglige normtid på en dag er overarbejde for både fuldtids- og deltidsansatte."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdstiden henregnes til den dag, hvor vagten begynder."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For overarbejde betales et tillæg på 50 pct. af timelønnen for de første to timer og 100 pct. af timelønnen for de følgende timer samme dag."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For alt arbejde på søndage betales i stedet et søndagstillæg på 50 pct. af timelønnen. Søndagstimer indgår ikke i opgørelsen af den daglige normtid, og der betales ikke overarbejdstillæg for dem."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 5",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Søndagstillægget ændres fra den 1. november 2027, jf. Protokollat 2."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 12",
+      "heading": "Tillæg for aften, nat og lørdag",
+      "clauses": [
+        {
+          "id": "§ 12, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde mandag til lørdag i tidsrummet kl. 17.00-23.00 betales et aftentillæg på 22,30 kr. pr. time."
+            }
+          ]
+        },
+        {
+          "id": "§ 12, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde mandag til lørdag i tidsrummene kl. 00.00-07.00 og kl. 23.00-24.00 betales et nattillæg. Nattillægget udgør aftentillægget forhøjet med 50 pct."
+            }
+          ]
+        },
+        {
+          "id": "§ 12, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde lørdag i tidsrummet kl. 07.00-17.00 betales et lørdagstillæg på 18,20 kr. pr. time."
+            }
+          ]
+        },
+        {
+          "id": "§ 12, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillæggene efter stk. 1-3 betales efter den ugedag, som arbejdstimen falder på. For arbejde på søndage betales ikke tillæg efter denne paragraf, idet søndagstillægget efter § 11, stk. 4, træder i stedet."
+            }
+          ]
+        },
+        {
+          "id": "§ 12, stk. 5",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pr. 1. maj 2027 forhøjes aftentillægget til 23,10 kr. pr. time. Lørdagstillægget udgør som hidtil 18,20 kr. pr. time."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 13",
+      "heading": "Tilkaldevagt",
+      "clauses": [
+        {
+          "id": "§ 13, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For hver time på tilkaldevagt fra hjemmet betales en tredjedel af medarbejderens timeløn."
+            }
+          ]
+        },
+        {
+          "id": "§ 13, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved tilkald betales den faktiske arbejdstid, dog mindst to timer pr. tilkald."
+            }
+          ]
+        },
+        {
+          "id": "§ 13, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tilkaldevagt giver ikke ret til tillæg efter § 12, medmindre medarbejderen tilkaldes og udfører arbejde."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 14",
+      "heading": "Pauser",
+      "clauses": [
+        {
+          "id": "§ 14, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere, der arbejder mere end 6 timer i en vagt, har en betalt pause på 30 minutter. Pausen placeres, så borgernes hjælp ikke forsinkes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 15",
+      "heading": "Pension",
+      "clauses": [
+        {
+          "id": "§ 15, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere, der har været ansat hos arbejdsgiveren i et halvt år, omfattes af pensionsordningen."
+            }
+          ]
+        },
+        {
+          "id": "§ 15, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pensionsbidraget udgør i alt 13,85 pct. af lønnen inklusive alle tillæg. Medarbejderens eget bidrag udgør 4,1 pct., og arbejdsgiveren betaler den resterende del."
+            }
+          ]
+        },
+        {
+          "id": "§ 15, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Kravet om ansættelse i stk. 1 ændres fra den 1. maj 2028, jf. Protokollat 3."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 16",
+      "heading": "Sygdom",
+      "clauses": [
+        {
+          "id": "§ 16, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen har ret til fuld løn under sygdom, når medarbejderen har været ansat i mindst tre måneder."
+            }
+          ]
+        },
+        {
+          "id": "§ 16, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen skal give besked om sygdom inden vagtens begyndelse."
+            }
+          ]
+        },
+        {
+          "id": "§ 16, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsgiveren kan fra fjerde sygedag kræve en friattest. Arbejdsgiveren betaler udgiften."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 17",
+      "heading": "Ferie og ferietillæg",
+      "clauses": [
+        {
+          "id": "§ 17, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen har ret til ferie efter ferieloven."
+            }
+          ]
+        },
+        {
+          "id": "§ 17, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ferietillægget udgør 1,5 pct. af den ferieberettigede løn. Ferietillægget er uændret i hele overenskomstperioden."
+            }
+          ]
+        },
+        {
+          "id": "§ 17, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med mindst ni måneders anciennitet har herudover ret til fem feriefridage pr. ferieår med sædvanlig løn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 18",
+      "heading": "Særlig opsparing",
+      "clauses": [
+        {
+          "id": "§ 18, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsgiveren indbetaler til en særlig opsparing for medarbejderen med de procentsatser af den ferieberettigede løn, der fremgår af Bilag 2."
+            }
+          ]
+        },
+        {
+          "id": "§ 18, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen kan vælge at få den særlige opsparing udbetalt ved hver lønudbetaling eller anvendt til frihed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 19",
+      "heading": "Barsel, adoption og forældreorlov",
+      "clauses": [
+        {
+          "id": "§ 19, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med mindst ni måneders anciennitet har ret til fuld løn under graviditets- og barselsorlov fra 4 uger før forventet fødsel til 14 uger efter fødslen."
+            }
+          ]
+        },
+        {
+          "id": "§ 19, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Herudover har forældrene tilsammen ret til løn under forældreorlov i 12 uger."
+            }
+          ]
+        },
+        {
+          "id": "§ 19, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved adoption gælder tilsvarende regler fra modtagelsen af barnet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 20",
+      "heading": "Barns sygdom",
+      "clauses": [
+        {
+          "id": "§ 20, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen har ret til frihed med løn på barnets første og anden sygedag, når barnet er under 14 år."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 21",
+      "heading": "Seniorordning",
+      "clauses": [
+        {
+          "id": "§ 21, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere, der er fyldt 60 år, kan vælge at anvende hele eller dele af den særlige opsparing til seniorfridage."
+            }
+          ]
+        },
+        {
+          "id": "§ 21, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Valget træffes for et kalenderår ad gangen og meddeles arbejdsgiveren senest den 1. november i året før."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 22",
+      "heading": "Opsigelse",
+      "clauses": [
+        {
+          "id": "§ 22, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Efter prøvetiden kan arbejdsgiveren opsige medarbejderen med en måneds varsel i det første ansættelsesår, to måneders varsel efter et års ansættelse og tre måneders varsel efter fem års ansættelse."
+            }
+          ]
+        },
+        {
+          "id": "§ 22, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen kan opsige sin stilling med 14 dages varsel."
+            }
+          ]
+        },
+        {
+          "id": "§ 22, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "En opsigelse skal være skriftlig og begrundet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 23",
+      "heading": "Tillidsrepræsentanter",
+      "clauses": [
+        {
+          "id": "§ 23, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderne kan for hvert arbejdsområde med mindst seks medarbejdere vælge en tillidsrepræsentant."
+            }
+          ]
+        },
+        {
+          "id": "§ 23, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillidsrepræsentanten skal have den nødvendige tid til hvervet og kan deltage i relevant uddannelse uden tab af løn."
+            }
+          ]
+        },
+        {
+          "id": "§ 23, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved opsigelse af en tillidsrepræsentant skal der foreligge tvingende årsager, og opsigelsesvarslet forlænges med tre måneder."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 24",
+      "heading": "Arbejdsmiljø og forflytning",
+      "clauses": [
+        {
+          "id": "§ 24, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved forflytning af borgere anvendes de hjælpemidler, som en arbejdspladsvurdering i borgerens hjem har vist er nødvendige."
+            }
+          ]
+        },
+        {
+          "id": "§ 24, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen kan afvise at udføre en opgave, hvis de nødvendige hjælpemidler ikke er til stede."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 25",
+      "heading": "Kompetenceudvikling",
+      "clauses": [
+        {
+          "id": "§ 25, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsgiveren indbetaler 0,60 kr. pr. udbetalt timeløn til en fælles kompetencefond."
+            }
+          ]
+        },
+        {
+          "id": "§ 25, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejdere med mindst seks måneders anciennitet kan søge fonden om støtte til efteruddannelse."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 26",
+      "heading": "Lokale aftaler",
+      "clauses": [
+        {
+          "id": "§ 26, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsgiveren og tillidsrepræsentanten kan indgå lokale aftaler om arbejdstidens tilrettelæggelse. Aftalerne må ikke stille medarbejderne ringere end overenskomsten."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 27",
+      "heading": "Faglig strid",
+      "clauses": [
+        {
+          "id": "§ 27, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Uenighed om fortolkningen af overenskomsten behandles først ved et lokalt møde og dernæst ved et mæglingsmøde mellem parterne."
+            }
+          ]
+        },
+        {
+          "id": "§ 27, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Opnås der ikke enighed, kan sagen indbringes for en faglig voldgift."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 28",
+      "heading": "Varighed",
+      "clauses": [
+        {
+          "id": "§ 28, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten har virkning fra den 1. maj 2026."
+            }
+          ]
+        },
+        {
+          "id": "§ 28, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten kan opsiges med tre måneders varsel til en 1. maj, dog tidligst til ophør den 1. maj 2029."
+            }
+          ]
+        },
+        {
+          "id": "§ 28, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomstens satser gælder, indtil en ny overenskomst afløser denne."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "protocols": [
+    {
+      "number": "Protokollat 1",
+      "heading": "Arbejdsgruppe om rekruttering",
+      "clauses": [
+        {
+          "id": "Protokollat 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Parterne nedsætter en arbejdsgruppe om rekruttering og fastholdelse af medarbejdere i hjemmeplejen."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsgruppen afrapporterer senest den 1. marts 2028."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "Protokollat 2",
+      "heading": "Søndagstillæg fra 1. november 2027",
+      "clauses": [
+        {
+          "id": "Protokollat 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Fra den 1. november 2027 udgør søndagstillægget efter § 11, stk. 4, halvanden gang den procentsats, der gjaldt indtil denne dato."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 2, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den daglige normtid og overarbejdstillæggene efter § 11, stk. 1 og 3, er uændrede."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "Protokollat 3",
+      "heading": "Pension fra 1. maj 2028",
+      "clauses": [
+        {
+          "id": "Protokollat 3, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Fra den 1. maj 2028 omfattes medarbejdere af pensionsordningen, når de har været ansat hos arbejdsgiveren i tre måneder."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 3, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Bidragssatserne efter § 15, stk. 2, er uændrede."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "Bilag 1",
+      "heading": "Mindsteløn",
+      "clauses": [
+        {
+          "id": "Bilag 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Mindstelønnen pr. time på de enkelte løntrin udgør de beløb, der fremgår af tabellen."
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Løntrin",
+                "Fra 1. maj 2026",
+                "Fra 1. maj 2027"
+              ],
+              "rows": [
+                [
+                  "Løntrin 1",
+                  "164,85 kr.",
+                  "170,00 kr."
+                ],
+                [
+                  "Løntrin 2",
+                  "171,35 kr.",
+                  "176,50 kr."
+                ],
+                [
+                  "Løntrin 3",
+                  "176,05 kr.",
+                  "181,20 kr."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "Bilag 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pr. 1. maj 2028 forhøjes satserne for løntrin 1 og løntrin 2 med 2 pct. af de satser, der gælder fra 1. maj 2027. Satsen for løntrin 3 forhøjes pr. samme dato med det kronebeløb, som satsen for løntrin 2 forhøjes med."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "Bilag 2",
+      "heading": "Særlig opsparing",
+      "clauses": [
+        {
+          "id": "Bilag 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den særlige opsparing efter § 18 udgør følgende procentsatser af den ferieberettigede løn:"
+            },
+            {
+              "kind": "table",
+              "header": [
+                "Periode",
+                "Særlig opsparing"
+              ],
+              "rows": [
+                [
+                  "1. maj 2026 - 31. oktober 2027",
+                  "6,75 pct."
+                ],
+                [
+                  "1. november 2027 - 30. april 2028",
+                  "7,5 pct."
+                ],
+                [
+                  "Fra 1. maj 2028",
+                  "8,25 pct."
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

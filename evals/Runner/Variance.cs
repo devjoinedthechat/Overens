@@ -39,8 +39,10 @@ public sealed record VarianceResults(string Model, string PromptVersion, string 
 /// </summary>
 public static class Variance
 {
-    public static string Recordings(string modelId, int pass) =>
-        Path.Combine("evals", "recordings", $"variance-{ExtractionPrompt.Version}", modelId, $"pass-{pass}");
+    /// <summary>The first pass is the ordinary recording of the evals. Each pass after it has a directory of its own.</summary>
+    public static string Recordings(string modelId, int pass) => pass == 1
+        ? Path.Combine("evals", "recordings", ExtractionPrompt.Version, modelId)
+        : Path.Combine("evals", "recordings", $"variance-{ExtractionPrompt.Version}", modelId, $"pass-{pass}");
 
     public static async Task<VarianceResults> RunAsync(IChatClient? live, string modelId, int passes, string root = "", Func<Synthetic.AgreementSpec, bool>? only = null)
     {

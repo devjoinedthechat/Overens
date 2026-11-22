@@ -1,0 +1,4 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "{\u0022rules\u0022:[{\u0022from\u0022:\u00222026-05-01\u0022,\u0022until\u0022:null,\u0022clause_id\u0022:\u0022§ 17, stk. 2\u0022,\u0022quote\u0022:\u0022Ferietillægget udgør 1,5 pct. af den ferieberettigede løn.\u0022,\u0022also_from\u0022:[],\u0022percent\u0022:1.5,\u0022points_added\u0022:null}]}"
+}

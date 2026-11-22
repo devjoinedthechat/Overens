@@ -1,0 +1,4598 @@
+{
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "2026-11-22.1",
+  "totals": [
+    {
+      "mistake": "rate_invented",
+      "group": "figure_not_printed",
+      "planted": 40,
+      "stopped": 40,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "increase_invented",
+      "group": "figure_not_printed",
+      "planted": 6,
+      "stopped": 6,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "sum_made_by_the_model",
+      "group": "figure_not_printed",
+      "planted": 3,
+      "stopped": 3,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "seniority_invented",
+      "group": "figure_not_printed",
+      "planted": 40,
+      "stopped": 40,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "daily_norm_invented",
+      "group": "figure_not_printed",
+      "planted": 16,
+      "stopped": 16,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "overtime_percent_invented",
+      "group": "figure_not_printed",
+      "planted": 16,
+      "stopped": 16,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "tier_length_invented",
+      "group": "figure_not_printed",
+      "planted": 16,
+      "stopped": 16,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "supplement_invented",
+      "group": "figure_not_printed",
+      "planted": 46,
+      "stopped": 46,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "window_time_invented",
+      "group": "figure_not_printed",
+      "planted": 46,
+      "stopped": 46,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "pension_percent_invented",
+      "group": "figure_not_printed",
+      "planted": 27,
+      "stopped": 27,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "qualifying_period_invented",
+      "group": "figure_not_printed",
+      "planted": 27,
+      "stopped": 27,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "share_worked_out_by_the_model",
+      "group": "figure_not_printed",
+      "planted": 2,
+      "stopped": 2,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "another_share",
+      "group": "figure_not_printed",
+      "planted": 2,
+      "stopped": 2,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "percent_invented",
+      "group": "figure_not_printed",
+      "planted": 65,
+      "stopped": 65,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "rate_a_krone_off",
+      "group": "figure_one_step_off",
+      "planted": 40,
+      "stopped": 40,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "increase_a_krone_off",
+      "group": "figure_one_step_off",
+      "planted": 6,
+      "stopped": 6,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "seniority_a_year_off",
+      "group": "figure_one_step_off",
+      "planted": 40,
+      "stopped": 40,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "daily_norm_half_an_hour_off",
+      "group": "figure_one_step_off",
+      "planted": 16,
+      "stopped": 16,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "overtime_percent_five_points_off",
+      "group": "figure_one_step_off",
+      "planted": 16,
+      "stopped": 16,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "tier_an_hour_longer",
+      "group": "figure_one_step_off",
+      "planted": 16,
+      "stopped": 16,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "supplement_a_krone_off",
+      "group": "figure_one_step_off",
+      "planted": 46,
+      "stopped": 46,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "window_starts_an_hour_late",
+      "group": "figure_one_step_off",
+      "planted": 46,
+      "stopped": 46,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "pension_percent_half_a_point_off",
+      "group": "figure_one_step_off",
+      "planted": 27,
+      "stopped": 27,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "qualifying_period_three_months_longer",
+      "group": "figure_one_step_off",
+      "planted": 27,
+      "stopped": 27,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "percent_half_a_point_off",
+      "group": "figure_one_step_off",
+      "planted": 65,
+      "stopped": 65,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "rates_in_each_others_bands",
+      "group": "figure_misplaced",
+      "planted": 40,
+      "stopped": 32,
+      "reported": 0,
+      "silent": 8,
+      "noChange": 0
+    },
+    {
+      "mistake": "another_years_rates",
+      "group": "figure_misplaced",
+      "planted": 36,
+      "stopped": 36,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "overtime_percents_swapped",
+      "group": "figure_misplaced",
+      "planted": 16,
+      "stopped": 0,
+      "reported": 0,
+      "silent": 16,
+      "noChange": 0
+    },
+    {
+      "mistake": "sunday_given_the_weekday_percent",
+      "group": "figure_misplaced",
+      "planted": 16,
+      "stopped": 0,
+      "reported": 0,
+      "silent": 16,
+      "noChange": 0
+    },
+    {
+      "mistake": "supplements_swapped",
+      "group": "figure_misplaced",
+      "planted": 46,
+      "stopped": 45,
+      "reported": 0,
+      "silent": 1,
+      "noChange": 0
+    },
+    {
+      "mistake": "window_back_to_front",
+      "group": "figure_misplaced",
+      "planted": 46,
+      "stopped": 45,
+      "reported": 0,
+      "silent": 1,
+      "noChange": 0
+    },
+    {
+      "mistake": "another_years_supplements",
+      "group": "figure_misplaced",
+      "planted": 45,
+      "stopped": 45,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "shares_swapped",
+      "group": "figure_misplaced",
+      "planted": 25,
+      "stopped": 0,
+      "reported": 0,
+      "silent": 25,
+      "noChange": 0
+    },
+    {
+      "mistake": "total_as_the_employers_share",
+      "group": "figure_misplaced",
+      "planted": 25,
+      "stopped": 18,
+      "reported": 0,
+      "silent": 7,
+      "noChange": 0
+    },
+    {
+      "mistake": "another_periods_percent",
+      "group": "figure_misplaced",
+      "planted": 70,
+      "stopped": 57,
+      "reported": 0,
+      "silent": 13,
+      "noChange": 0
+    },
+    {
+      "mistake": "top_band_left_out",
+      "group": "left_out",
+      "planted": 40,
+      "stopped": 0,
+      "reported": 0,
+      "silent": 40,
+      "noChange": 0
+    },
+    {
+      "mistake": "first_tier_left_out",
+      "group": "left_out",
+      "planted": 16,
+      "stopped": 0,
+      "reported": 0,
+      "silent": 16,
+      "noChange": 0
+    },
+    {
+      "mistake": "window_left_out",
+      "group": "left_out",
+      "planted": 46,
+      "stopped": 0,
+      "reported": 0,
+      "silent": 46,
+      "noChange": 0
+    },
+    {
+      "mistake": "weekday_left_out",
+      "group": "left_out",
+      "planted": 46,
+      "stopped": 0,
+      "reported": 0,
+      "silent": 46,
+      "noChange": 0
+    },
+    {
+      "mistake": "no_qualifying_period",
+      "group": "left_out",
+      "planted": 27,
+      "stopped": 0,
+      "reported": 0,
+      "silent": 27,
+      "noChange": 0
+    },
+    {
+      "mistake": "rule_left_out",
+      "group": "left_out",
+      "planted": 200,
+      "stopped": 0,
+      "reported": 200,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "starts_a_month_late",
+      "group": "wrong_days",
+      "planted": 200,
+      "stopped": 200,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "starts_when_another_period_starts",
+      "group": "wrong_days",
+      "planted": 56,
+      "stopped": 56,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "ends_a_month_early",
+      "group": "wrong_days",
+      "planted": 104,
+      "stopped": 104,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "never_ends",
+      "group": "wrong_days",
+      "planted": 104,
+      "stopped": 104,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "word_added_to_the_quote",
+      "group": "evidence",
+      "planted": 200,
+      "stopped": 200,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "clause_that_does_not_exist",
+      "group": "evidence",
+      "planted": 200,
+      "stopped": 200,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    },
+    {
+      "mistake": "quote_from_another_clause",
+      "group": "evidence",
+      "planted": 65,
+      "stopped": 65,
+      "reported": 0,
+      "silent": 0,
+      "noChange": 0
+    }
+  ],
+  "notStopped": [
+    {
+      "agreement": "easy-2026",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rates_in_each_others_bands",
+      "outcome": "silent",
+      "payslipsWrong": 8,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 8,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 71,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "supplements_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_back_to_front",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 30,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 65,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 11,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "easy-2026",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 1,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 71,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "medium-2026",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 18,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 18,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 28,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "total_as_the_employers_share",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 28,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 24,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 16,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2026",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "minimum_wage",
+      "from": "2029-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 1,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "minimum_wage",
+      "from": "2030-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 1,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "minimum_wage",
+      "from": "2031-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "minimum_wage",
+      "from": "2029-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 1,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "minimum_wage",
+      "from": "2030-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "minimum_wage",
+      "from": "2031-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "overtime",
+      "from": "2029-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "overtime",
+      "from": "2029-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 26,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "overtime",
+      "from": "2029-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "overtime",
+      "from": "2029-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "inconvenient_hours",
+      "from": "2029-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "inconvenient_hours",
+      "from": "2030-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "inconvenient_hours",
+      "from": "2031-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "inconvenient_hours",
+      "from": "2029-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "inconvenient_hours",
+      "from": "2030-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "inconvenient_hours",
+      "from": "2031-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "inconvenient_hours",
+      "from": "2029-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "inconvenient_hours",
+      "from": "2030-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "inconvenient_hours",
+      "from": "2031-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "pension",
+      "from": "2029-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 30,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "pension",
+      "from": "2030-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 33,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "pension",
+      "from": "2030-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 33,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "pension",
+      "from": "2029-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "pension",
+      "from": "2030-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 5,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "pension",
+      "from": "2029-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "pension",
+      "from": "2030-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "holiday_allowance",
+      "from": "2029-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "special_savings",
+      "from": "2029-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "special_savings",
+      "from": "2030-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "hard-2029",
+      "kind": "special_savings",
+      "from": "2031-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rates_in_each_others_bands",
+      "outcome": "silent",
+      "payslipsWrong": 4,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 4,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 15,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 15,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 14,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 14,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 69,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-increases",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 1,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 4,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 15,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 15,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 69,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 7,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-dates",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 22,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 69,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-night",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 14,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 18,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 18,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 14,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 16,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 31,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "total_as_the_employers_share",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 31,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 15,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 10,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-old-rates",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 4,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 14,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 30,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 33,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "total_as_the_employers_share",
+      "outcome": "silent",
+      "payslipsWrong": 30,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 33,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 5,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "special_savings",
+      "from": "2027-09-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "special_savings",
+      "from": "2027-09-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-mid-year",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 1,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 5,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 20,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 35,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "total_as_the_employers_share",
+      "outcome": "silent",
+      "payslipsWrong": 35,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 5,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "special_savings",
+      "from": "2027-09-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "special_savings",
+      "from": "2027-09-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "twist-all",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 27,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 27,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 9,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 11,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 32,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "total_as_the_employers_share",
+      "outcome": "silent",
+      "payslipsWrong": 32,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 7,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-plain",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rates_in_each_others_bands",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rates_in_each_others_bands",
+      "outcome": "silent",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rates_in_each_others_bands",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 19,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 18,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 18,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 32,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "total_as_the_employers_share",
+      "outcome": "silent",
+      "payslipsWrong": 32,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 10,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-appendix",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rates_in_each_others_bands",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rates_in_each_others_bands",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rates_in_each_others_bands",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 10,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-references",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 21,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-references",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-references",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 34,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "total_as_the_employers_share",
+      "outcome": "silent",
+      "payslipsWrong": 34,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 5,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-references",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-references",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-references",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-references",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-references",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-references",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 17,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 18,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 18,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 6,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 35,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-fraction",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 2,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 17,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 15,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 15,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 3,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 4,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 35,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 36,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 4,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-numbering",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "top_band_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 1,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "minimum_wage",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 1,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "minimum_wage",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 1,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "minimum_wage",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "overtime_percents_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "sunday_given_the_weekday_percent",
+      "outcome": "silent",
+      "payslipsWrong": 5,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "first_tier_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 72,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "overtime",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-all",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "window_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "weekday_left_out",
+      "outcome": "silent",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "inconvenient_hours",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-all",
+      "kind": "inconvenient_hours",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-all",
+      "kind": "inconvenient_hours",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 24,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "shares_swapped",
+      "outcome": "silent",
+      "payslipsWrong": 32,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "another_periods_percent",
+      "outcome": "silent",
+      "payslipsWrong": 32,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 12,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "no_qualifying_period",
+      "outcome": "silent",
+      "payslipsWrong": 8,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "pension",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-all",
+      "kind": "pension",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-all",
+      "kind": "holiday_allowance",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 72
+    },
+    {
+      "agreement": "long-all",
+      "kind": "special_savings",
+      "from": "2026-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-all",
+      "kind": "special_savings",
+      "from": "2027-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 36
+    },
+    {
+      "agreement": "long-all",
+      "kind": "special_savings",
+      "from": "2027-09-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    },
+    {
+      "agreement": "long-all",
+      "kind": "special_savings",
+      "from": "2028-03-01",
+      "mistake": "rule_left_out",
+      "outcome": "reported",
+      "payslipsWrong": 0,
+      "payslipsNotChecked": 0
+    }
+  ]
+}

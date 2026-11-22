@@ -20,20 +20,26 @@ namespace Overens.Ingestion.Extraction;
 /// </summary>
 public static partial class Grounding
 {
+    [GeneratedRegex(@"\b(?:måned|år|anciennitet)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private static partial Regex SeniorityWords();
+
+    [GeneratedRegex(@"\b\d{1,2}[.:]\d{2}\b", RegexOptions.CultureInvariant)]
+    private static partial Regex ClockTime();
+
     private sealed record Cell(TableBlock Table, IReadOnlyList<string> Row, int Column);
 
-    private static void CheckTables(Rule rule, IReadOnlyList<Clause> cited, decimal? increase, Action<string, string> problem)
+    private static void CheckTables(Rule rule, IReadOnlyList<Clause> cited, Reported reported, Action<string, string> problem)
     {
         var tables = cited.SelectMany(clause => clause.Blocks).OfType<TableBlock>().Distinct().ToList();
         var sentences = Flatten(string.Join(' ', cited.SelectMany(clause => clause.Blocks).OfType<Paragraph>().Select(paragraph => paragraph.Text)));
         var prose = NotFigures().Replace(sentences, " ");
         var starts = rule.InForce.From;
-        string[] dates = [Danish.Date(starts), starts.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture)];
-        foreach (var (what, ways, _) in InTables(rule, increase))
+        string[] dates = [.. DateForms(starts)];
+        foreach (var (what, ways, _) in InTables(rule, reported))
         {
             // "5,0 pct. fra 1. marts 2026, 5,5 pct. fra 1. marts 2027": each figure is given its day in so many words.
             var given = ways.Where(way => way.Length == 1)
-                .SelectMany(way => Regex.Matches(sentences, $@"(?<![\d.,]){Regex.Escape(way[0])}\s*(?:pct\.|procent|%|kr\.)?\s*(?:fra|pr\.)\s*(?:den\s*)?(?<day>\d{{1,2}}\.\s*\p{{L}}+\s+\d{{4}}|\d{{2}}\.\d{{2}}\.\d{{4}})", RegexOptions.CultureInvariant))
+                .SelectMany(way => Regex.Matches(sentences, $@"(?<![\d.,]){Regex.Escape(way[0])}\s*(?:pct\.|procent|%|kr\.)?\s*(?:fra|pr\.)\s*(?:den\s*)?(?<day>\d{{1,2}}\.\s*\p{{L}}+\s+\d{{4}}|første\s+\p{{L}}+\s+\d{{4}}|\d{{1,2}}\.\d{{1,2}}\.\d{{4}})", RegexOptions.CultureInvariant))
                 .Select(match => Flatten(match.Groups["day"].Value))
                 .ToList();
             if (given.Count > 0 && !given.Any(day => dates.Contains(day, StringComparer.OrdinalIgnoreCase)))
@@ -50,7 +56,9 @@ public static partial class Grounding
         bool Dated(TableBlock table, int column) => column < table.Header.Count && dates.Any(date => PrintedDate(table.Header[column], date));
         var anyDated = tables.Any(table => Enumerable.Range(0, table.Header.Count).Any(column => Dated(table, column)));
 
-        foreach (var (what, ways, label) in InTables(rule, increase))
+        bool Labels(string row, string[][] ways) => ways.Any(way => way.All(form => Printed(row, form)));
+
+        foreach (var (what, ways, label) in InTables(rule, reported))
         {
             bool Prints(string text) => ways.Any(way => way.All(form => Printed(text, form)));
             if (Prints(prose))
@@ -78,16 +86,27 @@ public static partial class Grounding
                 }
             }
 
-            // What a row is about is printed in its first cell, unless the figure itself stands there.
-            var rows = found.Where(cell => cell.Column > 0).Select(cell => cell.Row[0]).ToList();
+            // What a row is about is printed in the cells before the figure: "Mandag-fredag | kl. 15.00-23.00 | 19,60 kr.".
+            // A grade's number, "Løntrin 2", is not a seniority.
+            static string Label(IReadOnlyList<string> row, int column) => NotFigures().Replace(string.Join(" ", row.Take(column)), " ");
+            var rows = found.Where(cell => cell.Column > 0).Select(cell => Label(cell.Row, cell.Column)).ToList();
             if (label is null || rows.Count == 0)
+            {
+                continue;
+            }
+
+            // A table whose rows are not told apart by seniority, or by time of day, says nothing about which row a
+            // figure is in: "Løntrin 2" is a grade, and what it takes to reach it is stated elsewhere.
+            var labelled = found.Where(cell => cell.Column > 0).Any(cell => cell.Table.Rows.Any(row =>
+                (label.Value.To is null ? SeniorityWords() : ClockTime()).IsMatch(Label(row, cell.Column))));
+            if (!labelled)
             {
                 continue;
             }
 
             if (label.Value.To is not { } until)
             {
-                if (!rows.Any(row => label.Value.From.Any(way => way.All(form => Printed(row, form)))))
+                if (!rows.Any(row => Labels(row, label.Value.From)))
                 {
                     problem("value_in_another_row", $"{what} stands in a table row that is not the row for {label.Value.Name}.");
                 }
@@ -113,21 +132,31 @@ public static partial class Grounding
     /// The figures of a rule that a table can place, each with what its row should say:
     /// a seniority, or a window's two times.
     /// </summary>
-    private static IEnumerable<(string What, string[][] Ways, (string Name, string[][] From, string[][]? To)? Label)> InTables(Rule rule, decimal? increase)
+    private static IEnumerable<(string What, string[][] Ways, (string Name, string[][] From, string[][]? To)? Label)> InTables(Rule rule, Reported reported)
     {
-        if (increase is { } added)
+        if (reported.Increase is { } added)
         {
             yield return ($"The increase of {added}", Money(added), null);
+            yield break;
+        }
+
+        // A figure made from a share or a change in points is not printed. What was reported is checked elsewhere.
+        if (reported.EmployerShare is not null || reported.EmployerPoints is not null || reported.EmployeePoints is not null || reported.Points is not null)
+        {
             yield break;
         }
 
         switch (rule)
         {
             case MinimumWageRule wage:
-                foreach (var band in wage.Bands)
+                for (var index = 0; index < wage.Bands.Count; index++)
                 {
-                    yield return ($"The rate {band.HourlyRate}", Money(band.HourlyRate),
-                        band.FromMonths > 0 ? ($"{band.FromMonths} months of seniority", Months(band.FromMonths), null) : null);
+                    var band = wage.Bands[index];
+                    // A step added to the band before stands in running text, with nothing in a row to hold it to.
+                    yield return reported.Steps?[index] is { } step
+                        ? ($"The {step} added to the band before", Money(step), null)
+                        : ($"The rate {band.HourlyRate}", Money(band.HourlyRate),
+                            band.FromMonths > 0 ? ($"{band.FromMonths} months of seniority", Months(band.FromMonths), null) : null);
                 }
 
                 break;

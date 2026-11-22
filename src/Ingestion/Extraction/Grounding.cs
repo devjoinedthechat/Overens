@@ -28,11 +28,10 @@ public static partial class Grounding
     /// <param name="agreement">The agreement as read.</param>
     /// <param name="rules">
     /// Each rule with the other clauses it draws on and, where the model reported something
-    /// other than a final figure, what it reported: an increase on the period before, or the
-    /// employee's pension share as a part of the employer's. Code made the figure; what must
-    /// be printed is what the model reported.
+    /// other than a final figure, what it reported (see <see cref="Reported"/>). Code made the
+    /// figure; what must be printed is what the model reported.
     /// </param>
-    public static IReadOnlyList<ProposedRule> Check(ReadAgreement agreement, IReadOnlyList<(Rule Rule, IReadOnlyList<string> AlsoFrom, decimal? Increase, string? Share)> rules)
+    public static IReadOnlyList<ProposedRule> Check(ReadAgreement agreement, IReadOnlyList<(Rule Rule, IReadOnlyList<string> AlsoFrom, Reported Reported)> rules)
     {
         ArgumentNullException.ThrowIfNull(agreement);
         ArgumentNullException.ThrowIfNull(rules);
@@ -43,8 +42,7 @@ public static partial class Grounding
         var asASet = RuleSetValidator.Validate(new("proposed", 0, [.. rules.Select(rule => rule.Rule)]));
 
         var proposed = new List<ProposedRule>();
-        ProposedRule? earlierWage = null;
-        foreach (var (rule, alsoFrom, increase, share) in rules)
+        foreach (var (rule, alsoFrom, reported) in rules)
         {
             var problems = new List<RuleProblem>();
             void Problem(string code, string message) => problems.Add(new(rule.Id, code, message));
@@ -90,12 +88,19 @@ public static partial class Grounding
 
             // "§ 3" and "1. marts 2027" are not figures: a tier of three hours is not printed by a reference to § 3.
             var citedText = NotFigures().Replace(string.Join(' ', cited), " ");
-            // A rate that was added up here is not printed anywhere. What must be printed is the increase.
-            var values = increase is { } added ? [($"The increase of {added}", Money(added))] : Values(rule, share);
-            if (share is not null && rule is PensionRule shared && decimal.Round(shared.EmployeePercent, 2) != shared.EmployeePercent)
+            // A figure that was worked out here is not printed anywhere. What must be printed is what the model reported.
+            var values = Values(rule, reported);
+            if (rule is PensionRule shared && (reported.EmployeeShare is not null || reported.EmployerShare is not null)
+                && (decimal.Round(shared.EmployeePercent, 2) != shared.EmployeePercent || decimal.Round(shared.EmployerPercent, 2) != shared.EmployerPercent))
             {
                 // A third of 8,5 pct. is no percentage a payslip can be held to. A person has to say what the agreement means.
-                Problem("share_not_exact", $"The employee's share, {share} of {shared.EmployerPercent} percent, is not an exact percentage.");
+                Problem("share_not_exact", $"A pension share given as a part, {reported.EmployeeShare ?? reported.EmployerShare}, is not an exact percentage.");
+            }
+
+            // A total given beside both shares must be what they come to.
+            if (rule is PensionRule { } added && reported is { TotalPercent: { } stated, EmployerShare: null } && added.EmployerPercent + added.EmployeePercent != stated)
+            {
+                Problem("shares_do_not_add_up", $"The shares, {added.EmployerPercent} and {added.EmployeePercent} percent, do not come to the total of {stated} percent.");
             }
 
             foreach (var (what, ways) in values)
@@ -106,17 +111,17 @@ public static partial class Grounding
                 }
             }
 
-            CheckTables(rule, [.. citedClauses.Distinct()], increase, Problem);
+            CheckTables(rule, [.. citedClauses.Distinct()], reported, Problem);
 
-            // A rate added up from the period before is only as good as that period's rate.
-            if (increase is not null && earlierWage is { Problems.Count: > 0 })
+            // A figure made from the period before is only as good as that period's figure.
+            if (reported.BuildsOnEarlier && proposed.LastOrDefault(earlier => earlier.Rule.GetType() == rule.GetType()) is { Problems.Count: > 0 } flagged)
             {
-                Problem("built_on_flagged_rule", $"The rate is the rate of {earlierWage.Rule.Id} with an increase, and {earlierWage.Rule.Id} has a problem.");
+                Problem("built_on_flagged_rule", $"A figure is that of {flagged.Rule.Id} with a change, and {flagged.Rule.Id} has a problem.");
             }
 
             foreach (var day in new[] { rule.InForce.From, rule.InForce.Until }.OfType<DateOnly>())
             {
-                if (!PrintedDate(everything, Danish.Date(day)))
+                if (!DateForms(day).Any(form => PrintedDate(everything, form)))
                 {
                     Problem("date_not_in_agreement", $"The date {day:yyyy-MM-dd} is not printed in the agreement.");
                 }
@@ -126,10 +131,6 @@ public static partial class Grounding
             // conflict for a person to settle, and are reported with the gaps.
             problems.AddRange(asASet.Where(problem => problem.RuleId == rule.Id && problem.Code != "overlapping_period"));
             proposed.Add(new(rule, alsoFrom, problems));
-            if (rule is MinimumWageRule)
-            {
-                earlierWage = proposed[^1];
-            }
         }
 
         return proposed;
@@ -204,14 +205,23 @@ public static partial class Grounding
     /// Each number in a rule, with the ways an agreement may print it. A way is a set of
     /// forms that must all be there: 7.4 hours is printed as "7,4" or as "7" and "24".
     /// </summary>
-    private static IEnumerable<(string What, string[][] Ways)> Values(Rule rule, string? share = null)
+    private static IEnumerable<(string What, string[][] Ways)> Values(Rule rule, Reported reported)
     {
+        if (reported.Increase is { } increase)
+        {
+            yield return ($"The increase of {increase}", Money(increase));
+            yield break;
+        }
+
         switch (rule)
         {
             case MinimumWageRule wage:
-                foreach (var band in wage.Bands)
+                for (var index = 0; index < wage.Bands.Count; index++)
                 {
-                    yield return ($"The rate {band.HourlyRate}", Money(band.HourlyRate));
+                    var band = wage.Bands[index];
+                    yield return reported.Steps?[index] is { } step
+                        ? ($"The {step} added to the band before", Money(step))
+                        : ($"The rate {band.HourlyRate}", Money(band.HourlyRate));
                     if (band.FromMonths > 0)
                     {
                         yield return ($"The seniority of {band.FromMonths} months", Months(band.FromMonths));
@@ -221,14 +231,24 @@ public static partial class Grounding
                 break;
             case OvertimeRule overtime:
                 var norm = (int)(overtime.DailyNormHours * 60);
+                // "7 timer og 24 minutter", "7,4", or "8 timer": whole hours print no minutes.
                 yield return ($"The daily norm of {norm} minutes",
-                    [[Number(norm / 60), Number(norm % 60)], [Decimal(overtime.DailyNormHours, "0.0")], [Decimal(overtime.DailyNormHours, "0.00")], [Number(norm)]]);
+                    [.. norm % 60 == 0 ? Count(norm / 60) : [[Number(norm / 60), Number(norm % 60)]], [Decimal(overtime.DailyNormHours, "0.0")], [Decimal(overtime.DailyNormHours, "0.00")], [Number(norm)]]);
+                var hoursBefore = 0m;
                 foreach (var tier in overtime.Tiers)
                 {
                     yield return ($"The supplement of {tier.Percent} percent", Percent(tier.Percent));
                     if (tier.Hours is { } hours)
                     {
-                        yield return ($"The tier of {hours} hours", hours == decimal.Truncate(hours) ? Count((int)hours) : [[Number((int)(hours * 60))]]);
+                        string[][] ways = hours == decimal.Truncate(hours) ? Count((int)hours) : [[Number((int)(hours * 60))]];
+                        // "for første og anden overarbejdstime": a tier told by its first and last hour.
+                        if (hours == decimal.Truncate(hours) && hoursBefore == decimal.Truncate(hoursBefore) && Danish.Ordinal((int)(hoursBefore + hours)) is { } last && Danish.Ordinal((int)hoursBefore + 1) is { } first)
+                        {
+                            ways = [.. ways, hours == 1 ? [first] : [first, last]];
+                        }
+
+                        yield return ($"The tier of {hours} hours", ways);
+                        hoursBefore += hours;
                     }
                 }
 
@@ -244,11 +264,27 @@ public static partial class Grounding
 
                 break;
             case PensionRule pension:
-                yield return ($"The employer's {pension.EmployerPercent} percent", Percent(pension.EmployerPercent));
-                // A share the agreement gives as a part is printed as words, not as the percentage code made of it.
-                yield return share is null
-                    ? ($"The employee's {pension.EmployeePercent} percent", Percent(pension.EmployeePercent))
-                    : ($"The employee's share, {share} of the employer's", [.. Shares.Words(share).Select(words => new[] { words })]);
+                if (reported is { TotalPercent: { } total, EmployerShare: not null })
+                {
+                    // A total and the employer's part of it, in words. The employee pays the rest, which is not printed.
+                    yield return ($"The total of {total} percent", Percent(total));
+                    yield return ($"The employer's share, {reported.EmployerShare} of the total", Words(reported.EmployerShare!));
+                }
+                else
+                {
+                    yield return reported.EmployerPoints is { } employerPoints
+                        ? ($"The change of {employerPoints} points to the employer's share", Percent(Math.Abs(employerPoints)))
+                        : ($"The employer's {pension.EmployerPercent} percent", Percent(pension.EmployerPercent));
+                    // A share the agreement gives as a part is printed as words, not as the percentage code made of it.
+                    yield return reported.EmployeeShare is { } share ? ($"The employee's share, {share} of the employer's", Words(share))
+                        : reported.EmployeePoints is { } employeePoints ? ($"The change of {employeePoints} points to the employee's share", Percent(Math.Abs(employeePoints)))
+                        : ($"The employee's {pension.EmployeePercent} percent", Percent(pension.EmployeePercent));
+                    if (reported.TotalPercent is { } printedTotal)
+                    {
+                        yield return ($"The total of {printedTotal} percent", Percent(printedTotal));
+                    }
+                }
+
                 if (pension.QualifyingMonths > 0)
                 {
                     yield return ($"The qualifying period of {pension.QualifyingMonths} months", Months(pension.QualifyingMonths));
@@ -256,10 +292,10 @@ public static partial class Grounding
 
                 break;
             case HolidayAllowanceRule holiday:
-                yield return ($"The {holiday.Percent} percent", Percent(holiday.Percent));
+                yield return reported.Points is { } holidayPoints ? ($"The change of {holidayPoints} points", Percent(Math.Abs(holidayPoints))) : ($"The {holiday.Percent} percent", Percent(holiday.Percent));
                 break;
             case SpecialSavingsRule savings:
-                yield return ($"The {savings.Percent} percent", Percent(savings.Percent));
+                yield return reported.Points is { } savingsPoints ? ($"The change of {savingsPoints} points", Percent(Math.Abs(savingsPoints))) : ($"The {savings.Percent} percent", Percent(savings.Percent));
                 break;
             default:
                 break;
@@ -267,6 +303,21 @@ public static partial class Grounding
     }
 
     private static string Number(int value) => value.ToString(CultureInfo.InvariantCulture);
+
+    private static string[][] Words(string share) => [.. Shares.Words(share).Select(words => new[] { words })];
+
+    /// <summary>A day as an agreement may print it: "1. marts 2026", "den første marts 2026", "01.03.2026", "1.3.2026".</summary>
+    private static IEnumerable<string> DateForms(DateOnly day)
+    {
+        yield return Danish.Date(day);
+        if (day.Day == 1)
+        {
+            yield return $"første {Danish.Date(day)[3..]}";
+        }
+
+        yield return day.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
+        yield return day.ToString("d.M.yyyy", CultureInfo.InvariantCulture);
+    }
 
     private static string Decimal(decimal value, string format) => value.ToString(format, CultureInfo.InvariantCulture).Replace('.', ',');
 
@@ -278,7 +329,7 @@ public static partial class Grounding
 
     /// <summary>A small count, as digits or as a Danish word; one is also "første" and "et".</summary>
     private static string[][] Count(int value) =>
-        value == 1 ? [["1"], ["en"], ["et"], ["første"]] : [[Number(value)], [Danish.Word(value)]];
+        value == 1 ? [["1"], ["en"], ["et"], ["ét"], ["første"]] : [[Number(value)], [Danish.Word(value)]];
 
     /// <summary>Months, or whole years where they divide: 12 months is "1 år".</summary>
     private static string[][] Months(int months) =>
@@ -308,6 +359,6 @@ public static partial class Grounding
     private static partial Regex WhiteSpace();
 
     /// <summary>Numbers that name a clause or a day: "§ 3", "stk. 2", "Bilag 1", "1. marts 2027", "01.03.2027".</summary>
-    [GeneratedRegex(@"(?:§|\bstk\.|\bbilag|\bkapitel)\s*\d+|\b\d{1,2}\.\s*(?:januar|februar|marts|april|maj|juni|juli|august|september|oktober|november|december)(?:\s+\d{4})?|\b\d{2}\.\d{2}\.\d{4}\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    [GeneratedRegex(@"(?:§|\bstk\.|\bbilag|\bkapitel|\bløntrin|\btrin|\blønklasse|\bgruppe|\bniveau)\s*\d+|(?:\b\d{1,2}\.|\bførste)\s*(?:januar|februar|marts|april|maj|juni|juli|august|september|oktober|november|december)(?:\s+\d{4})?|\b\d{1,2}\.\d{1,2}\.\d{4}\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
     private static partial Regex NotFigures();
 }

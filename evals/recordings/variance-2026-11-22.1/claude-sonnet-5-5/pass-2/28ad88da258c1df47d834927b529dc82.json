@@ -1,0 +1,4 @@
+{
+  "Model": "claude-sonnet-5-5",
+  "Text": "{\u0022rules\u0022:[{\u0022from\u0022:\u00222026-03-01\u0022,\u0022until\u0022:null,\u0022clause_id\u0022:\u0022§ 7, stk. 1\u0022,\u0022quote\u0022:\u0022Pensionsbidraget udgør 14,0 pct. af lønnen, hvoraf arbejdsgiveren betaler 9,0 pct. og medarbejderen 5,0 pct.\u0022,\u0022also_from\u0022:[\u0022§ 7, stk. 2\u0022],\u0022employer_percent\u0022:9,\u0022employee_percent\u0022:5,\u0022employee_share\u0022:null,\u0022total_percent\u0022:14,\u0022employer_share\u0022:null,\u0022employer_points\u0022:null,\u0022employee_points\u0022:null,\u0022qualifying_months\u0022:3}]}"
+}

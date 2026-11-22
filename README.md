@@ -89,49 +89,51 @@ The system running on one machine with Claude as the model. Every picture is the
 
 ## Results on real models
 
-Every document is synthetic, so the right answer is known before any model reads it. All but four are generated from a rule set. No real agreement has been measured.
+Every document is synthetic, so the right answer is known before any model reads it. All but eight are generated from a rule set; the eight were written by hand. No real agreement has been measured.
 
 | What | Claude Sonnet | Claude Haiku |
 | --- | --- | --- |
 | Rules read out of ten agreements | 121 of 121 | 121 of 121 |
-| Rules read out of six long agreements | 79 of 79 | 79 of 79, and 1 extra in conflict |
+| Rules read out of six long agreements | 79 of 79 | 79 of 79 |
 | Wrong rules the model-free checks missed | 0 | 0 |
-| Payslips checked correctly, ten agreements | 720 of 720 | 720 of 720 |
-| Payslips checked correctly, six long agreements | 432 of 432 | 360, and 72 not checked |
+| Payslips checked correctly, all sixteen | 1,152 of 1,152 | 1,152 of 1,152 |
+| Asked again: passes in which all 200 rules were found | 3 of 3 | 5 of 5 |
 | Questions answered correctly, of 48 | 48 | 48 |
 | Wrong answers shown | 0 | 0 |
 | Rules changed by five planted instructions | 0 | 0 |
 | Cost to read one agreement, short and long | $0.08 and $0.28 | $0.005 and $0.015 |
-| Asked again: passes in which all 200 rules were found | 3 of 3 | 5 of 5 |
-| Rules read out of four agreements the generator did not write | 48 of 48, 9 flagged though right | 44 of 48 |
-| Wrong rules the checks missed, on those four | 0 | 2 |
+| **Rules read out of four agreements nobody here had seen** | **40 of 51** | **30 of 51** |
+| **Wrong rules the checks missed, on those four** | **7** | **2** |
+| **Payslips judged wrongly, on those four** | **36 of 288** | **36 of 288** |
 
-The long agreements run to about 24 pages and 60 sections, most of them not about pay and full of figures that are not rules. Length, appendices, cross-references and mixed tables changed nothing for Sonnet. On one of them Haiku took the apprentices' pension for a second pension rule. The two were reported as in conflict, so nothing wrong passed, and until a person rejects one the pay check says of those 72 payslips that pension was not checked.
+The first nine rows are on documents from the generator the prompt grew up beside. The last three are not, and they are the ones to read.
 
-The numbers are after fixes. On first contact with documents the prompt had not seen, a wage given as "raised by 5,00 kr." broke extraction, Sonnet silently chose between two contradicting clauses, and Haiku searched thirteen times for something the agreement does not cover. The long set added two more: a pension share stated as "half of the employer's contribution", which printed no figure to check, and a mistake in the test data itself. Both are in the report.
+The numbers are after fixes. On first contact with documents the prompt had not seen, a wage given as "raised by 5,00 kr." broke extraction, Sonnet silently chose between two contradicting clauses, and Haiku searched thirteen times for something the agreement does not cover. The long set added two more: a pension share stated as "half of the employer's contribution", which printed no figure to check, and a mistake in the test data itself. All are in the report.
+
+Extraction prompt `2026-11-22.1` was recorded through Claude Code's print mode, with the same request the system sends. Costs were measured through the API on the prompt before it.
 
 ### The checks, on wrong answers
 
-Models that make no mistakes say little about the checks that are there to catch them. So 2,363 mistakes of 48 kinds were planted in the recorded answers, one at a time, and extraction was run on each.
+Models that make no mistakes say little about the checks that are there to catch them. So 2,366 mistakes of 48 kinds were planted in the recorded answers, one at a time, and extraction was run on each.
 
 | Planted mistake | Stopped | Reported | Silent |
 | --- | --- | --- | --- |
 | A figure the agreement does not print, or one step off | 697 of 697 | 0 | 0 |
-| The wrong days, or a spoiled quote or clause | 926 of 926 | 0 | 0 |
-| The agreement's own figure in the wrong place | 276 of 365 | 0 | 89 |
+| The wrong days, or a spoiled quote or clause | 929 of 929 | 0 | 0 |
+| The agreement's own figure in the wrong place | 278 of 365 | 0 | 87 |
 | A part of a rule, or a whole rule, left out | 0 of 375 | 200 | 175 |
 
-A stopped rule cannot be published until a person acts. What passes in silence is a rule made only of figures printed where it says: two percentages in one sentence exchanged, or a weekday left out. The first run of this study stopped 1,601; it found three faults in the checks, which stop 1,899 since the fixes. The [study](docs/eval-report/README.md#the-checks-measured-on-wrong-answers) has every kind of mistake and what still gets through.
+A stopped rule cannot be published until a person acts. What passes in silence is a rule made only of figures printed where it says: two percentages in one sentence exchanged, or a weekday left out. The first run of this study stopped 1,601; it found three faults in the checks, which stop 1,904 since the fixes. The [study](docs/eval-report/README.md#the-checks-measured-on-wrong-answers) has every kind of mistake and what still gets through.
 
 ### Off the generator's phrasings
 
-The last two rows above are the ones to read. Four agreements were written by hand, by a writer shown nothing of the generator, the prompt or the checks. They are the only documents that broke anything on the current prompt:
+Eight agreements were written by hand, in two batches, by writers shown nothing of the generator, the prompt or the checks.
 
-- **A wrong rule passed.** Haiku gave a minimum wage with one seniority band where the agreement has three. Every figure in it is printed, so no check flagged it.
-- **Right rules were flagged.** The agreements state figures in three ways the prompt has no answer for: a step added per seniority band, a share of a total, a change in percentage points. Sonnet worked them out itself, correctly, and was flagged for it.
-- **Half the payslips were not checked.** Under two of the four agreements a rule was flagged or missing, so the pay check decided nothing. No payslip was called wrong.
+- **The first batch broke the prompt.** It stated figures in three ways the prompt had no field for: a step per seniority band, a share of a total, a change in percentage points. The prompt was changed to take them, and both models then read all 48 rules.
+- **The second batch broke it again.** It was written while the fix was made, and read once to measure it. Its figures were stated in other ways: a supplement as 160 pct. of another, a share as what is left of a total, a holiday allowance as the sum of two parts.
+- **Wrong rules passed, and payslips were judged on them.** Sonnet reported a seniority supplement as "added to the band before" where the agreement adds it to the base: every figure printed, the sum wrong. Both models took one part of a two-part holiday allowance as the whole, and 36 payslips were judged on it.
 
-These two results were recorded through Claude Code's print mode and not the API, and are kept apart from the rest. They are [in the report](docs/eval-report/README.md#agreements-the-generator-did-not-write), unfixed.
+The fields that let the model hand a sum to the code also let it hand over the wrong sum, and the checks cannot see that. Recorded through Claude Code's print mode; [in the report](docs/eval-report/README.md#agreements-the-generator-did-not-write) with the first-read figures, and not fixed.
 
 The [eval report](docs/eval-report/README.md) has each failure, its fix, and what the numbers do not show. A test fails if the published results differ from what the recorded answers give.
 
@@ -270,8 +272,8 @@ dotnet run --project evals/Runner                    # extraction on sixteen agr
 dotnet run --project evals/Runner -- --questions     # 48 questions with known answers
 dotnet run --project evals/Runner -- --attacks       # planted instructions and a contradiction
 dotnet run --project evals/Runner -- --explain       # how often a model's wording passes the guard
-dotnet run --project evals/Runner -- --planted       # 2,363 mistakes planted in correct answers, and what the checks do
-dotnet run --project evals/Runner -- --independent   # four agreements the generator did not write
+dotnet run --project evals/Runner -- --planted       # 2,366 mistakes planted in correct answers, and what the checks do
+dotnet run --project evals/Runner -- --independent   # eight agreements the generator did not write
 dotnet run --project evals/Runner -- --variance 3    # the same extraction, asked three times
 ```
 
@@ -294,7 +296,7 @@ A payslip is then checked by arithmetic: the engine works out what the period sh
 | --- | --- |
 | Eighteen agreements as PDF, text and structure, with the rules each states. Six are about 24 pages long | `data/synthetic` |
 | Six months of timesheets and payslips for each, with nine kinds of seeded payroll mistake and the answers | `data/synthetic/*/pay.json` |
-| Four agreements written by hand without sight of the generator, with the rules each states | `data/independent` |
+| Eight agreements written by hand without sight of the generator, with the rules each states. The second four were read once, to measure a fix made on the first | `data/independent`, `data/unseen` |
 | The generators | `src/Synthetic` |
 | Recorded model answers | `evals/recordings` |
 

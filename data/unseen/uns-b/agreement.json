@@ -1,0 +1,876 @@
+{
+  "id": "uns-b",
+  "title": "Overenskomst for vagt- og sikkerhedsfunktionærer 2025-2027",
+  "parties": "Erhvervsforeningen Tværhavn og Fagforeningen Elmekær",
+  "sections": [
+    {
+      "number": "§ 1",
+      "heading": "Område",
+      "clauses": [
+        {
+          "id": "§ 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten gælder for vagtfunktionærer, kontrolcentraloperatører og patruljevagter, der er ansat i virksomheder under Erhvervsforeningen Tværhavn, og som udfører stationær vagt, patruljevagt, adgangskontrol eller alarmrespons."
+            }
+          ]
+        },
+        {
+          "id": "§ 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten gælder ikke for ledere med selvstændigt personaleansvar og ikke for administrativt personale."
+            }
+          ]
+        },
+        {
+          "id": "§ 1, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved vagtfunktionærer forstås i overenskomsten alle medarbejdere, der er omfattet efter stk. 1, medmindre andet udtrykkeligt er nævnt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 2",
+      "heading": "Godkendelse og grunduddannelse",
+      "clauses": [
+        {
+          "id": "§ 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Medarbejderen skal opfylde de krav til godkendelse, som lovgivningen om vagtvirksomhed stiller. Virksomheden afholder udgiften til den lovpligtige grunduddannelse, og uddannelsestiden betales som arbejdstid."
+            }
+          ]
+        },
+        {
+          "id": "§ 2, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Mister en vagtfunktionær sin godkendelse, kan ansættelsesforholdet bringes til ophør uden varsel, medmindre virksomheden kan anvise andet passende arbejde."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 3",
+      "heading": "Ansættelse",
+      "clauses": [
+        {
+          "id": "§ 3, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ansættelse sker som fuldtids- eller deltidsansat. Deltidsansatte skal være sikret mindst 15 timers arbejde om ugen i gennemsnit over en normperiode."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Der udleveres ansættelsesbevis senest ved ansættelsens begyndelse."
+            }
+          ]
+        },
+        {
+          "id": "§ 3, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "De første tre måneder af ansættelsen er prøvetid, hvor det gensidige opsigelsesvarsel er syv dage."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 4",
+      "heading": "Anciennitet",
+      "clauses": [
+        {
+          "id": "§ 4, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Anciennitet regnes i hele måneder fra ansættelsesdagen i virksomheden."
+            }
+          ]
+        },
+        {
+          "id": "§ 4, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Afbrydes ansættelsen i mere end tre måneder, regnes ancienniteten fra den nye ansættelsesdag."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 5",
+      "heading": "Arbejdstid og vagtplaner",
+      "clauses": [
+        {
+          "id": "§ 5, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den gennemsnitlige ugentlige arbejdstid er 37 timer over en normperiode på op til otte uger."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtplanen for normperioden udleveres senest fire uger før normperiodens begyndelse. Ændringer i vagtplanen skal varsles med mindst 96 timer."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ændres en vagt med kortere varsel end 96 timer, betales en ulempegodtgørelse på 185 kr. pr. ændret vagt."
+            }
+          ]
+        },
+        {
+          "id": "§ 5, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Der skal være en hvileperiode på mindst 11 timer inden for hver periode på 24 timer. Efter lokal aftale kan hvileperioden nedsættes til 8 timer ved vagtskifte, dog højst to gange om måneden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 6",
+      "heading": "Pauser",
+      "clauses": [
+        {
+          "id": "§ 6, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærer, der ikke kan forlade vagtstedet, har en betalt spisepause på 30 minutter pr. vagt, som holdes på vagtstedet."
+            }
+          ]
+        },
+        {
+          "id": "§ 6, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved vagter af mere end 10 timers varighed har vagtfunktionæren ret til yderligere en betalt pause på 20 minutter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 7",
+      "heading": "Løn",
+      "clauses": [
+        {
+          "id": "§ 7, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærer aflønnes med timeløn. Timelønnen må ikke være lavere end de satser, der følger af stk. 2-4 og Protokollat 1."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "En vagtfunktionær med mindre end seks måneders anciennitet har en begyndelsesløn på 161,20 kr. pr. time."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Når vagtfunktionæren har opnået seks måneders anciennitet, forhøjes mindstelønnen med 4,75 kr. pr. time. Ved atten måneders anciennitet forhøjes mindstelønnen med yderligere 3,10 kr. pr. time, og ved fire års anciennitet med yderligere 5,40 kr. pr. time."
+            }
+          ]
+        },
+        {
+          "id": "§ 7, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pr. 1. oktober 2026 forhøjes begyndelseslønnen efter stk. 2 med 4,35 kr. pr. time. Forhøjelserne efter stk. 3 er uændrede og lægges til den forhøjede begyndelsesløn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 8",
+      "heading": "Særlige tillæg",
+      "clauses": [
+        {
+          "id": "§ 8, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Hundeførere får et hundeførertillæg på 12,40 kr. pr. time for de timer, hvor de udfører vagt med hund. Tillægget dækker også hundens foder og pasning."
+            }
+          ]
+        },
+        {
+          "id": "§ 8, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Kontrolcentraloperatører får et funktionstillæg på 9,15 kr. pr. time."
+            }
+          ]
+        },
+        {
+          "id": "§ 8, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærer, som virksomheden har udpeget som førstehjælpere, får et tillæg på 420 kr. pr. måned."
+            }
+          ]
+        },
+        {
+          "id": "§ 8, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillæggene efter denne paragraf er ikke en del af mindstelønnen efter § 7."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 9",
+      "heading": "Unge under 18 år og elever",
+      "clauses": [
+        {
+          "id": "§ 9, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærer under 18 år må kun anvendes til adgangskontrol i dagtimerne og aflønnes med 70 pct. af begyndelseslønnen efter § 7, stk. 2."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Elever under sikkerhedsuddannelsen aflønnes med 118,75 kr. pr. time."
+            }
+          ]
+        },
+        {
+          "id": "§ 9, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "§ 7, stk. 3 og 4, og Protokollat 1 gælder ikke for unge under 18 år og elever."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 10",
+      "heading": "Overarbejde og søndagsarbejde",
+      "clauses": [
+        {
+          "id": "§ 10, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den daglige normale arbejdstid er otte timer. Arbejde ud over otte timer på en dag er overarbejde, også når vagten er planlagt med en længere varighed. Arbejdstiden henregnes til den dag, hvor vagten begynder."
+            }
+          ]
+        },
+        {
+          "id": "§ 10, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overarbejdstillægget udgør 25 pct. af timelønnen for den første overarbejdstime, 50 pct. for anden og tredje overarbejdstime og 100 pct. for fjerde og følgende overarbejdstimer samme dag."
+            }
+          ]
+        },
+        {
+          "id": "§ 10, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejde på søndage betales med et søndagstillæg på 70 pct. af timelønnen for alle timer, der ligger på en søndag. Der betales ikke samtidig overarbejdstillæg for disse timer, og de indgår ikke i opgørelsen af de otte timer efter stk. 1."
+            }
+          ]
+        },
+        {
+          "id": "§ 10, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Søndagstillægget forhøjes pr. 1. oktober 2026 med 5 procentpoint."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 11",
+      "heading": "Tillæg for aften-, nat- og weekendarbejde",
+      "clauses": [
+        {
+          "id": "§ 11, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde mandag til fredag i tidsrummet kl. 17.00-23.00 betales et aftentillæg på 15,85 kr. pr. time."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde alle ugens dage i tidsrummet kl. 23.00-07.00 betales et nattillæg, der udgør 160 pct. af aftentillægget."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "For arbejde lørdag og søndag i tidsrummet kl. 07.00-23.00 betales et weekendtillæg, der svarer til aftentillægget med tillæg af 3,15 kr."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pr. 1. oktober 2026 forhøjes aftentillægget til 16,40 kr. pr. time. Nattillægget og weekendtillægget beregnes fortsat på grundlag af aftentillægget efter stk. 2 og 3."
+            }
+          ]
+        },
+        {
+          "id": "§ 11, stk. 5",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillæggene efter denne paragraf betales ud over overarbejdstillæg og søndagstillæg efter § 10."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 12",
+      "heading": "Rådighedsvagt og tilkald",
+      "clauses": [
+        {
+          "id": "§ 12, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Står vagtfunktionæren efter aftale til rådighed uden for arbejdsstedet, betales 38,50 kr. pr. time for rådighedstiden."
+            }
+          ]
+        },
+        {
+          "id": "§ 12, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved tilkald betales den faktiske arbejdstid som arbejde, dog mindst tre timer."
+            }
+          ]
+        },
+        {
+          "id": "§ 12, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Rådighedsbetalingen er ikke et tillæg efter § 11, og rådighedstimer medregnes ikke i arbejdstiden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 13",
+      "heading": "Kørsel og uniform",
+      "clauses": [
+        {
+          "id": "§ 13, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Anvender vagtfunktionæren efter aftale sin egen bil i tjenesten, betales kørselsgodtgørelse med 3,79 kr. pr. km."
+            }
+          ]
+        },
+        {
+          "id": "§ 13, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden stiller uniform og nødvendigt sikkerhedsudstyr til rådighed og betaler for rensning og vedligeholdelse."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 14",
+      "heading": "Lønudbetaling",
+      "clauses": [
+        {
+          "id": "§ 14, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Lønnen udbetales månedsvis bagud, så den er til rådighed senest den sidste bankdag i måneden. Tillæg og overarbejde for den foregående måned udbetales samtidig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 15",
+      "heading": "Pension",
+      "clauses": [
+        {
+          "id": "§ 15, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærer optages i pensionsordningen, når de har tre måneders anciennitet i virksomheden."
+            }
+          ]
+        },
+        {
+          "id": "§ 15, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Det samlede pensionsbidrag udgør 12,6 pct. af lønnen inklusive alle tillæg og overarbejdsbetaling. Vagtfunktionærens eget bidrag udgør 4,2 pct., og virksomheden betaler resten af det samlede bidrag."
+            }
+          ]
+        },
+        {
+          "id": "§ 15, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pr. 1. oktober 2026 forhøjes det samlede bidrag til 13,1 pct. Forhøjelsen betales i sin helhed af virksomheden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 16",
+      "heading": "Sygdom",
+      "clauses": [
+        {
+          "id": "§ 16, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Under sygdom betaler virksomheden løn til vagtfunktionærer med mindst tre måneders anciennitet i op til otte uger pr. sygeforløb."
+            }
+          ]
+        },
+        {
+          "id": "§ 16, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden kan kræve lægeerklæring fra fjerde sygedag. Udgiften afholdes af virksomheden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 17",
+      "heading": "Ferie og ferietillæg",
+      "clauses": [
+        {
+          "id": "§ 17, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærer har ret til ferie efter ferieloven."
+            }
+          ]
+        },
+        {
+          "id": "§ 17, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ferietillægget udgør 1,5 pct. af den ferieberettigede løn indtil 30. september 2026. Fra 1. oktober 2026 udgør ferietillægget 2 pct. af den ferieberettigede løn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 18",
+      "heading": "Særlig opsparing",
+      "clauses": [
+        {
+          "id": "§ 18, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden indbetaler til en særlig opsparing for den enkelte vagtfunktionær. Den særlige opsparing udgør 4 pct. af den ferieberettigede løn."
+            }
+          ]
+        },
+        {
+          "id": "§ 18, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Pr. 1. oktober 2026 forhøjes den særlige opsparing med 1 procentpoint."
+            }
+          ]
+        },
+        {
+          "id": "§ 18, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Den særlige opsparing ændres yderligere fra den første april 2027, jf. Protokollat 2."
+            }
+          ]
+        },
+        {
+          "id": "§ 18, stk. 4",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Opsparingen udbetales ved fratræden og i øvrigt efter vagtfunktionærens ønske ved afholdelse af fridage uden løn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 19",
+      "heading": "Graviditet, barsel og adoption",
+      "clauses": [
+        {
+          "id": "§ 19, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærer med mindst ni måneders anciennitet på det forventede fødselstidspunkt har ret til løn under fravær fra 6 uger før forventet fødsel og indtil 14 uger efter fødslen."
+            }
+          ]
+        },
+        {
+          "id": "§ 19, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Herudover betales løn under forældreorlov i 10 uger, som kan deles mellem forældrene."
+            }
+          ]
+        },
+        {
+          "id": "§ 19, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved adoption gælder de samme regler fra modtagelsen af barnet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 20",
+      "heading": "Børns sygdom",
+      "clauses": [
+        {
+          "id": "§ 20, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Frihed med løn ydes på barnets første sygedag til en vagtfunktionær med et barn under 14 år."
+            }
+          ]
+        },
+        {
+          "id": "§ 20, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved et barns indlæggelse på hospital ydes frihed med løn i op til fem dage pr. kalenderår."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 21",
+      "heading": "Opsigelse",
+      "clauses": [
+        {
+          "id": "§ 21, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Efter prøvetiden er det gensidige opsigelsesvarsel 14 dage i det første ansættelsesår. Virksomhedens varsel forlænges til en måned efter ét års ansættelse, til to måneder efter tre års ansættelse og til tre måneder efter seks års ansættelse."
+            }
+          ]
+        },
+        {
+          "id": "§ 21, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærens eget varsel er 14 dage uanset anciennitet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 22",
+      "heading": "Tillidsrepræsentant",
+      "clauses": [
+        {
+          "id": "§ 22, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "I virksomheder med mindst fem vagtfunktionærer kan der vælges en tillidsrepræsentant og en suppleant."
+            }
+          ]
+        },
+        {
+          "id": "§ 22, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tillidsrepræsentanten skal have den fornødne tid til at varetage hvervet og bevarer under hvervet sin sædvanlige løn."
+            }
+          ]
+        },
+        {
+          "id": "§ 22, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Afskedigelse af en tillidsrepræsentant skal begrundes i tvingende årsager og drøftes mellem parterne, før den gennemføres."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 23",
+      "heading": "Arbejdsmiljø og alenearbejde",
+      "clauses": [
+        {
+          "id": "§ 23, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Ved alenearbejde skal virksomheden sikre, at vagtfunktionæren til enhver tid kan tilkalde hjælp."
+            }
+          ]
+        },
+        {
+          "id": "§ 23, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærer, der har været udsat for vold eller trusler i tjenesten, tilbydes psykologisk krisehjælp betalt af virksomheden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 24",
+      "heading": "Uddannelse",
+      "clauses": [
+        {
+          "id": "§ 24, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vagtfunktionærer har efter tre måneders anciennitet ret til op til 10 dages relevant efteruddannelse om året."
+            }
+          ]
+        },
+        {
+          "id": "§ 24, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Virksomheden indbetaler 520 kr. pr. fuldtidsansat pr. år til en uddannelsesfond, som administreres af parterne i fællesskab."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 25",
+      "heading": "Behandling af uenighed",
+      "clauses": [
+        {
+          "id": "§ 25, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Uenighed om overenskomsten søges løst lokalt. Lykkes det ikke, afholdes mæglingsmøde mellem parterne inden 14 dage, hvorefter sagen kan indbringes for faglig voldgift."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "§ 26",
+      "heading": "Ikrafttræden og opsigelse",
+      "clauses": [
+        {
+          "id": "§ 26, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten har virkning fra den 1. oktober 2025."
+            }
+          ]
+        },
+        {
+          "id": "§ 26, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Overenskomsten kan opsiges skriftligt med tre måneders varsel til en 1. oktober, første gang til ophør den 1. oktober 2027."
+            }
+          ]
+        },
+        {
+          "id": "§ 26, stk. 3",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Satserne i overenskomsten gælder, indtil de afløses af nye satser."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "protocols": [
+    {
+      "number": "Protokollat 1",
+      "heading": "Erfarne vagtfunktionærer",
+      "clauses": [
+        {
+          "id": "Protokollat 1, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Med virkning fra den første april 2027 forhøjes mindstelønnen for vagtfunktionærer med fire års anciennitet med yderligere 2,00 kr. pr. time."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 1, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Forhøjelsen gælder ikke for de øvrige anciennitetstrin."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "Protokollat 2",
+      "heading": "Særlig opsparing fra 1. april 2027",
+      "clauses": [
+        {
+          "id": "Protokollat 2, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Med virkning fra den første april 2027 forhøjes den særlige opsparing efter § 18 med yderligere et halvt procentpoint."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 2, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Parterne er enige om, at forhøjelsen finansieres inden for overenskomstens samlede ramme."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "Protokollat 3",
+      "heading": "Arbejdsgruppe om natarbejde",
+      "clauses": [
+        {
+          "id": "Protokollat 3, stk. 1",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Parterne nedsætter en arbejdsgruppe, der i overenskomstperioden undersøger de helbredsmæssige forhold ved fast natarbejde og fremlægger forslag til forebyggende tiltag senest den 1. juni 2027."
+            }
+          ]
+        },
+        {
+          "id": "Protokollat 3, stk. 2",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Arbejdsgruppens arbejde ændrer ikke overenskomstens satser."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

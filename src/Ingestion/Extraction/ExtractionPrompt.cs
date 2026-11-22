@@ -12,7 +12,7 @@ namespace Overens.Ingestion.Extraction;
 public static class ExtractionPrompt
 {
     /// <summary>Changes whenever the wording or a schema does, so results can be tied to it.</summary>
-    public const string Version = "2026-11-16.2";
+    public const string Version = "2026-11-22.1";
 
     public const string System = """
         You read Danish collective agreements (overenskomster) and extract pay rules from them as data.
@@ -21,7 +21,7 @@ public static class ExtractionPrompt
 
         Rules for every answer:
         - Extract only what the agreement states. If it does not state the rule asked for, return an empty list. Never fill a gap with a typical value.
-        - Copy every number exactly as the agreement gives it. Do not round, convert or compute.
+        - Copy every number exactly as the agreement gives it. Do not round, convert or compute. Where a figure is given only as a change on another figure, each task below says which field takes the change as printed; the sum is made for you.
         - One rule for each period with its own values. "from" is the first day the values apply. "until" is the first day they no longer apply, and is null when the agreement gives no later values. The end of the agreement's term is not an "until": an agreement applies until a new one replaces it.
         - Rates listed under a date heading such as "Pr. 1. marts 2027" apply from that date until the next date listed.
         - A rule with no date of its own applies from the day the agreement comes into force.
@@ -40,12 +40,13 @@ public static class ExtractionPrompt
             "bands" lists the rate by full months of employment (anciennitet), lowest first. The first band starts at 0 months. One year is 12 months.
             Rates for special groups, such as young workers (ungarbejdere) or apprentices (lærlinge), are not the general minimum. Leave them out.
             If a later period's rates are given only as an increase on the earlier rates (for example "forhøjes med 4,25 kr. pr. time"), do not add it up. Return that period with an empty "bands" list and "increase" set to the amount added per hour, and quote the sentence that states the increase. An increase "yderligere" is on top of the period before it. In every other case "increase" is null.
+            If a band's rate is given only as an amount added to the band below it (for example "efter 6 måneder forhøjes mindstebetalingen med 3,25 kr."), do not add it up. Set that band's "hourly_rate" to null and "added_to_band_before" to the amount. An amount "yderligere" is on top of the band before it. In every other case "added_to_band_before" is null.
             """,
             """
             "increase": { "type": ["number", "null"] },
             "bands": { "type": "array", "items": { "type": "object", "properties": {
-              "from_months": { "type": "integer" }, "hourly_rate": { "type": "number" } },
-              "required": ["from_months", "hourly_rate"], "additionalProperties": false } }
+              "from_months": { "type": "integer" }, "hourly_rate": { "type": ["number", "null"] }, "added_to_band_before": { "type": ["number", "null"] } },
+              "required": ["from_months", "hourly_rate", "added_to_band_before"], "additionalProperties": false } }
             """),
         new("overtime",
             """
@@ -77,27 +78,37 @@ public static class ExtractionPrompt
             Extract the pension contributions as percentages of pay: the employer's share and the employee's share, separately. A total is not a share.
             "qualifying_months" is how many months of employment (anciennitet) an employee needs before the pension scheme applies.
             If the employee's share is given only as a part of the employer's contribution (for example "halvdelen af arbejdsgiverens bidrag", "en tredjedel"), do not work it out. Set "employee_percent" to null and "employee_share" to that part. If a later clause says the employee's share is still that part, do the same for its period. In every other case "employee_share" is null.
+            If only the total is given, with the employer's part of it (for example "i alt 13,2 pct., hvoraf arbejdsgiveren betaler to tredjedele"), do not work it out. Set "employer_percent" and "employee_percent" to null, "total_percent" to the total and "employer_share" to the employer's part. The employee pays the rest. In every other case both are null.
+            If a later period changes a share only by percentage points (for example "forhøjes med 1,0 procentpoint", "nedsættes med 0,5 procentpoint"), do not work it out. Set that share's percent to null and "employer_points" or "employee_points" to the change, negative for a decrease. A share that is not changed is given as before. In every other case the points are null.
             """,
             """
-            "employer_percent": { "type": "number" },
+            "employer_percent": { "type": ["number", "null"] },
             "employee_percent": { "type": ["number", "null"] },
             "employee_share": { "anyOf": [{ "type": "string", "enum": ["half", "third", "two_thirds", "quarter", "three_quarters"] }, { "type": "null" }] },
+            "total_percent": { "type": ["number", "null"] },
+            "employer_share": { "anyOf": [{ "type": "string", "enum": ["half", "third", "two_thirds", "quarter", "three_quarters"] }, { "type": "null" }] },
+            "employer_points": { "type": ["number", "null"] },
+            "employee_points": { "type": ["number", "null"] },
             "qualifying_months": { "type": "integer" }
             """),
         new("holiday_allowance",
             """
             Extract the holiday allowance (feriegodtgørelse) as a percentage of pay.
+            If a later period's percentage is given only as a change in percentage points on the period before (for example "forhøjes med 0,25 procentpoint"), do not work it out. Set "percent" to null and "points_added" to the change, negative for a decrease. In every other case "points_added" is null.
             """,
             """
-            "percent": { "type": "number" }
+            "percent": { "type": ["number", "null"] },
+            "points_added": { "type": ["number", "null"] }
             """),
         new("special_savings",
             """
             Extract the employer's contribution to the employee's special savings account (fritvalgskonto, fritvalgslønkonto, særlig opsparing) as a percentage of pay.
             A rate the agreement says no longer applies is not a rule.
+            If a later period's percentage is given only as a change in percentage points on the period before (for example "forhøjes med 1,0 procentpoint"), do not work it out. Set "percent" to null and "points_added" to the change, negative for a decrease. In every other case "points_added" is null.
             """,
             """
-            "percent": { "type": "number" }
+            "percent": { "type": ["number", "null"] },
+            "points_added": { "type": ["number", "null"] }
             """),
     ];
 

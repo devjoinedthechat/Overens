@@ -1,0 +1,4 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "{\u0022rules\u0022:[{\u0022from\u0022:\u00222025-04-01\u0022,\u0022until\u0022:\u00222026-04-01\u0022,\u0022clause_id\u0022:\u0022§ 15, stk. 1\u0022,\u0022quote\u0022:\u0022Til fritvalgskontoen afsætter virksomheden 7,2 pct. af medarbejderens løn.\u0022,\u0022also_from\u0022:[],\u0022percent\u0022:7.2,\u0022points_added\u0022:null},{\u0022from\u0022:\u00222026-04-01\u0022,\u0022until\u0022:\u00222027-04-01\u0022,\u0022clause_id\u0022:\u0022§ 15, stk. 1\u0022,\u0022quote\u0022:\u0022Procenten er 8,2 fra 1. april 2026 og 9,0 fra 1. april 2027.\u0022,\u0022also_from\u0022:[],\u0022percent\u0022:8.2,\u0022points_added\u0022:null},{\u0022from\u0022:\u00222027-04-01\u0022,\u0022until\u0022:null,\u0022clause_id\u0022:\u0022§ 15, stk. 1\u0022,\u0022quote\u0022:\u0022Procenten er 8,2 fra 1. april 2026 og 9,0 fra 1. april 2027.\u0022,\u0022also_from\u0022:[],\u0022percent\u0022:9,\u0022points_added\u0022:null}]}"
+}

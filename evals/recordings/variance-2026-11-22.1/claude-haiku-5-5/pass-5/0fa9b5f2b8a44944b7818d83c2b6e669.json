@@ -1,0 +1,4 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "{\u0022rules\u0022:[{\u0022from\u0022:\u00222026-03-01\u0022,\u0022until\u0022:null,\u0022clause_id\u0022:\u0022§ 5, stk. 2\u0022,\u0022quote\u0022:\u0022For de første tre timers overarbejde pr. dag betales et tillæg på 50,0 pct. af timelønnen.\u0022,\u0022also_from\u0022:[\u0022§ 3, stk. 2\u0022,\u0022§ 5, stk. 1\u0022,\u0022§ 5, stk. 3\u0022,\u0022§ 15, stk. 1\u0022],\u0022daily_norm_minutes\u0022:444,\u0022tiers\u0022:[{\u0022minutes\u0022:180,\u0022percent\u0022:50},{\u0022minutes\u0022:null,\u0022percent\u0022:100}],\u0022sunday_percent\u0022:100}]}"
+}

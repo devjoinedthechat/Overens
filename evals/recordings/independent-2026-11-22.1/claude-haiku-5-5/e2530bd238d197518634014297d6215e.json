@@ -1,0 +1,4 @@
+{
+  "Model": "claude-haiku-5-5",
+  "Text": "{\u0022rules\u0022:[{\u0022from\u0022:\u00222026-10-01\u0022,\u0022until\u0022:null,\u0022clause_id\u0022:\u0022§ 10, stk. 4\u0022,\u0022quote\u0022:\u0022Søndagstillægget forhøjes pr. 1. oktober 2026 med 5 procentpoint.\u0022,\u0022also_from\u0022:[\u0022§ 10, stk. 1\u0022,\u0022§ 10, stk. 2\u0022,\u0022§ 10, stk. 3\u0022],\u0022daily_norm_minutes\u0022:480,\u0022tiers\u0022:[{\u0022minutes\u0022:60,\u0022percent\u0022:25},{\u0022minutes\u0022:120,\u0022percent\u0022:50},{\u0022minutes\u0022:null,\u0022percent\u0022:100}],\u0022sunday_percent\u0022:5}]}"
+}
